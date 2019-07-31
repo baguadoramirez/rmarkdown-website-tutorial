@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="CV.html">CV</a>
+</li>
+<li>
+  <a href="pia.html">P&amp;A</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="practica-5-percepcion-de-expresiones-emocionales" class="section level1">
+<h1>Práctica 5: Percepción de expresiones emocionales</h1>
+<div id="indice-de-objetivos" class="section level2">
+<h2>Índice de objetivos</h2>
+<ul>
+<li><p>Comprobar si existen diferencias interhemisféricas (asimetrías cerebrales) en el procesamiento de emociones, a partir de técnicas psicofísicas (no invasivas)</p></li>
+<li><p>Intentar replicar el estudio de Alves, Aznar-Casanova &amp; Fukusima (2008) con rostros esquemáticos.</p></li>
+</ul>
+</div>
+<div id="introduccion" class="section level2">
+<h2>Introducción</h2>
+<p>Durante el transcurso de estas clases, ya hemos visto cómo el ser humano es capaz de acceder a diferente rasgos o caracterñisticas de un sistema visual de manera bastante eficiente. Aunque hasta ahora nos hemos centrado en niveles perceptivos más bajos como podrían ser luminancia, contraste, co-colinealidad, o patrones sencillos como son letras, el procesamiento de estímulos visuales complejos como puede ser un rostro es importante para entender cómo interactuamos con estímulos más válidos ecológicamente con los que nos encontramos en nuestro día a día.</p>
+<p>En nuestra vida social nos encontramos con unos estímulos complejos como son los rostros. Continuamente estamos haciendo inferencias sobre rasgos presentes en estos rostros, y aunque normalmente son acertadas, pueden tener una gran influencia sobre nuestro comportamiento. Por ejemplo…</p>
+<figure>
+<p>
+<img src="pia/P5/ruby_rose.jpg" width="350px">
+<figcaption>
+¿Hombre, Mujer, Intersexual? ¿Edad? ¿Inteligente? ¿Atractivx? ¿Conocidx? ¿Se trata de una persona hostil? ¿Qué emoción está sientiendo?
+</figcaption>
+</figure>
+<p>Desde el punto de vista de la congnición social, se ha estudiado cómo tanto seres humanos como primates indentifican y reconocer las expresiones faciles de los otros. Según <a href="https://doi.org/10.1080/02699939208411068">Ekman (1992); pág. 171</a>, la función primaria de las emociones sería la de movilizar a un organismo a realizar ciertas acciones para conseguir un objetivo dentro de su vida social. En su estudio de las emociones, Ekman propuso que había una serie de emociones básicas compartidas entre todas las civilizaciones humanas: ira, miedo, asco, sorpresa, alegría y tristeza. Dado que diferentes emociones dan lugar a diferentes probablidades de que se manifieste una conducta posterior, obtener una rápida identificación por parte de un observador externo de la expresión emocional (se sabe que se produce alrededor de los 100ms.) es de gran utilidad evolutiva para adaptarse al futuro comportamiento de los otros.</p>
+<figure>
+<p>
+<img src="pia/P5/Faces.png" width="350px">
+<figcaption>
+Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr lo más pronto posible.
+</figcaption>
+</figure>
+<p>Pero, ¿por qué es importante esto dentro de la sub-asignatura de “Percepción Visual”? <a href="10.1037//0022-3514.53.1.53">Forgas y Bower (1987)</a> estudiaron el efecto que tienen las emociones dentro del procesamiento cognitivo. Al hacer esto encontraron que cuando cambiaba el componente emocional de un observador, cambiaban factores cognitivos de respuesta (criterio de decisión) a experimentos psicofísicos, sin embargo, no pudieron encontrar diferncias en el componente sensorial (detectabilidad o discriminabilidad). ¿Recuerdas la práctica 2?</p>
+<p>Actualmente podemos decir que existen dos perspectivas distintas en cuanto a cuáles son las bases neurales del procesamiento de las emociones:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Hipótesis del hemisferio derercho</strong> podemos encontrar un claro ejemplo de esta teoría en <a href="http://dx.doi.org/10.1037/0894-4105.12.3.446">Borod, 1998</a>: Según esta teoría, todas las emociones serán procesadas más fácilmente por el hemisferio derecho independientemente de su valencia.</p></li>
+<li><p><strong>Hipótesis del acercamiento-retraimiento</strong> de <a href="https://doi.org/10.1111/1469-8986.00067">Davidson (2003)</a>: Según esta teoría el hemisferio iquierdo procesaría las emociones positivas mientras que el hemisferio derecho procesaría de forma principal las emociones negativas.</p></li>
+</ol>
+<p>Concretamente, <a href="https://scholar.google.es/scholar?cluster=1079682260296463766&amp;hl=es&amp;as_sdt=2005&amp;sciodt=0,5">Davidson (1995)</a> propuso una división del sistema emocional en tres subsistmeas o componentes:</p>
+<figure>
+<p>
+<img src="pia/P5/Sistema_limbico.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<figure>
+<p>
+<img src="pia/P5/Experiencia.png" width="350px">
+<figcaption>
+<ol style="list-style-type: decimal">
+<li>Experiencia emocional (experiencia que genera la emoción)</li>
+</ol>
+</figcaption>
+</figure>
+<figure>
+<p>
+<img src="pia/P5/Expresion.gif" width="350px">
+<figcaption>
+<ol start="2" style="list-style-type: decimal">
+<li>Expresión emocional (expresión emocional factor conductual esquelético)</li>
+</ol>
+</figcaption>
+</figure>
+<figure>
+<p>
+<img src="pia/P5/Percepcion.png" width="350px">
+<figcaption>
+<ol start="3" style="list-style-type: decimal">
+<li>Percepción emocional (identificación de la propia emoción)</li>
+</ol>
+</figcaption>
+</figure>
+<p>Un ejemplo en el que no somos capaces de llegar al tercer nivel sería cuando sentimos hambre y nos sentimos molestos por cualquier comentario. En este caso, nos sentimos molestos con las acciones de los demás porque no estamos atribuyendo nuestra emoción a la experiencia emocional original.</p>
+<p>En esta práctica, además de mostrar cómo diferentes emociones pueden dar lugar a diferentes criterios de respuesta utilizaremos una técnica basada en cómo se distribuye el sistema visual en la retina para poder acceder y estudiar el procesamiento de las emociones dentro del sistema neural.</p>
+<p>Para hacerlo, utilizaremos la técnica de campo visual dividido para explorar las asimetrías en la percepción. Esta técnica se basa en que cada campo visual se refeja en la hemirretina contralatera. De esta manera:</p>
+<figure>
+<p>
+<img src="pia/P5/Campos_Visuales.png" width="350px">
+<figcaption>
+El campo visual derecho se refleja en la hemiretina izquierda haciendo que se procese por el hemisferio izquierdo.Campo visual izqueirdo se refleja en la hemiretina derecha haciendo que se procese principalmente por el hemisferio derecho. NOTA: Es importante indicar que hay parte del espacio visual que sólo se refleja en una de las hemiretinas y por lo tanto sólo es porcesada pir un hemisferio. Espacios visuales laterales inferiores.
+</figcaption>
+</figure>
+</div>
+<div id="estudio-de-alves-n.-t.-fukusima-s.-s.-aznar-casanova-j.-a.-2008" class="section level2">
+<h2>Estudio de Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</h2>
+<p>Utilizando la técnica de campo visual dividido <a href="http://dx.doi.org/10.3922/j.psns.2008.1.010">Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</a> mostraron a los observadores imagenes con diferentes emociones dirigidas a ser procesadas por el hemisferio izquierdo o derecho preguntándose si habría un hemisferio que procese más rápidamente cada emoción.</p>
+<p>para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (estímulos positivos), caras enfadadas o tristes (estímulos negativos) o caras con expresión neutra (estímulo no-emocional).</p>
+<ul>
+<li><p>Grupo 1 = target Felicidad (vs T, S, N, M)</p></li>
+<li><p>Grupo 2 = target Miedo (vs T, N, S, F)</p></li>
+<li><p>Grupo 3 = target Neutral (vs T, M, S, F)</p></li>
+<li><p>Grupo 4 = target Sorpresa (vs F, N, T, M)</p></li>
+<li><p>Grupo 5 = target Tristeza (vs F, N, M, S)</p></li>
+</ul>
+<figure>
+<p>
+<img src="pia/P5/Trials_2008.png" width="350px">
+<figcaption>
+En el experimento se les pedía a los participantes indicar en qué posición de la pantalla se presenta la emoción indicada para cada grupo. Es decir, si el participane pertenecía al primer grupo (target: alegría), debería seleccionar izquierda en el primer ensayo y derecha en el segundo ensayo.
+</figcaption>
+</figure>
+<p>Los resultados en este experimento fueron los siguientes:</p>
+<figure>
+<p>
+<img src="pia/P5/Resultados_2008.png" width="350px">
+<figcaption>
+Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio derecho
+</figcaption>
+</figure>
+<p><strong>Los resultados parecían dar soporte a la hipótesis del hemisferio derecho.</strong></p>
+<p>Los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Si bien, los resultados con rostros neutros sugieren que los datos parecen dar mayor apoyo empírico a la hipótesis del HD . Los autores proponen que se profundice en la naturaleza de los estímulos (por ejem., estáticos / dinámicos), ya que el patrón de resultados no es inequívoco.</p>
+</div>
+<div id="practica-5-percepcion-de-expresiones-emocionales-1" class="section level2">
+<h2>Práctica 5: Percepción de expresiones emocionales</h2>
+<p>Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resutlados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento (que podéis encontrar, como siempre, en el campus virtual) con caricaturas que relfejan diferentes expresiones emocionales.</p>
+<figure>
+<p>
+<img src="pia/P5/P5.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p>El método será parecido al del experimento anterior. En concreto, tenéis 3 ejecutales distintos en los que tendréis que atender y buscar expresiones de “Felicidad”, “Tristeza” o “Neutras”.</p>
+<ul>
+<li><p>Grupo 1 = target Felicidad (vs T, N, M)</p></li>
+<li><p>Grupo 2 = target Tristeza (vs N, S, F)</p></li>
+<li><p>Grupo 3 = target Neutra (vs T, M, S, F)</p></li>
+</ul>
+<p>Las variables independientes son el grupo asignado (emoción target) y la emoción distractora. Las variables dependientes serán el tiempo de rección y la tasa de errores.</p>
+<figure>
+<p>
+<img src="pia/P5/Trials_P5.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p>Los resultados obtenidos “en general” serán los siguientes:</p>
+<ul>
+<li><p>Si observamos los RTs:</p>
+<ul>
+<li><p>Los estímulos positivos se procesan más rápido por el hemisferio izquierdo.</p></li>
+<li><p>Los estímulos negativos parecen no mostrar diferencias significativas entre hemisferios.</p></li>
+<li><p>En el procesamiento de los estimulos neutros no hay diferencias.</p></li>
+</ul></li>
+</ul>
+<figure>
+<p>
+<img src="pia/P5/Resultados_TR_P5.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<ul>
+<li><p>Si observamos el % de errores:</p>
+<ul>
+<li><p>En los estímulos positivos hay menos errores cuando son procesados por el hemisferio izquierdo.</p></li>
+<li><p>Los estimulos negativos procesados por el hemisferio derecho dan lugar a menor tasa de errores.</p></li>
+</ul></li>
+</ul>
+<figure>
+<p>
+<img src="pia/P5/Resultados_errores_P5.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+</div>
+<div id="discusion" class="section level2">
+<h2>Discusión</h2>
+<p>Los resultados con caricaturas muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Mientras que los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD.</p>
+<p><strong>¿Por qué puede ocurrir esto?</strong></p>
+<p><br></p>
+</div>
+</div>
+
+<html>
+<footer role="contentinfo" id="site-footer">
+<small><p class="copyright">&#169; 2019,
+		This webpage was created using <a href="http://www.r-project.org">R</a> with <a href="http://rmarkdown.rstudio.com">RMarkdown</a> and hosted on <a href="http://github.com">Github</a> by Borja Aguado and based on <a href="https://github.com/jules32/rmarkdown-website-tutorial"> jules32/rmarkdown-website-tutorial</a> project. </small></p>
+</footer>
+</html>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

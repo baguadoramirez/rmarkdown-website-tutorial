@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="CV.html">CV</a>
+</li>
+<li>
+  <a href="pia.html">P&amp;A</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="practica-2-obtencion-de-los-umbrales-de-deteccion-de-la-colinealidad." class="section level1">
+<h1>Práctica 2: Obtención de los umbrales de detección de la colinealidad.</h1>
+<div id="conceptos-previos" class="section level2">
+<h2>Conceptos previos</h2>
+<p>El paso de la Filosofía a la Psicología como ciencia ha sido objeto de debate durante largo tiempo y establecer precursores a veces puede ser inexacto. Sin embargo, hay momentos en el desarrollo de la epistemología o filosofía sobre el conocimiento que han ayudado historicamente a entender por qué y cómo el objeto de estudio de la Psicología, es decir, el estudio de la conducta pasó a considerarse una ciencia (Para una interesante descripción que se puede discutir en clase <a href="http://www.aepc.es/ijchp/articulos_pdf/ijchp-89.pdf">continúa aquí</a>).</p>
+<p>La corrientes filosóficas imperantes hasta la ilustración abogaban porque el conocimiento podia existir independientemente del observador y que, de hecho, el mismo podría acceder a él mediante ciertos criterios de verdad basados en la lógica. El observador se trata por lo tanto de un sujeto <em>pasivo</em> que ya posee sensaciones e ideas a las cuales sólo necesita acceder para <em>conocerlas</em>. Es durante la Ilustración, en el siglo XVII cuando <a href="https://en.wikipedia.org/wiki/Immanuel_Kant">Inmanuel Kant</a> utiliza la metáfora del giro copernicano (pasar de un universo geocéntrico a un universo heliocéntrico) para situar de nuevo al observador en una posición activa sobre el conocimiento. Kant argumenta que para llegar al conocimiento, las sensaciones han de pasar por una especie de <em>filtro</em>. Una serie de <em>ideas trascendentales</em> que dan forma a esas sensaciones. Estas ideas son inacesibles por un observador, y por lo tanto, no son susceptibles de poder ser estudiadas. En este momento, sin saberlo, Kant estaba describiendo cómo las diferentes estructuras sensoriales filtran y dan forma al tipo de información que un sistema biológico para generar algún tipo de conocimiento sobre el entorno. Por ejemplo, el paso de la energía electromagnética que compone la luz a la energía bioquímica que utiliza el sistema nervioso. <!--y que el conocimiento que podemos generar está limitado *per se* por aquello que un observador de manera activa puede percibir. Sin embargo, no llega a posicionarse entre las posturas más empiristas hasta el momento, argumentando que aunque el observador y el objeto de estudio puedan ser elementos independientes, en tanto que hay características del objeto que no se pueden estudiar o percibir, un objeto no podría ser nunca descrito en su totalidad, también llamado *cosa-en-sí o noúmeno*.--></p>
+<p><strong>Inciso: Estos dos últimos párrafos no serán objeto de examen, pero siempre es importante saber de dónde venimos para poder entender a dónde vamos.</strong></p>
+<p>A principios del siglo XIX, <a href="https://es.wikipedia.org/wiki/Ernst_Heinrich_Weber">Ernst Weber</a> describe, la que se conoce como la primera ley Psicofísica, la Ley de Weber. Ãste médico alemán, se dió cuenta de que la capacidad de diferenciar dos pesos diferentes no se encontraba tanto en el peso absoluto de un objeto, sino en la diferencia relativa entre un objeto de referencia (<em>Estímulo de referencia</em>) y otro (<em>Estimulo de comparación</em>). Weber encuentra que para que dos objetos de diferente masa pudieran ser diferenciables, su masa debería variar entorno a un 3%. Es decir, si el objeto de referencia pesa 100g, para ser capaces de diferenciarlo de otro, éste debe pesar 103/97g o más/menos. El dato importante está en que Weber se dió cuenta de que esto se cumplia irrespectivamente del peso de refrencia. Es decir, al igual que en el anterior ejemplo, para que un objeto de 2kg. pudiese diferenciarse de otro, éste debería pesar al menos 2.06kg.</p>
+<p>Si dividimos la diferencia necesaria para poder diferenciar dos estímulos entre la magnitud del estímulo de referencia podemos obtener una constante (<strong><span class="math inline">\(k\)</span></strong>).</p>
+<span class="math display">\[\begin{equation}
+\label{WF}
+\ k = \frac{\Delta I}{I_{ref}}
+\end{equation}\]</span>
+<p>Esta constante nos permite obtener de forma rápida la Mínima Diferencia Perceptible (<em>MDP</em> o <em>Just Noticeable Difference</em>; JND en inglés) con respecto a cualquier intensidad de un estímulo.</p>
+<pre class="r"><code>data_frame(I = seq(1,10,by = 0.5),
+           k = 0.05,
+           DI = I * k) %&gt;%
+  ggplot(aes(I,DI)) +
+  geom_point() + 
+  labs(x = &quot;Intensidad del estímulo de referencia (I)&quot;, y = expression(Delta~I~(difference~threshold))) +
+  annotate(&quot;text&quot;, x = 9, y = 0.1, label = &quot;paste(bold(k),&#39; = &#39;, bold(0.05))&quot;, color = &quot;red&quot;, parse =T, size = 5) +
+  theme_minimal(10)</code></pre>
+<p><img src="P2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Además, podemos utilizar esta constante (<strong><span class="math inline">\(k\)</span></strong>), como un índice de sensibilidad para comparar entre diferentes modalidades sensoriales.</p>
+<p>El paso clave de la Filosofía a la Psicología viene dado en primer lugar por <a href="https://en.wikipedia.org/wiki/Gustav_Fechner">Fechner</a> a partir de los principios en Psicofísica. A la vista de los descubrimientos de Weber, Fechner argumenta que la relación entre la estimulación física y su sensación percibida puede ser medida mediante sencillas relaciones matemáticas como la <em>ley de Weber</em>.</p>
+<p>Fechner, junto a Helmholtz y Wundt se consideran los padres de la Psicología Experimental y de la Psicofísica. Bajo la perspectiva de la psicofísica, podemos describir el proceso perceptivo completo mediante la siguiente cadena causal:</p>
+<ul>
+<li><p><strong>Estímulo distal</strong>: Estimulación o energía física reflejada o producida por una fuente externa a los mismos receptores sensoriales. Por ejemplo, una pelota.</p></li>
+<li><p><strong>Estímulo proximal</strong>: Proyección de la energía del estímulo distal sobre los receptores sensoriales correctos. Por ejemplo, la imagen 2D en la retina.</p></li>
+<li><p><strong>Transducción</strong>: Transformación de la energía proyectada por el estímulo proximal a cambios energéticos dentro del sistema nervioso.</p></li>
+<li><p><strong>Percepción</strong>: Tras pasar por diferentes fases de procesos nerviosos, se daría la percepción de un estímulo.</p></li>
+</ul>
+<p>Esta cadena nos muestra que el proceso perceptivo requiere de diferentes transformaciones de la energía que daría lugar al percepto. Lo que haría que nuestra percepción no tenga una correspondencia directa con la estimulación física. Sin embargo, esto es algo que nos es familiar ya… <a href="#P1">Cof, cof… ;P</a></p>
+<p>Es por esta razón que Fechner propone diferntes métodos para estudiar cómo se relacionan la estimulación física con la percepción.</p>
+</div>
+<div id="metodos-psicofisicos" class="section level2">
+<h2>Métodos psicofísicos</h2>
+<ul>
+<li><strong>De los límites:</strong> el experimentador incrementa/decrementa progresivamente y de forma ordenada la intensidad del estímulo hasta que el observador cambia su respuesta. Por ejemplo, si queremos averiguar a qué intensidad de decibelios un sonido es audible podemos hacer el siguiente experimento: Empezamos a mostar a un participante un ruido a un nivel claramente audible y le pedimos que pulse l botón “S” si lo oye y el botón “N” si no lo oye. A medida que el participante va respondiendo que oye el sonido vamos disminuyendo los decibelios hasta que cambia su respuesta de “S” (sí), a “N” (no). En ese momento, empezamos a presentar estímulos en la dirección contraria, es decir, si antes cada vez que el participante afirmaba oír el ruido disminuíamos la intensidad, ahora presentamos un sonido claramente inaudible y a medida que va afirmando que no oye el estímulo vamos aumentando su intensidad.</li>
+</ul>
+<figure>
+<p>
+<img src="pia/P2/limits.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<ul>
+<li><strong>De los estímulos constantes:</strong> presentación aleatoria (o pseudoaleatoria) de un conjunto de intensidades seleccionadas de antemano.</li>
+</ul>
+<figure>
+<p>
+<img src="pia/P2/Constant_Stimuli.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<ul>
+<li><strong>Del ajuste:</strong> el sujeto controla y ajusta la intensidad del estímulo.</li>
+</ul>
+<figure>
+<p>
+<img src="pia/P2/Adjust.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p>Vamos a poner un ejemplo:</p>
+</div>
+<div id="deteccion-del-umbral-absoluto" class="section level2">
+<h2>Detección del Umbral Absoluto</h2>
+<p>Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que es posible percibir un 50% de las veces. Punto que denominaría como <strong>Umbral Absoluto</strong>. Vamos a ver cómo podemos aplicar esto a la vida real…</p>
+<p>Imaginemos que queremos saber cual es la mínima cantidad de gotas de edulcorante que son necesarias para empezar a percibir el café dulce (sí, estoy escribiendo con café en la mano). Esta se trataría de una tarea de detección. El objetivo de las tareas de detección es la obtención del nivel estimular mínimo para detectar un estímulo (<strong>Umbral Absoluto</strong>) al nivel del azar (el 50% de las veces).</p>
+<span class="math display">\[\begin{equation}
+\label{UA}
+\ UA = Q2
+\end{equation}\]</span>
+<p>En nuestro laboratorio tenemos 11 muestras de café, en cada una de las cuales hemos puesto de 0 a 10 gotas de edulcorante. Para ver cual es el mínimo número de gotas necesarias haremos probar a los participantes las diferentes tazas de café de forma aleatoria varias veces y anotaremos su respuesta (si lo percibe dulce <em>Sí</em> o <em>No</em> si lo percibe tan amargo como siempre).</p>
+<p><strong>¿Qué método psicofísico habríamos utilizado?</strong></p>
+<p>Después de realizar el experimento, calculamos la media de <em>síes</em> (codificados como 1) y <em>noes</em> (codificados como 0). Si representamos gráficamente estos datos, en la mayoría de casos obtendremos un grafico parecido al siguiente:</p>
+<pre class="r"><code>ggplot(data_frame(I = seq(0,10,by=1),
+  p = pnorm(I,mean = 5,sd = 1)),aes(I,p)) + 
+  geom_point(size = 2, color = &quot;red&quot;) +
+  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de ser percibido&quot;) +
+  theme_minimal(10)</code></pre>
+<p><img src="P2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Dado que todos los participantes presentan cierta viariabilidad, se espera que cada uno de nosotros muestre un Umbral Absoluto relativamente diferente. Esta varaibilidad puede deberse a factores tales como el ruido intrínseco del estímulo, el ruido sensorial debido a interferencias en el sistema nervioso o criterios decisionales. Dependiendo de cuál sea su UA podemos identificar diferentes tipos de observadores:</p>
+<ul>
+<li><p><strong>Sensibles</strong>: Son aquellos observdores con tendencia a responder que han percibido un estímulo aún cuando la intensidad es muy baja o cuando ni siquiera se ha presentado. Podríamos hablar de un observador <em>liberal</em> si y si sólo si la razón de su respuesta se debiera a <strong>criterios decisionales</strong> como la tendencia al riesgo o factores motivacionales de la tarea <strong>y no puramente debido a un componente sensorial</strong>. Por ejemplo, si recompenso al participante cada vez que acierta si hay o no edulcorante pero no penalizo los errores, los observadores tenderán a responder que han percibido el edulcorante para maximizar sus ganancias.</p></li>
+<li><p><strong>Poco sensibles</strong>: Son aquellos que tienden a responder que han percibido un estímulo cuando la intesidad es razonablemente alta. De la misma manera, podemos hablar de observadores <em>conservadores</em> aludiendo a factores decisionales. Por ejemplo, los participantes reciben en principio 10 euros sólo por participar. Sin embargo, les anuncio que si se equivocan una sola vez no recibirán los 10 euros. De esta manera, los participantes tenderán a responder únicamente cuando estén completamente seguros de que el edulcorante se encuentra presente.</p></li>
+</ul>
+<pre class="r"><code>UA = data_frame(I=seq(0,10,by=0.05),    
+           Medium = pnorm(I, mean = 5,sd=1),                  
+           High_Noise = pnorm(I, mean = 5, sd = 2), 
+           Low_Noise = pnorm(I, mean = 5, sd = 0.5),    
+           p_c_s = pnorm(I, mean = 7.5, sd = 1),    
+           p_l_s = pnorm(I, mean = 2.5, sd = 1))
+
+
+UA %&gt;%  
+  gather(id,value,c(Medium,p_c_s,p_l_s)) %&gt;%     
+  mutate(id = factor(id,levels = c(&quot;p_l_s&quot;,&quot;Medium&quot;,&quot;p_c_s&quot;),labels = c(&quot;Sensible&quot;,&quot;-&quot;,&quot;Poco sensible&quot;), ordered = T ),   
+         UA = ifelse(id == &quot;Sensible&quot;,2.5,ifelse(id == &quot;-&quot;,5,7.5))) %&gt;%
+  ggplot(.,aes(I,value, color = as.factor(id))) +   
+  geom_line(size = 2 ) +    
+  geom_vline(color = &quot;red&quot;, aes(xintercept = UA), size = 1, linetype =2) +  
+  facet_wrap(~id) + 
+  guides(color = FALSE) +   
+  theme_minimal(10)</code></pre>
+<p><img src="P2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Para saber si un observador es más o menos sensible que otro en cuanto al tipo de estímulo presentado podemos calcular un <em>índice de sensibilidad de detección -&gt; S = 1 / UA</em>. De esta manera, un observador con un UA de 2.5 será más sensible que uno que presenta un UA de 6.</p>
+</div>
+<div id="P2" class="section level2">
+<h2>Parte práctica: Umbral Absoluto de la Agudeza Visual</h2>
+<div id="que-es-la-agudeza-visual" class="section level3">
+<h3>¿Qué es la agudeza visual?</h3>
+<p><strong>Agudeza visual (AV):</strong> <u>Separación mínima </u> entre dos puntos, dos líneas o los extremos de un aro abierto, <u> que un observador es capaz de detectar.</u> También denominada resolución espacial del procesamiento visual.</p>
+<ul>
+<li><p>Depende de la distancia inter-receptores.</p></li>
+<li><p>En ocasiones se le llama âminimum separableâ.</p></li>
+</ul>
+<figure>
+<p>
+<img src="pia/P2/AV_1.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p>La agudeza visual varía dependiendo de la densidad de conos o bastones, disminuyendo a medida que nos alejamos de la fóvea. En optometría clínica, la AV normal se establece en 1 min arc.</p>
+<figure>
+<p>
+<img src="pia/P2/angulo_visual.png" width="350px">
+<figcaption>
+<a href="https://www.ncbi.nlm.nih.gov/books/NBK10848/">Purves D, Augustine GJ, Fitzpatrick D, et al., editors. Neuroscience. 2nd edition. Sunderland (MA): Sinauer Associates; 2001. Anatomical Distribution of Rods and Cones. </a>
+</figcaption>
+</figure>
+<p>Dentro de un laboratorio de percepción visual normalmente describimos las dimensiones de un objeto basándonos en el ángulo visual que subtende. ¿Por qué hacemos ésto? Fijémonos en la siguiente imágen:</p>
+<figure>
+<p>
+<img src="pia/P2/angulo_visual.png" width="350px">
+<figcaption>
+En esta figura podemos ver por qué es más util describir el tamaÃ±o de un objeto en cuanto al ángulo visual que percibimos. En la figura de arriba, podemos ver cómo Cristina a una distancia X ocupa un ángulo visual de X grados. Mientras que en la imagen inferior, Cristina se encuentra un poco más cerca del observador, es decir a X-1, sin embargo, el ángulo visual que ocupa es más grande. De esta manera, podemos identificar qué tamaÃ±o está viendo un observador irrespectivamente del tamaÃ±o físico del objeto y de la distancia a la que se encuentre.
+</figcaption>
+</figure>
+<p>Desde un punto de vista estructural, la distancia mínima para <strong>detectar la separación</strong> entre dos puntos es la misma que la distancia que separa dos fotoreceptores (conos o bastones) en la retina.</p>
+<figure>
+<p>
+<img src="pia/P2/cones_rods.png" width="350px">
+<figcaption>
+Los niveles de procesamiento intermedios se benefican de sumación espacial de la energía descargada por los bastones. En este caso, se sacrifica la resolución espacial en la visión para poder ver en condiciones de poca luminosidad.
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="discriminacion-umbral-diferencial" class="section level2">
+<h2>Discriminación: Umbral Diferencial</h2>
+<p>Pero además, Fechner encontró que no somos capaces de percibir un continuo de cambios graduales en un estímulo, si no que necesitamos de una cantidad o diferencia en la intensidad del estímulo que nos permita indicar que ha habido un cambio, a este cambio en al intensidad se le llamaría <strong>dmp</strong> o <em>diferencia mínima perceptible</em>. Esto se debe a que al igual que la variabilidad en el Umbral Absoluto, también nos podemos encontrar variabilidad en la medida que nuestro sistema perceptivo realiza de un estímulo. Nuestro sistema nervioso presenta ruido interno y no es capaz de representar todas las modalidades sensoriales con una correspondencia directa con el estímulo. Esto afecta a cómo somos capaces de interpretar un estímulo y es intresante para caracterizar lo bueno que es nuestro sistema sensorial discriminando entre dos estímulos parecidos. Para ello, calculamos el <strong>Umbral Diferencial (UD)</strong>.</p>
+<p>Por volver a nuestro ejemplo anterior… Imaginemos que estamos en el departamento de I+D de una conocida cadena de cafeterías y que nuestro supervisor nos dice que: la cantidad de azúcar en el café está correlacionada con el número de cafés que sirven. Es decir, vender un café más dulce incrementa el número de clientes. Sin embargo, tenemos registros de que el gusto es un sistema sensorial que se satura de forma rápida, por lo que nuestros clientes sólo son capaces de percibir el café en tres estados distintos: algo dulce, dulce y demasiado dulce. La escala de correspondencia psicofísica que propondría Fechner establecería el UA en el 0, mientras que las siguientes sensaciones percibidas estarían separadas entre sí por <strong>dmp</strong>’s.</p>
+<pre class="r"><code>data_frame(I = seq(0,2,by = 1),
+           k = 0.05,
+           DI = I * k) %&gt;%
+  ggplot(aes(I,DI)) +
+  geom_point() + 
+  labs(x = &quot;Escala Psicofísica&quot;, y = &quot;Sensación percibida&quot;) +
+  scale_x_continuous(breaks = c(0,1,2)) +
+  scale_y_continuous(breaks = c(0,0.05,0.1), labels =  c(&quot;Algo dulce&quot;,&quot;Dulce&quot;,&quot;Demasiado dulce&quot;)) +
+  theme_minimal(10)</code></pre>
+<p><img src="P2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Sin embargo, nuestro jefe nos indica que los consumidores rechazan frontalmente un café demasiado dulce, por lo que nos encontraríamos con un problema: si el café está muy dulce, los clientes se quejan y dejan de acudir a nuestra cadena. Por lo tanto, nuestra misión es maximizar la cantidad de azúcar en el café para optimizar el número de ventas sin perder clientes.</p>
+<p>Para ello haremos un sencillo experimento: Se presentarán pares de estímulos, en primer lugar el estímulo estándar, un café con 5 gotas de edulcorante (UA, el 0 en la escala de Fechner) y después, uno de los estímulos de comparación de forma aleatoria (cafés con 11 diferentes cantidades de azúcar en un rango de 0 a 10 g). Se le hará probar al participante varias veces todos los estímulos. Y, al igual que en el anterior experimento, codificaremos su respuesta como más dulce que el estándar (1) e igual de dulce que el estándar (0). De esta manera, obtendremos una curva parecida a la anterior:</p>
+<pre class="r"><code>UD &lt;- data_frame(I=seq(0,10,by=1),
+               p_UD = pnorm(I, mean = 5,sd=2))
+
+ggplot(UD,aes(I,p_UD)) + 
+  geom_point(size = 2, color = &quot;red&quot;) +
+  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de ser percibido como más dulce&quot;) +
+  theme_minimal(10)</code></pre>
+<p><img src="P2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Si a estos puntos le aplicamos una fórmula para obtener la curva psicométrica, seremos capaces de estimar qué probabilidad hay de que un participante afirme que el café está dulce para cualquier cantidad de edulcorante. El Umbral diferencial se define como la semidiferencia entre el tercer y el primer cuartil. Es decir, la mitad de la diferencia entre el punto que arroja una probabilidad de percibir el café como más dulce del 75% y del 25%.</p>
+<span class="math display">\[\begin{equation}
+\label{UD}
+\ UD = (Q3 - Q1)/2
+\end{equation}\]</span>
+<pre class="r"><code>UD_lin &lt;- data_frame(I=seq(0,10,by=0.1),
+               p_UD = pnorm(I, mean = 5,sd=2))
+##########################################################################################
+###########################     DISCRIMINACI?N: UMBRAL DIFERENCIAL     ###################
+# ##########################################################################################
+
+I_Q3 = UD_lin$I[which.min(abs(UD_lin$p_UD-0.75))]
+I_Q1 = UD_lin$I[which.min(abs(UD_lin$p_UD-0.25))]
+UD_1 =  (I_Q3-I_Q1)/2
+
+ggplot(UD_lin,aes(I,p_UD)) +
+  geom_line(size = 2) +
+  geom_point(color = &quot;red&quot;, x = I_Q1, y = 0.25, size = 4) +
+  geom_point(color = &quot;red&quot;, x = I_Q3, y = 0.75, size = 4) +
+  geom_vline(xintercept = c(I_Q1,I_Q3), color=&quot;red&quot;) +
+  geom_segment(aes(x=5,xend=5+UD_1,y=0.1,yend=0.1),color=&quot;red&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
+  geom_text(aes(x=I_Q3*1.25,y=0.1,label=&quot;UD = (Q3 - Q1)/2&quot;),color=&quot;red&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
+  theme_minimal(10)</code></pre>
+<pre><code>## Warning: Ignoring unknown parameters: arrow</code></pre>
+<p><img src="P2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>En nuestro experimento hemos observado que: El primer cuartil es 3.7g., mientras que el tercer cuartil es 6.3g. Por lo tanto:</p>
+<span class="math display">\[\begin{equation}
+\label{UD_1}
+\ 1.3 = (6.3 - 3.7)/2
+\end{equation}\]</span>
+<p>Como hemos podido observar en la anterior curva, en definitiva, el Umbral Diferencial se trata de una medida sobre el rango de intnsidades que genera dudas al participante u observador sobre cómo categorizar debido al ruido en la medida. De esta manera, podemos visualizar diferentes niveles de sensibilidad a una modalidad sensorial según lo amplio que sea este rango.</p>
+<p>En la siguiente figura podemos encontrar una representación gráfica de 3 niveles de sensibilidad:</p>
+<pre class="r"><code>a &lt;- data_frame(
+  I=seq(0,10,by=0.1),
+  Sensible = pnorm(I, mean = 5,sd=0.5),
+  Medium = pnorm(I, mean = 5,sd=1),
+  Baja_Sensibilidad = pnorm(I, mean = 5,sd=2)
+)
+
+
+a %&gt;%
+  gather(id,value,c(&quot;Sensible&quot;,&quot;Medium&quot;,&quot;Baja_Sensibilidad&quot;)) %&gt;%
+  mutate(id = factor(id,levels = c(&quot;Sensible&quot;,&quot;Medium&quot;,&quot;Baja_Sensibilidad&quot;),labels = c(&quot;Alta sensibilidad&quot;,&quot; &quot;,&quot;Baja sensibilidad&quot;), ordered = T )) %&gt;%
+  ggplot(.,aes(I,value, color = id)) +
+  geom_line(size = 2) +
+  geom_vline(xintercept = 5, color = &quot;red&quot;, size = 1, linetype = 2) + 
+  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de responder \&#39;SI\&#39; &quot;) + 
+  facet_wrap(~id) +
+  guides(color = FALSE) +
+  theme_minimal(10)</code></pre>
+<p><img src="P2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Con el umbral diferencial podemos obtener varios índices de sensibilidad a un estímulo:</p>
+<ul>
+<li>Igual que hacíamos con el UA, podemos calcular un <em>índice de sensibilidad de discriminación -&gt; S = 1 / UD</em>.
+<ul>
+<li>De esta manera, un observador con un UD de 2.5 será (?) sensible que uno que presenta un UD de 6.</li>
+</ul></li>
+<li>Constante (k) o fracción de Weber:</li>
+</ul>
+<span class="math display">\[\begin{equation}
+\label{k_café}
+\ k = \frac{1.3}{5} = 0.26
+\end{equation}\]</span>
+<p>Como se mencionó anteriormente, una de las utilidades de calcular la constante de la ley de Weber es que nos permite comparar entre diferentes modadlidades sensoriales. Si recordamos, Weber describió la comparación entre pesos con una <span class="math inline">\(k_{peso} = 0.03\)</span>. Por otra parte, en nuestro experimento hemos observado una k para la comparación de cantidades de azúcar de <span class="math inline">\(k_{azúcar} = 0.26\)</span>.</p>
+<p><strong>¿Qué modalidad sensorial es más precisa?</strong></p>
+<p><strong>Ahora que ya sabemos cuál es el <span class="math inline">\(k_{azúcar} = 0.26\)</span> (y asumiendo que se cumple la ley de Weber), calcula cuál sería el punto de mínima cantidad de edulcorante con el cual el café se percibiría como demasiado dulce.</strong></p>
+</div>
+<div id="utilizando-logit-para-linealizar" class="section level2">
+<h2>Utilizando Logit para linealizar</h2>
+<p>Uno de los problemas que presentan las curvas anteriores es que, no son fáciles de interpretar, ya que requieren un ajuste no lineal para calcular el UA y el UD con precisión. Sin embargo, podemos utilizar ciertos “trucos” matemáticos para facilitarnos esta misión. Para ello, vamos a utilizar una transformación de nuestros datos anteriores con el objetivo de pasar de una curva con forma sigmoidal a una función lineal. Para ello, vamos a transformar las probabilidades en lo que se denomina como unidades logit aplicando la siguiente fórmula:</p>
+<span class="math display">\[\begin{equation}
+\label{logit}
+\ logit(p) = ln(\frac{p}{1-p})
+\end{equation}\]</span>
+<p>En ésta fórmula, <span class="math inline">\(p\)</span> es la probabilidad asociada a cierta respuesta para una intensidad determinada y <span class="math inline">\(ln\)</span> el logaritmo neperiano o natural (no confundir con el logaritmo en base 10 o <span class="math inline">\(log\)</span>). Si aplicamos esta fórmula a la curva anterior obtenemos una <strong>aproximación funcional</strong> a una función lineal.</p>
+<pre class="r"><code>logit = UD %&gt;%
+  mutate(logit_Medium = log(p_UD/(1-p_UD)))
+
+fit_logit = coef(lm(logit$logit_Medium ~logit$I ))
+
+ggplot(logit,aes(I,logit_Medium)) +
+  geom_point(size=4, color = &quot;red&quot;) +
+  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de responder \&#39;SI\&#39; \n en unidades Logit&#39; &quot;) +
+  geom_smooth(method =&quot;lm&quot;, se = F) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  annotate(geom=&quot;text&quot;, x = 6, y = -2, label = paste(&quot;y = &quot;,round(fit_logit[1],2),&quot; + &quot;, round(fit_logit[2],2),&quot;x&quot;)) +
+  theme_minimal(10)</code></pre>
+<p><img src="P2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Si aplicamos una regresión lineal a los puntos anteriores mediante sistemas como <strike>SPSS, Excel, MatLab o</strike> R (o incluso a mano si diesemos esta clase 10 aÃ±os antes), podemos obtener la probabilidad asociada a cualquier intensidad. Además, una propiedad interesante de esta transformación es que la proporción del 50%, es decir, el segundo cuartil o Q2 (UA), corresponde a un apuntuación <em>Logit( p = 0.5 ) = ln ( 0.5/(1-0.5) ) = 0</em>.</p>
+<p><br></p>
+</div>
+</div>
+
+<html>
+<footer role="contentinfo" id="site-footer">
+<small><p class="copyright">&#169; 2019,
+		This webpage was created using <a href="http://www.r-project.org">R</a> with <a href="http://rmarkdown.rstudio.com">RMarkdown</a> and hosted on <a href="http://github.com">Github</a> by Borja Aguado and based on <a href="https://github.com/jules32/rmarkdown-website-tutorial"> jules32/rmarkdown-website-tutorial</a> project. </small></p>
+</footer>
+</html>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

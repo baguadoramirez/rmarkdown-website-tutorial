@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="CV.html">CV</a>
+</li>
+<li>
+  <a href="pia.html">P&amp;A</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p><big> En desarrollo… </big></p>
+<hr />
+<p><big> Under development… </big></p>
+<hr />
+<style>
+.column-left{
+  float: left;
+  width: 45%;
+  text-align: left;
+}
+.column-center{
+  display: inline-block;
+  width: 10%;
+  text-align: center;
+}
+.column-right{
+  float: right;
+  width: 45%;
+  text-align: center;
+}
+</style>
+<div id="borja-aguado-ramirez" class="section level1">
+<h1>Borja Aguado Ramirez</h1>
+<div class="column-left">
+<p>From Toledo, living in Barcelona. <br> </br></p>
+<p>✉ e-mail : <a href="mailto:borja.aguado@ub.edu">borja.aguado@ub.edu</a></p>
+<p>GitHub: <a href="https://github.com/baguadoramirez">baguadoramirez</a></p>
+<p>LinkedIn: <a href="www.linkedin.com/in/borja-a-606a59119">Borja Aguado</a></p>
+</div>
+<div class="column-center">
+
+</div>
+<div class="column-right">
+<p><img src="images/id.png" width="200px"></p>
+</div>
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+  .col3 {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+  }
+</style>
+<div id="training" class="section level2">
+<h2>Training</h2>
+<p>Bachelor’s degree in Psychology (Universidad Autónoma de Madrid; 2012-2016)</p>
+<ul>
+<li>Bachelor’s thesis passed with honors: <a href="http://www.ub.edu/ecvp/poster-sessions">“Evidence for a temporal component in the influence of the colour of the surrounding”</a></li>
+</ul>
+<p>Master’s degree in Research in Behaviour and Cognition (Universtat de Barcelona; 2016-2017)</p>
+<p>PhD Candidate under the trainee of <a href="http://www.ub.edu/viscagroup/joan/">Joan López-Moliner</a> (Universitat de Barcelona; 2017-202?)</p>
+<ul>
+<li>Provisional thesis name: <u> Active Sampling of the Optic Flow </u></li>
+</ul>
+</div>
+<div id="teaching" class="section level2">
+<h2>Teaching</h2>
+<p><em>Perception &amp; Action</em> at Psychology Bachelor’s degree level (Universitat de Barcelona).</p>
+</div>
+<div id="academic-curriculum" class="section level2">
+<h2>Academic Curriculum</h2>
+<div id="publications" class="section level3">
+<h3>Publications</h3>
+<ul>
+<li>Aguado, B., &amp; López-Moliner, J. (2019). Perceived speed of motion in depth modulates misjudgements of approaching trajectories consistently with a slow prior. <em>Vision research, 159, 1-9.</em> DOI: <a href="https://doi.org/10.1016/j.visres.2019.03.009" class="uri">https://doi.org/10.1016/j.visres.2019.03.009</a></li>
+</ul>
+</div>
+<div id="poster-presentations" class="section level3">
+<h3>Poster presentations</h3>
+<ul>
+<li><p>Aguado, R, Borja; M. Maho, Cristina M; Rucci, Michele; Brenner, Eli. (2016, September). <em>Evidence for a temporal component in the influence of the colour of the surrounding.</em> European Conference on Visual Perception (ECVP), Barcelona.</p></li>
+<li><p>Aguado, Borja; López-Moliner, Joan. (2019, May). <em>How to move to catch flying balls with updating predictions.</em> Vision Sciences Society (VSS), St.Pete Beach, Florida.</p></li>
+</ul>
+</div>
+<div id="oral-presentations" class="section level3">
+<h3>Oral presentations</h3>
+<ul>
+<li>Aguado, Borja; López-Moliner, Joan. (2019, June). <em>Accuracy and precision of time-to-contact estimates based on knowing size and gravity.</em> 8th Iberian Conference on Perception (CIP), Sna Lorenzo del Escorial, Madrid (Spain).</li>
+</ul>
+</div>
+</div>
+<div id="grants-fellowships" class="section level2">
+<h2>Grants &amp; Fellowships</h2>
+<ul>
+<li><p>Beca de Colaboración MECD (Colaboración Universitaria - 2016/2017)</p></li>
+<li><p>Beca de Colaboración UB (FPSC2017.3)</p></li>
+<li><p>2018FI_B00090 (April 2018 - September 2018) fellowship from Agència de Gestió d’Ajuts Universitaris i de Recerca.</p></li>
+<li><p>FPU17/01248 (October 2018 - …) fellowship from Ministerio de Educación y Formación Profesional of the Spanish government.</p></li>
+</ul>
+</div>
+</div>
+
+<html>
+<footer role="contentinfo" id="site-footer">
+<small><p class="copyright">&#169; 2019,
+		This webpage was created using <a href="http://www.r-project.org">R</a> with <a href="http://rmarkdown.rstudio.com">RMarkdown</a> and hosted on <a href="http://github.com">Github</a> by Borja Aguado and based on <a href="https://github.com/jules32/rmarkdown-website-tutorial"> jules32/rmarkdown-website-tutorial</a> project. </small></p>
+</footer>
+</html>
+<style>
+    /* Bump the main content to make room for the fixed menu */
+    .main-container {
+        padding-top: 2em;
+    }
+
+    #toc_menu {
+        position: fixed;
+        width: 100%;
+        display: inline-flex;
+        /*background-color: #2196F3;*/
+        border: none;
+    }
+
+    #toc_menu > li.toc_menu {
+        display: block;
+    }
+
+    #toc_menu > li.toc_menu:hover {
+    }
+
+    /* dropdown stuff */
+    ul.toc_menu {
+        margin-top: 1em;
+    }
+
+    li.toc_menu {
+        position: relative;
+        float: left;
+        display: block;
+    }
+
+    li.toc_menu a {
+        padding: 1em;
+    }
+
+    li.toc_menu:hover {
+        /*background-color: #a7d2de;*/
+    }
+
+    li.toc_menu ul.toc_menu {
+        display: none;
+        position: fixed;
+        width: 100%;
+        /*background: #70dfff;*/
+        left: 0;
+        top: unset;
+        padding: 0;
+        margin: 0;
+    }
+
+    li.toc_menu:hover > ul.toc_menu, ul.toc_menu:hover {
+        display: block;
+        /*border-top: 2px solid #a7d2de;*/
+    }
+
+</style>
+  
+<script type="text/javascript">
+  // Come up with a structural list of sections
+
+  // Maximum heading level to process. Should eventually grab this value from Rmd file's headers somehow
+  const maxHeadingLevel = 3;
+
+  /**
+   * Return the first element in elm's parents which has the class className.
+   * Don't use elm.closest() because that can return the element itself.
+   *
+   * @param elm {HTMLElement}
+   * @return {HTMLElement|null} First parent element of elm with class 'className', or null if no parents qualify
+   */
+  function getParentWithClass(elm, className) {
+      let parent = elm.parentElement;
+      while(parent !== null) {
+          if(parent.classList.contains(className))
+              return parent;
+          parent = parent.parentElement;
+      }
+      return null;
+  }
+
+  /**
+   * Return a list of children of parentSection with the class 'section'
+   * @param [parentSection=null] {HTMLElement|null}
+   * @return {HTMLElement[]|Array}
+   */
+  function getSectionChidren(parentSection = null) {
+      let heirachy = [];
+      let sections = document.querySelectorAll('div.section');
+      for(let i = 0; i < sections.length; i++) {
+          let section = sections[i];
+          if(getParentWithClass(section, 'section') === parentSection) {
+              heirachy.push(section);
+          }
+      }
+      return heirachy;
+  }
+
+  /**
+   * Return a <nav> or <ul> element. The menu produced uses Bootstrap nav classes so it
+   * should fit in well with any custom themes.
+   *
+   * Should be called with 0 or 1 arguments to produce a nav menu.
+   *
+   * @param [maxHeadingLevel=Infinity] the maximum heading level to list
+   * @param [section=null] {HTMLElement|null} element to start the listings from
+   * @param [first=true] {boolean} whether this is an original rather than recursive call
+   * @return {HTMLElement} navigation menu or a part of the same
+   */
+  function createSectionList(maxHeadingLevel = Infinity, section = null, first = true) {
+      let nav = null;
+      let elm = document.createElement('ul');
+      if(first) {
+          maxHeadingLevel--; // make heading level match Markdown heading level
+          nav = document.createElement('nav');
+          nav.id = 'toc_menu-nav';
+          nav.classList.add('navbar', 'navbar-default', 'navbar-fixed-top');
+          nav.appendChild(elm);
+      }
+      if(section === null) {
+          elm.id = 'toc_menu';
+          elm.className = 'toc_menu navbar-header';
+      } else {
+          elm.id = 'toc_menu-' + section.id;
+          elm.className = section.className;
+          elm.classList.add('toc_menu', 'dropdown-menu');
+      }
+      let sectionChildren = getSectionChidren(section);
+      for(let i = 0; i < sectionChildren.length; i++) {
+          let child = sectionChildren[i];
+          let li = elm.appendChild(document.createElement('li'));
+          li.id = 'toc_menu_li-' + child.id;
+          li.className = child.className;
+          li.classList.add('toc_menu');
+          let a = li.appendChild(document.createElement('a'));
+          a.href = '#' + child.id;
+          a.innerHTML = child.children[0].innerText; // grab the label from the section header text
+          let children = getSectionChidren(child);
+          if(children !== null && children.length > 0 && maxHeadingLevel > 0) {
+              a.innerHTML += " <span class=\"caret\"></span>";
+              li.classList.add('toc_menu-has-child');
+              li.appendChild(createSectionList(maxHeadingLevel-1, child, false));
+          }
+      }
+      return first? nav : elm;
+  }
+
+  // Create a nav list menu and insert it as the first child of the document body
+  document.body.insertBefore(createSectionList(maxHeadingLevel), document.body.firstChild);
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+---
+---
+
+```{r, echo = F, message = F, warning=F}
+# Las librerías que necesitamos
+libraries <- c("tidyverse","cowplot","quickpsy",
+               "broom","knitr","circular")
+
+# Cargamos las librerias que necesitamos, si no las tenemos, indicamos a R que las instale
+invisible(
+  lapply(
+    libraries, function(x) {
+      if(!require(x, character.only = T, quietly = T)) {
+        install.packages(x)
+        require(x, character.only = T, quietly = T)
+      }
+    }
+  )
+)
+# Where is this script?
+Where_Am_I <- function(path=T){
+  if (path == T){
+    dirname(rstudioapi::getSourceEditorContext()$path)
+  }
+  else {
+    rstudioapi::getSourceEditorContext()$path
+  }
+}
+```
+
+
+# Práctica 3: Estimación de la Claridad (psicofísica de Stevens)
+
+## Ley de Weber-Fechner
+
+Una derivación de la ley de Weber posteriormente formulada por Fecher afirmaba que la sensación a un estímulo podía modelarse mediante una relación logarítmica.
+
+\begin{equation}
+\label{Weber_Fechner}
+\ S = K * log(E) 
+\end{equation}
+
+Sin embargo, hay situaciones en las que esta relación no se sigue. Reflexionando sobre esto, Stevens se preguntó si podría existir alguna forma de generalizar la relación entre la estimulación y la sensación producida para estimulaciones que no se relacionan de forma logarítmica como había propuesto Fechner. 
+
+Esto es importante porque el hecho de que ni todos los tipos de estimualciones tengan una correspondencia psicofísica puede tener un efecto capital en la supervivencia de un organismo. Vamos a poner dos ejemplos clásicos diferentes:
+
+  1. **Efecto de una presión sobre la piel:** Es el tipo de correspondencia psicofísica cllásica que se comporta con una correspondencia exponencial. Si aplicamos sobre la piel una estimulación muy baja, la reacción será muy pequeÃ±a y probablemente sólo notaremos cosquillas. Sin embargo, tan pronto como aplicamos un poco más de presión sobre la misma podemos obtene una respuesta de dolor muy alta. 
+  
+  2. **Efecto de iluminación:** Es un tipo de correspondencia clásica de tipo logarítmico. En este caso, un nivel de iluminación muy baja en la retina dará una sensación suficinte de iluminación como para poder ver. Sin embargo, una estimulación muy alta no traerá consigo un cambio en la sensación correlativo. En su lugar, se produce una adaptación del sistema a niveles altos de luminancia haciendo que cambios muy grandes en iluminación se perciban como un cambio muy pequeÃ±o en brillo. 
+
+```{r, fig.pos="center"}
+##### Relaciones funcionales
+Functions <- data_frame(
+  E = c(0.1,seq(5,50,by=5)),
+  S_lineal = 0.5*E,
+  S_log = log(10)*E^0.5,
+  S_exp = 0.1*E^1.5
+)
+
+
+
+names <- c(
+  `S_exp` = "Exponencial",
+  `S_lineal` = "Lineal",
+  `S_log` = "Logarítmica"
+)
+
+Functions %>%
+  gather(id,value,S_lineal:S_exp) %>%
+  ggplot(.,aes(E,value,group=id, color = id)) +
+  # geom_abline(linetype = 2, ) + 
+  geom_line(size = 1.5 ) +
+  geom_point(color="black") + 
+  #facet_wrap(~id, scales = "free", labeller = as_labeller(names)) +
+  guides(fill = FALSE) +
+  scale_x_continuous(breaks = round(Functions$E,0)) +
+  scale_color_discrete(labels = c("k > 1","k = 1", "k < 1"), name = NULL) +
+  labs(x = "Estimulación física", y = "Sensación") +
+  theme_minimal(20) +
+  theme(panel.grid.minor = element_blank())
+```
+
+Para poder generalizar cómo funciona nuestro sistema perceptivo, Stevens describió la conocida como **Ley de Stevens**
+
+\begin{equation}
+\label{Stevens}
+\ S = c * E^{k} 
+\end{equation}
+
+En la misma, el exponente **k** describe cómo sería la relación entre la sensación y la intensidad del estimulo. 
+
+- k > 1: Incremento expansivo
+
+- k = 1: Incremento lineal
+
+- k < 1: Incremento compresivo
+
+Por su parte, la **c** sería una constante que describiría la sensación en ausencia de estimulación. Sin embargo, este tipo de curvas son dificiles de analizar. Por eso es importante cómo está formulada la ley de Stevens. Si aplicamos una transofrmación log-log, es decir, aplicamos logaritmos a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas de la ley de Stevens dando la siguiente igualdad:
+
+\begin{equation}
+\label{Log_Log_Stevens}
+\ log(S) = log(c) * n * log(E)
+\end{equation}
+
+```{r}
+Functions %>%
+  gather(id,value,S_lineal:S_exp) %>%
+  ggplot(.,aes(log(E,10),log(value,10),group=id, color = id)) +
+  #geom_abline(linetype = 2) + 
+  geom_line(size = 1.5 ) +
+  geom_point(color="black") + 
+  #facet_wrap(~id, scales = "free", labeller = as_labeller(names)) +
+  guides(fill = FALSE) +
+  # scale_color_discrete(labels = c("(k = n) > 1","(k = n) = 1", "(k = n) < 1"), name = NULL) +
+  labs(x = "log(Estimulación física)", y = "log(Sensación)") +
+  theme_minimal(20) +
+  theme(panel.grid.minor = element_blank())
+```
+
+Para demostrar cómo se estudia la percepción, en este caso, de la claridad, realizaremos un pequeño experimento que podréis encontrar en el campus virtual de la asignatura. 
+
+### Pregunta:
+
+- ¿Cuál es la exactitud en nuestras estimaciones de claridad? Es decir, ¿cómo es nuestra habilidad para juzgar la reflectancia?
+
+- Esto nos indicará qué ajuste tienen los sensores de la reflectancia, es decir, los bastones con las estimulación física. 
+
+<figure>
+<p><img src="./pia/P3/Claridad_Stimuli.png" width="350px">
+<figcaption> 
+En esta imagen podemos encontrar el set de estímulos que utilizareoms en el experimento. Son imágenes de 10 niveles de claridad del 0 al 255. Las instrucciones del experimento son las siguientes: El experimento consiste en la presentación de estos cuadros de diferentes niveles de claaridad. Los particpantes han de asignar un número comprendido entre 0-9 en una escala de claridad. 
+</figcaption>
+</figure>
+
+
+**Para pensar:** 
+
+
+
+<figure>
+<p><img src="./pia/P3/Claridad_Pregunta.PNG" width="350px">
+<figcaption> 
+¿Por qué no debemos realizar el experimento utilizando un fondo gris? ¿De qué color debería ser el fondo para realizarlo en las condiciones más óptimas? 
+</figcaption>
+</figure>
+
+
+
+
+#### Metodología
+```{r}
+##### Leemos los datos de nuestro experimento
+Luminancia <- read.table("./pia/P3/Ant.txt", header = T)
+
+Luminancia <- Luminancia %>%
+  mutate(Claro = ifelse(Claro == 0, 0.1, Claro),
+         Asign = ifelse(Asign == 0, 0.1, Asign),
+         error_est = Claro - Asign,
+         log_Claro = log(Claro,10),
+         log_Asign = log(Asign,10)) %>%
+  select(-Assaig,-Temps) %>%
+  group_by(Claro) %>%
+  summarize_all(.funs="mean")
+
+kable(Luminancia %>% select(-log_Claro,-log_Asign))
+```
+
+```{r}
+lm_eqn <- function(df){
+    m <- lm(y ~ x, df);
+    eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2, 
+         list(a = format(unname(coef(m)[1]), digits = 2),
+              b = format(unname(coef(m)[2]), digits = 2),
+             r2 = format(summary(m)$r.squared, digits = 3)))
+    as.character(as.expression(eq));
+}
+
+ggplot(Luminancia, aes(Claro, Asign)) +
+  geom_abline(linetype = 2) +
+  geom_point(size = 2) +
+  geom_line() +
+  stat_smooth(method = "lm", linetype = 2, size = 1, alpha = 0.5) +
+  labs(x = "Reflectancia real", y = "Reflectancia asignada") + 
+  scale_x_continuous(labels = as.character(c(0, 25, 50, 75, 100, 125, 150, 175, 200, 225)),
+                     breaks = c(0.1, c(1:9))) + 
+  geom_text(x = 2, y = 7.5, label = lm_eqn(Luminancia %>%
+                                             rename(y = Asign,
+                                                    x = Claro)), parse = TRUE)
+```
+
+
+```{r}
+ggplot(Luminancia, aes(factor(Claro), error_est)) +
+  geom_bar(stat="identity", alpha = 0.7, fill = "gold") +
+  geom_hline(yintercept = 0, linetype = 2, color = "red") +
+  labs(x = "Reflectancia real", y = "Error de estimación") + 
+  scale_x_discrete(labels = as.character(c(0, 25, 50, 75, 100, 125, 150, 175, 200, 225)),
+                     breaks = c(0.1, c(1:9)))
+```
+
+```{r}
+lm_coef <- coef(lm(data=Luminancia, log_Asign ~ log_Claro))
+
+
+ggplot(Luminancia, aes(Claro,Asign)) +
+  geom_abline(linetype = 2) +
+  geom_point(size = 2) +
+  geom_line() +
+  stat_smooth(method = "lm", linetype = 2, size = 1, alpha = 0.5) +
+  labs(x = "log(Reflectancia real)", y = "log(Reflectancia asignada)") + 
+  scale_x_log10(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
+  scale_y_log10(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
+  geom_text(x = 0.0001, y = 0.9, label = (lm_log=lm_eqn(Luminancia %>%
+                                             rename(y = log_Asign,
+                                                    x = log_Claro))), parse = TRUE)
+```
+
+¿Cómo se traducen estos exponenetes en la fórmula de Stevens?
+
+$c = 10^{\beta_{0}}$
+
+$n$ = $\beta_{1}$
+
+En el caso anterior tendramos que:
+
+$S = 10^{0.37} * E^{0.46}$
+
+**Para repasar:** 
+
+  -¿Cuál es el exponente del estímulo?
+  
+  -¿Qué tipo de curva de respuesta encajaría mejor con la respuesta a la luminancia en los bastones?
+  
+
+```{r}
+
+Predicted <- data_frame(
+  x = c(0.1,c(1:9)),
+  y = 10^lm_coef[1] + x^lm_coef[2]
+)
+
+ggplot(Predicted, aes(x,y)) +
+  geom_line(color = "gold") +
+  geom_point(size = 2) +
+  labs(x = "Reflectancia real", y = "Reflectancia asignada predicha") + 
+  scale_x_continuous(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
+  scale_y_continuous(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) 
+```
+
+### Ejercicios para resolver en clase:
+
+- ¿Qué forma describen la ley de Fechner? ¿y la de Stevens? ¿y la de Weber?
+
+- ¿Qué método de estudio utiliza la psicofísica de Stevens?
+
+- ¿Con qué objetivo aparece la ley de Stevens?
+
+- ¿Por qué cada tipo de estimulación describe una curva diferente? 
+
+- ¿Qué elemento en la ley de Stevens indica la relación entre estímulo y sensación?
+
+- ¿Qué diferencia hay entre claridad y reflectancia?
+
+- ¿Qué fotoreceptores son los principales encargados de su procesamiento?
+
+
+<br>

@@ -1,0 +1,210 @@
+---
+---
+
+```{r, echo = F, message = F, warning=F}
+# Las librerías que necesitamos
+libraries <- c("tidyverse","cowplot","quickpsy",
+               "broom","knitr","circular")
+
+# Cargamos las librerias que necesitamos, si no las tenemos, indicamos a R que las instale
+invisible(
+  lapply(
+    libraries, function(x) {
+      if(!require(x, character.only = T, quietly = T)) {
+        install.packages(x)
+        require(x, character.only = T, quietly = T)
+      }
+    }
+  )
+)
+# Where is this script?
+Where_Am_I <- function(path=T){
+  if (path == T){
+    dirname(rstudioapi::getSourceEditorContext()$path)
+  }
+  else {
+    rstudioapi::getSourceEditorContext()$path
+  }
+}
+```
+
+```{r ,include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Práctica 5: Percepción de expresiones emocionales
+
+## Índice de objetivos
+
+  - Comprobar si existen diferencias interhemisféricas (asimetrías cerebrales) en el procesamiento de emociones, a partir de técnicas psicofísicas (no invasivas)
+  
+  - Intentar replicar el estudio de Alves, Aznar-Casanova & Fukusima (2008) con rostros esquemáticos. 
+
+## Introducción
+
+Durante el transcurso de estas clases, ya hemos visto cómo el ser humano es capaz de acceder a diferente rasgos o caracterñisticas de un sistema visual de manera bastante eficiente. Aunque hasta ahora nos hemos centrado en niveles perceptivos más bajos como podrían ser luminancia, contraste, co-colinealidad, o patrones sencillos como son letras, el procesamiento de estímulos visuales complejos como puede ser un rostro es importante para entender cómo interactuamos con estímulos más válidos ecológicamente con los que nos encontramos en nuestro día a día. 
+
+En nuestra vida social nos encontramos con unos estímulos complejos como son los rostros. Continuamente estamos haciendo inferencias sobre rasgos presentes en estos rostros, y aunque normalmente son acertadas, pueden tener una gran influencia sobre nuestro comportamiento. Por ejemplo...
+
+<figure>
+<p><img src="./pia/P5/ruby_rose.jpg" width="350px">
+<figcaption> ¿Hombre, Mujer, Intersexual? ¿Edad? ¿Inteligente? ¿Atractivx? ¿Conocidx? ¿Se trata de una persona hostil? ¿Qué emoción está sientiendo? 
+</figcaption>
+</figure>
+
+Desde el punto de vista de la congnición social, se ha estudiado cómo tanto seres humanos como primates indentifican y reconocer las expresiones faciles de los otros. Según [Ekman (1992); pág. 171](https://doi.org/10.1080/02699939208411068), la función primaria de las emociones sería la de movilizar a un organismo a realizar ciertas acciones para conseguir un objetivo dentro de su vida social. En su estudio de las emociones, Ekman propuso que había una serie de emociones básicas compartidas entre todas las civilizaciones humanas: ira, miedo, asco, sorpresa, alegría y tristeza. Dado que diferentes emociones dan lugar a diferentes probablidades de que se manifieste una conducta posterior, obtener una rápida identificación por parte de un observador externo de la expresión emocional (se sabe que se produce alrededor de los 100ms.) es de gran utilidad evolutiva para adaptarse al futuro comportamiento de los otros.  
+
+<figure>
+<p><img src="./pia/P5/Faces.png" width="350px">
+<figcaption> Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr lo más pronto posible. 
+</figcaption>
+</figure>
+
+Pero, ¿por qué es importante esto dentro de la sub-asignatura de "Percepción Visual"? [Forgas y Bower (1987)](10.1037//0022-3514.53.1.53) estudiaron el efecto que tienen las emociones dentro del procesamiento cognitivo. Al hacer esto encontraron que cuando cambiaba el componente emocional de un observador, cambiaban factores cognitivos de respuesta (criterio de decisión) a experimentos psicofísicos, sin embargo, no pudieron encontrar diferncias en el componente sensorial (detectabilidad o discriminabilidad). ¿Recuerdas la práctica 2?
+
+Actualmente podemos decir que existen dos perspectivas distintas en cuanto a cuáles son las bases neurales del procesamiento de las emociones:
+
+  1. **Hipótesis del hemisferio derercho** podemos encontrar un claro ejemplo de esta teoría en [Borod, 1998](http://dx.doi.org/10.1037/0894-4105.12.3.446): Según esta teoría, todas las emociones serán procesadas más fácilmente por el hemisferio derecho independientemente de su valencia. 
+  
+  2. **Hipótesis del acercamiento-retraimiento** de [Davidson (2003)](https://doi.org/10.1111/1469-8986.00067): Según esta teoría el hemisferio iquierdo procesaría las emociones positivas mientras que el hemisferio derecho procesaría de forma principal las emociones negativas. 
+
+
+Concretamente, [Davidson (1995)](https://scholar.google.es/scholar?cluster=1079682260296463766&hl=es&as_sdt=2005&sciodt=0,5) propuso una división del sistema emocional en tres subsistmeas o componentes:
+
+
+  
+<figure>
+<p><img src="./pia/P5/Sistema_limbico.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>
+  
+<figure>
+<p><img src="./pia/P5/Experiencia.png" width="350px">
+<figcaption> 1. Experiencia emocional (experiencia que genera la emoción)
+</figcaption>
+</figure>
+  
+<figure>
+<p><img src="./pia/P5/Expresion.gif" width="350px">
+<figcaption> 2. Expresión emocional (expresión emocional factor conductual esquelético)
+</figcaption>
+</figure>
+
+<figure>
+<p><img src="./pia/P5/Percepcion.png" width="350px">
+<figcaption> 3. Percepción emocional (identificación de la propia emoción)
+</figcaption>
+</figure>
+
+Un ejemplo en el que no somos capaces de llegar al tercer nivel sería cuando sentimos hambre y nos sentimos molestos por cualquier comentario. En este caso, nos sentimos molestos con las acciones de los demás porque no estamos atribuyendo nuestra emoción a la experiencia emocional original.  
+
+En esta práctica, además de mostrar cómo diferentes emociones pueden dar lugar a diferentes criterios de respuesta utilizaremos una técnica basada en cómo se distribuye el sistema visual en la retina para poder acceder y estudiar el procesamiento de las emociones dentro del sistema neural. 
+
+Para hacerlo, utilizaremos la técnica de campo visual dividido para explorar las asimetrías en la percepción. Esta técnica se basa en que cada campo visual se refeja en la hemirretina contralatera. De esta manera:
+
+<figure>
+<p><img src="./pia/P5/Campos_Visuales.png" width="350px">
+<figcaption> El campo visual derecho se refleja en la hemiretina izquierda haciendo que se procese por el hemisferio izquierdo.Campo visual izqueirdo se refleja en la hemiretina derecha haciendo que se procese principalmente por el hemisferio derecho. NOTA: Es importante indicar que hay parte del espacio visual que sólo se refleja en una de las hemiretinas y por lo tanto  sólo es porcesada pir un hemisferio. Espacios visuales laterales inferiores.  
+</figcaption>
+</figure>
+
+
+## Estudio de Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)
+
+Utilizando la técnica de campo visual dividido [Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)](http://dx.doi.org/10.3922/j.psns.2008.1.010) mostraron a los observadores imagenes con diferentes emociones dirigidas a ser procesadas por el hemisferio izquierdo o derecho preguntándose si habría un hemisferio que procese más rápidamente cada emoción. 
+
+para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (estímulos positivos), caras enfadadas o tristes (estímulos negativos) o caras con expresión neutra (estímulo no-emocional).
+
+  - Grupo 1 = target Felicidad (vs T, S, N, M)
+  
+  - Grupo 2 = target Miedo (vs T, N, S, F)
+  
+  - Grupo 3 = target Neutral (vs T, M, S, F)
+  
+  - Grupo 4 = target Sorpresa (vs F, N, T, M)
+  
+  - Grupo 5 = target Tristeza (vs F, N, M, S)
+  
+<figure>
+<p><img src="./pia/P5/Trials_2008.png" width="350px">
+<figcaption> En el experimento se les pedía a los participantes indicar en qué posición de la pantalla se presenta la emoción indicada para cada grupo. Es decir, si el participane pertenecía al primer grupo (target: alegría), debería seleccionar izquierda en el primer ensayo y derecha en el segundo ensayo. 
+</figcaption>
+</figure>  
+  
+Los resultados en este experimento fueron los siguientes:
+
+<figure>
+<p><img src="./pia/P5/Resultados_2008.png" width="350px">
+<figcaption> Recuerda... Campo visual izquierdo -> Hemiretina derecha -> Hemisferio derecho
+</figcaption>
+</figure>  
+
+**Los resultados parecían dar soporte a la hipótesis del hemisferio derecho.**
+
+
+Los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Si bien, los resultados con rostros neutros sugieren que los datos parecen dar mayor apoyo empírico a la hipótesis del HD . Los autores proponen que se profundice en la naturaleza de los estímulos (por ejem., estáticos / dinámicos), ya que el patrón de resultados no es inequívoco.
+
+## Práctica 5: Percepción de expresiones emocionales
+
+Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resutlados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento (que podéis encontrar, como siempre, en el campus virtual) con caricaturas que relfejan diferentes expresiones emocionales. 
+
+<figure>
+<p><img src="./pia/P5/P5.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure> 
+
+El método será parecido al del experimento anterior. En concreto, tenéis 3 ejecutales distintos en los que tendréis que atender y buscar expresiones de "Felicidad", "Tristeza" o "Neutras".
+
+  - Grupo 1 = target Felicidad (vs T, N, M)
+  
+  - Grupo 2 = target Tristeza (vs N, S, F)
+  
+  - Grupo 3 = target Neutra (vs T, M, S, F)
+
+Las variables independientes son el grupo asignado (emoción target) y la emoción distractora. 
+Las variables dependientes serán el tiempo de rección y la tasa de errores.  
+  
+<figure>
+<p><img src="./pia/P5/Trials_P5.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure> 
+
+Los resultados obtenidos "en general" serán los siguientes:
+
+  - Si observamos los RTs:
+  
+    - Los estímulos positivos se procesan más rápido por el hemisferio izquierdo.
+
+    - Los estímulos negativos parecen no mostrar diferencias significativas entre hemisferios.
+
+    - En el procesamiento de los estimulos neutros no hay diferencias.
+
+<figure>
+<p><img src="./pia/P5/Resultados_TR_P5.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure> 
+
+  - Si observamos el % de errores:
+    
+    - En los estímulos positivos hay menos errores cuando son procesados por el hemisferio izquierdo.
+
+    - Los estimulos negativos procesados por el hemisferio derecho dan lugar a menor tasa de errores.
+
+<figure>
+<p><img src="./pia/P5/Resultados_errores_P5.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure> 
+  
+## Discusión
+
+Los resultados con caricaturas  muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Mientras que los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD. 
+
+**¿Por qué puede ocurrir esto?**
+
+  
+<br>

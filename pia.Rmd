@@ -1,0 +1,100 @@
+---
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    fig_pos: "H"
+    includes:
+      after_body: 
+        - toc_menu.html
+        - _footer.html
+---
+<style>
+figure_side {
+  float: right;
+  width: 30%;
+  text-align: center;
+  font-style: italic;
+  font-size: smaller;
+  text-indent: 0;
+  border: thin silver solid;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+figure {
+  text-align: center;
+  font-style: italic;
+  font-size: smaller;
+  text-indent: 0;
+  border: thin silver solid;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+figurecaption{
+  text-align: justify;
+}
+</style>
+
+
+```{r, child="In_development.Rmd"}
+```
+
+
+# Antes de empezar
+Antes de empezar el temario es necesario recordar que para asimilar de manera efectiva el temario de esta parte de la asignatura es necesario tener interiorizados los siguientes conceptos básicos de estadística descriptiva e inferencial: 
+
+- Medidas de tendencia central: media, mediana, moda.
+
+- Medidas de dispersión: desviación estándar y varianza. 
+
+- Teorema central del límite, distribución normal, distribución normal cumulativa. 
+
+- Métodos inferenciales: t.student, ANOVA, modelos lineales.
+
+Sin embargo, no necesitaremos conocer las fórmulas para calcular muchos de los elementos señalados anteriormente, ya que de eso se encargan paquetes estadísticos como <strike>SPSS, Excel, MatLab o</strike> R. De aquí en adelante, todo el código que se muestre en pantalla corresponderá al lenguaje R.  
+
+---
+
+
+
+```{r, echo = T, include = T, message = F, eval=F}
+# Las librerías que necesitamos
+libraries <- c("tidyverse","cowplot","quickpsy",
+               "broom","knitr","circular")
+
+# Cargamos las librerias que necesitamos, si no las tenemos, indicamos a R que las instale
+invisible(
+  lapply(
+    libraries, function(x) {
+      if(!require(x, character.only = T, quietly = T)) {
+        install.packages(x)
+        require(x, character.only = T, quietly = T)
+      }
+    }
+  )
+)
+```
+
+
+```{r Práctica 1 Efectos Cromáticos, child="P1.Rmd"}
+
+```
+
+
+```{r Práctica 2 Colinealidad, child="P2.Rmd"}
+
+```
+
+```{r Práctica 3 Brillo, child="P3.Rmd"}
+
+```
+
+```{r Práctica 4 Navon, child="P4.Rmd"}
+
+```
+
+```{r Práctica 5 Emociones, child="P5.Rmd"}
+
+```

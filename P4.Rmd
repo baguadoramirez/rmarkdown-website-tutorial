@@ -1,0 +1,294 @@
+---
+---
+
+```{r, echo = F, message = F, warning=F}
+# Las librerías que necesitamos
+libraries <- c("tidyverse","cowplot","quickpsy",
+               "broom","knitr","circular")
+
+# Cargamos las librerias que necesitamos, si no las tenemos, indicamos a R que las instale
+invisible(
+  lapply(
+    libraries, function(x) {
+      if(!require(x, character.only = T, quietly = T)) {
+        install.packages(x)
+        require(x, character.only = T, quietly = T)
+      }
+    }
+  )
+)
+# Where is this script?
+Where_Am_I <- function(path=T){
+  if (path == T){
+    dirname(rstudioapi::getSourceEditorContext()$path)
+  }
+  else {
+    rstudioapi::getSourceEditorContext()$path
+  }
+}
+```
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Práctica 4: Precedencia perceptiva “Global-to-Local”
+
+## Índice de objetivos
+
+1. Mostrar la existencia de dos tipos de procesamiento cognitivo. 
+  
+  - Según el procesamiento cognitivo: Top-down vs. Bottom-Up
+  
+  - Según el reconocimiento de patrones: Global-Local vs. Local-Global
+
+2. Comprobar los resultados de la hipótesis de Navon (1977)
+
+3. Determinar qué factores pueden influir en el fenómeno de la precedencia perceptiva.
+
+
+## Procesamiento visual
+
+Desde la descripción por parte de [Hubel y Wiesel](https://physoc.onlinelibrary.wiley.com/doi/pdf/10.1113/jphysiol.2009.170209) de la respuesta selectiva de ciertas neuronas a estimulos orientados en una determinada dirección, la metáfora computacional ha servido para decribir y explicar el procesamiento de los estímulos visuales. Esta expicación normalmente ha sido segregada en dos etapas diferenciadas:
+
+[Ulric Neisser (1969)](https://doi.org/10.4324/9781315736174) describió el proceso perceptivo como un proceso dividido en dos fases que se desarrollan de forma secuencial, es decir, una después de la otra. En primer lugar, ocurriria una primera fase **pre-atencional**. En esta fase se desarrollaría un procesamiento automático y paralelo de cada una de las características o elementos básicos de un estímulo o imagen. Posteriormente, se desarrolaría una fase **atencional** en la cual, de forma consciente, se podría acceder a cada una de las caracteristicas o elementos que componen la imagen de forma consciente y controlada. 
+
+De forma parecida, [David Marr (1982)](https://doi.org/10.1098/rstb.1976.0090) propuso que el procesamiento visual se dividiría en un procesaamiento inicial tosco en forma de procesamiento primario a partir de una matriz primaria de diferentes intensidaddes lumínicas. Posteriormente, se formaría una imagen 2D a partir de los elementos básicos de la imagen. Posteriormente, se produciría un procesamiento **tardío** formando una imagen 3D a partir de las imagenes 2D que proporcionan las imagenes retinianas. 
+
+Por su parte, [Simon Ullman (1995)](https://doi.org/10.1093/cercor/5.1.1) propuso que el procesamiento de la información visual se realizaría en dos etpapas o fases. La primera, una etapa de bajo nivel, en la cual se produce un análisis automático e inconsciente de la información para el cual no es necesaria ni la consciencia, heurísticos ni conocimientos previos. Posteriormente se producía un procesamiento de alto nivel en el cual el flujo atencional y de selección de información dentro de la información visual está sesgado y seleccioando por la atención, la cual estaría a su vez guiada por el conocimiento previo y heurísticos requiriendo de una maor carga atenccional y recursos. 
+
+<figure>
+<p><img src="./pia/P4/Low_High.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>
+
+Como podemos ver, aunque las tres explicaciones ponen énfasis en diferentes aspectos del proceso perceptivo, las tres comparten el hecho de que estas dos fases de procesamiento se producen de forma secuencial y no paralela.
+
+Hay dos modelos básicos defendidendo cada postura:
+
+### Modelo fisiologicista
+
+Modelo basado en las estudios de Hubel & Wiesel en los cuales se postularía, que dado que el flujo de información va de lo local a lo global, lo lógico sería que se procese de forma primaria los elementos locales a los globales (*Local-to-Global*). 
+
+#### Dificultadoes del modelo fisiologicista
+
+<figure>
+<p><img src="./pia/P4/Niro.png" width="350px">
+<figcaption> Presenta problemas para explicar cómo somos capaces de reconocer estímulos globales como puede ser una cara a partir de estímulos de caracter local. 
+</figcaption>
+</figure>
+
+<figure>
+<p><img src="./pia/P4/Pandemonium.png" width="350px">
+<figcaption> De hecho, sería posible que para unas mismas características básicas, se activaran varios conceptos globales. En este modelo, podemos ver que si acitvamos los demonios básicos basados en "/" y "\", se activarían tanto la "X" como potencialmente la "A" o en menor medida la "R". 
+</figcaption>
+</figure>
+
+<figure>
+<p><img src="./pia/P4/Oclusion.png" width="350px">
+<figcaption> En este caso, dado que no se pueden identificar todos los elementos básicos de un elemento ocluido, sería imposible activar el elemento global. 
+</figcaption>
+</figure>
+
+<figure>
+<p><img src="./pia/P4/Letter.png" width="350px">
+<figcaption> Sería incapaz de explicar cómo somos capaces de obtener la misma representacion de una letra a partir de elementos básicos diferentes. Además, sería muy costoso entrenar a un sistema para que aprenda todas las combinaciones posibles para crear un mismo elemento. 
+</figcaption>
+</figure>
+
+### Modelo Neo-Gestaltista
+
+Esta perspectiva propone que se procesa de forma primaria los elementos globales antes que los elementos globales, ya que serían los más salientes, sesgando la direcci´pon de la atención (*Global-to-Local*). Su principal problema es que es incapaz de dar una explicación (**no descripción**) de las leyes que preceden al agrupamiento perceptivo y segregación que dan lugar al estímulo de forma global. 
+
+<figure>
+<p><img src="./pia/P4/Figures.png" width="350px">
+<figcaption> El reconocimiento de una figura se puede basar en la forma global sin que se puedan distinguir los elementos específicos de un concepto. </figcaption>
+</figure>
+
+La Teoría de la Gestalt aparece en en Alemania en el primer cuarto del S. X siendo sus principales representantes: 
+
+  - Max Wertheimer (1880-1943)
+  - Kurt Koffka (1887-1941)
+  - Wolfgang Köhler (1887-1967)
+
+Esta corriente afirma que la mente configura, a través de ciertas leyes innatas, los elementos sensoriales. La organización/ agrupación es automática, inconsciente e inevitable en lo que denominan **Fenómenos estructurados o Gestalten** mediante unas leyes de agrupamiento perceptivo:
+
+
+<figure>
+<p><img src="./pia/P4/Leyes_Gestalt.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>
+
+<figure>
+<p><img src="./pia/P4/Leyes_Gestalt_2.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>
+
+
+El problema de esta perspectiva es que únicamente está describiendo el percepto o sensación que tiene el observador, pero sin embargo, no da una explicación estructurada a cómo se producen dentro de un sistema cognitivo esas **leyes**. Esto es importante, ya que dado que, **dado que sólo se trata de una perspectiva descriptiva (y no explicativa) no puede dar lugar a hipótesis que puedan ser contrastadas mediante el método científico**. 
+
+### Experimento de Navon 
+
+Basándose en las perspectivas anteriores, [Navon  (1977)](https://doi.org/10.1016/0010-0285(77)90012-3) tenía como objetivo demostrar que los observadores son más rápido s ala hora de procesar y reconocer conscientemente papatrones globales dentro de una escena que los patrones locales e individuales que la componen. De esta manera, daba predominio a los procesos de tipo top-down, es decir, a la hipótesis de la precedencia global. 
+
+La hipótesis de Navos se basa en que la percepcion de una configuración global de la escena precede a la percepción de lo local. De hecho, Navón predicjo que cuando existiese un conflicto entre lo local y lo global, la interferencia sólo debería afectar cuando la atención se dirige a reonocer el elemento local, mientras que no s vería afectada cuando la atención e dirige a lo global. 
+
+En este sentido, Navon propuso que:
+
+  - El tiempo de respuesta sería mayor cuando el observador ha de reconocer el ele mento local y aún mayor cuando iene que reconocer el elemento local incongruente con el global. 
+  
+  - El número de errores sería mayor cuando el observador ha de reconocer el ele mento local y aún mayor cuando iene que reconocer el elemento local incongruente con el global. 
+  
+Para resumir, plantea que el rendimiento general de la tarea se deterioraría em la condición de conflicto entre lo local (atendido) y lo global (no atendido).
+
+Para realizar el experimento, tendréis que descargar el ejecuable que se encuentra en el campus virtual. 
+
+##### Instrucciones
+
+El experimento está formado por 6 bloques de ensayos diferentes en los cuales, en algunos bloques se pregunta cuál es la figura Global, mientra que en otros bloques se pregunta cuál es la figura Local. 
+
+<figure>
+<p><img src="./pia/P4/Navon_Global_Local.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>
+
+Para realizar el experimento, se debe poner énfasis tanto en no cometer errores como en la velocidad de respuesta. Para saber cómo se realiza el experimento, primero se realiza un entrenamiento consistente en 2 bloques de 8 ensayos. 
+
+La tarea del participane consiste en atender a los elementos globales o locales y responder al elemento reconocido utilizando la tecla "H" o "S".
+
+La metodología del experimento está compuesto de 2 VI y 2 VI:
+
+  - VI: 
+
+    - Dirección de la atención (Global o Local)
+
+    - Consistencia / Inconsistencia de los elementos Locales-Globales
+
+  - VD:
+
+    - Tiempo de respuesta
+
+    - Tasa de errores
+    
+En total tenemos 186 ensayos formados por 6 bloques $*$ 4 estímulos diferentes  $*$ 7 repeticiones. 
+
+<figure>
+<p><img src="./pia/P4/Navon.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>
+
+##### Resultados
+
+<figure>
+<p><img src="./pia/P4/Results_Navon.png" width="350px">
+<figcaption> Los resultados muestran el efecto que esparaba Navon. En un primer lugar, el porcesamiento de los elementos locales es más lento que los elementos globales. Por otra aprte, este procesamiento se ve ralentizado aún más cuando existe una incongruencia entre ambos estímulos. Lo que indica una interacción debida a la incongruencia entre ambos.  
+</figcaption>
+</figure>
+
+
+<figure>
+<p><img src="./pia/P4/Navon_TEA.png" width="350px">
+<figcaption> Un resultado interesante es el obenido cuando realizamos este experimento en población TEA. En este caso, los resultados se invierten. El tiempo de reacción cuando se atiende a los elementos globales e inconsistentes. 
+</figcaption>
+</figure>
+
+##### Conclusiones
+
+Navon llegó a las siguientes conlusiones:
+
+1. Procesamos el bosque antes que los árboles, es decir, procesamos antes los elementos globales que los elementos locales. 
+
+2. Cuando la tarea demanda atención local y el estímulo es incongruente, es decir, los Sujetos tardan más tiempo (TR)  y cometen más errores.
+
+Cuando se realiza la prueba en estas condiciones, el procesamiento Gloval es inevitable e interfiere, consumiento recursos, con el procesamiento locla incongruente. 
+
+### Discusión
+
+Modelos posteriores intentan dar explicación a la razón por la cual los resultados de Navon se producen:
+
+  - [Hoffman (1980)](http://dx.doi.org/10.1037/0096-1523.6.2.222) propuso un modelo híbrido. Hoffman propuso que hay dos canales de procesamiento que operan en paralelo:
+
+    - Transmite el procesamiento Global-to-Local.
+  
+    - Transmite el procesamiento Local-to-Global.
+  
+      - En este caso, se postula que **somos conscientes del procesamineto de alto nivel (procesamoento tardío)**, mientras que **no somos conscientes del procesamiento de bano nivel o pre-atencional**, es automático y guiado por los datos sensoriales.  
+
+
+<figure>
+<p><img src="./pia/P4/Hoffman.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>
+
+
+  - Pomerantz, J. (1981): La prioridad del procesamiento global frente al local podría depender de las condiciones visuales (tamaño de las letras y distancia de observación, etc.). 
+A veces es más fácil procesar ‘bosques’ y, otras veces es más fácil procesar ‘árboles’.
+
+
+  - [Kinchla, R. A., & Wolfe, J. M. (1979)](https://doi.org/10.3758/BF03202991
+): El tamaño del estímulo influye en que se perciba con anterioridad (precedencia) lo Global o los elementos Locales.
+
+<figure>
+<p><img src="./pia/P4/Size.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>
+
+  - [Martin, M. (1979a)](https://link.springer.com/content/pdf/10.3758/BF03198264.pdf): El número de elementos locales que componen el estímulo global resulta ser un importante factor.
+  
+  - [Martin, M. (1979b)](https://doi.org/10.1016/0028-3932(79)90019-8
+): El fenómeno de precedencia perceptiva es afectado por la asimetría hemisférica cerebral, al menos con el tipo de estímulos lingüísticos. Este autor supone:
+      - **Procesamiento Local:** hemisferio izquierdo es superior.
+      - **Procesamiento Global:** no está fuertemente lateralizado.
+      
+<figure>
+<p><img src="./pia/P4/Navon.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>  
+      
+      
+      
+  - [Fink, G. R., Marshall, J. C., Halligan, P. W., Frith, C. D., Frackowiak, R. S., & Dolan, R. J. (1997)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1688391/pdf/9149423.pdf).
+    - La especialización interhemisférica parece depender del tipo de estímulo que se estudie. Por ejemplo, si se utiliza un tipo de estímulo iconográfico:
+      - Atención global: Activación hemisferio izquierdo.
+      - Atención local: Activación hemisferio derecho.
+
+<figure>
+<p><img src="./pia/P4/Fink.png" width="350px">
+<figcaption> 
+</figcaption>
+</figure>  
+
+
+## Preguntas a repasar
+
+  - ¿Qué dos líneas o corrientes de procesamiento se existen sore cómo se da el procesamiento cognitivo? ¿Qué diferencia a cada una de ellas?
+
+  - ¿Qué dos líneas o corrientes de procesamiento se proponen de acuerdo al procesamiento de atributos perceptivos o rasgos del estímulo? ¿Qué diferencia hay entre cada una de ellas? ¿Cuáles son las principales evidencias y dificultades de cada corriente?
+  
+  - ¿Hay una dirección de procesamiento “privilegiada” según Navón?
+  
+**Para reflexionar:**
+
+  - ¿Es suficiente el procesamiento local-global o global-local para el reconocimiento?
+
+  - ¿Qué función tiene la actividad del observador?
+  
+  - ¿Qué función tienen la atención y la consciencia?
+
+  - ¿Por qué es importante conocer cómo se procesa y da sentido a estímulos?
+
+<figure>
+<p><img src="./pia/P4/Repasar.png" width="500px">
+<figcaption> 
+</figcaption>
+</figure>  
+
+<br>

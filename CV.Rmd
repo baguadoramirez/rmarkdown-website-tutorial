@@ -1,0 +1,107 @@
+---
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    fig_pos: "H"
+    includes:
+      after_body: 
+        - _footer.html
+        - toc_menu.html
+---
+
+<big> En desarrollo... </big>
+
+---
+
+<big> Under development... </big>
+
+---
+
+<style>
+.column-left{
+  float: left;
+  width: 45%;
+  text-align: left;
+}
+.column-center{
+  display: inline-block;
+  width: 10%;
+  text-align: center;
+}
+.column-right{
+  float: right;
+  width: 45%;
+  text-align: center;
+}
+</style>
+
+#Borja Aguado Ramirez
+
+<div class="column-left">
+From Toledo, living in Barcelona.
+<br> </br>
+
+&#x2709; e-mail : [borja.aguado@ub.edu](mailto:borja.aguado@ub.edu)
+
+GitHub: [baguadoramirez](https://github.com/baguadoramirez)
+
+LinkedIn: [Borja Aguado](www.linkedin.com/in/borja-a-606a59119)
+</div>
+<div class="column-center">
+
+</div>
+<div class="column-right">
+<img src="images/id.png" width="200px">
+</div>
+
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+  .col3 {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+  }
+</style>
+
+## Training
+Bachelor's degree in Psychology (Universidad Autónoma de Madrid; 2012-2016)
+
+  - Bachelor's thesis passed with honors: ["Evidence for a temporal component in the influence of the colour of the surrounding"](http://www.ub.edu/ecvp/poster-sessions)
+  
+Master's degree in Research in Behaviour and Cognition (Universtat de Barcelona; 2016-2017)
+
+PhD Candidate under the trainee of [Joan López-Moliner](http://www.ub.edu/viscagroup/joan/) (Universitat de Barcelona; 2017-202?)
+
+  - Provisional thesis name: <u> Active Sampling of the Optic Flow </u>
+
+## Teaching
+
+*Perception & Action* at Psychology Bachelor's degree level (Universitat de Barcelona). 
+
+## Academic Curriculum
+### Publications
+- Aguado, B., & López-Moliner, J. (2019). Perceived speed of motion in depth modulates misjudgements of approaching trajectories consistently with a slow prior. *Vision research, 159, 1-9.* DOI: https://doi.org/10.1016/j.visres.2019.03.009
+
+### Poster presentations
+- Aguado, R, Borja; M. Maho, Cristina M; Rucci, Michele; Brenner, Eli. (2016, September). *Evidence for a temporal component in the influence of the colour of the surrounding.* European Conference on Visual Perception (ECVP), Barcelona.
+
+- Aguado, Borja; López-Moliner, Joan. (2019, May). *How to move to catch flying balls with updating predictions.* Vision Sciences Society (VSS), St.Pete Beach, Florida.
+
+
+### Oral presentations
+- Aguado, Borja; López-Moliner, Joan. (2019, June). *Accuracy and precision of time-to-contact estimates based on knowing size and gravity.* 8th Iberian Conference on Perception  (CIP), Sna Lorenzo del Escorial, Madrid (Spain).
+
+
+## Grants & Fellowships
+- Beca de Colaboración MECD (Colaboración Universitaria - 2016/2017)
+
+- Beca de Colaboración UB (FPSC2017.3)
+
+- 2018FI_B00090 (April 2018 - September 2018) fellowship from Agència de Gestió d'Ajuts Universitaris i de Recerca. 
+
+- FPU17/01248 (October 2018 - ...) fellowship from Ministerio de Educación y Formación Profesional of the Spanish government.
