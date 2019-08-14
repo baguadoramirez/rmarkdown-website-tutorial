@@ -463,22 +463,6 @@ figurecaption{
 <hr />
 <p><strong>Importante:</strong> Será necesario el uso de una calculadora científica para el cálculo de razones trigonométricas, logaritmos y exponenciales. De hecho, el día del examen la necesitarás.</p>
 <hr />
-<pre class="r"><code># Las librerías que necesitamos
-libraries &lt;- c(&quot;tidyverse&quot;,&quot;cowplot&quot;,&quot;quickpsy&quot;,
-               &quot;broom&quot;,&quot;knitr&quot;,&quot;circular&quot;)
-
-# Cargamos las librerias que necesitamos, si no las tenemos, indicamos a R que las instale
-invisible(
-  lapply(
-    libraries, function(x) {
-      if(!require(x, character.only = T, quietly = T)) {
-        install.packages(x)
-        require(x, character.only = T, quietly = T)
-      }
-    }
-  )
-)
-knitr::opts_chunk$set(echo = FALSE)</code></pre>
 </div>
 <div id="practica-1-efectos-cromaticos" class="section level1">
 <h1>Práctica 1: Efectos cromáticos</h1>

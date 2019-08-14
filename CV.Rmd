@@ -10,14 +10,6 @@ output:
         - toc_menu.html
 ---
 
-<big> En desarrollo... </big>
-
----
-
-<big> Under development... </big>
-
----
-
 <style>
 .column-left{
   float: left;
@@ -40,7 +32,6 @@ output:
 
 <div class="column-left">
 From Toledo, living in Barcelona.
-<br> </br>
 
 &#x2709; e-mail : [borja.aguado@ub.edu](mailto:borja.aguado@ub.edu)
 

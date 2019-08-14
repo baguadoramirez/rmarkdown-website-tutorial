@@ -80,7 +80,7 @@ Sin embargo, no necesitaremos conocer las fórmulas para calcular muchos de los 
 
 
 
-```{r, echo = T, include = T, message = F, eval=F}
+```{r, echo = F, include = T, message = F, eval=F}
 # Las librerías que necesitamos
 libraries <- c("tidyverse","cowplot","quickpsy",
                "broom","knitr","circular")

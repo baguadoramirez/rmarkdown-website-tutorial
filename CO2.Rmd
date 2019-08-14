@@ -1,0 +1,81 @@
+---
+title: "Plots"
+author: "Borja Aguado"
+date: "4 de agosto de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(cowplot)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+inequality <- read.table(file.choose(),header=T,sep=",")
+CO2 <- read.table(file.choose(),header=T,sep=",")
+CO2_capita <- read.table(file.choose(),header=T,sep=",")
+
+all <- full_join(inequality,CO2,by=c("Entity","Code","Year"))
+colnames(all) <- c("Entity","Code","Year","Gini","CO2")
+```
+
+
+```{r}
+ggplot(all  %>% filter(Year %in% c(2012)),aes(Gini,CO2)) + geom_point() + scale_x_log10() + scale_y_log10()
+ggplot(c  %>% na.omit() %>% filter(Year > 1970),aes(Year,Gini,size=Population,group=Code)) + geom_line() # + scale_x_log10() + scale_y_log10()
+```
+
+
+
+
+
+
+
+
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+greenhouse <- read.table(file.choose(),header=T,sep=",")
+colnames(greenhouse) <- c("Entity","Code","Year","SF6","PFC","HFC","N2O","CH4","CO2")
+greenhouse <- greenhouse %>%
+  mutate(
+    SF6_rel = SF6 * 23500 ,
+    PFC_rel = PFC * 6630,
+    N2O_rel = N2O * 265,
+    CH4_rel = CH4 * 28,
+    CO2_rel = CO2,
+    total = SF6 + PFC + N2O + CH4 + CO2,
+    total_rel = SF6_rel + PFC_rel + N2O_rel + CH4_rel + CO2_rel)
+
+plot_grid(
+greenhouse %>%
+  na.omit() %>%
+  group_by(Year) %>%
+  summarize_all(.funs="mean") %>%
+  gather(id,value,SF6_rel:CO2_rel) %>%
+  ggplot(.,aes(Year,value/total_rel,color = id)) +
+  geom_point()  +
+  theme(legend.position = "none"),
+greenhouse %>%
+  na.omit() %>%
+  group_by(Year) %>%
+  summarize_all(.funs="mean") %>%
+  gather(id,value,SF6:CO2) %>%
+  ggplot(.,aes(Year,value,color = id)) + geom_point()  + 
+  theme(legend.position = "bottom")
+)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
