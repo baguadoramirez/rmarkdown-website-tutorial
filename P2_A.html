@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -103,33 +103,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 64px;
+  padding-top: 61px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 66px;
+  margin-top: -66px;
 }
 .section h2 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 66px;
+  margin-top: -66px;
 }
 .section h3 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 66px;
+  margin-top: -66px;
 }
 .section h4 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 66px;
+  margin-top: -66px;
 }
 .section h5 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 66px;
+  margin-top: -66px;
 }
 .section h6 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 66px;
+  margin-top: -66px;
 }
 .dropdown-submenu {
   position: relative;
@@ -305,49 +305,20 @@ $(document).ready(function () {
 </div>
 
 
-<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.5.1</code></pre>
-<pre><code>## -- Attaching packages ------------------------------------------------------------------------------------------------------------------------------------------------ tidyverse 1.2.1 --</code></pre>
-<pre><code>## v ggplot2 3.0.0     v purrr   0.3.2
-## v tibble  1.4.2     v dplyr   0.7.5
-## v tidyr   0.8.1     v stringr 1.4.0
-## v readr   1.1.1     v forcats 0.3.0</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.1</code></pre>
-<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## -- Conflicts --------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre><code>## 
-## Attaching package: &#39;cowplot&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     ggsave</code></pre>
-<pre><code>## 
-## DEoptim package
-## Differential Evolution algorithm in R
-## Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich</code></pre>
-<pre><code>## 
-## Attaching package: &#39;quickpsy&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     deviance</code></pre>
-<pre><code>## Warning: package &#39;broom&#39; was built under R version 3.5.1</code></pre>
-<pre><code>## Warning: package &#39;knitr&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Warning: package &#39;circular&#39; was built under R version 3.5.1</code></pre>
-<pre><code>## 
-## Attaching package: &#39;circular&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     sd, var</code></pre>
 <div id="practica-2-psicofisica-clasica" class="section level1">
 <h1>Práctica 2: Psicofísica clásica</h1>
 <p>Obtención de los umbrales de detección de la colinealidad.</p>
 <div id="conceptos-previos-de-la-filosofia-a-la-psicologia" class="section level2">
 <h2>Conceptos previos: De la Filosofía a la Psicología</h2>
-<p>El paso de la Filosofía a la Psicología como ciencia ha sido objeto de debate durante largo tiempo y establecer precursores a veces puede ser inexacto. Sin embargo, hay momentos en el desarrollo de la epistemología o filosofía sobre el conocimiento que han ayudado historicamente a entender por qué y cómo el objeto de estudio de la <strong>Psicología</strong>, es decir, el <strong>estudio de la conducta</strong> pasó a considerarse una ciencia. Si estás más interesado en qué es conducta, puedes continuar aquí <a href="http://www.aepc.es/ijchp/articulos_pdf/ijchp-89.pdf">continúa aquí</a>.</p>
-<p>La corrientes filosóficas imperantes hasta la ilustración abogaban porque el conocimiento podia existir independientemente del observador y que, de hecho, el mismo podría acceder a él mediante ciertos criterios de verdad basados en la lógica. El observador se trata por lo tanto de un sujeto <em>pasivo</em> que ya posee sensaciones e ideas a las cuales sólo necesita acceder para <em>conocerlas</em>. Es durante la Ilustración, en el siglo XVII cuando <a href="https://en.wikipedia.org/wiki/Immanuel_Kant">Inmanuel Kant</a> utiliza la metáfora del giro copernicano (pasar de un universo geocéntrico a un universo heliocéntrico) para situar de nuevo al observador en una posición activa sobre el conocimiento. Kant argumenta que para llegar al conocimiento, las sensaciones han de pasar varios niveles de conocimiento. En primer lugar, la <em>sensibilidad</em> que se encargaría de dar estructura a cualquier fenónmeno. En segundo lugar el <em>entendimiento</em> organizando las impresiones para formar categorías que nos permiten relaizar juicios. Por último, la <em>razón</em> que valiéndose de lo que denominaba como <em>ideas trascendentales</em> (universales e identicas) a todos los humanos, permitían la generación de un conocimiento válido. En este momento, y salvando las distancias, Kant estaba describiendo cómo las diferentes estructuras sensoriales filtran y dan forma al tipo de información que un sistema biológico para generar algún tipo de conocimiento sobre el entorno. Por ejemplo, el paso de la energía electromagnética que compone la luz a la energía bioquímica que utiliza el sistema nervioso. En ese sentido, al ser identicas y universales a todos los seres humanos, a pesar de que se produzcs cierta variabilidad a la respuesta a un fenómeno, todos reaccionaremos de una fprma parecida al mismo fenómeno. Por ejemplo, la contracción de la pupila ante una luz intensa. <!--y que el conocimiento que podemos generar está limitado *per se* por aquello que un observador de manera activa puede percibir. Sin embargo, no llega a posicionarse entre las posturas más empiristas hasta el momento, argumentando que aunque el observador y el objeto de estudio puedan ser elementos independientes, en tanto que hay características del objeto que no se pueden estudiar o percibir, un objeto no podría ser nunca descrito en su totalidad, también llamado *cosa-en-sí o noúmeno*.--></p>
+<p>El paso de la Filosofía a la Psicología como ciencia ha sido objeto de debate durante largo tiempo y establecer precursores a veces puede ser inexacto. Sin embargo, hay momentos en el desarrollo de la epistemología o filosofía sobre el conocimiento que han ayudado históricamente a entender por qué y cómo el objeto de estudio de la <strong>Psicología</strong>, es decir, el <strong>estudio de la conducta</strong> pasó a considerarse una ciencia. Si estás más interesado en qué es conducta, puedes continuar aquí <a href="http://www.aepc.es/ijchp/articulos_pdf/ijchp-89.pdf">continúa aquí</a>.</p>
+<p>La corrientes filosóficas imperantes hasta la ilustración abogaban porque el conocimiento podía existir independientemente del observador y que, de hecho, el observador podía acceder a él mediante ciertos criterios de verdad basados en la lógica. El observador se trataba, por lo tanto, de un sujeto <em>pasivo</em> que ya posee sensaciones e ideas a las cuales sólo necesita acceder para hacerlas emerger a su conocimiento. Es durante la Ilustración, en el siglo XVII cuando <a href="https://en.wikipedia.org/wiki/Immanuel_Kant">Inmanuel Kant</a> utiliza la metáfora del giro copernicano (pasar de un universo geocéntrico a un universo heliocéntrico) para situar de nuevo al observador en una posición activa sobre el conocimiento. Kant argumenta que para llegar al conocimiento, las sensaciones han de pasar varios niveles de conocimiento. En primer lugar, <em>la sensibilidad</em>, que se encargaría de dar estructura a cualquier fenómeno. En segundo lugar, el <em>entendimiento</em> organizando las impresiones para formar categorías que nos permiten realizar juicios. Por último, la <em>razón</em>, que valiéndose de lo que denominaba como <em>ideas trascendentales</em> (universales e idénticas) a todos los humanos, permitían la generación de un conocimiento válido. En este momento, y salvando las distancias, Kant estaba describiendo cómo las diferentes estructuras sensoriales filtran y dan forma al tipo de información que un sistema biológico para generar algún tipo de conocimiento sobre el entorno. Por ejemplo, el paso de la energía electromagnética que compone la luz a la energía bioquímica que utiliza el sistema nervioso. En ese sentido, al ser idénticas y universales a todos los seres humanos, a pesar de la existencia de cierta variabilidad a la respuesta a un fenómeno, todos reaccionaremos de una forma parecida al mismo fenómeno. Por ejemplo, la contracción de la pupila ante una luz intensa.</p>
 <p><strong>Inciso: Estos dos últimos párrafos no serán objeto de examen, pero siempre es importante saber de dónde venimos para poder entender a dónde vamos.</strong></p>
-<p>A principios del siglo XIX, <a href="https://es.wikipedia.org/wiki/Ernst_Heinrich_Weber">Ernst Weber</a> describe, la que se conoce como la primera ley Psicofísica, la Ley de Weber. Éste médico y fisiólogo alemán, se dió cuenta de que la capacidad de diferenciar dos pesos diferentes no se encontraba tanto en el peso absoluto de un objeto, sino en la diferencia relativa entre un objeto de referencia (<em>Estímulo de referencia</em>) y otro (<em>Estimulo de comparación</em>). Weber encuentra que para que dos objetos de diferente masa pudieran ser diferenciables, su masa debería variar entorno a un 3%. Es decir, si el objeto de referencia pesa 100g, para ser capaz de diferenciarlo de otro, éste debe pesar 103/97g o más/menos. El dato importante está en que Weber se dió cuenta de que esto se cumplia irrespectivamente del peso de referencia. Es decir, al igual que en el anterior ejemplo, para que un objeto de 2kg. pudiese diferenciarse de otro, éste debería pesar al menos 2.06kg.</p>
+</div>
+<div id="psicofisica" class="section level2">
+<h2>Psicofísica</h2>
+<div id="ley-de-weber" class="section level3">
+<h3>Ley de Weber</h3>
+<p>A principios del siglo XIX, <a href="https://es.wikipedia.org/wiki/Ernst_Heinrich_Weber">Ernst Weber</a> describe, la que se conoce como la <strong>primera ley Psicofísica, la Ley de Weber.</strong> Éste médico y fisiólogo alemán, se dió cuenta de que la capacidad de diferenciar dos pesos diferentes no se encontraba tanto en el peso absoluto de un objeto, sino en la diferencia relativa entre un objeto de referencia (<em>Estímulo de referencia</em>) y otro (<em>Estimulo de comparación</em>). Weber encuentra que para que dos objetos de diferente masa pudieran ser diferenciables, su masa debería variar entorno a un 3%. Es decir, si el objeto de referencia pesa 100g, para ser capaz de diferenciarlo de otro, éste debe pesar 103/97g o más/menos. El dato importante está en que Weber se dió cuenta de que esto se cumplia irrespectivamente del peso de referencia. Es decir, al igual que en el anterior ejemplo, para que un objeto de 2kg. pudiese diferenciarse de otro, éste debería pesar al menos 2.06kg.</p>
 <p>Si dividimos la diferencia necesaria para poder diferenciar dos estímulos entre la magnitud del estímulo de referencia podemos obtener una constante (<strong><span class="math inline">\(k\)</span></strong>).</p>
 <span class="math display">\[\begin{equation}
 \label{WF}
@@ -364,13 +335,20 @@ $(document).ready(function () {
   scale_y_continuous(breaks = unique(temp$DI)) +
   theme_minimal(10)</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Como podemos ver en la anterior figura, irrespectivamente de la intensidad del estímulo de referencia, la MDP es el producto entre la misma y la fracción de Weber o <span class="math inline">\(k\)</span>.</p>
+<span class="math display">\[\begin{equation}
+\label{MDP}
+\ MDP = \Delta I = k \* {I_{ref}}
+\end{equation}\]</span>
 <p>Además, podemos utilizar esta constante (<strong><span class="math inline">\(k\)</span></strong>), como un índice de sensibilidad para comparar entre diferentes modalidades sensoriales.</p>
 <hr />
+<p><strong>Miniejercicio:</strong> Por ejemplo, si sabemos que la constante <span class="math inline">\(k\)</span> para diferenciar entre pesos es de <em><span class="math inline">\(k = 0.03\)</span></em>, mientras que la constante que nos indica la capacidad de diferenciar la velocidad de dos objetos es de <em><span class="math inline">\(k = 0.1\)</span></em>. <strong>¿A qué modalidad de estimación somos más sensibles?</strong></p>
+<hr />
 </div>
-<div id="miniejercicio-por-ejemplo-si-sabemos-que-la-constante-k-para-diferenciar-entre-pesos-es-de-k-0.03-mientras-que-la-constante-que-nos-indica-la-capaceidad-de-difernciar-la-velocidad-de-dos-objetos-es-de-k-0.1.-a-que-tipo-de-estimacion-somos-mas-sensibles" class="section level2">
-<h2><strong>Miniejercicio:</strong> Por ejemplo, si sabemos que la constante <span class="math inline">\(k\)</span> para diferenciar entre pesos es de <em><span class="math inline">\(k = 0.03\)</span></em>, mientras que la constante que nos indica la capaceidad de difernciar la velocidad de dos objetos es de <em><span class="math inline">\(k = 0.1\)</span></em>. <strong>¿A qué tipo de estimación somos más sensibles?</strong></h2>
-<p>Fechner, junto a Helmholtz y Wundt se consideran los padres de la Psicología Experimental y de la Psicofísica. Sin embargo, el paso clave de la Filosofía a la Psicología viene dado en primer lugar por <a href="https://en.wikipedia.org/wiki/Gustav_Fechner">Fechner</a> a partir de los principios en Psicofísica. A la vista de los descubrimientos de Weber, Fechner argumenta que la relación entre la estimulación física y su sensación percibida puede ser medida mediante sencillas relaciones matemáticas como la <em>ley de Weber</em>.</p>
-<p>Se define entonces la <strong>Psicofísica</strong> como una rama de la Psicologia interesda en establecer una relación entre los cambios físicos de un estímulo (E; color, luminosidad, velocidad, contraste, tamaño…) y los cambios subjetivos o sensación interna que generan (S, Sensación).</p>
+<div id="principios-de-psicofisica" class="section level3">
+<h3>Principios de Psicofísica</h3>
+<p>Fechner, junto a Helmholtz y Wundt se consideran los padres de la Psicología Experimental y de la Psicofísica. Sin embargo, el paso clave de la Filosofía a la Psicología viene dado en primer lugar por <a href="https://en.wikipedia.org/wiki/Gustav_Fechner">Fechner</a> a partir de su obra <strong>Principios de Psicofísica</strong>. A la vista de los descubrimientos de Weber, Fechner argumenta que la relación entre la estimulación física y su sensación percibida puede ser medida mediante sencillas relaciones matemáticas como la <em>ley de Weber</em>.</p>
+<p>Se define entonces la <strong>Psicofísica</strong> como una rama de la Psicologia interesada en establecer una relación entre los cambios físicos de un estímulo (<strong>E</strong>, por ejemplo: longitud de onda, luminosidad, velocidad, contraste, tamaño…) y los cambios subjetivos o sensación interna que generan (S, sensación subjetiva que generan tales eventos).</p>
 <p>Bajo la perspectiva de la psicofísica, podemos describir el proceso perceptivo completo mediante la siguiente cadena causal:</p>
 <ul>
 <li><p><strong>Estímulo distal</strong>: Estimulación o energía física reflejada o producida por una fuente externa a los mismos receptores sensoriales. Por ejemplo, una pelota.</p></li>
@@ -378,13 +356,14 @@ $(document).ready(function () {
 <li><p><strong>Transducción</strong>: Transformación de la energía proyectada por el estímulo proximal a cambios energéticos dentro del sistema nervioso.</p></li>
 <li><p><strong>Percepción</strong>: Tras pasar por diferentes fases de procesos nerviosos, se daría la percepción de un estímulo.</p></li>
 </ul>
-<p>Esta cadena nos muestra que el proceso perceptivo requiere de diferentes transformaciones de la energía que daría lugar al percepto. Lo que haría que nuestra percepción no tenga una correspondencia directa con la estimulación física. Sin embargo, esto es algo que nos es familiar ya… <a href="#P1">Cof, cof… ;P</a></p>
-<p>Sin embargo, cuando preguntamos a un observador qué ha observado, no podemos acceder directamente a su “sensación subjetiva”. En su lugar, únicamente podemos registrar su <em>respuesta</em> (R). Para medir esta espuesta y así poder acceder de diferentes maneras a cómo se relacionan la estimulación física con la percepción subjetiva, Fechner propuso una serie de métodos psicofísicos.</p>
+<p>Esta cadena nos muestra que el proceso perceptivo requiere de diferentes transformaciones de la energía que da lugar al percepto. Si a esto le sumamos que el sistema nervioso presenta un ruido interno y pseudoaleatorio, podemos entender que nuestra percepción no tiene una correspondencia directa con la estimulación física, más bien es un producto elaborado y filtrado de la información externa. Sin embargo, esto es algo que nos es familiar ya con el procesamiento de un elemento de tan bajo nivel como el color… <a href="#P1">Cof, cof…</a></p>
+<p>Sin embargo, a ésto se le añade otro problema. <strong>Cuando preguntamos a un observador qué ha observado, no podemos acceder directamente a su sensación subjetiva</strong>. En su lugar, únicamente podemos registrar su <strong>respuesta (R)</strong>. Para medir esta espuesta y así poder acceder de diferentes maneras a cómo se relacionan la estimulación física con la percepción subjetiva, Fechner propuso una serie de métodos psicofísicos.</p>
+</div>
 </div>
 <div id="metodos-psicofisicos" class="section level2">
 <h2>Métodos psicofísicos</h2>
 <ul>
-<li><strong>De los límites:</strong> el experimentador incrementa/decrementa progresivamente y de forma ordenada la intensidad del estímulo hasta que el observador cambia su respuesta. Por ejemplo, si queremos averiguar a qué intensidad de decibelios un sonido es audible podemos hacer el siguiente experimento: Empezamos a mostar a un participante un ruido a un nivel claramente audible y le pedimos que pulse l botón “S” si lo oye y el botón “N” si no lo oye. A medida que el participante va respondiendo que oye el sonido vamos disminuyendo los decibelios hasta que cambia su respuesta de “S” (sí), a “N” (no). En ese momento, empezamos a presentar estímulos en la dirección contraria, es decir, si antes cada vez que el participante afirmaba oír el ruido disminuíamos la intensidad, ahora presentamos un sonido claramente inaudible y a medida que va afirmando que no oye el estímulo vamos aumentando su intensidad.</li>
+<li><strong>De los límites:</strong> el experimentador incrementa/decrementa progresivamente y de forma ordenada la intensidad de un estímulo hasta que el observador cambia su respuesta. Por ejemplo, si queremos averiguar a qué intensidad de decibelios un sonido es audible, podemos hacer el siguiente experimento: Empezamos a mostar a un participante un ruido a un nivel claramente audible y le pedimos que pulse el botón “S” si lo oye y el botón “N” si no lo oye. A medida que el participante va respondiendo que oye el sonido vamos disminuyendo los decibelios hasta que cambia su respuesta de “S” (sí), a “N” (No). En ese momento, empezamos a presentar estímulos en la dirección contraria, es decir, si antes cada vez que el participante afirmaba oír el ruido disminuíamos la intensidad, ahora presentamos un sonido claramente inaudible y a medida nos indica que no oye el estímulo vamos aumentando su intensidad.</li>
 </ul>
 <figure>
 <p>
@@ -393,7 +372,7 @@ $(document).ready(function () {
 </figcaption>
 </figure>
 <ul>
-<li><strong>De los estímulos constantes:</strong> presentación aleatoria (o pseudoaleatoria) de un conjunto de intensidades seleccionadas de antemano (entre 5 y 7 normalmente). Entonces se le pide al participante que decida “Sí”/“No” ha percibido algo. Para hacerlo se utiliza un paradigma llamado 2AFC (two alternative forced choice o elección forzada entre 2 alternativas). Aunque éste es el método de elección debido a su facilidad de estimar parámetros psicofisicos de forma directa, requiere de una gran cantidad de ensayos para obtener unos resultados robustos.</li>
+<li><strong>De los estímulos constantes:</strong> presentación aleatoria (o pseudoaleatoria) de un conjunto de intensidades seleccionadas de antemano (entre 5 y 7 normalmente). Bajo éste método se le pide al participante que decida “Sí”/“No” ha percibido algo. Para hacerlo se utiliza un paradigma llamado 2AFC (two alternative forced choice o elección forzada entre 2 alternativas). Aunque éste es el método de elección debido a su facilidad de estimar parámetros psicofisicos de forma directa, requiere de una gran cantidad de ensayos para obtener unos resultados robustos.</li>
 </ul>
 <figure>
 <p>
@@ -402,7 +381,7 @@ $(document).ready(function () {
 </figcaption>
 </figure>
 <ul>
-<li><strong>Del ajuste:</strong> el sujeto controla y ajusta la intensidad del estímulo. Es el método más rápdio, sin embargo, normalmente sobreestima el umbral de detección y no permite caracterizar una curva psicométrica.</li>
+<li><strong>Del ajuste:</strong> el sujeto controla y ajusta la intensidad del estímulo. Es el método más rápido, sin embargo, normalmente sobreestima el umbral de detección y no permite caracterizar una curva psicométrica.</li>
 </ul>
 <figure>
 <p>
@@ -413,11 +392,10 @@ $(document).ready(function () {
 </div>
 <div id="objeto-de-estudio-de-la-psicofisica" class="section level2">
 <h2>Objeto de estudio de la psicofisica</h2>
-<p>Dentro de la psicofísica clásica se utilizan dos mediciones básicas para caracterizar las características del sistema perceptual, el Umbral Absoluto (en adelante, UA) y el Umbral Diferencial (en adelante, UD), que determina la diferencia mínima perceptible (en adelante, DMP).</p>
+<p>Dentro de la psicofísica clásica, se utilizan dos mediciones básicas para caracterizar las características del sistema perceptual, el Umbral Absoluto (en adelante, UA) y el Umbral Diferencial (en adelante, UD), que determina la diferencia mínima perceptible (en adelante, DMP).</p>
 <div id="umbral-absoluto" class="section level3">
 <h3>Umbral Absoluto</h3>
-<p>Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que un observador es capaz de afirmar que percibe un 50% de las veces. Este punto se denomina <strong>Umbral Absoluto</strong>. Para calcular el UA, se mostraría diferentes intensidades de un estímulo a un observador y se le pediría que respondiese <strong>sí</strong> o <strong>no</strong> dependiendo si ha llegado a percibir tal estímulo. Después de una cantidad suficiente de ensayos (a menudo una gran cantidad) podríamos caracterizar una curva como la siguinete haciendo una media de <em>síes</em> (codificados como 1) y <em>noes</em> (codificados como 0), obtendremos una curva parecida a la siguiente.</p>
-<p>Después de realizar el experimento, calculamos la media de <em>síes o desalineamientos percibidos</em> (codificados como 1) y <em>noes, co-lineales</em> (codificados como 0). Si representamos gráficamente estos datos, obtendremos un grafico parecido al siguiente:</p>
+<p>Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que un observador afirma que percibe el 50% de las veces, es decir, al nivel del azar. Este punto se denomina <strong>Umbral Absoluto</strong>. Para calcular el UA, se mostrarían diferentes intensidades de un estímulo a un observador y se le pediría que respondiese <strong>sí</strong> o <strong>no</strong> dependiendo si ha llegado a percibir tal estímulo. Después de una cantidad suficiente de ensayos (a menudo una gran cantidad) podríamos caracterizar una curva como la siguiente haciendo una media de <em>síes</em> (codificados como 1) y <em>noes</em> (codificados como 0) para cada una de las intensidades:</p>
 <pre class="r"><code>ggplot(data_frame(I = seq(0,8,by=1),
   p = pnorm(I,mean = 4,sd = 1)),aes(I,p)) + 
   geom_line() +
@@ -428,7 +406,7 @@ $(document).ready(function () {
   scale_x_continuous(labels = NULL) +
   theme_minimal(10)</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>La figura que se muestra arriba se trataría de una distibución normal cumulativa. Esta distribución asume que la respuesta a este experimento presentaría una varibilidad aleatoria (y por tanto simétrica) alrededor del segundo cuartil. Dado que anteriormente definimos el UA como el punto en el que los observadores responden al nivel del azar, el umbral absoluto corresponde en esta figura al segundo cuartil de la distribución o a una probabilidad del 50%.</p>
+<p>La figura que se muestra arriba se trataría de una distibución normal cumulativa. Esta distribución asume que la respuesta a este experimento presentaría una varibilidad aleatoria (y por tanto simétrica) alrededor del segundo cuartil, lo que produciría esa característica forma sigmoidal. Dado que anteriormente definimos el UA como el punto en el que los observadores responden al nivel del azar, el umbral absoluto corresponde en esta figura al segundo cuartil de la distribución o a una probabilidad acumulada del 50%.</p>
 <span class="math display">\[\begin{equation}
 \label{UA}
 \ UA = Q2
@@ -440,7 +418,7 @@ $(document).ready(function () {
 <li><p>¿Qué método psicofísico habríamos utilizado en el anterior experimento simulado?</p></li>
 </ul>
 <hr />
-<p>Dado que todos los participantes presentan cierta viariabilidad, se espera que cada uno de nosotros muestre un Umbral Absoluto relativamente diferente. Esta varaibilidad puede deberse a factores tales como el ruido intrínseco del estímulo, el ruidoen el sistema neural que fluctúa de forma aleatoria o criterios decisionales como el sueño, el aburrimiento o la excitación. <!--Dependiendo de cuál sea su UA podemos identificar diferentes tipos de observadores:
+<p>Dado que todos los observadores presentan cierta viariabilidad, se espera que cada uno de nosotros muestre un Umbral Absoluto relativamente diferente. La variabilidad en un observador deberse a factores tales como el ruido intrínseco del estímulo, el ruido en el sistema neural que fluctúa de forma aleatoria o criterios decisionales como el sueño, el aburrimiento o la excitación. Sin embargo, también podemos encontrar variabilidad entre los observadores por factores como agudeza visual, aprendizaje o los criterios decisionales anteriormente descritos. <!--Dependiendo de cuál sea su UA podemos identificar diferentes tipos de observadores:
 
 - **Sensibles**: Son aquellos observdores con tendencia a responder que han percibido un estímulo aún cuando la intensidad es muy baja o cuando ni siquiera se ha presentado. Podríamos hablar de un observador *liberal* si y si sólo si la razón de su respuesta se debiera a **criterios decisionales** como la tendencia al riesgo o factores motivacionales de la tarea **y no puramente debido a un componente sensorial**. Por ejemplo, si recompenso al participante cada vez que acierta si hay o no edulcorante pero no penalizo los errores, los observadores tenderán a responder que han percibido el edulcorante para maximizar sus ganancias. 
 
@@ -475,8 +453,8 @@ UA %>%
 </div>
 <div id="umbral-diferencial-y-minima-diferencia-perceptible" class="section level3">
 <h3>Umbral Diferencial y Mínima Diferencia Perceptible</h3>
-<p>Pero además, Fechner encontró que no somos capaces de percibir un continuo de cambios graduales en un estímulo, si no que necesitamos de una cantidad o diferencia en la intensidad del estímulo que nos permita indicar que ha habido un ocurrido tal cambio, a este cambio en la intensidad se le llamaría <strong>dmp</strong> o <em>diferencia mínima perceptible</em>. El hecho de que necesitemos estamínima diferncia se debe a que al igual que la variabilidad en el Umbral Absoluto, también nos podemos encontrar variabilidad en la medida que nuestro sistema perceptivo realiza de un estímulo. Nuestro sistema nervioso presenta ruido interno y no es capaz de representar todas las modalidades sensoriales con una correspondencia directa con el estímulo. Esto afecta a cómo somos capaces de interpretar un estímulo y es intresante para caracterizar lo bueno que es nuestro sistema sensorial discriminando entre dos estímulos parecidos. Para ello, calculamos el <strong>Umbral Diferencial (UD)</strong>.</p>
-<p>Para calcular el Umbral Diferencial utilizaremos <strong>normalmente</strong> una metodología un poco distinta. En primer lugar mostraremos al observador un estímulo de referencia y a continuación un estimulo de comparación como hizo Weber en sus experimentos. En el experimento, le pediremos a los participantes que nos indiquen qué estímulo (pesa más, es más rápido brilla más… ). Al igual que en los experimento para estimar el Umbral Absoluto, elegiremos un rango de estímulos (entre 5 y 7) que nos arrojen una varibailidad suficiente en los juicios de respuesta para calcular el Umbral Diferencial de forma precisa. Para ello, el rango de intensidades deben cubrir, a poder ser, probabilidades de responder sí del 0 al 100 por ciento. El umbral diferencial se establece de forma sencilla como la semidiferencia entre el Q3 (0.75%) y el Q1 (0.25%).</p>
+<p>Como ya había descrito Weber en la Ley de Weber, no somos capaces de percibir un continuo de cambios graduales en un estímulo, si no que necesitamos de una cantidad o diferencia mínima en la intensidad de un estímulo que nos permita indicar que ha ocurrido tal cambio. Este cambio en la intensidad ya lo definimos anteriormente como Mínima Diferencia Perceptible (<em>MDP</em>). El hecho de que necesitemos ésta diferencia mínima se debe a que al igual que la variabilidad en el Umbral Absoluto, nuestro sistema perceptivo presenta cierta varaibilidad en la medida de un estímulo. Nuestro sistema nervioso presenta ruido interno y no es capaz de representar todas las modalidades sensoriales con una correspondencia directa con el estímulo. Esto afecta a cómo somos capaces de interpretar un estímulo y es intresante para caracterizar lo bueno que es nuestro sistema sensorial discriminando entre dos estímulos parecidos. Para ello, calculamos el <strong>Umbral Diferencial (UD)</strong>.</p>
+<p>Para calcular el Umbral Diferencial utilizaremos <strong>normalmente</strong> una metodología un poco distinta. En primer lugar, mostraremos al observador un estímulo de referencia y a continuación un estimulo de comparación como hizo Weber en sus experimentos. En éste experimento, se le pide a los participantes que indiquen qué estímulo (pesa más, es más rápido, brilla más… ). Al igual que en los experimentos para estimar el Umbral Absoluto, elegiremos un rango de estímulos (entre 5 y 7) que nos arrojen una varibailidad suficiente en los juicios de respuesta para calcular el Umbral Diferencial de forma precisa. Para ello, el rango de intensidades deben cubrir, a poder ser, probabilidades de responder sí el rango completo del 0 al 100 %. Cuando calculamos la media de síes y noes para cada intensidad obtendremos una curva sigmoidal muy parecida a la que encontramos para el cálculo del UA. Sin embargo, en éste caso el umbral diferencial se calulará como la mitad del rango entr el 75 y 25 % de responder sí a la pregunta experimental. Es decir, la semidiferencia entre el Q3 (0.75%; tercer cuartil) y el Q1 (0.25%; primer cuartil).</p>
 <span class="math display">\[\begin{equation}
 \label{UD}
 \ UD = (Q3 - Q1)/2
@@ -497,21 +475,20 @@ ggplot(UD_lin,aes(I,p_UD)) +
   geom_point(color = &quot;red&quot;, x = I_Q3, y = 0.75, size = 4) +
   geom_vline(xintercept = c(I_Q1,I_Q3), color=&quot;red&quot;) +
   geom_segment(aes(x=5,xend=5+UD_1,y=0.1,yend=0.1),color=&quot;red&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  geom_text(aes(x=I_Q3*1.25,y=0.1,label=&quot;UD = (Q3 - Q1)/2&quot;),color=&quot;red&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
+  geom_text(aes(x=I_Q3*1.25,y=0.1,label=&quot;UD = (Q3 - Q1)/2&quot;),color=&quot;red&quot;) +
   theme_minimal(10)</code></pre>
-<pre><code>## Warning: Ignoring unknown parameters: arrow</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <hr />
-<p><strong>Tip pro:</strong> Aunque aquí hemos establecido el UD como la semidiferncia entre el Q3 y el Q1, normalmente se establece como la semidiferencia entre el 84 y el 16 % de probabilidad, ya que, de esta manera el umbral diferencial corresponde directamente con la desviación estándar de la curva normal asociada.</p>
+<p><strong>Tip pro:</strong> Aunque durante ésta clase hemos establecido el UD como la semidiferencia entre el Q3 y el Q1, normalmente se establece como la semidiferencia entre el 84 y el 16 % de probabilidad, ya que, de esta manera el umbral diferencial corresponde directamente con la desviación estándar de la curva normal asociada.</p>
 <hr />
-<p>Como hemos podido observar en la anterior curva, en definitiva, el Umbral Diferencial se trata de una medida sobre el rango de intnsidades que genera dudas al participante u observador sobre cómo categorizar debido al ruido en la medida. De esta manera, podemos visualizar diferentes niveles de sensibilidad a una modalidad sensorial según lo amplio que sea este rango.</p>
+<p>Como hemos podido observar en la anterior curva, en definitiva, el Umbral Diferencial se trata de una medida sobre el rango de intensidades que genera dudas al participante u observador sobre cómo categorizar la intensidad de un estímulo debido al ruido en la medida/respuesta. De esta manera, podemos visualizar diferentes niveles de sensibilidad a una modalidad sensorial según lo amplio que sea este rango.</p>
 <p>Con el umbral diferencial podemos obtener varios índices de sensibilidad a un estímulo:</p>
 <ul>
-<li>Igual que hacíamos con el UA, podemos calcular un <em>índice de sensibilidad de discriminación -&gt; S = 1 / UD</em>.
+<li><p>Igual que hacíamos con el UA, podemos calcular un <em>índice de sensibilidad de discriminación -&gt; S = 1 / UD</em>.</p>
 <ul>
-<li>De esta manera, un observador con un UD de 2.5 será (?) sensible que uno que presenta un UD de 6.</li>
+<li>De esta manera, un observador con un UD de 2.5 será más sensible que uno que presenta un UD de 6.</li>
 </ul></li>
-<li>Constante (k) o fracción de Weber:</li>
+<li><p>Constante (k) o fracción de Weber:</p></li>
 </ul>
 <span class="math display">\[\begin{equation}
 \label{k_café}
@@ -521,7 +498,7 @@ ggplot(UD_lin,aes(I,p_UD)) +
 <hr />
 <p><strong>Repaso:</strong></p>
 <ul>
-<li><p>¿Qué modalidad sensorial es más precisa asumiendo que se cumple con la ley de Weber?</p>
+<li><p>Asumiendo que se cumple la Ley de Weber: ¿Qué modalidad sensorial es más precisa?</p>
 <ul>
 <li><span class="math inline">\(k_{velocidad} = 0.1\)</span> o <span class="math inline">\(k_{peso} = 0.03\)</span></li>
 </ul></li>
@@ -533,12 +510,12 @@ ggplot(UD_lin,aes(I,p_UD)) +
 </div>
 <div id="utilizando-logit-para-linealizar" class="section level2">
 <h2>Utilizando Logit para linealizar</h2>
-<p>Uno de los problemas que presentan las curvas anteriores es que, no son fáciles de interpretar, ya que requieren un ajuste no lineal para calcular el UA y el UD con precisión. Sin embargo, podemos utilizar ciertos <strong>trucos</strong> matemáticos para facilitarnos esta misión. Para ello, vamos a utilizar una transformación de nuestros datos anteriores con el objetivo de pasar de una curva con forma sigmoidal a una función lineal. Para ello, vamos a transformar las probabilidades en lo que se denomina como unidades logit aplicando la siguiente fórmula:</p>
+<p>Uno de los problemas que presentan las curvas anteriores es que no son fáciles de interpretar, ya extraer puntos concretos de la curva (calcular la intesidad asociada a un cuartil) requiere de un ajuste no lineal. Sin embargo, podemos utilizar ciertos <strong>trucos</strong> matemáticos para facilitarnos esta misión. Para ello, vamos a utilizar una transformación de los datos anteriores con el objetivo de pasar de una curva con forma sigmoidal a una función lineal. Para ello, vamos a transformar las probabilidades en lo que se denomina <strong>unidades logit</strong> aplicando la siguiente fórmula:</p>
 <span class="math display">\[\begin{equation}
 \label{logit}
 \ logit(p) = ln(\frac{p}{1-p})
 \end{equation}\]</span>
-<p>En ésta fórmula, <span class="math inline">\(p\)</span> es la probabilidad asociada a cierta respuesta para una intensidad determinada y <span class="math inline">\(ln\)</span> el logaritmo neperiano o natural (no confundir con el logaritmo en base 10 o <span class="math inline">\(log\)</span>). Si aplicamos esta fórmula a la curva anterior obtenemos una <strong>aproximación funcional</strong> a una función lineal.</p>
+<p>En ésta fórmula, <span class="math inline">\(p\)</span> es la probabilidad asociada a cierta respuesta para una intensidad determinada y <span class="math inline">\(ln\)</span> el logaritmo neperiano o natural (no confundir con el logaritmo en base 10 o <span class="math inline">\(log\)</span>). Si aplicamos esta fórmula a la curva anterior obtenemos una <strong>aproximación funcional</strong> a una función lineal (como se puede ver en los puntos de la figura más abajo, no es compleeeeeetamente lineal, pero es una aproximación funcional bastante útil).</p>
 <pre class="r"><code>UD &lt;- data_frame(I=seq(0,10,by=1),
                p_UD = pnorm(I, mean = 5,sd=2))
 
@@ -569,18 +546,18 @@ ggplot(logit,aes(I,logit_Medium)) +
   geom_smooth(method =&quot;lm&quot;, se = F) +
   theme_minimal(10)</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Si aplicamos una regresión lineal a los puntos anteriores mediante sistemas como <strike>SPSS, Excel, MatLab o</strike> R (o incluso a mano si diesemos esta clase 10 años antes), podemos obtener la probabilidad asociada a cualquier intensidad.</p>
-<p>Además, una propiedad interesante de esta transformación es la facilidad con la cual podemos obtener el UA y el UD.</p>
+<p>Si aplicamos una regresión lineal a los puntos anteriores mediante sistemas como <strike>SPSS, Excel, MatLab </strike> o R (o incluso a mano si diesemos esta clase 10 años antes), podemos obtener la probabilidad asociada a cualquier intensidad sustituyendo en la ecuación de la recta.</p>
+<p>Aquí va un ejemplo sobre cómo calcular el UA y el UD:</p>
 <ul>
-<li><p><strong>UA:</strong> la proporción del 50%, es decir, el segundo cuartil o Q2 (UA), corresponde a un apuntuación <em>Logit( p = 0.5 ) = ln ( 0.5/(1-0.5) ) = 0</em>.</p>
+<li><p><strong>UA:</strong> definido como la proporción del 50% de responder sí, es decir, el segundo cuartil o Q2 (UA), corresponde a un apuntuación <em>Logit( p = 0.5 ) = ln ( 0.5/(1-0.5) ) = 0</em>.</p>
 <ul>
-<li><p>Si calculamos el ajuste lineal de una recta tenemos la siguiente ecuación: <span class="math inline">\(y = x*a + b\)</span></p></li>
+<li><p>Si calculamos el ajuste lineal de la recta de a las puntuaciones Logit obtenemos una recta descrita por la siguiente ecuación: <span class="math inline">\(y = x*a + b\)</span></p></li>
 <li><p>Que es lo mismo que esto: <span class="math inline">\(log(p) = x*a + b\)</span></p></li>
 <li><p>Dado que <span class="math inline">\(logit(p=0.5) = 0\)</span>, sustituimos en nuestro ajuste lineal: $ 0 = ax + b$</p></li>
-<li><p>Por lo que para calcular el UA (en este caso, sería igual a x), sólo necesitamos resolver esta ecuación utilizando los datos del intercepto y la pendiente.</p></li>
+<li><p>Por lo que para calcular la intensidad asociada a la proporción por la que hemos sustituido en y (x), en este caso el UA, sólo necesitamos resolver esta ecuación utilizando los datos del intercepto y la pendiente.</p></li>
 <li><p><span class="math inline">\(UA = -b / a\)</span> o <span class="math inline">\(UA = -intercepto/pendiente\)</span></p></li>
 </ul></li>
-<li><p><strong>UD:</strong> de la misma manera, podemos caluclar qué proporción corresponde al Q1 y Q3 y obtener el UD.</p>
+<li><p><strong>UD:</strong> de la misma manera, podemos calcular qué proporción corresponde al Q1 y Q3 y obtener el UD.</p>
 <ul>
 <li><p><span class="math inline">\(logit(p = 0.25) = ln(0.25/(1-0.25))\)</span></p></li>
 <li><p><span class="math inline">\(logit(p = 0.75) = ln(0.75/(1-0.75))\)</span></p></li>
@@ -594,40 +571,42 @@ ggplot(logit,aes(I,logit_Medium)) +
 <h2>Resumen hasta el momento</h2>
 <p>Hemos estudiado dos tipos diferentes de umbrales:</p>
 <ul>
-<li><p>El Umbral absoluto responde a la pregunta de si has visto el estímulo. Se calcula como el segundo cuartil de una curva sigmoide (cumulativa gaussiana).</p>
+<li><p>El Umbral Absoluto responde a la pregunta de a qué intensidad de un estímulo un observador es capaz de verlo.</p>
 <ul>
+<li><p>Se calcula como el segundo cuartil de una curva sigmoide (cumulativa gaussiana). Para calcularlo:</p></li>
 <li><p>Transformamos las probabilidades medias de detección de cada nivel de intensidad a valores logit <span class="math inline">\(logit(p) = ln(p(I)/(1-p(I)))\)</span>.</p></li>
 <li><p>Aplicamos una regresión lineal a los valores logit vs las intensidades del estímulo.</p></li>
 <li><p>El UA se puede calcular con la siguiente fórmula: <span class="math inline">\(UA = -intercepto/pendiente\)</span> o <span class="math inline">\(UA = -b/a\)</span>.</p></li>
 </ul></li>
 <li><p>El Umbral Diferencial responde a la pregunta de si el estímulo de comparación es diferente (en una dirección determinada) al estímulo de referencia.</p>
 <ul>
-<li><p>Nos da una curva sigmoidal con la probabilidad de que ocurra tal evento.</p></li>
+<li><p>Nos da una curva sigmoidal con la probabilidad de que ocurra tal evento. Para calcularlo:</p></li>
 <li><p>Transformamos las probabilidades medias de discriminación de cada nivel de intensidad a valores logit <span class="math inline">\(logit(p) = ln(p(I)/(1-p(I)))\)</span>.</p></li>
-<li><p>Para calcular el UD calculamos la semidiferencia entre el Q3 y el Q1 utilizando valores logit. <span class="math inline">\(UD = (Q3 - Q1)/2\)</span>.</p></li>
+<li><p>Calculamos la semidiferencia entre el Q3 y el Q1 utilizando valores logit. <span class="math inline">\(UD = (Q3 - Q1)/2\)</span>.</p>
+<ul>
 <li><p>$ Q1 = (logit(0.25) - b)/a $</p></li>
 <li><p>$ Q3 = (logit(0.75) - b)/a $</p></li>
+</ul></li>
 </ul></li>
 </ul>
 </div>
 <div id="ley-de-weber-fechner" class="section level2">
 <h2>Ley de Weber-Fechner</h2>
-<p>Fechner estaba interesado en establecer una ley de correspondencias psicofísicas en distintas modalidades sensoriales. Para ello, estableció el Umbral absoluto como un nivel de Sensación de 0, mientras que niveles sucesivamente superiores de sensación vendrían determinados por el Umbral Diferencial.</p>
-<p>Por lo tanto, si sabemos que el Umbral Absoluto es 4 y el Umbral Diferencial es 0.4, podemos calcular la fracción de Weber o <span class="math inline">\(k\)</span>. Esta nos permitirá obtener el cambio en la intensidad del estímulo necesaria para que un estímulo se percibido como mayor. Si atendemos a la fórmula de la Ley de Weber:</p>
+<p>Según Fechner el Umbral Absoluto sería un nivel de Sensación 0 dentro de una escala de sensaciones psicofísicas. Basándose en la Ley de Weber, afirmó que aunque la diferencia en intensidad requerida para percibir un estímulo como diferente de otro era proporcional a la intensidad del mismo, el cambio en la sensación que estas producían era idéntico. Fechner asumía que la aunque la intensidad de un estímulo tuviese que ser crecientemente mayor para ser pecibido como diferente, la sensación producida era de escala ordinal. En este sentido, si atendemos a la fórmula de la Ley de Weber:</p>
 <ul>
 <li><p><span class="math inline">\(k = \frac{UD}{E_{Ref}}\)</span></p></li>
 <li><p><span class="math inline">\(k = \frac{0.4}{4}=0.1\)</span></p></li>
 </ul>
-<p>Dada la anterior igualdad sabemos que la mínima diferencia perceptible (MPD) es igual a…</p>
+<p>Dada la anterior igualdad sabemos que, en este ejemplo, la diferencia mínima perceptible (DMP) es igual a…</p>
 <ul>
 <li><span class="math inline">\(k * E_{Ref} = MDP\)</span></li>
 </ul>
-<p>Por lo que, para distinguir un estímulo de el Umbral Absoluto debe aumentar su intensidad en:</p>
+<p>Por lo que, para distinguir un estímulo de el Umbral Absoluto, éste debe aumentar su intensidad en:</p>
 <ul>
 <li><p>$ k UA = MDP 0.1 4 = 0.4$</p></li>
 <li><p>$ 0.1 4 = 0.4 $</p></li>
 </ul>
-<p>Haciendo estos cáluclos de manera sucesiva, obtenemos la siguiente tabla:</p>
+<p>Haciendo estos cálculos para intensidades crecientes sucesivas obtenemos la siguiente tabla:</p>
 <pre class="r"><code>E &lt;- 4
 S &lt;- c(0:20)
 k = 0.1
@@ -641,13 +620,15 @@ for(i in 1:20){
 Fechner &lt;- data.frame(E = E,
            S = S,
            D_E = D_E,
-           k = k)
-
-knitr::kable(Fechner,digits = 3, col.names = c(&quot;Estímulo&quot;,&quot;Sensación&quot;,&quot;$\\Delta E$&quot;, &quot;Weber Fraction&quot;))</code></pre>
+           k = k)</code></pre>
+<pre class="r"><code>knitr::kable(Fechner %&gt;%
+               filter(S &lt; 10),
+             digits = 3,
+             col.names = c(&quot;Intensidad del estímulo&quot;,&quot;Sensación&quot;,&quot;$\\Delta E$&quot;, &quot;Weber Fraction&quot;))</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="right">Estímulo</th>
+<th align="right">Intensidad del estímulo</th>
 <th align="right">Sensación</th>
 <th align="right"><span class="math inline">\(\Delta E\)</span></th>
 <th align="right">Weber Fraction</th>
@@ -714,79 +695,25 @@ knitr::kable(Fechner,digits = 3, col.names = c(&quot;Estímulo&quot;,&quot;Sensa
 <td align="right">0.943</td>
 <td align="right">0.1</td>
 </tr>
-<tr class="odd">
-<td align="right">10.375</td>
-<td align="right">10</td>
-<td align="right">1.037</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="even">
-<td align="right">11.412</td>
-<td align="right">11</td>
-<td align="right">1.141</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="odd">
-<td align="right">12.554</td>
-<td align="right">12</td>
-<td align="right">1.255</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="even">
-<td align="right">13.809</td>
-<td align="right">13</td>
-<td align="right">1.381</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="odd">
-<td align="right">15.190</td>
-<td align="right">14</td>
-<td align="right">1.519</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="even">
-<td align="right">16.709</td>
-<td align="right">15</td>
-<td align="right">1.671</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="odd">
-<td align="right">18.380</td>
-<td align="right">16</td>
-<td align="right">1.838</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="even">
-<td align="right">20.218</td>
-<td align="right">17</td>
-<td align="right">2.022</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="odd">
-<td align="right">22.240</td>
-<td align="right">18</td>
-<td align="right">2.224</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="even">
-<td align="right">24.464</td>
-<td align="right">19</td>
-<td align="right">2.446</td>
-<td align="right">0.1</td>
-</tr>
-<tr class="odd">
-<td align="right">26.910</td>
-<td align="right">20</td>
-<td align="right">2.691</td>
-<td align="right">0.1</td>
-</tr>
 </tbody>
 </table>
-<pre class="r"><code>ggplot(Fechner,aes(E,S)) + geom_point()</code></pre>
-<p><img src="P2_A_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-</div>
-<div id="ley-de-stevens" class="section level2">
-<h2>Ley de Stevens</h2>
+<p>En esta tabla se puede ver que aunque la sensación producida aumenta una sóla unidad en cada paso, el cambio necesario en la intensidad del estímulo es cada vez mayor. De manera que si ploteamos los anteriores datos tenemos la siguiente gráfica:</p>
+<pre class="r"><code>ggplot(Fechner,aes(E,S)) +
+  geom_line() +
+  geom_point(color = &quot;red&quot;) +
+  labs(x = &quot;Intensidad del estímulo&quot;, &quot;Sensación percibida&quot;)</code></pre>
+<p><img src="P2_A_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Como podemos ver, la relación existente entre sensación percibida y la intensidad del estímulo sigue una relación logarítimica. Para facilitar su interpretación, Fechner propuso la llamada como Ley de Weber-Fechner. Según esta ley, la sensación percibida sería proporcional al logaritmo en base 10 del estímulo multiplicado por una constante. De esta manera, la relación entre intensidad y sensación percibida pasa de una relación logarítmica a una relación lineal:</p>
+<span class="math display">\[\begin{equation}
+\label{Weber-Fechner}
+\ S = K*log(E)
+\end{equation}\]</span>
+<pre class="r"><code>ggplot(Fechner %&gt;% mutate(S = ifelse(S == 0, 0.0001,S)),aes(log(E,10),S)) +
+  geom_line() +
+  geom_point(color = &quot;darkblue&quot;) +
+  labs(x = &quot;log(Intensidad del estímulo)&quot;, &quot;Sensación percibida&quot;) +
+  annotate(geom = &quot;text&quot;, label = &quot;S = K * log(E)&quot;, color = &quot;darkblue&quot;, x = 0.75, y = 15, size =5)</code></pre>
+<p><img src="P2_A_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p><br></p>
 </div>
 </div>

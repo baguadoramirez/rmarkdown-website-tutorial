@@ -7,7 +7,6 @@ output:
     includes:
       after_body: 
         - _footer.html
-        - toc_menu.html
 ---
 <style>
 figure_side {
