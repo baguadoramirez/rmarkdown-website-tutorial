@@ -36,11 +36,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Índice de objetivos
 
-1. Mostrar la existencia de dos tipos de procesamiento cognitivo. 
+1. Mostrar la existencia de dos tipos de procesamiento de la información: 
   
-  - Según el procesamiento cognitivo: Top-down vs. Bottom-Up
+  - Según la dirección del procesamiento cognitivo: Top-down vs. Bottom-Up
   
-  - Según el reconocimiento de patrones: Global-Local vs. Local-Global
+  - Según la dirección del reconocimiento de patrones: Global-Local vs. Local-Global
 
 2. Comprobar los resultados de la hipótesis de Navon (1977)
 
@@ -71,31 +71,41 @@ Hay dos modelos básicos defendidendo cada postura:
 
 Modelo basado en las estudios de Hubel & Wiesel en los cuales se postularía, que dado que el flujo de información va de lo local a lo global, lo lógico sería que se procese de forma primaria los elementos locales a los globales (*Local-to-Global*). 
 
-#### Dificultadoes del modelo fisiologicista
+#### Dificultades del modelo fisiologicista
+
+Presenta problemas para explicar cómo somos capaces de reconocer estímulos globales como puede ser una cara a partir de estímulos de caracter local. 
 
 <figure>
-<p><img src="./pia/P4/Niro.png" width="350px">
-<figcaption> Presenta problemas para explicar cómo somos capaces de reconocer estímulos globales como puede ser una cara a partir de estímulos de caracter local. 
+<p><img src="./pia/P4/Niro.png" width="350px"><img src="./pia/P4/Las_Drogas.png" width="350px">
+<figcaption> 
 </figcaption>
 </figure>
+
+De hecho, sería posible que para unas mismas características básicas, se activaran varios conceptos globales. En este modelo, podemos ver que si acitvamos los demonios básicos basados en "/" y "\", se activarían tanto la "X" como potencialmente la "A" o en menor medida la "R". 
+
 
 <figure>
 <p><img src="./pia/P4/Pandemonium.png" width="350px">
-<figcaption> De hecho, sería posible que para unas mismas características básicas, se activaran varios conceptos globales. En este modelo, podemos ver que si acitvamos los demonios básicos basados en "/" y "\", se activarían tanto la "X" como potencialmente la "A" o en menor medida la "R". 
+<figcaption> 
 </figcaption>
 </figure>
+
+En este caso, dado que no se pueden identificar todos los elementos básicos de un elemento ocluido, sería imposible activar el elemento global. 
 
 <figure>
 <p><img src="./pia/P4/Oclusion.png" width="350px">
-<figcaption> En este caso, dado que no se pueden identificar todos los elementos básicos de un elemento ocluido, sería imposible activar el elemento global. 
+<figcaption> 
 </figcaption>
 </figure>
 
+Sería incapaz de explicar cómo somos capaces de obtener la misma representacion de una letra a partir de elementos básicos diferentes. Además, sería muy costoso entrenar a un sistema para que aprenda todas las combinaciones posibles para crear un mismo elemento.
+
 <figure>
 <p><img src="./pia/P4/Letter.png" width="350px">
-<figcaption> Sería incapaz de explicar cómo somos capaces de obtener la misma representacion de una letra a partir de elementos básicos diferentes. Además, sería muy costoso entrenar a un sistema para que aprenda todas las combinaciones posibles para crear un mismo elemento. 
+<figcaption>  
 </figcaption>
 </figure>
+
 
 ### Modelo Neo-Gestaltista
 
@@ -130,25 +140,30 @@ Esta corriente afirma que la mente configura, a través de ciertas leyes innatas
 
 El problema de esta perspectiva es que únicamente está describiendo el percepto o sensación que tiene el observador, pero sin embargo, no da una explicación estructurada a cómo se producen dentro de un sistema cognitivo esas **leyes**. Esto es importante, ya que dado que, **dado que sólo se trata de una perspectiva descriptiva (y no explicativa) no puede dar lugar a hipótesis que puedan ser contrastadas mediante el método científico**. 
 
-### Experimento de Navon 
+## Parte práctica: Experimento de Navon 
 
-Basándose en las perspectivas anteriores, [Navon  (1977)](https://doi.org/10.1016/0010-0285(77)90012-3) tenía como objetivo demostrar que los observadores son más rápido s ala hora de procesar y reconocer conscientemente papatrones globales dentro de una escena que los patrones locales e individuales que la componen. De esta manera, daba predominio a los procesos de tipo top-down, es decir, a la hipótesis de la precedencia global. 
+Basándose en las perspectivas anteriores, [Navon  (1977)](https://doi.org/10.1016/0010-0285(77)90012-3) tenía como objetivo demostrar que los observadores son más rápidos a la hora de procesar y reconocer conscientemente papatrones globales dentro de una escena que los patrones locales e individuales que la componen. De esta manera, daba predominio a los procesos de tipo top-down, es decir, a la hipótesis de la precedencia global. 
 
-La hipótesis de Navos se basa en que la percepcion de una configuración global de la escena precede a la percepción de lo local. De hecho, Navón predicjo que cuando existiese un conflicto entre lo local y lo global, la interferencia sólo debería afectar cuando la atención se dirige a reonocer el elemento local, mientras que no s vería afectada cuando la atención e dirige a lo global. 
+La hipótesis de Navos se basa en que la percepcion de una configuración global de la escena precede a la percepción de lo local. De hecho, Navón predijo que cuando existiese un conflicto entre lo local y lo global, la interferencia sólo debería afectar cuando la atención se dirige a reonocer el elemento local, mientras que no s vería afectada cuando la atención e dirige a lo global. 
 
-En este sentido, Navon propuso que:
+**Pregunta:**¿Cuál es la dirección de procesamiento predominante?: Local-to-Global o Global-to-Local
+
+**Hipótesis de Navon**
 
   - El tiempo de respuesta sería mayor cuando el observador ha de reconocer el ele mento local y aún mayor cuando iene que reconocer el elemento local incongruente con el global. 
   
   - El número de errores sería mayor cuando el observador ha de reconocer el ele mento local y aún mayor cuando iene que reconocer el elemento local incongruente con el global. 
-  
+
 Para resumir, plantea que el rendimiento general de la tarea se deterioraría em la condición de conflicto entre lo local (atendido) y lo global (no atendido).
 
-Para realizar el experimento, tendréis que descargar el ejecuable que se encuentra en el campus virtual. 
+### Metodología
 
-##### Instrucciones
+**Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 4 Navon Global-to-Local**
 
-El experimento está formado por 6 bloques de ensayos diferentes en los cuales, en algunos bloques se pregunta cuál es la figura Global, mientra que en otros bloques se pregunta cuál es la figura Local. 
+
+**Instrucciones:**
+
+  - El experimento está formado por 6 bloques de ensayos diferentes en los cuales, en algunos bloques se pregunta cuál es la figura Global, mientra que en otros bloques se pregunta cuál es la figura Local. 
 
 <figure>
 <p><img src="./pia/P4/Navon_Global_Local.png" width="350px">
@@ -156,48 +171,57 @@ El experimento está formado por 6 bloques de ensayos diferentes en los cuales, 
 </figcaption>
 </figure>
 
-Para realizar el experimento, se debe poner énfasis tanto en no cometer errores como en la velocidad de respuesta. Para saber cómo se realiza el experimento, primero se realiza un entrenamiento consistente en 2 bloques de 8 ensayos. 
+  - Para realizar el experimento, se debe poner énfasis tanto en no cometer errores como en la velocidad de respuesta. Para saber cómo se realiza el experimento, primero se realiza un entrenamiento consistente en 2 bloques de 8 ensayos. 
+  
+  - La tarea del participante consiste en atender a los elementos globales o locales y responder al elemento reconocido utilizando la tecla "H" o "S".
 
-La tarea del participane consiste en atender a los elementos globales o locales y responder al elemento reconocido utilizando la tecla "H" o "S".
 
-La metodología del experimento está compuesto de 2 VI y 2 VI:
+<figure>
+<p><img src="./pia/P4/Navon.png" width="350px">
+<figcaption> Ejemplo de cada uno de los estímulos mostrados 
+</figcaption>
+</figure>
 
-  - VI: 
+
+**Variables**
+
+  - Variables independientes (VI):
 
     - Dirección de la atención (Global o Local)
 
     - Consistencia / Inconsistencia de los elementos Locales-Globales
-
-  - VD:
+  
+  - Variable dependiente (VD), aquella que manipula el observador:
 
     - Tiempo de respuesta
 
     - Tasa de errores
+
+
+\begin{equation}
+\label{trials_4}
+\ 6~bloques \times 4~estímulos~diferentes \times 7~repeticiones~ = ~186~ensayos~(trials) 
+\end{equation}
     
-En total tenemos 186 ensayos formados por 6 bloques $*$ 4 estímulos diferentes  $*$ 7 repeticiones. 
+    
+
+### Resultados
 
 <figure>
-<p><img src="./pia/P4/Navon.png" width="350px">
+<p><img src="./pia/P4/Results_Navon.png" height="400px">
+<figcaption>   
+</figcaption>
+</figure>
+
+Los resultados muestran el efecto que esparaba Navon. En un primer lugar, el porcesamiento de los elementos locales es más lento que los elementos globales. Por otra aprte, este procesamiento se ve ralentizado aún más cuando existe una incongruencia entre ambos estímulos. Lo que indica una interacción debida a la incongruencia entre ambos.
+
+<figure>
+<p><img src="./pia/P4/Navon_TEA.png" height="400px">
 <figcaption> 
 </figcaption>
 </figure>
 
-##### Resultados
-
-<figure>
-<p><img src="./pia/P4/Results_Navon.png" width="350px">
-<figcaption> Los resultados muestran el efecto que esparaba Navon. En un primer lugar, el porcesamiento de los elementos locales es más lento que los elementos globales. Por otra aprte, este procesamiento se ve ralentizado aún más cuando existe una incongruencia entre ambos estímulos. Lo que indica una interacción debida a la incongruencia entre ambos.  
-</figcaption>
-</figure>
-
-
-<figure>
-<p><img src="./pia/P4/Navon_TEA.png" width="350px">
-<figcaption> Un resultado interesante es el obenido cuando realizamos este experimento en población TEA. En este caso, los resultados se invierten. El tiempo de reacción cuando se atiende a los elementos globales e inconsistentes. 
-</figcaption>
-</figure>
-
-##### Conclusiones
+Por otra parte, se observan resultados interesantes cuando aplicamos este experimento en población TEA. En este caso, los resultados se invierten. El tiempo de reacción cuando se atiende a los elementos globales e inconsistentes. 
 
 Navon llegó a las siguientes conlusiones:
 
@@ -207,7 +231,7 @@ Navon llegó a las siguientes conlusiones:
 
 Cuando se realiza la prueba en estas condiciones, el procesamiento Gloval es inevitable e interfiere, consumiento recursos, con el procesamiento locla incongruente. 
 
-### Discusión
+## Discusión
 
 Modelos posteriores intentan dar explicación a la razón por la cual los resultados de Navon se producen:
 
@@ -261,7 +285,7 @@ A veces es más fácil procesar ‘bosques’ y, otras veces es más fácil proc
       - Atención local: Activación hemisferio derecho.
 
 <figure>
-<p><img src="./pia/P4/Fink.png" width="350px">
+<p><img src="./pia/P4/Fink.png" height="350px">
 <figcaption> 
 </figcaption>
 </figure>  
@@ -269,13 +293,19 @@ A veces es más fácil procesar ‘bosques’ y, otras veces es más fácil proc
 
 ## Preguntas a repasar
 
-  - ¿Qué dos líneas o corrientes de procesamiento se existen sore cómo se da el procesamiento cognitivo? ¿Qué diferencia a cada una de ellas?
+  - ¿Qué dos líneas o corrientes de procesamiento existen según la dirección del procesamiento cognitivo? ¿Qué diferencia a cada una de ellas?
 
-  - ¿Qué dos líneas o corrientes de procesamiento se proponen de acuerdo al procesamiento de atributos perceptivos o rasgos del estímulo? ¿Qué diferencia hay entre cada una de ellas? ¿Cuáles son las principales evidencias y dificultades de cada corriente?
+  - ¿Qué dos líneas o corrientes de procesamiento se proponen de acuerdo al procesamiento de atributos perceptivos o rasgos del estímulo? 
+    
+    - ¿Qué diferencia hay entre cada una de ellas? 
+    
+    - ¿Cuáles son las principales evidencias y dificultades de cada corriente?
   
-  - ¿Hay una dirección de procesamiento “privilegiada” según Navón?
+  - ¿Hay una dirección de procesamiento “privilegiada” según Navon?
   
-**Para reflexionar:**
+---
+  
+**Para reflexionar más:**
 
   - ¿Es suficiente el procesamiento local-global o global-local para el reconocimiento?
 
@@ -286,9 +316,11 @@ A veces es más fácil procesar ‘bosques’ y, otras veces es más fácil proc
   - ¿Por qué es importante conocer cómo se procesa y da sentido a estímulos?
 
 <figure>
-<p><img src="./pia/P4/Repasar.png" width="500px">
+<p><img src="./pia/P4/Repasar.png" width="600px">
 <figcaption> 
 </figcaption>
 </figure>  
+
+---
 
 <br>

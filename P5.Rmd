@@ -72,49 +72,58 @@ Actualmente podemos decir que existen dos perspectivas distintas en cuanto a cu�
 Concretamente, [Davidson (1995)](https://scholar.google.es/scholar?cluster=1079682260296463766&hl=es&as_sdt=2005&sciodt=0,5) propuso una división del sistema emocional en tres subsistmeas o componentes:
 
 
-  
+<!--  
 <figure>
 <p><img src="./pia/P5/Sistema_limbico.png" width="350px">
 <figcaption> 
 </figcaption>
 </figure>
+-->
+
+
+  1. **Experiencia emocional (experiencia que genera la emoción)**
   
 <figure>
 <p><img src="./pia/P5/Experiencia.png" width="350px">
-<figcaption> 1. Experiencia emocional (experiencia que genera la emoción)
+<figcaption> 
 </figcaption>
 </figure>
   
+  2. **Expresión emocional (expresión emocional factor conductual esquelético)**
+
 <figure>
 <p><img src="./pia/P5/Expresion.gif" width="350px">
-<figcaption> 2. Expresión emocional (expresión emocional factor conductual esquelético)
+<figcaption> 
 </figcaption>
 </figure>
+
+  3. **Percepción emocional (identificación de la propia emoción)**
 
 <figure>
 <p><img src="./pia/P5/Percepcion.png" width="350px">
-<figcaption> 3. Percepción emocional (identificación de la propia emoción)
+<figcaption> 
 </figcaption>
 </figure>
 
-Un ejemplo en el que no somos capaces de llegar al tercer nivel sería cuando sentimos hambre y nos sentimos molestos por cualquier comentario. En este caso, nos sentimos molestos con las acciones de los demás porque no estamos atribuyendo nuestra emoción a la experiencia emocional original.  
 
-En esta práctica, además de mostrar cómo diferentes emociones pueden dar lugar a diferentes criterios de respuesta utilizaremos una técnica basada en cómo se distribuye el sistema visual en la retina para poder acceder y estudiar el procesamiento de las emociones dentro del sistema neural. 
+Es posible que el procesamiento de una emoción no llegue hasta el tercer nivel. Un ejemplo de esto sería cuando nos sentimos molestos por tener hambre. En muchos casos, no somos conscientes de qué estímulo es el que nos está haciendo sentir a disgusto y nos podemos llegar a molestar por cualquier acontecimiento o comentario. En este caso, nos sentimos molestos con las acciones de los demás aunque no hayan hecho nada para molestarnos dado que estamos atibuyendo nuestro estado emocional a un evento externo y no a la experiencia emocional inicial, el hecho en sí de tener hambre.  
 
-Para hacerlo, utilizaremos la técnica de campo visual dividido para explorar las asimetrías en la percepción. Esta técnica se basa en que cada campo visual se refeja en la hemirretina contralatera. De esta manera:
+En esta práctica se pretende mostrar que la identificación de la emoción de un tercero es beneficiosa en tanto que ayuda a la planificación de la acción. Es importante entender que para que se pueda identificar una emoción, primero han de ser percibidos los rasgos faciales que indican esa emoción, por lo que la incidencia de éstos en un campo visual u otro afectarán a la velocidad de procesamiento de la misma. Para estudiar la asimetrías cerebrales en su análisis cognitivo, utilizaremos una técnica llamada **técnica de campo visual dividido**. 
+
+**¿En qué consiste ésta técnica?** Cuando miramos hacia un elemento en el entorno, la luz proviniente del campo visual derecho se refleja en la parte izquierda de la retina. Esta información a su vez es procesada por el hemisferio izquierdo y viceversa. De esta manera, podemos aprovechar esta asimetría en el sistema visual para controlar qué información se está procesando por cada hemisferio cerebral. De esta manera podemos estudiar existe una asimetría en la manera en la que el cerebro procesa los rasgos de expresiones faciales emocionales. 
 
 <figure>
 <p><img src="./pia/P5/Campos_Visuales.png" width="350px">
-<figcaption> El campo visual derecho se refleja en la hemiretina izquierda haciendo que se procese por el hemisferio izquierdo.Campo visual izqueirdo se refleja en la hemiretina derecha haciendo que se procese principalmente por el hemisferio derecho. NOTA: Es importante indicar que hay parte del espacio visual que sólo se refleja en una de las hemiretinas y por lo tanto  sólo es porcesada pir un hemisferio. Espacios visuales laterales inferiores.  
+<figcaption> El campo visual derecho se refleja en la hemiretina izquierda haciendo que se procese por el hemisferio izquierdo. El campo visual izquierdo se refleja en la hemiretina derecha haciendo que se procese principalmente por el hemisferio derecho. NOTA: Es importante indicar que hay parte del espacio visual que sólo se refleja en una de las hemiretinas y por lo tanto  sólo es porcesada por un hemisferio como los espacios visuales laterales inferiores.  
 </figcaption>
 </figure>
 
 
-## Estudio de Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)
+### Estudio de Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)
 
-Utilizando la técnica de campo visual dividido [Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)](http://dx.doi.org/10.3922/j.psns.2008.1.010) mostraron a los observadores imagenes con diferentes emociones dirigidas a ser procesadas por el hemisferio izquierdo o derecho preguntándose si habría un hemisferio que procese más rápidamente cada emoción. 
+Utilizando la técnica de campo visual dividido [Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)](http://dx.doi.org/10.3922/j.psns.2008.1.010) mostraron a diferentes observadores una serie de imágenes mostrando rostros con expresiones emocionales a ambos lados de una pantalla. De esta manera, las expresiones emocionales eran dirigidas para ser procesadas por el hemisferio izquierdo o derecho preguntándose si habría un hemisferio que procese más rápidamente/eficazmente cada emoción. 
 
-para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (estímulos positivos), caras enfadadas o tristes (estímulos negativos) o caras con expresión neutra (estímulo no-emocional).
+Para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (estímulos positivos), caras enfadadas o tristes (estímulos negativos) o caras con expresión neutra (estímulo no-emocional). 
 
   - Grupo 1 = target Felicidad (vs T, S, N, M)
   
@@ -126,9 +135,11 @@ para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales i
   
   - Grupo 5 = target Tristeza (vs F, N, M, S)
   
+Los participantes tenían que indicar el lado de la pantalla en la que se mostraba la emoción correspondiente al grupo al que se le había asignado. Es decir, si el participante pertenecía al primer grupo (target: alegría), debería seleccionar izquierda en el primer ensayo y derecha en el segundo ensayo. 
+  
 <figure>
 <p><img src="./pia/P5/Trials_2008.png" width="350px">
-<figcaption> En el experimento se les pedía a los participantes indicar en qué posición de la pantalla se presenta la emoción indicada para cada grupo. Es decir, si el participane pertenecía al primer grupo (target: alegría), debería seleccionar izquierda en el primer ensayo y derecha en el segundo ensayo. 
+<figcaption> 
 </figcaption>
 </figure>  
   
@@ -140,14 +151,29 @@ Los resultados en este experimento fueron los siguientes:
 </figcaption>
 </figure>  
 
-**Los resultados parecían dar soporte a la hipótesis del hemisferio derecho.**
+Sin embargo, los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Si bien, los resultados con rostros neutros sugieren mayor apoyo empírico a la hipótesis del HD. 
+
+---
+
+**Para pensar:** ¿Por qué el hecho de que los resultados de los rostros neutros muestren diferencias significativas aportan soporte parcial a la hipótesis del HD?
+<!--In other words, their better performance for perceiving neutral expressions in the right visual field might be a result of the right hemisphere’s advantage for perceiving emotions in the left visual field, irrespectively of their category (hapiness, fear, surprise and sadness)-->
+---
+
+Los autores proponen que se profundice en la naturaleza de los estímulos (por ejem., estáticos / dinámicos), ya que el patrón de resultados da lugar a interpretaciones.
 
 
-Los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Si bien, los resultados con rostros neutros sugieren que los datos parecen dar mayor apoyo empírico a la hipótesis del HD . Los autores proponen que se profundice en la naturaleza de los estímulos (por ejem., estáticos / dinámicos), ya que el patrón de resultados no es inequívoco.
 
-## Práctica 5: Percepción de expresiones emocionales
+## Práctica 5: Percepción de expresiones emocionales{#P5}
 
-Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resutlados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento (que podéis encontrar, como siempre, en el campus virtual) con caricaturas que relfejan diferentes expresiones emocionales. 
+**Pregunta experimental:** Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resutlados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento con caricaturas que reflejan diferentes expresiones emocionales de una manera esquemática. 
+
+**Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 5 Percepción de expresiones emocionales**
+
+**Hipótesis: ** No tenemos una dirección de hipótesis fija. Se trata de un estudio exploratorio para ver si los datos arrojan soporte a la hipótesis del acercamiento-retraimiento o a la hipótesis del hemisferio derecho.
+
+### Metodología
+
+**Estímulos:** Se utilizarán caricaturas mostrando con las siguientes expresiones emocionales: Neutral, Felicidad, Tristeza, Miedo y Sorpresa. 
 
 <figure>
 <p><img src="./pia/P5/P5.png" width="350px">
@@ -155,22 +181,39 @@ Dados los resultados del experimento anterior, los autores propusieron que serí
 </figcaption>
 </figure> 
 
-El método será parecido al del experimento anterior. En concreto, tenéis 3 ejecutales distintos en los que tendréis que atender y buscar expresiones de "Felicidad", "Tristeza" o "Neutras".
+**Instrucciones:** El método será parecido al del experimento anterior. En concreto, tenéis 3 ejecutables distintos en los que tendréis que atender y buscar expresiones de "Felicidad", "Tristeza" o "Neutras" dependiendo del ejecutable en el que os encontréis. 
 
   - Grupo 1 = target Felicidad (vs T, N, M)
   
   - Grupo 2 = target Tristeza (vs N, S, F)
   
   - Grupo 3 = target Neutra (vs T, M, S, F)
-
-Las variables independientes son el grupo asignado (emoción target) y la emoción distractora. 
-Las variables dependientes serán el tiempo de rección y la tasa de errores.  
   
+La tearea es la siguiente, si nos encontramos en el grupo 1 (Felicidad), tendremos que indicar en qué lado de la pantalla se encuentra la caricatura que muestra esa emoción intentando no prestar atención a la caricatura del lado opuesto. 
+
 <figure>
 <p><img src="./pia/P5/Trials_P5.png" width="350px">
 <figcaption> 
 </figcaption>
 </figure> 
+
+**Variables**
+  
+  - Variables independientes (VI):
+
+    - Grupo asignado.
+    
+    - Emoción distractora.
+    
+    - Posición de la emoción target.
+  
+  - Variable dependiente (VD), aquella que manipula el observador:
+
+    - Tiempo de reaccción.
+    
+    - Tasa de errores.
+
+### Resultados
 
 Los resultados obtenidos "en general" serán los siguientes:
 
@@ -200,11 +243,19 @@ Los resultados obtenidos "en general" serán los siguientes:
 </figcaption>
 </figure> 
   
-## Discusión
+### Discusión
 
 Los resultados con caricaturas  muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Mientras que los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD. 
 
-**¿Por qué puede ocurrir esto?**
+---
 
+**Para pensar más:**
+
+  - ¿Por qué puede ocurrir esto?
+
+  - ¿Se te ocurre algún otro experimento que pudiera ser interesante de realizar utilizando la técnica de Campo Visual Dividido?
   
+  - ¿Hay alguna zona del campo visual que sólo sea procesada por un hemisferio?
+
+
 <br>

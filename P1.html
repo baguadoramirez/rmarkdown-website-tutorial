@@ -313,7 +313,7 @@ $(document).ready(function () {
 <ul>
 <li><p>Las características de la <strong>fuente lumínica</strong> y las longitudes de ondas predominantes.</p></li>
 <li><p>La <strong>reflectancia de la superficie</strong> sobre la que se refleja la energía proviniente de la fuente lumínica.</p></li>
-<li><p>Las caracteristicas del <strong>sistema perceptivo</strong> que se encarga de dar sentido al estímulo. Por ejemplo, para ser capaces de discriminar entre estimulaciones de diferentes longitudes de onda sería necesario poseer 2 tipos de conos diferentes (principio de univarianza). De lo contrario, únicamente seríamos capces de discriminar entre intensidades lumínicas.</p></li>
+<li><p>Las caracteristicas del <strong>sistema perceptivo</strong> que se encarga de dar sentido al estímulo. Por ejemplo, para ser capaces de discriminar entre estimulaciones de diferentes longitudes de onda sería necesario poseer 2 tipos de conos diferentes (principio de univarianza). Este principio nos indica que el color no es una propiedad directamente observable, sino que es una propiedad que nuestro cerebro interpreta a partir de diferencias entre la estimulación que obtienen los diferentes tipos de conos. Si, por lo contrario sólo dispusiesemos de un sólo tipo de conos, únicamente seríamos capces de discriminar entre intensidades lumínicas. Es decir, nuestro sistema visual no sería capaz de desambiguar el color únicamente siendo capaz de acceder a diferencias en intensidad de luminancia.</p></li>
 </ul>
 <figure>
 <p>
@@ -322,31 +322,30 @@ $(document).ready(function () {
 En esta imagen se refleja el principio de univarianza. Como podemos ver, en la imagen de la izquierda, el sistema perceptivo de nuestro monigote sólo dispone de un tipo de fotoreceptor, por lo que únicamente será capaz de discernir entre intensidades lumínicas. Por su parte, en la figura de la derecha, el monigote será capaz de distinguir el color rojo de la manzana, ya que dispone de 3 diferentes tipos de fotoreceptores. De esta manera diferenciar entre diferentes dimensiones de la energía reflejada.
 </figcaption>
 </figure>
-<p>Desde una perspectiva física, el factor más importante para describir el color es la longitud de onda (<span class="math inline">\(\lambda\)</span>). La longitud de onda se trata de una dimensión contínua descrita por el conocido como espectro electromagnético. Aunque nuestros sentidos nos permiten acceder de diferentes maneras a ciertas partes de este contínuo, la visión únicamente nos permite acceder a aquellas longitudes de onda dentro de la región de los 380 a los 760 nm aproximadamente. Sin embargo, en la mayoría de casos no estamos expuestos a una estimulación equienergética (es decir, con la misma energía en todo el espectro). Por lo contrario, las superficies sobre las que se proyecta esa energía, absorben parte de la misma y reflejan otra parte. Por esta razón es importante conocer cómo puede reaccionar una superficie a la exposición de una misma radiación:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Reflexión selectiva</strong>: Indica la cantidad relativa de longitudes de onda que una superficie refleja dada una luz blanca (equienergética). Por ejemplo, un tomate absorbería longitudes de onda cortas y medias (azules y verdes), mientras que reflejaría ondas de longitud larga (rojo).</li>
-</ol>
+<p>Desde una perspectiva física, el factor más importante para describir el color es la longitud de onda (<span class="math inline">\(\lambda\)</span>). La longitud de onda se trata de una dimensión contínua descrita por el conocido como espectro electromagnético. Aunque nuestros sentidos nos permiten acceder de diferentes maneras a ciertas partes de este contínuo, la visión únicamente nos permite acceder a aquellas longitudes de onda dentro de la región de los 380 a los 760 nm aproximadamente.</p>
 <figure>
 <p>
 <img src="pia/P1/EE.JPG" width="350px">
 <figcaption>
 </figcaption>
 </figure>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Curva de reflectancia</strong>: Indica la intensidad absoluta de longitudes de onda reflejadas. En la siguiente figura se puede ver cómo el área bajo la curva que describe el color azul más claro es mayor que la del azul más oscuro. De la misma manera, si el tomate anterior tuviese una superficie mate, percibiríamos un tono rojo mÃ s oscuro porque reflejaría menos cantidad de energía.</li>
+<p>Una radiacción puede ser equienergética si transmite readiacción con la misma intensidad en todas las longitudes de onda. Sin embargo, en la mayoría de casos no estamos expuestos a una estimulación equienergética. Por ejemplo, si una luz equienergética choca con un tomate, la superficie del mismo absorberá parte de la radiacción y reflejará otra parte. La forma en la que se produczca esta relfexión determinaá las propiedades del estímulo físico que llegará hasta nuestros sentidos. Por esta razón es importante conocer cómo puede reaccionar una superficie a la exposición de una misma radiación:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Reflexión selectiva</strong>: Indica la cantidad relativa de longitudes de onda que una superficie refleja dada una luz blanca (equienergética). Por ejemplo, un tomate absorbería longitudes de onda cortas y medias (azules y verdes), mientras que reflejaría ondas de longitud larga (rojo).</p></li>
+<li><p><strong>Curva de reflectancia</strong>: Indica la intensidad absoluta de longitudes de onda reflejadas. En la siguiente figura se puede ver cómo la curva que describe el color azul claro está por encima que la del azul más oscuro. Esto os indica que aunque está reflejando las mismas longitudes de onda, una superficie estaría reflejando mayor cantidad de energía que la otra. De esta manera, si el tomate anterior tuviese una superficie mate, percibiríamos un tono rojo más oscuro porque reflejaría menos cantidad de energía que uno con una superficie más brillante.</p></li>
 </ol>
 <figure>
 <p>
 <img src="pia/P1/ReflCurve.png" width="350px">
 <figcaption>
-Prácticamente igual reflexión selectiva, diferentes curvas de reflectancia.
+Prácticamente igual reflexión selectiva, diferentes curvas de reflectancia. Si utilizamos un colorímetro, nos dirá que es el mismo color, pero nuestra experiencia perceptiva es distinta, porque la intensidad lumínica es distinta, es decir, veríamos una superficie más brillante que la otra.
 </figcaption>
 </figure>
 <p>La combinación de ambas caracteristicas sobre cómo reaccionan diferentes superficies a la luz son suficientes para describir la percepción del color en diferentes sistemas. En concreto, nosotros vamos a definir las características del color mediante el sistema HSV. Dentro de esta categorización encontramos las siguientes dimensiones:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Matiz/Hue</strong>: Se relaciona con cantidad relativa de las longitudes de onda reflejadas. Es lo que comunente denominamos como color. Su correspondencia psicofísica sería la experiencia subjetiva de la percepción de diferentes tonos cromáticos (rojo, verde, azul y amarillo principalmente).</p></li>
-<li><p><strong>Luminosidad o intensidad (también llamado valor)</strong>: Hace referencia a la cantidad absoluta de luz que refleja una superficie en una determinada direción o ángulo por unidad de superficie. En el SMI se mide en <span class="math inline">\(cd/m^{2}\)</span> (candelas por metro cuadrado). Este es un factor de vital importancia en determinadas situaciones. Por ejemplo, las empresas de telefonía móvil han logrado superar en los últimos dispositivos la barrera de las 300 <span class="math inline">\(cd/m^{2}\)</span> optimizando el consumo de batería para favorecer la visibilidad bajo la luz solar. Dentro del espectro electromagnético estaría indicado por la amplitud de onda. Por su parte, su correspondencia psicofísica sería el <strong>brillo</strong>, que estaría definido como la sensación percibida de la intensidad lumínica.</p></li>
-<li><p><strong>Saturación</strong>: Hace referencia a la proporción de blanco/negro con respecto al matiz cromático puro. Es decir, cuando hay una alta intensidad únicamente en una longitud de onda (o rango de longitudes de onda), el color será muy saturado. Mientras que si la intensidad está repartida uniformemente a través del espectro electromgnético se dirá que está poco saturado.</p></li>
+<li><p><strong>Luminosidad o intensidad (también llamado valor)</strong>: Hace referencia a la cantidad absoluta de luz que refleja una superficie en una determinada direción o ángulo por unidad de superficie. En el SMI se mide en <span class="math inline">\(cd/m^{2}\)</span> (candelas por metro cuadrado). Este es un factor de vital importancia en determinadas situaciones. Por ejemplo, las empresas de telefonía móvil han logrado superar en los últimos dispositivos la barrera de las 300 <span class="math inline">\(cd/m^{2}\)</span> optimizando el consumo de batería para favorecer la visibilidad bajo la luz solar. Dentro del espectro electromagnético estaría indicado por la amplitud de onda. Su correspondencia psicofísica sería el <strong>brillo</strong>, que estaría definido como la sensación percibida de la intensidad lumínica.</p></li>
+<li><p><strong>Saturación</strong>: Hace referencia a la <em>proporción de blanco</em> con respecto al matiz cromático puro. Es decir, cuando hay una alta intensidad únicamente en una longitud de onda (o rango de longitudes de onda), el color será muy saturado. Mientras que si la intensidad está repartida uniformemente a través del espectro electromgnético se dirá que está poco saturado.</p></li>
 </ol>
 <figure>
 <p>
@@ -364,8 +363,8 @@ Cada dimensión indica una propiedad del color. Matiz: Indicado por el ángulo. 
 </center>
 <p>Tanto el Hue como la luminosidad se mantienen constantes, mientras que lo que varía es la saturación. Esto produce un cambio en el matiz percibido.</p>
 </div>
-<div id="efecto-bezold-bracke" class="section level3">
-<h3>Efecto Bezold-BrÃ¼cke</h3>
+<div id="efecto-bezold-brucke" class="section level3">
+<h3>Efecto Bezold-Brücke</h3>
 <p>Cambio en el matiz percibido inducido por cambios en el brillo. NO es debido ni a cambios en la longitud de onda ni en la saturación.</p>
 <center>
 <img src="pia/P1/EffBB.png" width="350px">
@@ -379,11 +378,21 @@ Cada dimensión indica una propiedad del color. Matiz: Indicado por el ángulo. 
 <img src="pia/P1/EffH.png" width="350px">
 </center>
 <p>Tanto el matiz como la saturación se mantienen constantes, mientras que lo que varía es la luminosidad. Esto produce un cambio en el brillo o luminosidad <strong>percibida</strong>.</p>
+<hr />
+<p><strong>Miniejercicio:</strong> Sin más datos, ¿podrías establecer los parámetros de los siguientes ejemplos?</p>
+<figure>
+<p>
+<img src="pia/P1/Exercise_1.png" width="350px">
+<figcaption>
+Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 100). <b> Pista: No todos los campos se pueden establecer ;) .</b>
+</figcaption>
+</figure>
+<hr />
 </div>
 </div>
 <div id="P1" class="section level2">
 <h2>Parte práctica: Efecto Helmholtz-Kohlsrauch</h2>
-<p>Este efecto es descrito como la sensación de que un estímulo cromático (con matiz), es percibido como más brillante que un estimulo acromático aunque ambos tengan la misma luminancia.</p>
+<p>Este efecto es descrito como la sensación de que un estímulo cromático (con matiz), es percibido como más <strong>brillante</strong> que un estimulo acromático aunque ambos tengan la misma luminancia.</p>
 <p><strong>Estímulación física:</strong></p>
 <span class="math display">\[\begin{equation}
 \label{HK_F}
@@ -401,23 +410,27 @@ Cada dimensión indica una propiedad del color. Matiz: Indicado por el ángulo. 
 <p>Estamos también interesados en saber si hay algún matiz que se percibe como más brillante que otro, por lo tanto creamos un experimento con la siguiente metodología.</p>
 <p><strong>Variables</strong></p>
 <ul>
-<li><p>Variables independientes (VI):</p></li>
+<li><p>Variables independientes (VI):</p>
+<ul>
 <li><p>Matiz del estímulo (rojo, verde, azul, amarillo).</p></li>
 <li><p>Luminancia del estímulo cromático.</p></li>
-<li><p>Variable dependiente (VD), aquella que manipula el observador:</p></li>
-<li><p>Luminanica asignada por el participante al estímulo cromático.</p></li>
+</ul></li>
+<li><p>Variable dependiente (VD), aquella que manipula el observador:</p>
+<ul>
+<li>Luminanica asignada por el participante al estímulo cromático.</li>
+</ul></li>
 </ul>
 <p>Como no somos procesadores de información infalibles y nuestra respuesta tiene cierta variabilidad o error, hemos de realizar cada combinación de condiciones varias veces. En este caso, para que el experimento sea corto hemos introducido únicamente 3 repeticiones. Por lo tanto: 4 matices * 10 luminancias del estímulo cromático * 3 repeticiones dan un total de 120 ensayos o trials.</p>
+<p><strong>Hipótesis:</strong></p>
 <ul>
-<li><p>Hipótesis</p></li>
-<li><p>Dado el mismo brillo percibido</p></li>
+<li>Dado el mismo brillo percibido:</li>
 </ul>
 <span class="math display">\[\begin{equation}
 \label{HK_1}
 \ Brillo_{Crom} = Brillo_{Acrom} 
 \end{equation}\]</span>
 <ul>
-<li>La luminancia del estímulo acromático será mayor que la del estímulo cromático</li>
+<li>La luminancia del estímulo acromático será mayor que la del estímulo cromático:</li>
 </ul>
 <span class="math display">\[\begin{equation}
 \label{HK_2}
@@ -425,52 +438,25 @@ Cada dimensión indica una propiedad del color. Matiz: Indicado por el ángulo. 
 \end{equation}\]</span>
 <div id="analisis-de-datos" class="section level3">
 <h3>Análisis de datos</h3>
-<pre class="r"><code>id_1 &lt;- read.table(&quot;./pia/P1/EkiCroma_effect.dat&quot;, header =T) %&gt;%
-                        mutate(id = 1)
-id_2 &lt;- read.table(&quot;./pia/P1/EkiCroma_no_effect.dat&quot;, header = T) %&gt;%
-                        mutate(id = 2)
-id_3 &lt;- read.table(&quot;./pia/P1/EkiCroma_reffect.dat&quot;, header =T) %&gt;%
-                        mutate(id = 3)
-
-ekicroma &lt;- bind_rows(id_1,id_2,id_3) %&gt;%
-  arrange(NEst) %&gt;%
-  mutate(Hue = ifelse(NEst &lt; 10, &quot;Amarillo&quot;, ifelse(NEst &lt; 20, &quot;Verde&quot;, ifelse(NEst &lt; 30, &quot;Rojo&quot;, &quot;Azul&quot;)))) </code></pre>
-<p>En la siguiente figura se pueden observar los resultados para diferentes observadores.</p>
-<pre class="r"><code>ggplot(ekicroma,aes(Stand,Compar,color=Hue)) +
-  geom_point()  +
-  geom_abline(linetype = 2) + 
-  geom_smooth(method  =&quot;lm&quot;, se = F) +
-  facet_grid(~id) +
-  labs (x = &quot;Standard stimuli, chromatic&quot;, y = &quot;Comparison stimuli, achromatic&quot;) +
-  coord_cartesian(xlim= c(0,max(ekicroma$Stand), ylim = c(0,max(ekicroma$NEst)))) +
-  scale_color_manual(values = c(&quot;darkgoldenrod1&quot;,&quot;blue&quot;,&quot;red&quot;,&quot;green&quot;)) +
-  theme_minimal(10) +
-  theme(legend.position=&quot;bottom&quot;)</code></pre>
+<p>En la siguiente figura se pueden observar los resultados para diferentes observadores:</p>
 <p><img src="P1_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p><br></p>
-<pre class="r"><code>Models &lt;- ekicroma %&gt;%
-  group_by(id) %&gt;%
-  do(model = anova(lm(Compar ~ Stand * factor(Hue), data = .))) %&gt;%
-  tidy(model) %&gt;% 
-  mutate(p.value = format.pval(round(p.value,3),eps = 0.01))
-
-kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="right">id</th>
-<th align="left">term</th>
-<th align="right">df</th>
-<th align="right">sumsq</th>
-<th align="right">meansq</th>
-<th align="right">statistic</th>
-<th align="left">p.value</th>
+<th align="right">Id</th>
+<th align="left">VI</th>
+<th align="right">Degrees of freedom</th>
+<th align="right">SSq</th>
+<th align="right">MSq</th>
+<th align="right">F</th>
+<th align="left">p. value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">Stand</td>
+<td align="left">Standard</td>
 <td align="right">1</td>
 <td align="right">212666.77</td>
 <td align="right">212666.77</td>
@@ -479,7 +465,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="left">factor(Hue)</td>
+<td align="left">Color</td>
 <td align="right">3</td>
 <td align="right">25316.17</td>
 <td align="right">8438.72</td>
@@ -488,7 +474,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">Stand:factor(Hue)</td>
+<td align="left">Interaction</td>
 <td align="right">3</td>
 <td align="right">10341.63</td>
 <td align="right">3447.21</td>
@@ -506,23 +492,22 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>kable(Models %&gt;% filter(id ==2),digits=2)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="right">id</th>
-<th align="left">term</th>
-<th align="right">df</th>
-<th align="right">sumsq</th>
-<th align="right">meansq</th>
-<th align="right">statistic</th>
-<th align="left">p.value</th>
+<th align="right">Id</th>
+<th align="left">VI</th>
+<th align="right">Degrees of freedom</th>
+<th align="right">SSq</th>
+<th align="right">MSq</th>
+<th align="right">F</th>
+<th align="left">p. value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="right">2</td>
-<td align="left">Stand</td>
+<td align="left">Standard</td>
 <td align="right">1</td>
 <td align="right">401172.80</td>
 <td align="right">401172.80</td>
@@ -531,7 +516,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="left">factor(Hue)</td>
+<td align="left">Color</td>
 <td align="right">3</td>
 <td align="right">855.79</td>
 <td align="right">285.26</td>
@@ -540,7 +525,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
-<td align="left">Stand:factor(Hue)</td>
+<td align="left">Interaction</td>
 <td align="right">3</td>
 <td align="right">2696.69</td>
 <td align="right">898.90</td>
@@ -558,23 +543,22 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>kable(Models %&gt;% filter(id ==3),digits=2)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="right">id</th>
-<th align="left">term</th>
-<th align="right">df</th>
-<th align="right">sumsq</th>
-<th align="right">meansq</th>
-<th align="right">statistic</th>
-<th align="left">p.value</th>
+<th align="right">Id</th>
+<th align="left">VI</th>
+<th align="right">Degrees of freedom</th>
+<th align="right">SSq</th>
+<th align="right">MSq</th>
+<th align="right">F</th>
+<th align="left">p. value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="right">3</td>
-<td align="left">Stand</td>
+<td align="left">Standard</td>
 <td align="right">1</td>
 <td align="right">345519.55</td>
 <td align="right">345519.55</td>
@@ -583,7 +567,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">3</td>
-<td align="left">factor(Hue)</td>
+<td align="left">Color</td>
 <td align="right">3</td>
 <td align="right">24603.80</td>
 <td align="right">8201.27</td>
@@ -592,7 +576,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="left">Stand:factor(Hue)</td>
+<td align="left">Interaction</td>
 <td align="right">3</td>
 <td align="right">3963.63</td>
 <td align="right">1321.21</td>
@@ -641,6 +625,12 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </ul></li>
 </ul>
 <p><br></p>
+</div>
+<div id="recursos-adicionales" class="section level2">
+<h2>Recursos adicionales</h2>
+<ul>
+<li><a href="http://www.colormunki.com/game/huetest_kiosk">Munsell test</a>: Permite conocer la agudeza en la visión de color (A ver si eres capaz de superar mi puntuación de 11 ;), menor puntuación es mejor).</li>
+</ul>
 </div>
 </div>
 

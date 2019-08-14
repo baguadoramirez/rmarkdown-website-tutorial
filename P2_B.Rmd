@@ -1,0 +1,263 @@
+---
+---
+
+```{r, echo = F}
+# Las librerías que necesitamos
+libraries <- c("tidyverse","cowplot","quickpsy",
+               "broom","knitr","circular")
+
+# Cargamos las librerias que necesitamos, si no las tenemos, indicamos a R que las instale
+invisible(
+  lapply(
+    libraries, function(x) {
+      if(!require(x, character.only = T, quietly = T)) {
+        install.packages(x)
+        require(x, character.only = T, quietly = T)
+      }
+    }
+  )
+)
+```
+
+# Práctica 2B: Obtención del umbral de detección de la colinealidad{#P2B}
+
+Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que es posible percibir un 50% de las veces. Punto que denominaría como **Umbral Absoluto**. 
+
+Vamos a ver cómo podemos aplicar esto a la vida real utilizando como ejemplo la agudeza visual...
+
+## ¿Qué es la agudeza visual?
+
+
+**Agudeza visual (AV):** <u>Separación mínima </u> entre dos puntos, dos líneas o los extremos de un aro abierto, <u> que un observador es capaz de detectar.</u> También denominada resolución espacial del procesamiento visual.
+
+  - Depende de la distancia inter-receptores.
+
+  - En ocasiones se le llama **minimum separable**.
+
+<figure>
+<p><img src="./pia/P2/AV_1.png" width="350px">
+<figcaption> </figcaption>
+</figure>
+
+La agudeza visual varía dependiendo de la densidad de conos o bastones, disminuyendo a medida que nos alejamos de la fóvea. En optometría la AV normal se establece en 1 min arc.
+
+<figure>
+<p><img src="./pia/P2/distribucion_retina.png" width="350px">
+<figcaption><a href="https://www.ncbi.nlm.nih.gov/books/NBK10848/">Purves D, Augustine GJ, Fitzpatrick D, et al., editors. Neuroscience. 2nd edition. Sunderland (MA): Sinauer Associates; 2001. Anatomical Distribution of Rods and Cones.
+</a></figcaption>
+</figure>
+
+Como se puede notar por las unidades anteriores (notación sexagesimal: grados, minutos y segundos), en un laboratorio de percepción visual, normalmente describimos las dimensiones de un objeto basándonos en el ángulo visual que arroja. ¿Por qué hacemos ésto? Fijémonos en la siguiente imágen:
+
+<figure>
+<p><img src="./pia/P2/angulo_visual.png" width="350px">
+<figcaption> En esta figura podemos ver que el ángulo visual percibido depende tanto del tamaño de un objeto como de la distancia. A una distancia D, nuestrx monigote describe un ángulo visual de X grados. Por su parte, cuando se encuentra un poco más cerca, es decir, a una distancia "D-1", el ángulo visual que describe nuestrx monigote es mayor (X+1). ¿Ha crecido de repente nuestrx monigote? Evidentemente no, pero al acercarse al observador, el ángulo visual que subtende es mayor.  </figcaption>
+</figure>
+
+
+**Desde un punto de vista estructural**, para **detectar la separación** entre dos puntos, estos dos puntos han de proyectarse sobre dos fotorreceptores (conos o bastones) separados en la retina. 
+
+<figure>
+<p><img src="./pia/P2/Cones_Rods.png" width="350px">
+<figcaption>  </figcaption>
+</figure>
+
+---
+
+**Curiosidad: ¿Por qué vemos en la oscuridad si la densidad de bastones es muy baja?** 
+
+Como se puede ver en la figura anterior, la distibución de los conos y los bastones es un poco diferente. Los bastones se procesan en niveles intermedios de forma *conjunta*, es decir, varios bastones descargan en la misma célula ganglionar a diferencia de los conos cuya ratio cono/célula ganglionar es mucho más baja. De esta manera, conseguimos que con menor cantidad de células fotosensibles obtengamos una decente repuesta a bajas luminosidades sacrificando resolución espacial, es decir, reduciendo la calidad de la imagen que obtenemos. Para entendernos mejor, es como si para hacer que una imagen del móvil sea un poco más brillante, tuviesemos que reducir los megapíxeles de 16 a 1.3. Por otra parte, y aunque parezca contraintuitivo, esto también beneficia al sistema visual ya que, reduce la cantidad de información que tiene que procesar haciendo que sea más manejable. ¿Quién no ha bajado la resolución de un vídeo para poder grabar más minutos? 
+
+---
+
+La agudeza visual se mide utilizando los conocidos como **Optotipos**. Este tipo de pruebas se puden encontrar en el oculista, en el optometrista o en internet fácilmente. 
+
+<figure>
+<p><img src="./pia/P2/AV_Snellen.png" width="350px">
+<figcaption>  </figcaption>
+</figure>
+
+Cuando realizamos este test (Test de Snellen), buscamos obtener una visión 20/20. Esto significa que el observador ve sin problemas a 20 pies lo que una persona *normal* (signifique *normal* lo que signifique) vería sin problemas a 20 pies. Al realizar este test se pide al observador que indicque las letras fila a fila, siendo las letras cada fila más pequeñas. 
+
+---
+
+**Miniprepaso:** Siendo éste el método que utiliza el test de Snellen, ¿de qué tipo de método psicofísico se trata?
+
+---
+
+Sin embargo, se ha observado en la literatura científica que aunque el **límite estructural** para detectar la separación entre dos puntos está determinado por la separación de los receptores, hay algunos tipos especiales de agudeza visual que superan los límites estructurales. Un ejemplo de esto sería la **Agudeza de Vernier**.
+
+## Umbral Absoluto de la Agudeza de Vernier
+
+La Agudeza de Vernier es un tipo de la hiperagudeza visual que mide la capacidad para detectar el desalineamiento entre dos segmentos de lineas o enrejados, siendo esta de 5 a 10 veces mas alta que la agudeza visual.
+
+**Hiperagudeza Visual:**  los des-alineamientos pueden ser inferiores tanto al diámetro de los fotoreceptores como a la distancia entre ellos.
+
+<figure>
+<p><img src="./pia/P2/Vernier.png" width="350px">
+<figcaption>  </figcaption>
+</figure>
+
+Para explorar si esto es realmente así, se ha planteado la primera práctica de este bloque. En ella, se estimará el Umbral Absoluto de la Agudeza de Vernier y se aplicarán parte de los conocimientos vistos en la parte teórica de la práctica sobre el tratamiento de los datos obtenidos. De hecho, no sólo exploraremos cuál es la agudeza de Vernier, sino también si existe alguna orientación preferente (comunmente denominado como *efecto oblicuo*). Es decir, si la Agudeza de Vernier es mayor para líneas orientadas horizontalmente o a diferentes ángulos. 
+
+**Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 2 Cálculo del UA de la agudeza de Vernier**
+
+La hipótesis de partida será la siguiente:
+
+  - Conforme se aleja la orientación de las líneas de la orientación cardinal (horizontal), se deteriora la Agudeza de Vernier. Es decir: 
+
+\begin{equation}
+\label{H_P2a}
+\ UA(0\deg) <  UA(15\deg) < UA(30\deg) < UA(45\deg) 
+\end{equation}
+
+### Metodología
+
+**Secuencia Experimental**
+
+<figure>
+<p><img src="./pia/P2/Vernier.png" width="350px">
+<figcaption>  </figcaption>
+</figure>
+
+La tarea del participante consistirá en pulsar el botón del ratón:
+
+  - Botón izquierdo si se detecta que SON COLINEALES. 
+  
+  - Botón derecho si NO SON COLINEALES.
+  
+En total tendremos 180 ensayos:
+
+\begin{equation}
+\label{trials_p2a}
+\ 9~separaciones \times 4~orientaciones \times 5~repeticiones = 180~ensayos~(trials) 
+\end{equation}
+
+
+**Variables**
+  
+  - Variables independientes (VI):
+
+    - Separación vertical (0-8 píxels).
+  
+    - Orientación líneas de Vernier (0 - 15 - 30 - 45 deg.).
+
+  - Variable dependiente (VD), aquella que manipula el observador:
+
+    - Juicio del sujeto (proporción de desalineamientos, 1: "Desalineado", 0: "Alineado")
+    
+### Resultados
+
+
+Antes de calcular los resultados recordemos qué es el Umbral Absoluto:
+
+  - **Umbral Absoluto:** nivel estimular mínimo para detectar un estímulo al nivel del azar, es decir, el 50% de las veces.
+
+
+Después de realizar el experimento, debemos calcular la media de *síes* y *noes* por participante para cada combinación de variables independientes, es decir, píxeles de separación y ángulo de orientación. Una vez obtenidas las medias, obtendremos una tabla parecida a la siguiente:
+
+```{r}
+UA <- read.table("./pia/P2/MisDatos_UA_mix.txt", header = F, skip = 7, 
+                 col.names = c("Trial", "Condi", "Torsion", "Coline", "Resp", "Sentit", "TR "))
+
+UA_summary <- UA %>%
+  group_by(Torsion,Coline) %>%
+  summarize(prop = mean(Resp))
+```
+
+```{r}
+knitr::kable(UA_summary %>% spread(Torsion, prop),
+             col.names = c("Colinealidad","0 deg.","15 deg.", "30 deg.", "45 deg."))
+```
+
+Si graficamos (*o en espanglish*, **ploteamos**) obtenemos la siguiente figura:
+
+```{r}
+ggplot(UA_summary,aes(Coline, prop, color = factor(Torsion))) +
+  geom_point() + 
+  geom_line() +
+  labs(x = "Separación vertical",
+       y = "Probabilidad no-colineales",
+       color = "Orientación")
+```
+
+
+Sin embargo, calcular el Umbral Absoluto todavía es un poco difícil. Si recordamos bien, el UA estaba definido como el nivel de intensidad que da lugar a un 50% de respuestas de **sí**, lo que equivaldría a 0.5. Una solución sencilla para calcular un valor aproximado del Umbral Absoluto sería realizar una regla de tres. Si nos fijamos por ejemplo en la orientación de 30 grados, podemos asumir que el UA está entre 6 y 7 píxels de diferencia (rango de probabilidad de entre 0.4 y 0.8, ya que incluye el 0.5). Teniendo esto en cuenta, utilizaremos una regla de 3 para obtener una estimación del UA:
+
+
+<figure>
+<p><img src="./pia/P2/Regla_de_3.png" width="400px">
+<figcaption>  </figcaption>
+</figure>
+
+Si calculamos de esta manera los cuatro UA obtenemos que:
+
+  - UA 0: 3.25
+  
+  - UA 15: 3.75
+  
+  - UA 30: 6.25
+  
+  - UA 45: 6.5
+  
+Por lo tanto, obtenemos que: Conforme aumenta la inclinación, también aumenta el UA de detección de la co-linealidad. Es decir, se detecta peor la co-linealidad cuanto más inclinadas son las líneas. 
+  
+  
+\begin{equation}
+\label{p2a}
+\ UA_{0} < UA_{15} < UA_{30} <= UA_{45}
+\end{equation}
+
+
+#### Utilizando Logit para linealizar y obtener UA
+
+Ya tenemos una estimaación utilizando una regla de 3 para obtener el UA, sin embargo, en la sección de teoría, hemos visto que podemos utilizar una transformación Logit a las puntuaciones de probabilidad para linealizar los datos y obtener una estimación de forma rápida y exacta del UA. Por lo tanto, lo primero que tenemos que hacer es transformar las puntuaciones de probabilidad en valores Logit.
+
+
+```{r}
+logit_fun = function(p){
+  return(log(p/(1-p)))
+}
+
+UA_Spread <- UA_summary %>% spread(Torsion, prop)
+
+UA_summary_log <- (UA_summary_logit <- UA_Spread %>%
+  mutate(`0`= ifelse(`0`==0,0.01,ifelse(`0`==1,0.99,`0`)),
+         `15`= ifelse(`15`==0,0.01,ifelse(`15`==1,0.99,`15`)),
+         `30`= ifelse(`30`==0,0.01,ifelse(`30`==1,0.99,`30`)),
+         `45`= ifelse(`45`==0,0.01,ifelse(`45`==1,0.99,`45`))) %>%
+  group_by(Coline) %>%
+  mutate_all(.funs="logit_fun")) %>%
+  gather(id,value,`0`:`45`) %>%
+  group_by(id) %>%
+  do(broom::tidy(lm(value ~ Coline, data = .))) %>%
+  select(1:3)
+
+fit_colineal_par <- data.frame(b = UA_summary_log$estimate[c(1,3,5,7)],
+                               a = UA_summary_log$estimate[c(2,4,6,8)],
+                               Colineal = c("0_deg","15_deg","30_deg","45_deg")) %>%
+  mutate(UA = -b/a)
+```
+
+```{r}
+knitr::kable(UA_summary_logit ,
+             col.names = c("Colinealidad","0 deg.","15 deg.", "30 deg.", "45 deg."), 
+             digits = 2)
+```
+
+A estos valores Logit les aplicamos un modelo lineal para obtener intercepto y pendiente y calculamos el Umbral absoluto a partir de la siguiente fórmula: 
+
+  - $UA = -b/a $
+  
+  - $UA = -intercepto/pendiente$
+
+```{r}
+knitr::kable(fit_colineal_par, 
+             digits = 2,
+             col.names=c("Intercepto","Pendiente","Colinealidad","Umbral Absoluto"))
+```
+
+Como podemos ver, los resultados son bastante diferentes a los encontrados utilizando una aproximación a partir de una regla de 3. Aunque la regla de 3 sea más sencilla, se prefiere el método a partir de la transformación en puntuaciones Logit porque asume que la curva en la que se distribuyen las puntuaciones de probabilidad provienen de una curva sigmoidal típica de las funciones psicométricas. De esta manera, conseguimos un resutado que no sólo es más realista, sino que es más válido bajo los supuestos estadísticos sobre los que se fundamenta la Psicofísica.  
+
+
+<br>

@@ -1,6 +1,5 @@
 ---
 ---
-
 ```{r, echo = F, message = F, warning = F}
 # Las librerías que necesitamos
 libraries <- c("tidyverse","cowplot","quickpsy",
@@ -17,6 +16,8 @@ invisible(
     }
   )
 )
+knitr::opts_chunk$set(echo = FALSE)
+
 ```
 
 
@@ -24,14 +25,13 @@ invisible(
 
 ## Conceptos previos
 
-Un estímulo puede caracterizarse por diversas características físicas. En esta práctica, nos centraremos en aquellas relacionadas con cómo percibimos el color. Para comenzar, es necesario mencionar que el color **no es una propiedad de los objetos**, sino una respuesta perceptiva a un estímulo determinado que depende de:
+Un estímulo se trata de una fuente de energía externa al sistema sensorial que la recibe. Éste puede caracterizarse por diversas características físicas (intensidad, velocidad, frecuencia, longitud de onda, fase…). En esta práctica, nos centraremos en aquellas características que están relacionadas con  cómo percibimos el color.  Para comenzar, es necesario hacer hincapié en que  **el color  no es una  propiedad de los objetos, sino una  respuesta perceptiva a un estímulo** determinado que  depende de:
 
 - Las características de la **fuente lumínica** y las longitudes de ondas predominantes.
 
 - La **reflectancia de la superficie** sobre la que se refleja la energía proviniente de la fuente lumínica. 
 
-- Las caracteristicas del **sistema perceptivo** que se encarga de dar sentido al estímulo. Por ejemplo, para ser capaces de discriminar entre estimulaciones de diferentes longitudes de onda sería necesario poseer 2 tipos de conos diferentes (principio de univarianza). De lo contrario, únicamente seríamos capces de discriminar entre intensidades lumínicas.
-
+- Las caracteristicas y limitaciones del **sistema perceptivo** que se encarga de dar sentido al estímulo. Por ejemplo, para ser capaces de discriminar entre estimulaciones de diferentes longitudes de onda sería necesario poseer 2 tipos de conos diferentes (principio de univarianza). Este principio nos indica que el color no es una propiedad directamente observable, sino que es una propiedad que nuestro cerebro interpreta a partir de diferencias entre la estimulación que obtienen los diferentes tipos de conos. Por ejemplo, una persona que sólo dispone de un solo tipo de conos sufre acromatopsia, una condición que no permite percibir colores, únicamente le permite ver el entorno en blanco y negro, siendo sólo capa de discriminar entre diferencias en intensidades lumínicas. Para experimentar una visión cromática, un observador debe disponer de 2 o más tipos de conos que le permitan desambiguar las diferencias de estimulaciones en diferentes longitudes de onda.   Por ejemplo, una persona daltónica al únicamente disponer de 2 tipos de conos, sea capaz de diferenciar entre menor cantidad de colores que una persona cuya retina dispone de 3 tipos de conos (tricromate).  
 
 <figure>
 <p><img src="./pia/P1/Univarianza.png" width="350px">
@@ -40,9 +40,7 @@ En esta imagen se refleja el principio de univarianza. Como podemos ver, en la i
 </figcaption>
 </figure>
 
-Desde una perspectiva física, el factor más importante para describir el color es la longitud de onda ($\lambda$).  La longitud de onda se trata de una dimensión contínua descrita por el conocido como espectro electromagnético. Aunque nuestros sentidos nos permiten acceder de diferentes maneras a ciertas partes de este contínuo, la visión únicamente nos permite acceder a aquellas longitudes de onda dentro de la región de los 380 a los 760 nm aproximadamente. Sin embargo, en la mayoría de casos no estamos expuestos a una estimulación equienergética (es decir, con la misma energía en todo el espectro). Por lo contrario, las superficies sobre las que se proyecta esa energía, absorben parte de la misma y reflejan otra parte. Por esta razón es importante conocer cómo puede reaccionar una superficie a la exposición de una misma radiación:
-
-1.  **Reflexión selectiva**: Indica la cantidad relativa de longitudes de onda que una superficie refleja dada una luz blanca (equienergética). Por ejemplo, un tomate absorbería longitudes de onda cortas y medias (azules y verdes), mientras que reflejaría ondas de longitud larga (rojo).
+Desde una perspectiva física, el factor más importante para describir el color es la longitud de onda ($\lambda$). La longitud de onda se trata de una  dimensión continua descrita por el conocido como espectro electromagnético. Nuestro sistema visual únicamente nos permite acceder a aquellas longitudes de onda dentro de la región de los 380 a los 760 nm aproximadamente.
 
 <figure>
 <p><img src="./pia/P1/EE.jpg" width="350px">
@@ -50,28 +48,31 @@ Desde una perspectiva física, el factor más importante para describir el color
 </figcaption>
 </figure>
 
+Una radiación electromagnética se denomina equienergética si transmite radiación con  la misma intensidad en todas las longitudes de onda. Un ejemplo de luz equienergética es la luz solar. Sin embargo, en la mayoría de casos no estamos expuestos a éste tipo de radiación. ¿Por qué?  Por ejemplo, imaginemos que la luz solar choca con la superficie de un tomate. Ésta superficie absorberá parte de la radiación y reflejará otra  parte, en este caso, longitudes de onda largas correspondientes con el color rojo. La forma en la que  se produzca ésta reflexión determinará las propiedades del estímulo físico que  llegará hasta nuestros sentidos. Por esta razón es importante conocer cómo puede reaccionar una  superficie a la exposición de una  misma radiación:
 
-2. **Curva de reflectancia**: Indica la intensidad absoluta de longitudes de onda reflejadas. En la siguiente figura se puede ver cómo el área bajo la curva que describe el color azul más claro es mayor que la del azul más oscuro. De la misma manera, si el tomate anterior tuviese una superficie mate, percibiríamos un tono rojo mÃ s oscuro porque reflejaría menos cantidad de energía.
+1.  **Reflexión selectiva**: Indica la cantidad relativa de longitudes de onda que  refleja una superficie dada una  luz blanca (equienergética). Por ejemplo, un tomate absorbería longitudes de onda cortas y medias (azules y verdes), mientras que reflejaría ondas de longitud larga  (rojo).
+
+2. **Curva de reflectancia**: Indica la intensidad absoluta de longitudes de onda reflejadas. En la siguiente figura  se puede ver cómo la curva  que  describe el color  azul claro  está por encima que  la del azul más oscuro. Esto os indica  que,  aunque están reflejando las mismas longitudes de onda, una  superficie estaría reflejando mayor cantidad de energía que  la otra.   De esta manera, si el tomate anterior tuviese una superficie mate, percibiríamos un tono rojo más oscuro porque reflejaría menos cantidad de energía que uno con una superficie más brillante.
 
 <figure>
 <p><img src="./pia/P1/ReflCurve.png" width="350px">
-<figcaption> Prácticamente igual reflexión selectiva, diferentes curvas de reflectancia. </figcaption>
+<figcaption> En esta imagen se muestra un ejemplo en el que dada la misma reflexión selectiva, se producen diferentes curvas de reflectancia. Si utilizamos un colorímetro (un aparato que nos indica las longitudes de onda reflejadas) , nos dirá que es el mismo color, pero nuestra  experiencia perceptiva es distinta, porque la intensidad lumínica es distinta, es decir, veríamos una superficie más brillante que la otra.</figcaption>
 </figure>
 
 La combinación de ambas caracteristicas sobre cómo reaccionan diferentes superficies a la luz son suficientes para describir la percepción del color en diferentes sistemas. En concreto, nosotros vamos a definir las características del color  mediante el sistema HSV. Dentro de esta categorización encontramos las siguientes dimensiones:
  
-1. **Matiz/Hue**: Se relaciona con cantidad relativa de las longitudes de onda reflejadas. Es lo que comunente denominamos como color. Su correspondencia psicofísica sería la experiencia subjetiva de la percepción de diferentes tonos cromáticos (rojo, verde, azul y amarillo principalmente).
+1. **Matiz/Hue**: Se relaciona con  cantidad relativa de las longitudes de onda reflejadas. Es lo que  comúnmente denominamos como color.  Su correspondencia psicofísica sería la experiencia subjetiva de la percepción de diferentes tonos cromáticos (rojo, verde, azul y amarillo principalmente).
 
-2. **Luminosidad o intensidad (también llamado valor)**: Hace referencia a la cantidad absoluta de luz que refleja una superficie en una determinada direción o ángulo por unidad de superficie. En el SMI se mide en $cd/m^{2}$ (candelas por metro cuadrado). Este es un factor de vital importancia en determinadas situaciones. Por ejemplo, las empresas de telefonía móvil han logrado superar en los últimos dispositivos la barrera de las 300 $cd/m^{2}$ optimizando el consumo de batería para favorecer la visibilidad bajo la luz solar. Dentro del espectro electromagnético estaría indicado por la amplitud de onda. Por su parte, su correspondencia psicofísica sería el **brillo**, que estaría definido como la sensación percibida de la intensidad lumínica. 
+2. **Luminosidad o intensidad (también llamado valor)**: Hace referencia a la cantidad absoluta de luz que refleja una superficie en una determinada direción o ángulo por unidad de superficie. En el SMI se mide en $cd/m^{2}$ (candelas por metro cuadrado). Este es un factor de vital importancia en determinadas situaciones. Por ejemplo, las empresas de telefonía móvil han logrado superar en los últimos dispositivos la barrera de las 300 $cd/m^{2}$ optimizando el consumo de batería para favorecer la visibilidad bajo la luz solar. Dentro del espectro electromagnético estaría indicado por la amplitud de onda. Su correspondencia psicofísica sería el **brillo**, que estaría definido como la sensación percibida de la intensidad lumínica. 
 
-3. **Saturación**: Hace referencia a la proporción de blanco/negro con respecto al matiz cromático puro. Es decir, cuando hay una alta intensidad únicamente en una longitud de onda (o rango de longitudes de onda), el color será muy saturado. Mientras que si la intensidad está repartida uniformemente a través del espectro electromgnético se dirá que está poco saturado.  
+3. **Saturación**: Hace referencia a la *proporción de blanco* con respecto al matiz cromático puro. Es decir, cuando hay una alta intensidad únicamente en una longitud de onda (o rango de longitudes de onda), el color será muy saturado. Mientras que si la intensidad está repartida uniformemente a través del espectro electromgnético se dirá que está poco saturado.  
 
 <figure>
 <p><img src="./pia/P1/HSV.png" width="350px">
 <figcaption> Cada dimensión indica una propiedad del color. Matiz: Indicado por el ángulo. Saturación indicado por la distancia del centro. Luminancia/Valor/Intensidad: Del cono a la base. </figcaption>
 </figure>
 
-Como podemos ver, dependiendo de la intensidad y distribución del rango del espectro visible disponible, podemos categorizar diferentes tipos de estimulación de forma independiente. Sin embargo, cuando se trata de la correspondencia psicofísica entre el estímulo físico y nuestra sensación consciente, diferentes efectos observados en la literatura indican que las dimensiones del sistema HSV están ínterelacionadas. 
+Como  podemos ver, dependiendo de la intensidad y distribución del rango del espectro visible disponible, podemos categorizar diferentes tipos de estimulación de forma independiente. Sin embargo, cuando se trata de la correspondencia psicofísica entre el estímulo físico y nuestra sensación consciente, diferentes efectos observados en la literatura indican que  las dimensiones del sistema HSV están interrelacionadas. Algunas de éstas interacciones se describen en los siguientes efectos perceptivos:
 
 ### Efecto Abney
 
@@ -80,7 +81,7 @@ Cambio en el **matiz percibido** inducido por cambios en la pureza cromática (s
 <center><img src="./pia/P1/EffA.png" width="350px"></center>
 Tanto el Hue como la luminosidad se mantienen constantes, mientras que lo que varía es la saturación. Esto produce un cambio en el matiz percibido.
 
-### Efecto Bezold-BrÃ¼cke
+### Efecto Bezold-Brücke
 Cambio en el matiz percibido inducido por cambios en el brillo. NO es debido ni a cambios en la longitud de onda ni en la saturación.
 
 <center><img src="./pia/P1/EffBB.png" width="350px"></center>
@@ -92,9 +93,22 @@ Un estímulo cromático (con matiz), es percibido como más brillante que un est
 <center><img src="./pia/P1/EffH.png" width="350px"></center>
 Tanto el matiz como la saturación se mantienen constantes, mientras que lo que varía es la luminosidad. Esto produce un cambio en el brillo o luminosidad **percibida**. 
 
+---
+
+**Miniejercicio:** Sin más datos, ¿podrías establecer los parámetros de los siguientes ejemplos?
+
+
+<figure>
+<p><img src="./pia/P1/Exercise_1.png" width="350px">
+<figcaption> Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 100). <b> Pista:  No todos los campos se pueden establecer ;) .</b></figcaption>
+</figure>
+
+---
+
 ## Parte práctica: Efecto Helmholtz-Kohlsrauch {#P1}
 
-Este efecto es descrito como la sensación de que un estímulo cromático (con matiz), es percibido como más brillante que un estimulo acromático aunque ambos tengan la misma luminancia. 
+Este efecto es descrito como la sensación de que un estímulo cromático (con matiz), es percibido como más **brillante** que un estimulo acromático aunque ambos tengan la misma luminancia. 
+
 
 **Estímulación física:**
 
@@ -110,41 +124,50 @@ Este efecto es descrito como la sensación de que un estímulo cromático (con m
 \ Brillo_{Crom} > Brillo_{Acrom} 
 \end{equation}
 
+
+Para poner a prueba este efecto, pedimos a los participantes ajustar la luminancia del estímulo acromático (estímulo test o de comparación) para hacer coincidir en brillo con  el estímulo cromático (estímulo estándar o de referencia).
+
 <center><img src="./pia/P1/Estimulo.jpg" width="350px"></center>
 
-Para poner a prueba este efecto, pedimos a los participantes ajustar la luminancia del estímulo acromático (estímulo test o de comparación) para hacer coincidir en brillo con el estímulo cromático (estímulo estándar o de referencia).
+**Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 1 Efecto Helmholtz-Kohlsrausch**
 
 
-Estamos también interesados en saber si hay algún matiz que se percibe como más brillante que otro, por lo tanto creamos un experimento con la siguiente metodología. 
+**Hipótesis:**
 
-**Variables**
-  
-- Variables independientes (VI):
-
-  - Matiz del estímulo (rojo, verde, azul, amarillo).
-  
-  - Luminancia del estímulo cromático.
-
-- Variable dependiente (VD), aquella que manipula el observador:
-
-  - Luminanica asignada por el participante al estímulo cromático.  
-
-Como no somos procesadores de información infalibles y nuestra respuesta tiene cierta variabilidad o error, hemos de realizar cada combinación de condiciones varias veces. En este caso, para que el experimento sea corto hemos introducido únicamente 3 repeticiones. Por lo tanto: 4 matices \* 10 luminancias del estímulo cromático \* 3 repeticiones dan un total de 120 ensayos o trials. 
-
-- Hipótesis
-
-  - Dado el mismo brillo percibido
+  - Dado el mismo brillo percibido:
 
 \begin{equation}
 \label{HK_1}
 \ Brillo_{Crom} = Brillo_{Acrom} 
 \end{equation}
 
-  - La luminancia del estímulo acromático será mayor que la del estímulo cromático
+  - La luminancia ajustada del estímulo acromático será mayor que la del estímulo cromático:
 
 \begin{equation}
 \label{HK_2}
 \ Lum_{Crom} < Lum_{Acrom} 
+\end{equation}
+
+
+Estamos también interesados en saber si hay algún matiz que se percibe como más brillante que otro, por lo tanto creamos un experimento con la siguiente metodología. 
+
+**Variables**
+  
+  - Variables independientes (VI):
+
+    - Matiz del estímulo (rojo, verde, azul, amarillo).
+  
+    - Luminancia del estímulo cromático.
+
+  - Variable dependiente (VD), aquella que manipula el observador:
+
+    - Luminanica asignada por el participante al estímulo cromático.  
+
+Como no somos procesadores de información infalibles y nuestra respuesta tiene cierta variabilidad o error, hemos de realizar cada combinación de condiciones varias veces. En este caso, para que el experimento sea corto hemos introducido únicamente 3 repeticiones. 
+
+\begin{equation}
+\label{trials_p1}
+\ 4~matices \times 10~luminancias del estímulo cromático \times 3~repeticiones~= 120~ensayos~(trials) 
 \end{equation}
 
 
@@ -164,7 +187,7 @@ ekicroma <- bind_rows(id_1,id_2,id_3) %>%
 ```
 
 
-En la siguiente figura se pueden observar los resultados para diferentes observadores. 
+En la siguiente figura se pueden observar los resultados para diferentes observadores:
 
 ```{r}
 ggplot(ekicroma,aes(Stand,Compar,color=Hue)) +
@@ -180,23 +203,27 @@ ggplot(ekicroma,aes(Stand,Compar,color=Hue)) +
 ```
 
 <br>
+
 ```{r, kk}
 Models <- ekicroma %>%
   group_by(id) %>%
   do(model = anova(lm(Compar ~ Stand * factor(Hue), data = .))) %>%
   tidy(model) %>% 
-  mutate(p.value = format.pval(round(p.value,3),eps = 0.01))
+  mutate(p.value = format.pval(round(p.value,3),eps = 0.01),
+         term = ifelse(term == "Stand", "Standard",
+                       ifelse(term == "factor(Hue)", "Color",
+                              ifelse(term == "Stand:factor(Hue)", "Interaction", "Residuals"))))
 
-kable(Models %>% filter(id ==1),digits=2)
-kable(Models %>% filter(id ==2),digits=2)
-kable(Models %>% filter(id ==3),digits=2)
+kable(Models %>% filter(id ==1),digits=2, col.names = c("Id","VI","Degrees of freedom","SSq","MSq","F","p. value"))
+kable(Models %>% filter(id ==2),digits=2, col.names = c("Id","VI","Degrees of freedom","SSq","MSq","F","p. value"))
+kable(Models %>% filter(id ==3),digits=2, col.names = c("Id","VI","Degrees of freedom","SSq","MSq","F","p. value"))
 ```
 
 ### Ejercicios para resolver en clase:
 
 Con ayuda de las tablas ANOVA y el gráfico anterior identifica:
 
-- ¿Qué indica la linea de lineas discontinuas del gráfico?
+- ¿Qué indica  la línea discontinua de los anteriores gráficos?
 
 - ¿Hay algún observador en el que se observe el efecto Helmholtz-Kohlsrauch? Indica en cual o cuales.
 
@@ -216,7 +243,7 @@ Imagina que observamos el efecto Helmholtz-Kohlsrauch y un efecto del matiz:
 
 - El efecto es distinto dependiendo del matiz utilizado. 
 
-- En condiciones de laboratorio, efectos visuales dan resultados consistentes aún con muestras muy pequeÃ±as, aunque existe cierta variabilidad. La variabilidad entre los participantes e incluso de un mismo participante puede deberse entre otros factores a: 
+- En condiciones de laboratorio, efectos visuales dan  resultados consistentes aún  con muestras muy pequeñas, aunque existe cierta variabilidad. La variabilidad entre los participantes e incluso de un mismo participante puede deberse entre otros factores a:
 
     - Momento del día. 
     
@@ -225,6 +252,11 @@ Imagina que observamos el efecto Helmholtz-Kohlsrauch y un efecto del matiz:
     - Pantalla utilizada (su rango dinámico).
     
     - Concentración empleada.
+
+
+## Recursos adicionales
+
+  - [Munsell test](http://www.colormunki.com/game/huetest_kiosk): Permite conocer la agudeza en la visión de color (A ver si eres capaz de superar mi puntuación de 11 ;), menor puntuación es mejor). 
 
 <br>
 

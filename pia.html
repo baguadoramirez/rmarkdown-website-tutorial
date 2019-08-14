@@ -429,19 +429,39 @@ figurecaption{
   text-align: justify;
 }
 </style>
+<style type="text/css">
+.spoiler {
+  visibility: hidden;
+}
+
+.spoiler::before {
+  visibility: visible;
+  content: "R code"
+}
+
+.spoiler:hover {
+  visibility: visible;
+}
+
+.spoiler:hover::before {
+  display: none;
+}
+</style>
 <hr />
 <big> En desarrollo… / Under development… </big>
 <hr />
-<div id="antes-de-empezar" class="section level1">
-<h1>Antes de empezar</h1>
-<p>Antes de empezar el temario es necesario recordar que para asimilar de manera efectiva el temario de esta parte de la asignatura es necesario tener interiorizados los siguientes conceptos básicos de estadística descriptiva e inferencial:</p>
+<div id="anuncio-importante-antes-de-empezar" class="section level1">
+<h1>ANUNCIO IMPORTANTE ANTES DE EMPEZAR</h1>
+<p>Antes de empezar el temario es necesario recordar que para asimilar de manera efectiva el temario de esta parte de la asignatura es necesario conocer y haber integrado los siguientes conocimientos de estadística descriptiva e inferencial:</p>
 <ul>
 <li><p>Medidas de tendencia central: media, mediana, moda.</p></li>
 <li><p>Medidas de dispersión: desviación estándar y varianza.</p></li>
 <li><p>Teorema central del límite, distribución normal, distribución normal cumulativa.</p></li>
 <li><p>Métodos inferenciales: t.student, ANOVA, modelos lineales.</p></li>
 </ul>
-<p>Sin embargo, no necesitaremos conocer las fórmulas para calcular muchos de los elementos señalados anteriormente, ya que de eso se encargan paquetes estadísticos como <strike>SPSS, Excel, MatLab o</strike> R. De aquí en adelante, todo el código que se muestre en pantalla corresponderá al lenguaje R.</p>
+<p>Sin embargo, no necesitaremos conocer las fórmulas para calcular muchos de los elementos señalados anteriormente, ya que de eso se encargan paquetes estadísticos como <strike>SPSS, Excel, MatLab o</strike> R. De aquí en adelante, todo el código de análisis estadístico que se muestre en pantalla corresponderá al lenguaje R.</p>
+<hr />
+<p><strong>Importante:</strong> Será necesario el uso de una calculadora científica para el cálculo de razones trigonométricas, logaritmos y exponenciales. De hecho, el día del examen la necesitarás.</p>
 <hr />
 <pre class="r"><code># Las librerías que necesitamos
 libraries &lt;- c(&quot;tidyverse&quot;,&quot;cowplot&quot;,&quot;quickpsy&quot;,
@@ -457,17 +477,18 @@ invisible(
       }
     }
   )
-)</code></pre>
+)
+knitr::opts_chunk$set(echo = FALSE)</code></pre>
 </div>
 <div id="practica-1-efectos-cromaticos" class="section level1">
 <h1>Práctica 1: Efectos cromáticos</h1>
 <div id="conceptos-previos" class="section level2">
 <h2>Conceptos previos</h2>
-<p>Un estímulo puede caracterizarse por diversas características físicas. En esta práctica, nos centraremos en aquellas relacionadas con cómo percibimos el color. Para comenzar, es necesario mencionar que el color <strong>no es una propiedad de los objetos</strong>, sino una respuesta perceptiva a un estímulo determinado que depende de:</p>
+<p>Un estímulo se trata de una fuente de energía externa al sistema sensorial que la recibe. Éste puede caracterizarse por diversas características físicas (intensidad, velocidad, frecuencia, longitud de onda, fase…). En esta práctica, nos centraremos en aquellas características que están relacionadas con cómo percibimos el color. Para comenzar, es necesario hacer hincapié en que <strong>el color no es una propiedad de los objetos, sino una respuesta perceptiva a un estímulo</strong> determinado que depende de:</p>
 <ul>
 <li><p>Las características de la <strong>fuente lumínica</strong> y las longitudes de ondas predominantes.</p></li>
 <li><p>La <strong>reflectancia de la superficie</strong> sobre la que se refleja la energía proviniente de la fuente lumínica.</p></li>
-<li><p>Las caracteristicas del <strong>sistema perceptivo</strong> que se encarga de dar sentido al estímulo. Por ejemplo, para ser capaces de discriminar entre estimulaciones de diferentes longitudes de onda sería necesario poseer 2 tipos de conos diferentes (principio de univarianza). De lo contrario, únicamente seríamos capces de discriminar entre intensidades lumínicas.</p></li>
+<li><p>Las caracteristicas y limitaciones del <strong>sistema perceptivo</strong> que se encarga de dar sentido al estímulo. Por ejemplo, para ser capaces de discriminar entre estimulaciones de diferentes longitudes de onda sería necesario poseer 2 tipos de conos diferentes (principio de univarianza). Este principio nos indica que el color no es una propiedad directamente observable, sino que es una propiedad que nuestro cerebro interpreta a partir de diferencias entre la estimulación que obtienen los diferentes tipos de conos. Por ejemplo, una persona que sólo dispone de un solo tipo de conos sufre acromatopsia, una condición que no permite percibir colores, únicamente le permite ver el entorno en blanco y negro, siendo sólo capa de discriminar entre diferencias en intensidades lumínicas. Para experimentar una visión cromática, un observador debe disponer de 2 o más tipos de conos que le permitan desambiguar las diferencias de estimulaciones en diferentes longitudes de onda. Por ejemplo, una persona daltónica al únicamente disponer de 2 tipos de conos, sea capaz de diferenciar entre menor cantidad de colores que una persona cuya retina dispone de 3 tipos de conos (tricromate).</p></li>
 </ul>
 <figure>
 <p>
@@ -476,31 +497,30 @@ invisible(
 En esta imagen se refleja el principio de univarianza. Como podemos ver, en la imagen de la izquierda, el sistema perceptivo de nuestro monigote sólo dispone de un tipo de fotoreceptor, por lo que únicamente será capaz de discernir entre intensidades lumínicas. Por su parte, en la figura de la derecha, el monigote será capaz de distinguir el color rojo de la manzana, ya que dispone de 3 diferentes tipos de fotoreceptores. De esta manera diferenciar entre diferentes dimensiones de la energía reflejada.
 </figcaption>
 </figure>
-<p>Desde una perspectiva física, el factor más importante para describir el color es la longitud de onda (<span class="math inline">\(\lambda\)</span>). La longitud de onda se trata de una dimensión contínua descrita por el conocido como espectro electromagnético. Aunque nuestros sentidos nos permiten acceder de diferentes maneras a ciertas partes de este contínuo, la visión únicamente nos permite acceder a aquellas longitudes de onda dentro de la región de los 380 a los 760 nm aproximadamente. Sin embargo, en la mayoría de casos no estamos expuestos a una estimulación equienergética (es decir, con la misma energía en todo el espectro). Por lo contrario, las superficies sobre las que se proyecta esa energía, absorben parte de la misma y reflejan otra parte. Por esta razón es importante conocer cómo puede reaccionar una superficie a la exposición de una misma radiación:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Reflexión selectiva</strong>: Indica la cantidad relativa de longitudes de onda que una superficie refleja dada una luz blanca (equienergética). Por ejemplo, un tomate absorbería longitudes de onda cortas y medias (azules y verdes), mientras que reflejaría ondas de longitud larga (rojo).</li>
-</ol>
+<p>Desde una perspectiva física, el factor más importante para describir el color es la longitud de onda (<span class="math inline">\(\lambda\)</span>). La longitud de onda se trata de una dimensión continua descrita por el conocido como espectro electromagnético. Nuestro sistema visual únicamente nos permite acceder a aquellas longitudes de onda dentro de la región de los 380 a los 760 nm aproximadamente.</p>
 <figure>
 <p>
 <img src="pia/P1/EE.JPG" width="350px">
 <figcaption>
 </figcaption>
 </figure>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Curva de reflectancia</strong>: Indica la intensidad absoluta de longitudes de onda reflejadas. En la siguiente figura se puede ver cómo el área bajo la curva que describe el color azul más claro es mayor que la del azul más oscuro. De la misma manera, si el tomate anterior tuviese una superficie mate, percibiríamos un tono rojo mÃ s oscuro porque reflejaría menos cantidad de energía.</li>
+<p>Una radiación electromagnética se denomina equienergética si transmite radiación con la misma intensidad en todas las longitudes de onda. Un ejemplo de luz equienergética es la luz solar. Sin embargo, en la mayoría de casos no estamos expuestos a éste tipo de radiación. ¿Por qué? Por ejemplo, imaginemos que la luz solar choca con la superficie de un tomate. Ésta superficie absorberá parte de la radiación y reflejará otra parte, en este caso, longitudes de onda largas correspondientes con el color rojo. La forma en la que se produzca ésta reflexión determinará las propiedades del estímulo físico que llegará hasta nuestros sentidos. Por esta razón es importante conocer cómo puede reaccionar una superficie a la exposición de una misma radiación:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Reflexión selectiva</strong>: Indica la cantidad relativa de longitudes de onda que refleja una superficie dada una luz blanca (equienergética). Por ejemplo, un tomate absorbería longitudes de onda cortas y medias (azules y verdes), mientras que reflejaría ondas de longitud larga (rojo).</p></li>
+<li><p><strong>Curva de reflectancia</strong>: Indica la intensidad absoluta de longitudes de onda reflejadas. En la siguiente figura se puede ver cómo la curva que describe el color azul claro está por encima que la del azul más oscuro. Esto os indica que, aunque están reflejando las mismas longitudes de onda, una superficie estaría reflejando mayor cantidad de energía que la otra. De esta manera, si el tomate anterior tuviese una superficie mate, percibiríamos un tono rojo más oscuro porque reflejaría menos cantidad de energía que uno con una superficie más brillante.</p></li>
 </ol>
 <figure>
 <p>
 <img src="pia/P1/ReflCurve.png" width="350px">
 <figcaption>
-Prácticamente igual reflexión selectiva, diferentes curvas de reflectancia.
+En esta imagen se muestra un ejemplo en el que dada la misma reflexión selectiva, se producen diferentes curvas de reflectancia. Si utilizamos un colorímetro (un aparato que nos indica las longitudes de onda reflejadas) , nos dirá que es el mismo color, pero nuestra experiencia perceptiva es distinta, porque la intensidad lumínica es distinta, es decir, veríamos una superficie más brillante que la otra.
 </figcaption>
 </figure>
 <p>La combinación de ambas caracteristicas sobre cómo reaccionan diferentes superficies a la luz son suficientes para describir la percepción del color en diferentes sistemas. En concreto, nosotros vamos a definir las características del color mediante el sistema HSV. Dentro de esta categorización encontramos las siguientes dimensiones:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Matiz/Hue</strong>: Se relaciona con cantidad relativa de las longitudes de onda reflejadas. Es lo que comunente denominamos como color. Su correspondencia psicofísica sería la experiencia subjetiva de la percepción de diferentes tonos cromáticos (rojo, verde, azul y amarillo principalmente).</p></li>
-<li><p><strong>Luminosidad o intensidad (también llamado valor)</strong>: Hace referencia a la cantidad absoluta de luz que refleja una superficie en una determinada direción o ángulo por unidad de superficie. En el SMI se mide en <span class="math inline">\(cd/m^{2}\)</span> (candelas por metro cuadrado). Este es un factor de vital importancia en determinadas situaciones. Por ejemplo, las empresas de telefonía móvil han logrado superar en los últimos dispositivos la barrera de las 300 <span class="math inline">\(cd/m^{2}\)</span> optimizando el consumo de batería para favorecer la visibilidad bajo la luz solar. Dentro del espectro electromagnético estaría indicado por la amplitud de onda. Por su parte, su correspondencia psicofísica sería el <strong>brillo</strong>, que estaría definido como la sensación percibida de la intensidad lumínica.</p></li>
-<li><p><strong>Saturación</strong>: Hace referencia a la proporción de blanco/negro con respecto al matiz cromático puro. Es decir, cuando hay una alta intensidad únicamente en una longitud de onda (o rango de longitudes de onda), el color será muy saturado. Mientras que si la intensidad está repartida uniformemente a través del espectro electromgnético se dirá que está poco saturado.</p></li>
+<li><p><strong>Matiz/Hue</strong>: Se relaciona con cantidad relativa de las longitudes de onda reflejadas. Es lo que comúnmente denominamos como color. Su correspondencia psicofísica sería la experiencia subjetiva de la percepción de diferentes tonos cromáticos (rojo, verde, azul y amarillo principalmente).</p></li>
+<li><p><strong>Luminosidad o intensidad (también llamado valor)</strong>: Hace referencia a la cantidad absoluta de luz que refleja una superficie en una determinada direción o ángulo por unidad de superficie. En el SMI se mide en <span class="math inline">\(cd/m^{2}\)</span> (candelas por metro cuadrado). Este es un factor de vital importancia en determinadas situaciones. Por ejemplo, las empresas de telefonía móvil han logrado superar en los últimos dispositivos la barrera de las 300 <span class="math inline">\(cd/m^{2}\)</span> optimizando el consumo de batería para favorecer la visibilidad bajo la luz solar. Dentro del espectro electromagnético estaría indicado por la amplitud de onda. Su correspondencia psicofísica sería el <strong>brillo</strong>, que estaría definido como la sensación percibida de la intensidad lumínica.</p></li>
+<li><p><strong>Saturación</strong>: Hace referencia a la <em>proporción de blanco</em> con respecto al matiz cromático puro. Es decir, cuando hay una alta intensidad únicamente en una longitud de onda (o rango de longitudes de onda), el color será muy saturado. Mientras que si la intensidad está repartida uniformemente a través del espectro electromgnético se dirá que está poco saturado.</p></li>
 </ol>
 <figure>
 <p>
@@ -509,7 +529,7 @@ Prácticamente igual reflexión selectiva, diferentes curvas de reflectancia.
 Cada dimensión indica una propiedad del color. Matiz: Indicado por el ángulo. Saturación indicado por la distancia del centro. Luminancia/Valor/Intensidad: Del cono a la base.
 </figcaption>
 </figure>
-<p>Como podemos ver, dependiendo de la intensidad y distribución del rango del espectro visible disponible, podemos categorizar diferentes tipos de estimulación de forma independiente. Sin embargo, cuando se trata de la correspondencia psicofísica entre el estímulo físico y nuestra sensación consciente, diferentes efectos observados en la literatura indican que las dimensiones del sistema HSV están ínterelacionadas.</p>
+<p>Como podemos ver, dependiendo de la intensidad y distribución del rango del espectro visible disponible, podemos categorizar diferentes tipos de estimulación de forma independiente. Sin embargo, cuando se trata de la correspondencia psicofísica entre el estímulo físico y nuestra sensación consciente, diferentes efectos observados en la literatura indican que las dimensiones del sistema HSV están interrelacionadas. Algunas de éstas interacciones se describen en los siguientes efectos perceptivos:</p>
 <div id="efecto-abney" class="section level3">
 <h3>Efecto Abney</h3>
 <p>Cambio en el <strong>matiz percibido</strong> inducido por cambios en la pureza cromática (saturación). No es debido ni a cambios en la longitud de onda ni en el brillo.</p>
@@ -518,8 +538,8 @@ Cada dimensión indica una propiedad del color. Matiz: Indicado por el ángulo. 
 </center>
 <p>Tanto el Hue como la luminosidad se mantienen constantes, mientras que lo que varía es la saturación. Esto produce un cambio en el matiz percibido.</p>
 </div>
-<div id="efecto-bezold-bracke" class="section level3">
-<h3>Efecto Bezold-BrÃ¼cke</h3>
+<div id="efecto-bezold-brucke" class="section level3">
+<h3>Efecto Bezold-Brücke</h3>
 <p>Cambio en el matiz percibido inducido por cambios en el brillo. NO es debido ni a cambios en la longitud de onda ni en la saturación.</p>
 <center>
 <img src="pia/P1/EffBB.png" width="350px">
@@ -533,11 +553,21 @@ Cada dimensión indica una propiedad del color. Matiz: Indicado por el ángulo. 
 <img src="pia/P1/EffH.png" width="350px">
 </center>
 <p>Tanto el matiz como la saturación se mantienen constantes, mientras que lo que varía es la luminosidad. Esto produce un cambio en el brillo o luminosidad <strong>percibida</strong>.</p>
+<hr />
+<p><strong>Miniejercicio:</strong> Sin más datos, ¿podrías establecer los parámetros de los siguientes ejemplos?</p>
+<figure>
+<p>
+<img src="pia/P1/Exercise_1.png" width="350px">
+<figcaption>
+Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 100). <b> Pista: No todos los campos se pueden establecer ;) .</b>
+</figcaption>
+</figure>
+<hr />
 </div>
 </div>
 <div id="P1" class="section level2">
 <h2>Parte práctica: Efecto Helmholtz-Kohlsrauch</h2>
-<p>Este efecto es descrito como la sensación de que un estímulo cromático (con matiz), es percibido como más brillante que un estimulo acromático aunque ambos tengan la misma luminancia.</p>
+<p>Este efecto es descrito como la sensación de que un estímulo cromático (con matiz), es percibido como más <strong>brillante</strong> que un estimulo acromático aunque ambos tengan la misma luminancia.</p>
 <p><strong>Estímulación física:</strong></p>
 <span class="math display">\[\begin{equation}
 \label{HK_F}
@@ -548,83 +578,65 @@ Cada dimensión indica una propiedad del color. Matiz: Indicado por el ángulo. 
 \label{HK_S}
 \ Brillo_{Crom} &gt; Brillo_{Acrom} 
 \end{equation}\]</span>
+<p>Para poner a prueba este efecto, pedimos a los participantes ajustar la luminancia del estímulo acromático (estímulo test o de comparación) para hacer coincidir en brillo con el estímulo cromático (estímulo estándar o de referencia).</p>
 <center>
 <img src="pia/P1/estimulo.jpg" width="350px">
 </center>
-<p>Para poner a prueba este efecto, pedimos a los participantes ajustar la luminancia del estímulo acromático (estímulo test o de comparación) para hacer coincidir en brillo con el estímulo cromático (estímulo estándar o de referencia).</p>
-<p>Estamos también interesados en saber si hay algún matiz que se percibe como más brillante que otro, por lo tanto creamos un experimento con la siguiente metodología.</p>
-<p><strong>Variables</strong></p>
+<p><strong>Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 1 Efecto Helmholtz-Kohlsrausch</strong></p>
+<p><strong>Hipótesis:</strong></p>
 <ul>
-<li><p>Variables independientes (VI):</p></li>
-<li><p>Matiz del estímulo (rojo, verde, azul, amarillo).</p></li>
-<li><p>Luminancia del estímulo cromático.</p></li>
-<li><p>Variable dependiente (VD), aquella que manipula el observador:</p></li>
-<li><p>Luminanica asignada por el participante al estímulo cromático.</p></li>
-</ul>
-<p>Como no somos procesadores de información infalibles y nuestra respuesta tiene cierta variabilidad o error, hemos de realizar cada combinación de condiciones varias veces. En este caso, para que el experimento sea corto hemos introducido únicamente 3 repeticiones. Por lo tanto: 4 matices * 10 luminancias del estímulo cromático * 3 repeticiones dan un total de 120 ensayos o trials.</p>
-<ul>
-<li><p>Hipótesis</p></li>
-<li><p>Dado el mismo brillo percibido</p></li>
+<li>Dado el mismo brillo percibido:</li>
 </ul>
 <span class="math display">\[\begin{equation}
 \label{HK_1}
 \ Brillo_{Crom} = Brillo_{Acrom} 
 \end{equation}\]</span>
 <ul>
-<li>La luminancia del estímulo acromático será mayor que la del estímulo cromático</li>
+<li>La luminancia ajustada del estímulo acromático será mayor que la del estímulo cromático:</li>
 </ul>
 <span class="math display">\[\begin{equation}
 \label{HK_2}
 \ Lum_{Crom} &lt; Lum_{Acrom} 
 \end{equation}\]</span>
+<p>Estamos también interesados en saber si hay algún matiz que se percibe como más brillante que otro, por lo tanto creamos un experimento con la siguiente metodología.</p>
+<p><strong>Variables</strong></p>
+<ul>
+<li><p>Variables independientes (VI):</p>
+<ul>
+<li><p>Matiz del estímulo (rojo, verde, azul, amarillo).</p></li>
+<li><p>Luminancia del estímulo cromático.</p></li>
+</ul></li>
+<li><p>Variable dependiente (VD), aquella que manipula el observador:</p>
+<ul>
+<li>Luminanica asignada por el participante al estímulo cromático.</li>
+</ul></li>
+</ul>
+<p>Como no somos procesadores de información infalibles y nuestra respuesta tiene cierta variabilidad o error, hemos de realizar cada combinación de condiciones varias veces. En este caso, para que el experimento sea corto hemos introducido únicamente 3 repeticiones.</p>
+<span class="math display">\[\begin{equation}
+\label{trials_p1}
+\ 4~matices \times 10~luminancias del estímulo cromático \times 3~repeticiones~= 120~ensayos~(trials) 
+\end{equation}\]</span>
 <div id="analisis-de-datos" class="section level3">
 <h3>Análisis de datos</h3>
-<pre class="r"><code>id_1 &lt;- read.table(&quot;./pia/P1/EkiCroma_effect.dat&quot;, header =T) %&gt;%
-                        mutate(id = 1)
-id_2 &lt;- read.table(&quot;./pia/P1/EkiCroma_no_effect.dat&quot;, header = T) %&gt;%
-                        mutate(id = 2)
-id_3 &lt;- read.table(&quot;./pia/P1/EkiCroma_reffect.dat&quot;, header =T) %&gt;%
-                        mutate(id = 3)
-
-ekicroma &lt;- bind_rows(id_1,id_2,id_3) %&gt;%
-  arrange(NEst) %&gt;%
-  mutate(Hue = ifelse(NEst &lt; 10, &quot;Amarillo&quot;, ifelse(NEst &lt; 20, &quot;Verde&quot;, ifelse(NEst &lt; 30, &quot;Rojo&quot;, &quot;Azul&quot;)))) </code></pre>
-<p>En la siguiente figura se pueden observar los resultados para diferentes observadores.</p>
-<pre class="r"><code>ggplot(ekicroma,aes(Stand,Compar,color=Hue)) +
-  geom_point()  +
-  geom_abline(linetype = 2) + 
-  geom_smooth(method  =&quot;lm&quot;, se = F) +
-  facet_grid(~id) +
-  labs (x = &quot;Standard stimuli, chromatic&quot;, y = &quot;Comparison stimuli, achromatic&quot;) +
-  coord_cartesian(xlim= c(0,max(ekicroma$Stand), ylim = c(0,max(ekicroma$NEst)))) +
-  scale_color_manual(values = c(&quot;darkgoldenrod1&quot;,&quot;blue&quot;,&quot;red&quot;,&quot;green&quot;)) +
-  theme_minimal(10) +
-  theme(legend.position=&quot;bottom&quot;)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>En la siguiente figura se pueden observar los resultados para diferentes observadores:</p>
+<p><img src="pia_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p><br></p>
-<pre class="r"><code>Models &lt;- ekicroma %&gt;%
-  group_by(id) %&gt;%
-  do(model = anova(lm(Compar ~ Stand * factor(Hue), data = .))) %&gt;%
-  tidy(model) %&gt;% 
-  mutate(p.value = format.pval(round(p.value,3),eps = 0.01))
-
-kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="right">id</th>
-<th align="left">term</th>
-<th align="right">df</th>
-<th align="right">sumsq</th>
-<th align="right">meansq</th>
-<th align="right">statistic</th>
-<th align="left">p.value</th>
+<th align="right">Id</th>
+<th align="left">VI</th>
+<th align="right">Degrees of freedom</th>
+<th align="right">SSq</th>
+<th align="right">MSq</th>
+<th align="right">F</th>
+<th align="left">p. value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">Stand</td>
+<td align="left">Standard</td>
 <td align="right">1</td>
 <td align="right">212666.77</td>
 <td align="right">212666.77</td>
@@ -633,7 +645,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="left">factor(Hue)</td>
+<td align="left">Color</td>
 <td align="right">3</td>
 <td align="right">25316.17</td>
 <td align="right">8438.72</td>
@@ -642,7 +654,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">Stand:factor(Hue)</td>
+<td align="left">Interaction</td>
 <td align="right">3</td>
 <td align="right">10341.63</td>
 <td align="right">3447.21</td>
@@ -660,23 +672,22 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>kable(Models %&gt;% filter(id ==2),digits=2)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="right">id</th>
-<th align="left">term</th>
-<th align="right">df</th>
-<th align="right">sumsq</th>
-<th align="right">meansq</th>
-<th align="right">statistic</th>
-<th align="left">p.value</th>
+<th align="right">Id</th>
+<th align="left">VI</th>
+<th align="right">Degrees of freedom</th>
+<th align="right">SSq</th>
+<th align="right">MSq</th>
+<th align="right">F</th>
+<th align="left">p. value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="right">2</td>
-<td align="left">Stand</td>
+<td align="left">Standard</td>
 <td align="right">1</td>
 <td align="right">401172.80</td>
 <td align="right">401172.80</td>
@@ -685,7 +696,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="left">factor(Hue)</td>
+<td align="left">Color</td>
 <td align="right">3</td>
 <td align="right">855.79</td>
 <td align="right">285.26</td>
@@ -694,7 +705,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
-<td align="left">Stand:factor(Hue)</td>
+<td align="left">Interaction</td>
 <td align="right">3</td>
 <td align="right">2696.69</td>
 <td align="right">898.90</td>
@@ -712,23 +723,22 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>kable(Models %&gt;% filter(id ==3),digits=2)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="right">id</th>
-<th align="left">term</th>
-<th align="right">df</th>
-<th align="right">sumsq</th>
-<th align="right">meansq</th>
-<th align="right">statistic</th>
-<th align="left">p.value</th>
+<th align="right">Id</th>
+<th align="left">VI</th>
+<th align="right">Degrees of freedom</th>
+<th align="right">SSq</th>
+<th align="right">MSq</th>
+<th align="right">F</th>
+<th align="left">p. value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="right">3</td>
-<td align="left">Stand</td>
+<td align="left">Standard</td>
 <td align="right">1</td>
 <td align="right">345519.55</td>
 <td align="right">345519.55</td>
@@ -737,7 +747,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">3</td>
-<td align="left">factor(Hue)</td>
+<td align="left">Color</td>
 <td align="right">3</td>
 <td align="right">24603.80</td>
 <td align="right">8201.27</td>
@@ -746,7 +756,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="left">Stand:factor(Hue)</td>
+<td align="left">Interaction</td>
 <td align="right">3</td>
 <td align="right">3963.63</td>
 <td align="right">1321.21</td>
@@ -769,7 +779,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 <h3>Ejercicios para resolver en clase:</h3>
 <p>Con ayuda de las tablas ANOVA y el gráfico anterior identifica:</p>
 <ul>
-<li><p>¿Qué indica la linea de lineas discontinuas del gráfico?</p></li>
+<li><p>¿Qué indica la línea discontinua de los anteriores gráficos?</p></li>
 <li><p>¿Hay algún observador en el que se observe el efecto Helmholtz-Kohlsrauch? Indica en cual o cuales.</p></li>
 <li><p>¿Se observa un efecto del matiz/Hue sobre el brillo percibido?</p></li>
 </ul>
@@ -786,7 +796,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 <ul>
 <li><p>Aunque se percibe el mismo brillo para ambos estímulos, la luminancia del cromático es menor que la del estímulo acromático.</p></li>
 <li><p>El efecto es distinto dependiendo del matiz utilizado.</p></li>
-<li><p>En condiciones de laboratorio, efectos visuales dan resultados consistentes aún con muestras muy pequeÃ±as, aunque existe cierta variabilidad. La variabilidad entre los participantes e incluso de un mismo participante puede deberse entre otros factores a:</p>
+<li><p>En condiciones de laboratorio, efectos visuales dan resultados consistentes aún con muestras muy pequeñas, aunque existe cierta variabilidad. La variabilidad entre los participantes e incluso de un mismo participante puede deberse entre otros factores a:</p>
 <ul>
 <li><p>Momento del día.</p></li>
 <li><p>Luz ambiental: luz del sol, halógeno, bombillas incandescentes, etc.</p></li>
@@ -794,48 +804,65 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 <li><p>Concentración empleada.</p></li>
 </ul></li>
 </ul>
+</div>
+<div id="recursos-adicionales" class="section level2">
+<h2>Recursos adicionales</h2>
+<ul>
+<li><a href="http://www.colormunki.com/game/huetest_kiosk">Munsell test</a>: Permite conocer la agudeza en la visión de color (A ver si eres capaz de superar mi puntuación de 11 ;), menor puntuación es mejor).</li>
+</ul>
 <p><br></p>
 </div>
 </div>
-<div id="practica-2-obtencion-de-los-umbrales-de-deteccion-de-la-colinealidad." class="section level1">
-<h1>Práctica 2: Obtención de los umbrales de detección de la colinealidad.</h1>
-<div id="conceptos-previos-1" class="section level2">
-<h2>Conceptos previos</h2>
-<p>El paso de la Filosofía a la Psicología como ciencia ha sido objeto de debate durante largo tiempo y establecer precursores a veces puede ser inexacto. Sin embargo, hay momentos en el desarrollo de la epistemología o filosofía sobre el conocimiento que han ayudado historicamente a entender por qué y cómo el objeto de estudio de la Psicología, es decir, el estudio de la conducta pasó a considerarse una ciencia (Para una interesante descripción que se puede discutir en clase <a href="http://www.aepc.es/ijchp/articulos_pdf/ijchp-89.pdf">continúa aquí</a>).</p>
-<p>La corrientes filosóficas imperantes hasta la ilustración abogaban porque el conocimiento podia existir independientemente del observador y que, de hecho, el mismo podría acceder a él mediante ciertos criterios de verdad basados en la lógica. El observador se trata por lo tanto de un sujeto <em>pasivo</em> que ya posee sensaciones e ideas a las cuales sólo necesita acceder para <em>conocerlas</em>. Es durante la Ilustración, en el siglo XVII cuando <a href="https://en.wikipedia.org/wiki/Immanuel_Kant">Inmanuel Kant</a> utiliza la metáfora del giro copernicano (pasar de un universo geocéntrico a un universo heliocéntrico) para situar de nuevo al observador en una posición activa sobre el conocimiento. Kant argumenta que para llegar al conocimiento, las sensaciones han de pasar por una especie de <em>filtro</em>. Una serie de <em>ideas trascendentales</em> que dan forma a esas sensaciones. Estas ideas son inacesibles por un observador, y por lo tanto, no son susceptibles de poder ser estudiadas. En este momento, sin saberlo, Kant estaba describiendo cómo las diferentes estructuras sensoriales filtran y dan forma al tipo de información que un sistema biológico para generar algún tipo de conocimiento sobre el entorno. Por ejemplo, el paso de la energía electromagnética que compone la luz a la energía bioquímica que utiliza el sistema nervioso. <!--y que el conocimiento que podemos generar está limitado *per se* por aquello que un observador de manera activa puede percibir. Sin embargo, no llega a posicionarse entre las posturas más empiristas hasta el momento, argumentando que aunque el observador y el objeto de estudio puedan ser elementos independientes, en tanto que hay características del objeto que no se pueden estudiar o percibir, un objeto no podría ser nunca descrito en su totalidad, también llamado *cosa-en-sí o noúmeno*.--></p>
+<div id="practica-2-psicofisica-clasica" class="section level1">
+<h1>Práctica 2: Psicofísica clásica</h1>
+<p>Obtención de los umbrales de detección de la colinealidad.</p>
+<div id="conceptos-previos-de-la-filosofia-a-la-psicologia" class="section level2">
+<h2>Conceptos previos: De la Filosofía a la Psicología</h2>
+<p>El paso de la Filosofía a la Psicología como ciencia ha sido objeto de debate durante largo tiempo y establecer precursores a veces puede ser inexacto. Sin embargo, hay momentos en el desarrollo de la epistemología o filosofía sobre el conocimiento que han ayudado históricamente a entender por qué y cómo el objeto de estudio de la <strong>Psicología</strong>, es decir, el <strong>estudio de la conducta</strong> pasó a considerarse una ciencia. Si estás más interesado en qué es conducta, puedes continuar aquí <a href="http://www.aepc.es/ijchp/articulos_pdf/ijchp-89.pdf">continúa aquí</a>.</p>
+<p>La corrientes filosóficas imperantes hasta la ilustración abogaban porque el conocimiento podía existir independientemente del observador y que, de hecho, el observador podía acceder a él mediante ciertos criterios de verdad basados en la lógica. El observador se trataba, por lo tanto, de un sujeto <em>pasivo</em> que ya posee sensaciones e ideas a las cuales sólo necesita acceder para hacerlas emerger a su conocimiento. Es durante la Ilustración, en el siglo XVII cuando <a href="https://en.wikipedia.org/wiki/Immanuel_Kant">Inmanuel Kant</a> utiliza la metáfora del giro copernicano (pasar de un universo geocéntrico a un universo heliocéntrico) para situar de nuevo al observador en una posición activa sobre el conocimiento. Kant argumenta que para llegar al conocimiento, las sensaciones han de pasar varios niveles de conocimiento. En primer lugar, <em>la sensibilidad</em>, que se encargaría de dar estructura a cualquier fenómeno. En segundo lugar, el <em>entendimiento</em> organizando las impresiones para formar categorías que nos permiten realizar juicios. Por último, la <em>razón</em>, que valiéndose de lo que denominaba como <em>ideas trascendentales</em> (universales e idénticas) a todos los humanos, permitían la generación de un conocimiento válido. En este momento, y salvando las distancias, Kant estaba describiendo cómo las diferentes estructuras sensoriales filtran y dan forma al tipo de información que un sistema biológico para generar algún tipo de conocimiento sobre el entorno. Por ejemplo, el paso de la energía electromagnética que compone la luz a la energía bioquímica que utiliza el sistema nervioso. En ese sentido, al ser idénticas y universales a todos los seres humanos, a pesar de la existencia de cierta variabilidad a la respuesta a un fenómeno, todos reaccionaremos de una forma parecida al mismo fenómeno. Por ejemplo, la contracción de la pupila ante una luz intensa.</p>
 <p><strong>Inciso: Estos dos últimos párrafos no serán objeto de examen, pero siempre es importante saber de dónde venimos para poder entender a dónde vamos.</strong></p>
-<p>A principios del siglo XIX, <a href="https://es.wikipedia.org/wiki/Ernst_Heinrich_Weber">Ernst Weber</a> describe, la que se conoce como la primera ley Psicofísica, la Ley de Weber. Ãste médico alemán, se dió cuenta de que la capacidad de diferenciar dos pesos diferentes no se encontraba tanto en el peso absoluto de un objeto, sino en la diferencia relativa entre un objeto de referencia (<em>Estímulo de referencia</em>) y otro (<em>Estimulo de comparación</em>). Weber encuentra que para que dos objetos de diferente masa pudieran ser diferenciables, su masa debería variar entorno a un 3%. Es decir, si el objeto de referencia pesa 100g, para ser capaces de diferenciarlo de otro, éste debe pesar 103/97g o más/menos. El dato importante está en que Weber se dió cuenta de que esto se cumplia irrespectivamente del peso de refrencia. Es decir, al igual que en el anterior ejemplo, para que un objeto de 2kg. pudiese diferenciarse de otro, éste debería pesar al menos 2.06kg.</p>
+</div>
+<div id="psicofisica" class="section level2">
+<h2>Psicofísica</h2>
+<div id="ley-de-weber" class="section level3">
+<h3>Ley de Weber</h3>
+<p>A principios del siglo XIX, <a href="https://es.wikipedia.org/wiki/Ernst_Heinrich_Weber">Ernst Weber</a> describe, la que se conoce como la <strong>primera ley Psicofísica, la Ley de Weber.</strong> Éste médico y fisiólogo alemán, se dió cuenta de que la capacidad de diferenciar dos pesos diferentes no se encontraba tanto en el peso absoluto de un objeto, sino en la diferencia relativa entre un objeto de referencia (<em>Estímulo de referencia</em>) y otro (<em>Estimulo de comparación</em>). Weber encuentra que para que dos objetos de diferente masa pudieran ser diferenciables, su masa debería variar entorno a un 3%. Es decir, si el objeto de referencia pesa 100g, para ser capaz de diferenciarlo de otro, éste debe pesar 103/97g o más/menos. El dato importante está en que Weber se dió cuenta de que esto se cumplia irrespectivamente del peso de referencia. Es decir, al igual que en el anterior ejemplo, para que un objeto de 2kg. pudiese diferenciarse de otro, éste debería pesar al menos 2.06kg.</p>
 <p>Si dividimos la diferencia necesaria para poder diferenciar dos estímulos entre la magnitud del estímulo de referencia podemos obtener una constante (<strong><span class="math inline">\(k\)</span></strong>).</p>
 <span class="math display">\[\begin{equation}
 \label{WF}
 \ k = \frac{\Delta I}{I_{ref}}
 \end{equation}\]</span>
 <p>Esta constante nos permite obtener de forma rápida la Mínima Diferencia Perceptible (<em>MDP</em> o <em>Just Noticeable Difference</em>; JND en inglés) con respecto a cualquier intensidad de un estímulo.</p>
-<pre class="r"><code>data_frame(I = seq(1,10,by = 0.5),
-           k = 0.05,
-           DI = I * k) %&gt;%
-  ggplot(aes(I,DI)) +
-  geom_point() + 
-  labs(x = &quot;Intensidad del estímulo de referencia (I)&quot;, y = expression(Delta~I~(difference~threshold))) +
-  annotate(&quot;text&quot;, x = 9, y = 0.1, label = &quot;paste(bold(k),&#39; = &#39;, bold(0.05))&quot;, color = &quot;red&quot;, parse =T, size = 5) +
-  theme_minimal(10)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="pia_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Como podemos ver en la anterior figura, irrespectivamente de la intensidad del estímulo de referencia, la MDP es el producto entre la misma y la fracción de Weber o <span class="math inline">\(k\)</span>.</p>
+<span class="math display">\[\begin{equation}
+\label{MDP}
+\ MDP = \Delta I = k \* {I_{ref}}
+\end{equation}\]</span>
 <p>Además, podemos utilizar esta constante (<strong><span class="math inline">\(k\)</span></strong>), como un índice de sensibilidad para comparar entre diferentes modalidades sensoriales.</p>
-<p>El paso clave de la Filosofía a la Psicología viene dado en primer lugar por <a href="https://en.wikipedia.org/wiki/Gustav_Fechner">Fechner</a> a partir de los principios en Psicofísica. A la vista de los descubrimientos de Weber, Fechner argumenta que la relación entre la estimulación física y su sensación percibida puede ser medida mediante sencillas relaciones matemáticas como la <em>ley de Weber</em>.</p>
-<p>Fechner, junto a Helmholtz y Wundt se consideran los padres de la Psicología Experimental y de la Psicofísica. Bajo la perspectiva de la psicofísica, podemos describir el proceso perceptivo completo mediante la siguiente cadena causal:</p>
+<hr />
+<p><strong>Miniejercicio:</strong> Por ejemplo, si sabemos que la constante <span class="math inline">\(k\)</span> para diferenciar entre pesos es de <em><span class="math inline">\(k = 0.03\)</span></em>, mientras que la constante que nos indica la capacidad de diferenciar la velocidad de dos objetos es de <em><span class="math inline">\(k = 0.1\)</span></em>. <strong>¿A qué modalidad de estimación somos más sensibles?</strong></p>
+<hr />
+</div>
+<div id="principios-de-psicofisica" class="section level3">
+<h3>Principios de Psicofísica</h3>
+<p>Fechner, junto a Helmholtz y Wundt se consideran los padres de la Psicología Experimental y de la Psicofísica. Sin embargo, el paso clave de la Filosofía a la Psicología viene dado en primer lugar por <a href="https://en.wikipedia.org/wiki/Gustav_Fechner">Fechner</a> a partir de su obra <strong>Principios de Psicofísica</strong>. A la vista de los descubrimientos de Weber, Fechner argumenta que la relación entre la estimulación física y su sensación percibida puede ser medida mediante sencillas relaciones matemáticas como la <em>ley de Weber</em>.</p>
+<p>Se define entonces la <strong>Psicofísica</strong> como una rama de la Psicologia interesada en establecer una relación entre los cambios físicos de un estímulo (<strong>E</strong>, por ejemplo: longitud de onda, luminosidad, velocidad, contraste, tamaño…) y los cambios subjetivos o sensación interna que generan (S, sensación subjetiva que generan tales eventos).</p>
+<p>Bajo la perspectiva de la psicofísica, podemos describir el proceso perceptivo completo mediante la siguiente cadena causal:</p>
 <ul>
 <li><p><strong>Estímulo distal</strong>: Estimulación o energía física reflejada o producida por una fuente externa a los mismos receptores sensoriales. Por ejemplo, una pelota.</p></li>
 <li><p><strong>Estímulo proximal</strong>: Proyección de la energía del estímulo distal sobre los receptores sensoriales correctos. Por ejemplo, la imagen 2D en la retina.</p></li>
 <li><p><strong>Transducción</strong>: Transformación de la energía proyectada por el estímulo proximal a cambios energéticos dentro del sistema nervioso.</p></li>
 <li><p><strong>Percepción</strong>: Tras pasar por diferentes fases de procesos nerviosos, se daría la percepción de un estímulo.</p></li>
 </ul>
-<p>Esta cadena nos muestra que el proceso perceptivo requiere de diferentes transformaciones de la energía que daría lugar al percepto. Lo que haría que nuestra percepción no tenga una correspondencia directa con la estimulación física. Sin embargo, esto es algo que nos es familiar ya… <a href="#P1">Cof, cof… ;P</a></p>
-<p>Es por esta razón que Fechner propone diferntes métodos para estudiar cómo se relacionan la estimulación física con la percepción.</p>
+<p>Esta cadena nos muestra que el proceso perceptivo requiere de diferentes transformaciones de la energía que da lugar al percepto. Si a esto le sumamos que el sistema nervioso presenta un ruido interno y pseudoaleatorio, podemos entender que nuestra percepción no tiene una correspondencia directa con la estimulación física, más bien es un producto elaborado y filtrado de la información externa. Sin embargo, esto es algo que nos es familiar ya con el procesamiento de un elemento de tan bajo nivel como el color… <a href="#P1">Cof, cof…</a></p>
+<p>Sin embargo, a ésto se le añade otro problema. <strong>Cuando preguntamos a un observador qué ha observado, no podemos acceder directamente a su sensación subjetiva</strong>. En su lugar, únicamente podemos registrar su <strong>respuesta (R)</strong>. Para medir esta espuesta y así poder acceder de diferentes maneras a cómo se relacionan la estimulación física con la percepción subjetiva, Fechner propuso una serie de métodos psicofísicos.</p>
+</div>
 </div>
 <div id="metodos-psicofisicos" class="section level2">
 <h2>Métodos psicofísicos</h2>
 <ul>
-<li><strong>De los límites:</strong> el experimentador incrementa/decrementa progresivamente y de forma ordenada la intensidad del estímulo hasta que el observador cambia su respuesta. Por ejemplo, si queremos averiguar a qué intensidad de decibelios un sonido es audible podemos hacer el siguiente experimento: Empezamos a mostar a un participante un ruido a un nivel claramente audible y le pedimos que pulse l botón “S” si lo oye y el botón “N” si no lo oye. A medida que el participante va respondiendo que oye el sonido vamos disminuyendo los decibelios hasta que cambia su respuesta de “S” (sí), a “N” (no). En ese momento, empezamos a presentar estímulos en la dirección contraria, es decir, si antes cada vez que el participante afirmaba oír el ruido disminuíamos la intensidad, ahora presentamos un sonido claramente inaudible y a medida que va afirmando que no oye el estímulo vamos aumentando su intensidad.</li>
+<li><strong>De los límites:</strong> el experimentador incrementa/decrementa progresivamente y de forma ordenada la intensidad de un estímulo hasta que el observador cambia su respuesta. Por ejemplo, si queremos averiguar a qué intensidad de decibelios un sonido es audible, podemos hacer el siguiente experimento: Empezamos a mostar a un participante un ruido a un nivel claramente audible y le pedimos que pulse el botón “S” si lo oye y el botón “N” si no lo oye. A medida que el participante va respondiendo que oye el sonido vamos disminuyendo los decibelios hasta que cambia su respuesta de “S” (sí), a “N” (No). En ese momento, empezamos a presentar estímulos en la dirección contraria, es decir, si antes cada vez que el participante afirmaba oír el ruido disminuíamos la intensidad, ahora presentamos un sonido claramente inaudible y a medida nos indica que no oye el estímulo vamos aumentando su intensidad.</li>
 </ul>
 <figure>
 <p>
@@ -844,7 +871,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </figcaption>
 </figure>
 <ul>
-<li><strong>De los estímulos constantes:</strong> presentación aleatoria (o pseudoaleatoria) de un conjunto de intensidades seleccionadas de antemano.</li>
+<li><strong>De los estímulos constantes:</strong> presentación aleatoria (o pseudoaleatoria) de un conjunto de intensidades seleccionadas de antemano (entre 5 y 7 normalmente). Bajo éste método se le pide al participante que decida “Sí”/“No” ha percibido algo. Para hacerlo se utiliza un paradigma llamado 2AFC (two alternative forced choice o elección forzada entre 2 alternativas). Aunque éste es el método de elección debido a su facilidad de estimar parámetros psicofisicos de forma directa, requiere de una gran cantidad de ensayos para obtener unos resultados robustos.</li>
 </ul>
 <figure>
 <p>
@@ -853,7 +880,7 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 </figcaption>
 </figure>
 <ul>
-<li><strong>Del ajuste:</strong> el sujeto controla y ajusta la intensidad del estímulo.</li>
+<li><strong>Del ajuste:</strong> el sujeto controla y ajusta la intensidad del estímulo. Es el método más rápido, sin embargo, normalmente sobreestima el umbral de detección y no permite caracterizar una curva psicométrica.</li>
 </ul>
 <figure>
 <p>
@@ -861,59 +888,239 @@ kable(Models %&gt;% filter(id ==1),digits=2)</code></pre>
 <figcaption>
 </figcaption>
 </figure>
-<p>Vamos a poner un ejemplo:</p>
 </div>
-<div id="deteccion-del-umbral-absoluto" class="section level2">
-<h2>Detección del Umbral Absoluto</h2>
-<p>Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que es posible percibir un 50% de las veces. Punto que denominaría como <strong>Umbral Absoluto</strong>. Vamos a ver cómo podemos aplicar esto a la vida real…</p>
-<p>Imaginemos que queremos saber cual es la mínima cantidad de gotas de edulcorante que son necesarias para empezar a percibir el café dulce (sí, estoy escribiendo con café en la mano). Esta se trataría de una tarea de detección. El objetivo de las tareas de detección es la obtención del nivel estimular mínimo para detectar un estímulo (<strong>Umbral Absoluto</strong>) al nivel del azar (el 50% de las veces).</p>
+<div id="objeto-de-estudio-de-la-psicofisica" class="section level2">
+<h2>Objeto de estudio de la psicofisica</h2>
+<p>Dentro de la psicofísica clásica, se utilizan dos mediciones básicas para caracterizar las características del sistema perceptual, el Umbral Absoluto (en adelante, UA) y el Umbral Diferencial (en adelante, UD), que determina la diferencia mínima perceptible (en adelante, DMP).</p>
+<div id="umbral-absoluto" class="section level3">
+<h3>Umbral Absoluto</h3>
+<p>Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que un observador afirma que percibe el 50% de las veces, es decir, al nivel del azar. Este punto se denomina <strong>Umbral Absoluto</strong>. Para calcular el UA, se mostrarían diferentes intensidades de un estímulo a un observador y se le pediría que respondiese <strong>sí</strong> o <strong>no</strong> dependiendo si ha llegado a percibir tal estímulo. Después de una cantidad suficiente de ensayos (a menudo una gran cantidad) podríamos caracterizar una curva como la siguiente haciendo una media de <em>síes</em> (codificados como 1) y <em>noes</em> (codificados como 0) para cada una de las intensidades:</p>
+<p><img src="pia_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>La figura que se muestra arriba se trataría de una distibución normal cumulativa. Esta distribución asume que la respuesta a este experimento presentaría una varibilidad aleatoria (y por tanto simétrica) alrededor del segundo cuartil, lo que produciría esa característica forma sigmoidal. Dado que anteriormente definimos el UA como el punto en el que los observadores responden al nivel del azar, el umbral absoluto corresponde en esta figura al segundo cuartil de la distribución o a una probabilidad acumulada del 50%.</p>
 <span class="math display">\[\begin{equation}
 \label{UA}
 \ UA = Q2
 \end{equation}\]</span>
-<p>En nuestro laboratorio tenemos 11 muestras de café, en cada una de las cuales hemos puesto de 0 a 10 gotas de edulcorante. Para ver cual es el mínimo número de gotas necesarias haremos probar a los participantes las diferentes tazas de café de forma aleatoria varias veces y anotaremos su respuesta (si lo percibe dulce <em>Sí</em> o <em>No</em> si lo percibe tan amargo como siempre).</p>
-<p><strong>¿Qué método psicofísico habríamos utilizado?</strong></p>
-<p>Después de realizar el experimento, calculamos la media de <em>síes</em> (codificados como 1) y <em>noes</em> (codificados como 0). Si representamos gráficamente estos datos, en la mayoría de casos obtendremos un grafico parecido al siguiente:</p>
-<pre class="r"><code>ggplot(data_frame(I = seq(0,10,by=1),
-  p = pnorm(I,mean = 5,sd = 1)),aes(I,p)) + 
-  geom_point(size = 2, color = &quot;red&quot;) +
-  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de ser percibido&quot;) +
-  theme_minimal(10)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>Dado que todos los participantes presentan cierta viariabilidad, se espera que cada uno de nosotros muestre un Umbral Absoluto relativamente diferente. Esta varaibilidad puede deberse a factores tales como el ruido intrínseco del estímulo, el ruido sensorial debido a interferencias en el sistema nervioso o criterios decisionales. Dependiendo de cuál sea su UA podemos identificar diferentes tipos de observadores:</p>
+<hr />
+<p><strong>Repaso:</strong></p>
 <ul>
-<li><p><strong>Sensibles</strong>: Son aquellos observdores con tendencia a responder que han percibido un estímulo aún cuando la intensidad es muy baja o cuando ni siquiera se ha presentado. Podríamos hablar de un observador <em>liberal</em> si y si sólo si la razón de su respuesta se debiera a <strong>criterios decisionales</strong> como la tendencia al riesgo o factores motivacionales de la tarea <strong>y no puramente debido a un componente sensorial</strong>. Por ejemplo, si recompenso al participante cada vez que acierta si hay o no edulcorante pero no penalizo los errores, los observadores tenderán a responder que han percibido el edulcorante para maximizar sus ganancias.</p></li>
-<li><p><strong>Poco sensibles</strong>: Son aquellos que tienden a responder que han percibido un estímulo cuando la intesidad es razonablemente alta. De la misma manera, podemos hablar de observadores <em>conservadores</em> aludiendo a factores decisionales. Por ejemplo, los participantes reciben en principio 10 euros sólo por participar. Sin embargo, les anuncio que si se equivocan una sola vez no recibirán los 10 euros. De esta manera, los participantes tenderán a responder únicamente cuando estén completamente seguros de que el edulcorante se encuentra presente.</p></li>
+<li><p>Recuerda que estamos hablando de una distribución cumulativa. Esta curva surge de sumar la probabilidad acumulada de una curva normal o gaussiana.</p></li>
+<li><p>¿Qué método psicofísico habríamos utilizado en el anterior experimento simulado?</p></li>
 </ul>
-<pre class="r"><code>UA = data_frame(I=seq(0,10,by=0.05),    
-           Medium = pnorm(I, mean = 5,sd=1),                  
-           High_Noise = pnorm(I, mean = 5, sd = 2), 
-           Low_Noise = pnorm(I, mean = 5, sd = 0.5),    
-           p_c_s = pnorm(I, mean = 7.5, sd = 1),    
-           p_l_s = pnorm(I, mean = 2.5, sd = 1))
+<hr />
+<p>Dado que todos los observadores presentan cierta viariabilidad, se espera que cada uno de nosotros muestre un Umbral Absoluto relativamente diferente. La variabilidad en un observador deberse a factores tales como el ruido intrínseco del estímulo, el ruido en el sistema neural que fluctúa de forma aleatoria o criterios decisionales como el sueño, el aburrimiento o la excitación. Sin embargo, también podemos encontrar variabilidad entre los observadores por factores como agudeza visual, aprendizaje o los criterios decisionales anteriormente descritos. <!--Dependiendo de cuál sea su UA podemos identificar diferentes tipos de observadores:
+
+- **Sensibles**: Son aquellos observdores con tendencia a responder que han percibido un estímulo aún cuando la intensidad es muy baja o cuando ni siquiera se ha presentado. Podríamos hablar de un observador *liberal* si y si sólo si la razón de su respuesta se debiera a **criterios decisionales** como la tendencia al riesgo o factores motivacionales de la tarea **y no puramente debido a un componente sensorial**. Por ejemplo, si recompenso al participante cada vez que acierta si hay o no edulcorante pero no penalizo los errores, los observadores tenderán a responder que han percibido el edulcorante para maximizar sus ganancias. 
+
+- **Poco sensibles**: Son aquellos que tienden a responder que han percibido un estímulo cuando la intesidad es razonablemente alta. De la misma manera, podemos hablar de observadores *conservadores* aludiendo a factores decisionales. Por ejemplo, los participantes reciben en principio 10 euros sólo por participar. Sin embargo, les anuncio que si se equivocan una sola vez no recibirán los 10 euros. De esta manera, los participantes tenderán a responder únicamente cuando estén completamente seguros de que el edulcorante se encuentra presente. 
 
 
-UA %&gt;%  
-  gather(id,value,c(Medium,p_c_s,p_l_s)) %&gt;%     
-  mutate(id = factor(id,levels = c(&quot;p_l_s&quot;,&quot;Medium&quot;,&quot;p_c_s&quot;),labels = c(&quot;Sensible&quot;,&quot;-&quot;,&quot;Poco sensible&quot;), ordered = T ),   
-         UA = ifelse(id == &quot;Sensible&quot;,2.5,ifelse(id == &quot;-&quot;,5,7.5))) %&gt;%
-  ggplot(.,aes(I,value, color = as.factor(id))) +   
-  geom_line(size = 2 ) +    
-  geom_vline(color = &quot;red&quot;, aes(xintercept = UA), size = 1, linetype =2) +  
-  facet_wrap(~id) + 
-  guides(color = FALSE) +   
-  theme_minimal(10)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>Para saber si un observador es más o menos sensible que otro en cuanto al tipo de estímulo presentado podemos calcular un <em>índice de sensibilidad de detección -&gt; S = 1 / UA</em>. De esta manera, un observador con un UA de 2.5 será más sensible que uno que presenta un UA de 6.</p>
+<img src="pia_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+--></p>
+<p>Por otra parte, el UA puede utilizarse como un <em>índice de sensibilidad de detección -&gt; <span class="math inline">\(IS_{Detección}\)</span> = 1 / UA</em>. De esta manera, un observador con un UA de 2.5 será más sensible que uno que presenta un UA de 6.</p>
 </div>
-<div id="P2" class="section level2">
-<h2>Parte práctica: Umbral Absoluto de la Agudeza Visual</h2>
-<div id="que-es-la-agudeza-visual" class="section level3">
-<h3>¿Qué es la agudeza visual?</h3>
+<div id="umbral-diferencial-y-minima-diferencia-perceptible" class="section level3">
+<h3>Umbral Diferencial y Mínima Diferencia Perceptible</h3>
+<p>Como ya había descrito Weber en la Ley de Weber, no somos capaces de percibir un continuo de cambios graduales en un estímulo, si no que necesitamos de una cantidad o diferencia mínima en la intensidad de un estímulo que nos permita indicar que ha ocurrido tal cambio. Este cambio en la intensidad ya lo definimos anteriormente como Mínima Diferencia Perceptible (<em>MDP</em>). El hecho de que necesitemos ésta diferencia mínima se debe a que al igual que la variabilidad en el Umbral Absoluto, nuestro sistema perceptivo presenta cierta varaibilidad en la medida de un estímulo. Nuestro sistema nervioso presenta ruido interno y no es capaz de representar todas las modalidades sensoriales con una correspondencia directa con el estímulo. Esto afecta a cómo somos capaces de interpretar un estímulo y es intresante para caracterizar lo bueno que es nuestro sistema sensorial discriminando entre dos estímulos parecidos. Para ello, calculamos el <strong>Umbral Diferencial (UD)</strong>.</p>
+<p>Para calcular el Umbral Diferencial utilizaremos <strong>normalmente</strong> una metodología un poco distinta. En primer lugar, mostraremos al observador un estímulo de referencia y a continuación un estimulo de comparación como hizo Weber en sus experimentos. En éste experimento, se le pide a los participantes que indiquen qué estímulo (pesa más, es más rápido, brilla más… ). Al igual que en los experimentos para estimar el Umbral Absoluto, elegiremos un rango de estímulos (entre 5 y 7) que nos arrojen una varibailidad suficiente en los juicios de respuesta para calcular el Umbral Diferencial de forma precisa. Para ello, el rango de intensidades deben cubrir, a poder ser, probabilidades de responder sí el rango completo del 0 al 100 %. Cuando calculamos la media de síes y noes para cada intensidad obtendremos una curva sigmoidal muy parecida a la que encontramos para el cálculo del UA. Sin embargo, en éste caso el umbral diferencial se calulará como la mitad del rango entr el 75 y 25 % de responder sí a la pregunta experimental. Es decir, la semidiferencia entre el Q3 (0.75%; tercer cuartil) y el Q1 (0.25%; primer cuartil).</p>
+<span class="math display">\[\begin{equation}
+\label{UD}
+\ UD = (Q3 - Q1)/2
+\end{equation}\]</span>
+<p><img src="pia_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<hr />
+<p><strong>Tip pro:</strong> Aunque durante ésta clase hemos establecido el UD como la semidiferencia entre el Q3 y el Q1, normalmente se establece como la semidiferencia entre el 84 y el 16 % de probabilidad, ya que, de esta manera el umbral diferencial corresponde directamente con la desviación estándar de la curva normal asociada.</p>
+<hr />
+<p>Como hemos podido observar en la anterior curva, en definitiva, el Umbral Diferencial se trata de una medida sobre el rango de intensidades que genera dudas al participante u observador sobre cómo categorizar la intensidad de un estímulo debido al ruido en la medida/respuesta. De esta manera, podemos visualizar diferentes niveles de sensibilidad a una modalidad sensorial según lo amplio que sea este rango.</p>
+<p>Con el umbral diferencial podemos obtener varios índices de sensibilidad a un estímulo:</p>
+<ul>
+<li><p>Igual que hacíamos con el UA, podemos calcular un <em>índice de sensibilidad de discriminación -&gt; S = 1 / UD</em>.</p>
+<ul>
+<li>De esta manera, un observador con un UD de 2.5 será más sensible que uno que presenta un UD de 6.</li>
+</ul></li>
+<li><p>Constante (k) o fracción de Weber:</p></li>
+</ul>
+<span class="math display">\[\begin{equation}
+\label{k_café}
+\ k = \frac{1.3}{5} = 0.26
+\end{equation}\]</span>
+<p>Como se mencionó anteriormente, una de las utilidades de calcular la constante de la ley de Weber es que nos permite comparar entre diferentes modadlidades sensoriales. Si recordamos, Weber describió la comparación entre pesos con una <span class="math inline">\(k_{peso} = 0.03\)</span>.</p>
+<hr />
+<p><strong>Repaso:</strong></p>
+<ul>
+<li><p>Asumiendo que se cumple la Ley de Weber: ¿Qué modalidad sensorial es más precisa?</p>
+<ul>
+<li><span class="math inline">\(k_{velocidad} = 0.1\)</span> o <span class="math inline">\(k_{peso} = 0.03\)</span></li>
+</ul></li>
+<li><p>¿Qué velocidad debería alcanzar una pelota para ser percibida como más rápida/lenta que una pelota que se mueve a 28 m/s?</p></li>
+<li><p>¿Cuánto debe pesar una pelota para ser percibida como más pesada/ligera que una pelota que pesa 300 g?</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="utilizando-logit-para-linealizar" class="section level2">
+<h2>Utilizando Logit para linealizar</h2>
+<p>Uno de los problemas que presentan las curvas anteriores es que no son fáciles de interpretar, ya extraer puntos concretos de la curva (calcular la intesidad asociada a un cuartil) requiere de un ajuste no lineal. Sin embargo, podemos utilizar ciertos <strong>trucos</strong> matemáticos para facilitarnos esta misión. Para ello, vamos a utilizar una transformación de los datos anteriores con el objetivo de pasar de una curva con forma sigmoidal a una función lineal. Para ello, vamos a transformar las probabilidades en lo que se denomina <strong>unidades logit</strong> aplicando la siguiente fórmula:</p>
+<span class="math display">\[\begin{equation}
+\label{logit}
+\ logit(p) = ln(\frac{p}{1-p})
+\end{equation}\]</span>
+<p>En ésta fórmula, <span class="math inline">\(p\)</span> es la probabilidad asociada a cierta respuesta para una intensidad determinada y <span class="math inline">\(ln\)</span> el logaritmo neperiano o natural (no confundir con el logaritmo en base 10 o <span class="math inline">\(log\)</span>). Si aplicamos esta fórmula a la curva anterior obtenemos una <strong>aproximación funcional</strong> a una función lineal (como se puede ver en los puntos de la figura más abajo, no es compleeeeeetamente lineal, pero es una aproximación funcional bastante útil).</p>
+<p><img src="pia_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Si aplicamos una regresión lineal a los puntos anteriores mediante sistemas como <strike>SPSS, Excel, MatLab </strike> o R (o incluso a mano si diesemos esta clase 10 años antes), podemos obtener la probabilidad asociada a cualquier intensidad sustituyendo en la ecuación de la recta.</p>
+<p>Aquí va un ejemplo sobre cómo calcular el UA y el UD:</p>
+<ul>
+<li><p><strong>UA:</strong> definido como la proporción del 50% de responder sí, es decir, el segundo cuartil o Q2 (UA), corresponde a un apuntuación <em>Logit( p = 0.5 ) = ln ( 0.5/(1-0.5) ) = 0</em>.</p>
+<ul>
+<li><p>Si calculamos el ajuste lineal de la recta de a las puntuaciones Logit obtenemos una recta descrita por la siguiente ecuación: <span class="math inline">\(y = x*a + b\)</span></p></li>
+<li><p>Que es lo mismo que esto: <span class="math inline">\(log(p) = x*a + b\)</span></p></li>
+<li><p>Dado que <span class="math inline">\(logit(p=0.5) = 0\)</span>, sustituimos en nuestro ajuste lineal: $ 0 = ax + b$</p></li>
+<li><p>Por lo que para calcular la intensidad asociada a la proporción por la que hemos sustituido en y (x), en este caso el UA, sólo necesitamos resolver esta ecuación utilizando los datos del intercepto y la pendiente.</p></li>
+<li><p><span class="math inline">\(UA = -b / a\)</span> o <span class="math inline">\(UA = -intercepto/pendiente\)</span></p></li>
+</ul></li>
+<li><p><strong>UD:</strong> de la misma manera, podemos calcular qué proporción corresponde al Q1 y Q3 y obtener el UD.</p>
+<ul>
+<li><p><span class="math inline">\(logit(p = 0.25) = ln(0.25/(1-0.25))\)</span></p></li>
+<li><p><span class="math inline">\(logit(p = 0.75) = ln(0.75/(1-0.75))\)</span></p></li>
+<li><p><span class="math inline">\(Q1 = (logit(0.25) - b) / a\)</span></p></li>
+<li><p><span class="math inline">\(Q3 = (logit(0.75) - b) / a\)</span></p></li>
+<li><p>UD = (Q3 - Q1) /2</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="resumen-hasta-el-momento" class="section level2">
+<h2>Resumen hasta el momento</h2>
+<p>Hemos estudiado dos tipos diferentes de umbrales:</p>
+<ul>
+<li><p>El Umbral Absoluto responde a la pregunta de a qué intensidad de un estímulo un observador es capaz de verlo.</p>
+<ul>
+<li><p>Se calcula como el segundo cuartil de una curva sigmoide (cumulativa gaussiana). Para calcularlo:</p></li>
+<li><p>Transformamos las probabilidades medias de detección de cada nivel de intensidad a valores logit <span class="math inline">\(logit(p) = ln(p(I)/(1-p(I)))\)</span>.</p></li>
+<li><p>Aplicamos una regresión lineal a los valores logit vs las intensidades del estímulo.</p></li>
+<li><p>El UA se puede calcular con la siguiente fórmula: <span class="math inline">\(UA = -intercepto/pendiente\)</span> o <span class="math inline">\(UA = -b/a\)</span>.</p></li>
+</ul></li>
+<li><p>El Umbral Diferencial responde a la pregunta de si el estímulo de comparación es diferente (en una dirección determinada) al estímulo de referencia.</p>
+<ul>
+<li><p>Nos da una curva sigmoidal con la probabilidad de que ocurra tal evento. Para calcularlo:</p></li>
+<li><p>Transformamos las probabilidades medias de discriminación de cada nivel de intensidad a valores logit <span class="math inline">\(logit(p) = ln(p(I)/(1-p(I)))\)</span>.</p></li>
+<li><p>Calculamos la semidiferencia entre el Q3 y el Q1 utilizando valores logit. <span class="math inline">\(UD = (Q3 - Q1)/2\)</span>.</p>
+<ul>
+<li><p>$ Q1 = (logit(0.25) - b)/a $</p></li>
+<li><p>$ Q3 = (logit(0.75) - b)/a $</p></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="ley-de-weber-fechner" class="section level2">
+<h2>Ley de Weber-Fechner</h2>
+<p>Según Fechner el Umbral Absoluto sería un nivel de Sensación 0 dentro de una escala de sensaciones psicofísicas. Basándose en la Ley de Weber, afirmó que aunque la diferencia en intensidad requerida para percibir un estímulo como diferente de otro era proporcional a la intensidad del mismo, el cambio en la sensación que estas producían era idéntico. Fechner asumía que la aunque la intensidad de un estímulo tuviese que ser crecientemente mayor para ser pecibido como diferente, la sensación producida era de escala ordinal. En este sentido, si atendemos a la fórmula de la Ley de Weber:</p>
+<ul>
+<li><p><span class="math inline">\(k = \frac{UD}{E_{Ref}}\)</span></p></li>
+<li><p><span class="math inline">\(k = \frac{0.4}{4}=0.1\)</span></p></li>
+</ul>
+<p>Dada la anterior igualdad sabemos que, en este ejemplo, la diferencia mínima perceptible (DMP) es igual a…</p>
+<ul>
+<li><span class="math inline">\(k * E_{Ref} = MDP\)</span></li>
+</ul>
+<p>Por lo que, para distinguir un estímulo de el Umbral Absoluto, éste debe aumentar su intensidad en:</p>
+<ul>
+<li><p>$ k UA = MDP 0.1 4 = 0.4$</p></li>
+<li><p>$ 0.1 4 = 0.4 $</p></li>
+</ul>
+<p>Haciendo estos cálculos para intensidades crecientes sucesivas obtenemos la siguiente tabla:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Intensidad del estímulo</th>
+<th align="right">Sensación</th>
+<th align="right"><span class="math inline">\(\Delta E\)</span></th>
+<th align="right">Weber Fraction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">4.000</td>
+<td align="right">0</td>
+<td align="right">0.400</td>
+<td align="right">0.1</td>
+</tr>
+<tr class="even">
+<td align="right">4.400</td>
+<td align="right">1</td>
+<td align="right">0.440</td>
+<td align="right">0.1</td>
+</tr>
+<tr class="odd">
+<td align="right">4.840</td>
+<td align="right">2</td>
+<td align="right">0.484</td>
+<td align="right">0.1</td>
+</tr>
+<tr class="even">
+<td align="right">5.324</td>
+<td align="right">3</td>
+<td align="right">0.532</td>
+<td align="right">0.1</td>
+</tr>
+<tr class="odd">
+<td align="right">5.856</td>
+<td align="right">4</td>
+<td align="right">0.586</td>
+<td align="right">0.1</td>
+</tr>
+<tr class="even">
+<td align="right">6.442</td>
+<td align="right">5</td>
+<td align="right">0.644</td>
+<td align="right">0.1</td>
+</tr>
+<tr class="odd">
+<td align="right">7.086</td>
+<td align="right">6</td>
+<td align="right">0.709</td>
+<td align="right">0.1</td>
+</tr>
+<tr class="even">
+<td align="right">7.795</td>
+<td align="right">7</td>
+<td align="right">0.779</td>
+<td align="right">0.1</td>
+</tr>
+<tr class="odd">
+<td align="right">8.574</td>
+<td align="right">8</td>
+<td align="right">0.857</td>
+<td align="right">0.1</td>
+</tr>
+<tr class="even">
+<td align="right">9.432</td>
+<td align="right">9</td>
+<td align="right">0.943</td>
+<td align="right">0.1</td>
+</tr>
+</tbody>
+</table>
+<p>En esta tabla se puede ver que aunque la sensación producida aumenta una sóla unidad en cada paso, el cambio necesario en la intensidad del estímulo es cada vez mayor. De manera que si ploteamos los anteriores datos tenemos la siguiente gráfica:</p>
+<p><img src="pia_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Como podemos ver, la relación existente entre sensación percibida y la intensidad del estímulo sigue una relación logarítimica. Para facilitar su interpretación, Fechner propuso la llamada como Ley de Weber-Fechner. Según esta ley, la sensación percibida sería proporcional al logaritmo en base 10 del estímulo multiplicado por una constante. De esta manera, la relación entre intensidad y sensación percibida pasa de una relación logarítmica a una relación lineal:</p>
+<span class="math display">\[\begin{equation}
+\label{Weber-Fechner}
+\ S = K*log(E)
+\end{equation}\]</span>
+<p><img src="pia_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><br></p>
+</div>
+</div>
+<div id="P2B" class="section level1">
+<h1>Práctica 2B: Obtención del umbral de detección de la colinealidad</h1>
+<p>Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que es posible percibir un 50% de las veces. Punto que denominaría como <strong>Umbral Absoluto</strong>.</p>
+<p>Vamos a ver cómo podemos aplicar esto a la vida real utilizando como ejemplo la agudeza visual…</p>
+<div id="que-es-la-agudeza-visual" class="section level2">
+<h2>¿Qué es la agudeza visual?</h2>
 <p><strong>Agudeza visual (AV):</strong> <u>Separación mínima </u> entre dos puntos, dos líneas o los extremos de un aro abierto, <u> que un observador es capaz de detectar.</u> También denominada resolución espacial del procesamiento visual.</p>
 <ul>
 <li><p>Depende de la distancia inter-receptores.</p></li>
-<li><p>En ocasiones se le llama âminimum separableâ.</p></li>
+<li><p>En ocasiones se le llama <strong>minimum separable</strong>.</p></li>
 </ul>
 <figure>
 <p>
@@ -921,194 +1128,538 @@ UA %&gt;%
 <figcaption>
 </figcaption>
 </figure>
-<p>La agudeza visual varía dependiendo de la densidad de conos o bastones, disminuyendo a medida que nos alejamos de la fóvea. En optometría clínica, la AV normal se establece en 1 min arc.</p>
+<p>La agudeza visual varía dependiendo de la densidad de conos o bastones, disminuyendo a medida que nos alejamos de la fóvea. En optometría la AV normal se establece en 1 min arc.</p>
 <figure>
 <p>
-<img src="pia/P2/angulo_visual.png" width="350px">
+<img src="pia/P2/distribucion_retina.png" width="350px">
 <figcaption>
 <a href="https://www.ncbi.nlm.nih.gov/books/NBK10848/">Purves D, Augustine GJ, Fitzpatrick D, et al., editors. Neuroscience. 2nd edition. Sunderland (MA): Sinauer Associates; 2001. Anatomical Distribution of Rods and Cones. </a>
 </figcaption>
 </figure>
-<p>Dentro de un laboratorio de percepción visual normalmente describimos las dimensiones de un objeto basándonos en el ángulo visual que subtende. ¿Por qué hacemos ésto? Fijémonos en la siguiente imágen:</p>
+<p>Como se puede notar por las unidades anteriores (notación sexagesimal: grados, minutos y segundos), en un laboratorio de percepción visual, normalmente describimos las dimensiones de un objeto basándonos en el ángulo visual que arroja. ¿Por qué hacemos ésto? Fijémonos en la siguiente imágen:</p>
 <figure>
 <p>
 <img src="pia/P2/angulo_visual.png" width="350px">
 <figcaption>
-En esta figura podemos ver por qué es más util describir el tamaÃ±o de un objeto en cuanto al ángulo visual que percibimos. En la figura de arriba, podemos ver cómo Cristina a una distancia X ocupa un ángulo visual de X grados. Mientras que en la imagen inferior, Cristina se encuentra un poco más cerca del observador, es decir a X-1, sin embargo, el ángulo visual que ocupa es más grande. De esta manera, podemos identificar qué tamaÃ±o está viendo un observador irrespectivamente del tamaÃ±o físico del objeto y de la distancia a la que se encuentre.
+En esta figura podemos ver que el ángulo visual percibido depende tanto del tamaño de un objeto como de la distancia. A una distancia D, nuestrx monigote describe un ángulo visual de X grados. Por su parte, cuando se encuentra un poco más cerca, es decir, a una distancia “D-1”, el ángulo visual que describe nuestrx monigote es mayor (X+1). ¿Ha crecido de repente nuestrx monigote? Evidentemente no, pero al acercarse al observador, el ángulo visual que subtende es mayor.
 </figcaption>
 </figure>
-<p>Desde un punto de vista estructural, la distancia mínima para <strong>detectar la separación</strong> entre dos puntos es la misma que la distancia que separa dos fotoreceptores (conos o bastones) en la retina.</p>
+<p><strong>Desde un punto de vista estructural</strong>, para <strong>detectar la separación</strong> entre dos puntos, estos dos puntos han de proyectarse sobre dos fotorreceptores (conos o bastones) separados en la retina.</p>
 <figure>
 <p>
-<img src="pia/P2/cones_rods.png" width="350px">
+<img src="pia/P2/Cones_Rods.png" width="350px">
 <figcaption>
-Los niveles de procesamiento intermedios se benefican de sumación espacial de la energía descargada por los bastones. En este caso, se sacrifica la resolución espacial en la visión para poder ver en condiciones de poca luminosidad.
 </figcaption>
 </figure>
+<hr />
+<p><strong>Curiosidad: ¿Por qué vemos en la oscuridad si la densidad de bastones es muy baja?</strong></p>
+<p>Como se puede ver en la figura anterior, la distibución de los conos y los bastones es un poco diferente. Los bastones se procesan en niveles intermedios de forma <em>conjunta</em>, es decir, varios bastones descargan en la misma célula ganglionar a diferencia de los conos cuya ratio cono/célula ganglionar es mucho más baja. De esta manera, conseguimos que con menor cantidad de células fotosensibles obtengamos una decente repuesta a bajas luminosidades sacrificando resolución espacial, es decir, reduciendo la calidad de la imagen que obtenemos. Para entendernos mejor, es como si para hacer que una imagen del móvil sea un poco más brillante, tuviesemos que reducir los megapíxeles de 16 a 1.3. Por otra parte, y aunque parezca contraintuitivo, esto también beneficia al sistema visual ya que, reduce la cantidad de información que tiene que procesar haciendo que sea más manejable. ¿Quién no ha bajado la resolución de un vídeo para poder grabar más minutos?</p>
+<hr />
+<p>La agudeza visual se mide utilizando los conocidos como <strong>Optotipos</strong>. Este tipo de pruebas se puden encontrar en el oculista, en el optometrista o en internet fácilmente.</p>
+<figure>
+<p>
+<img src="pia/P2/AV_Snellen.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p>Cuando realizamos este test (Test de Snellen), buscamos obtener una visión 20/20. Esto significa que el observador ve sin problemas a 20 pies lo que una persona <em>normal</em> (signifique <em>normal</em> lo que signifique) vería sin problemas a 20 pies. Al realizar este test se pide al observador que indicque las letras fila a fila, siendo las letras cada fila más pequeñas.</p>
+<hr />
+<p><strong>Miniprepaso:</strong> Siendo éste el método que utiliza el test de Snellen, ¿de qué tipo de método psicofísico se trata?</p>
+<hr />
+<p>Sin embargo, se ha observado en la literatura científica que aunque el <strong>límite estructural</strong> para detectar la separación entre dos puntos está determinado por la separación de los receptores, hay algunos tipos especiales de agudeza visual que superan los límites estructurales. Un ejemplo de esto sería la <strong>Agudeza de Vernier</strong>.</p>
+</div>
+<div id="umbral-absoluto-de-la-agudeza-de-vernier" class="section level2">
+<h2>Umbral Absoluto de la Agudeza de Vernier</h2>
+<p>La Agudeza de Vernier es un tipo de la hiperagudeza visual que mide la capacidad para detectar el desalineamiento entre dos segmentos de lineas o enrejados, siendo esta de 5 a 10 veces mas alta que la agudeza visual.</p>
+<p><strong>Hiperagudeza Visual:</strong> los des-alineamientos pueden ser inferiores tanto al diámetro de los fotoreceptores como a la distancia entre ellos.</p>
+<figure>
+<p>
+<img src="pia/P2/Vernier.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p>Para explorar si esto es realmente así, se ha planteado la primera práctica de este bloque. En ella, se estimará el Umbral Absoluto de la Agudeza de Vernier y se aplicarán parte de los conocimientos vistos en la parte teórica de la práctica sobre el tratamiento de los datos obtenidos. De hecho, no sólo exploraremos cuál es la agudeza de Vernier, sino también si existe alguna orientación preferente (comunmente denominado como <em>efecto oblicuo</em>). Es decir, si la Agudeza de Vernier es mayor para líneas orientadas horizontalmente o a diferentes ángulos.</p>
+<p><strong>Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 2 Cálculo del UA de la agudeza de Vernier</strong></p>
+<p>La hipótesis de partida será la siguiente:</p>
+<ul>
+<li>Conforme se aleja la orientación de las líneas de la orientación cardinal (horizontal), se deteriora la Agudeza de Vernier. Es decir:</li>
+</ul>
+<span class="math display">\[\begin{equation}
+\label{H_P2a}
+\ UA(0\deg) &lt;  UA(15\deg) &lt; UA(30\deg) &lt; UA(45\deg) 
+\end{equation}\]</span>
+<div id="metodologia" class="section level3">
+<h3>Metodología</h3>
+<p><strong>Secuencia Experimental</strong></p>
+<figure>
+<p>
+<img src="pia/P2/Vernier.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p>La tarea del participante consistirá en pulsar el botón del ratón:</p>
+<ul>
+<li><p>Botón izquierdo si se detecta que SON COLINEALES.</p></li>
+<li><p>Botón derecho si NO SON COLINEALES.</p></li>
+</ul>
+<p>En total tendremos 180 ensayos:</p>
+<span class="math display">\[\begin{equation}
+\label{trials_p2a}
+\ 9~separaciones \times 4~orientaciones \times 5~repeticiones = 180~ensayos~(trials) 
+\end{equation}\]</span>
+<p><strong>Variables</strong></p>
+<ul>
+<li><p>Variables independientes (VI):</p>
+<ul>
+<li><p>Separación vertical (0-8 píxels).</p></li>
+<li><p>Orientación líneas de Vernier (0 - 15 - 30 - 45 deg.).</p></li>
+</ul></li>
+<li><p>Variable dependiente (VD), aquella que manipula el observador:</p>
+<ul>
+<li>Juicio del sujeto (proporción de desalineamientos, 1: “Desalineado”, 0: “Alineado”)</li>
+</ul></li>
+</ul>
+</div>
+<div id="resultados" class="section level3">
+<h3>Resultados</h3>
+<p>Antes de calcular los resultados recordemos qué es el Umbral Absoluto:</p>
+<ul>
+<li><strong>Umbral Absoluto:</strong> nivel estimular mínimo para detectar un estímulo al nivel del azar, es decir, el 50% de las veces.</li>
+</ul>
+<p>Después de realizar el experimento, debemos calcular la media de <em>síes</em> y <em>noes</em> por participante para cada combinación de variables independientes, es decir, píxeles de separación y ángulo de orientación. Una vez obtenidas las medias, obtendremos una tabla parecida a la siguiente:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Colinealidad</th>
+<th align="right">0 deg.</th>
+<th align="right">15 deg.</th>
+<th align="right">30 deg.</th>
+<th align="right">45 deg.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">0.2</td>
+<td align="right">0.0</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">0.4</td>
+<td align="right">0.2</td>
+<td align="right">0.4</td>
+<td align="right">0.0</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">0.4</td>
+<td align="right">0.2</td>
+<td align="right">0.4</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">0.4</td>
+<td align="right">0.2</td>
+<td align="right">0.4</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">0.8</td>
+<td align="right">0.6</td>
+<td align="right">0.4</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">0.8</td>
+<td align="right">0.6</td>
+<td align="right">0.2</td>
+<td align="right">0.4</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">1.0</td>
+<td align="right">0.8</td>
+<td align="right">0.4</td>
+<td align="right">0.4</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">1.0</td>
+<td align="right">0.6</td>
+<td align="right">0.8</td>
+<td align="right">0.6</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">1.0</td>
+<td align="right">1.0</td>
+<td align="right">1.0</td>
+<td align="right">1.0</td>
+</tr>
+</tbody>
+</table>
+<p>Si graficamos (<em>o en espanglish</em>, <strong>ploteamos</strong>) obtenemos la siguiente figura:</p>
+<p><img src="pia_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Sin embargo, calcular el Umbral Absoluto todavía es un poco difícil. Si recordamos bien, el UA estaba definido como el nivel de intensidad que da lugar a un 50% de respuestas de <strong>sí</strong>, lo que equivaldría a 0.5. Una solución sencilla para calcular un valor aproximado del Umbral Absoluto sería realizar una regla de tres. Si nos fijamos por ejemplo en la orientación de 30 grados, podemos asumir que el UA está entre 6 y 7 píxels de diferencia (rango de probabilidad de entre 0.4 y 0.8, ya que incluye el 0.5). Teniendo esto en cuenta, utilizaremos una regla de 3 para obtener una estimación del UA:</p>
+<figure>
+<p>
+<img src="pia/P2/Regla_de_3.png" width="400px">
+<figcaption>
+</figcaption>
+</figure>
+<p>Si calculamos de esta manera los cuatro UA obtenemos que:</p>
+<ul>
+<li><p>UA 0: 3.25</p></li>
+<li><p>UA 15: 3.75</p></li>
+<li><p>UA 30: 6.25</p></li>
+<li><p>UA 45: 6.5</p></li>
+</ul>
+<p>Por lo tanto, obtenemos que: Conforme aumenta la inclinación, también aumenta el UA de detección de la co-linealidad. Es decir, se detecta peor la co-linealidad cuanto más inclinadas son las líneas.</p>
+<span class="math display">\[\begin{equation}
+\label{p2a}
+\ UA_{0} &lt; UA_{15} &lt; UA_{30} &lt;= UA_{45}
+\end{equation}\]</span>
+<div id="utilizando-logit-para-linealizar-y-obtener-ua" class="section level4">
+<h4>Utilizando Logit para linealizar y obtener UA</h4>
+<p>Ya tenemos una estimaación utilizando una regla de 3 para obtener el UA, sin embargo, en la sección de teoría, hemos visto que podemos utilizar una transformación Logit a las puntuaciones de probabilidad para linealizar los datos y obtener una estimación de forma rápida y exacta del UA. Por lo tanto, lo primero que tenemos que hacer es transformar las puntuaciones de probabilidad en valores Logit.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Colinealidad</th>
+<th align="right">0 deg.</th>
+<th align="right">15 deg.</th>
+<th align="right">30 deg.</th>
+<th align="right">45 deg.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">-4.60</td>
+<td align="right">-1.39</td>
+<td align="right">-4.60</td>
+<td align="right">-1.39</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">-0.41</td>
+<td align="right">-1.39</td>
+<td align="right">-0.41</td>
+<td align="right">-4.60</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">-0.41</td>
+<td align="right">-1.39</td>
+<td align="right">-0.41</td>
+<td align="right">-1.39</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">-0.41</td>
+<td align="right">-1.39</td>
+<td align="right">-0.41</td>
+<td align="right">-1.39</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">1.39</td>
+<td align="right">0.41</td>
+<td align="right">-0.41</td>
+<td align="right">-1.39</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">1.39</td>
+<td align="right">0.41</td>
+<td align="right">-1.39</td>
+<td align="right">-0.41</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">4.60</td>
+<td align="right">1.39</td>
+<td align="right">-0.41</td>
+<td align="right">-0.41</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">4.60</td>
+<td align="right">0.41</td>
+<td align="right">1.39</td>
+<td align="right">0.41</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">4.60</td>
+<td align="right">4.60</td>
+<td align="right">4.60</td>
+<td align="right">4.60</td>
+</tr>
+</tbody>
+</table>
+<p>A estos valores Logit les aplicamos un modelo lineal para obtener intercepto y pendiente y calculamos el Umbral absoluto a partir de la siguiente fórmula:</p>
+<ul>
+<li><p>$UA = -b/a $</p></li>
+<li><p><span class="math inline">\(UA = -intercepto/pendiente\)</span></p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Intercepto</th>
+<th align="right">Pendiente</th>
+<th align="left">Colinealidad</th>
+<th align="right">Umbral Absoluto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-3.04</td>
+<td align="right">1.06</td>
+<td align="left">0_deg</td>
+<td align="right">2.87</td>
+</tr>
+<tr class="even">
+<td align="right">-2.26</td>
+<td align="right">0.61</td>
+<td align="left">15_deg</td>
+<td align="right">3.70</td>
+</tr>
+<tr class="odd">
+<td align="right">-2.97</td>
+<td align="right">0.69</td>
+<td align="left">30_deg</td>
+<td align="right">4.33</td>
+</tr>
+<tr class="even">
+<td align="right">-3.45</td>
+<td align="right">0.70</td>
+<td align="left">45_deg</td>
+<td align="right">4.95</td>
+</tr>
+</tbody>
+</table>
+<p>Como podemos ver, los resultados son bastante diferentes a los encontrados utilizando una aproximación a partir de una regla de 3. Aunque la regla de 3 sea más sencilla, se prefiere el método a partir de la transformación en puntuaciones Logit porque asume que la curva en la que se distribuyen las puntuaciones de probabilidad provienen de una curva sigmoidal típica de las funciones psicométricas. De esta manera, conseguimos un resutado que no sólo es más realista, sino que es más válido bajo los supuestos estadísticos sobre los que se fundamenta la Psicofísica.</p>
+<p><br></p>
 </div>
 </div>
-<div id="discriminacion-umbral-diferencial" class="section level2">
-<h2>Discriminación: Umbral Diferencial</h2>
-<p>Pero además, Fechner encontró que no somos capaces de percibir un continuo de cambios graduales en un estímulo, si no que necesitamos de una cantidad o diferencia en la intensidad del estímulo que nos permita indicar que ha habido un cambio, a este cambio en al intensidad se le llamaría <strong>dmp</strong> o <em>diferencia mínima perceptible</em>. Esto se debe a que al igual que la variabilidad en el Umbral Absoluto, también nos podemos encontrar variabilidad en la medida que nuestro sistema perceptivo realiza de un estímulo. Nuestro sistema nervioso presenta ruido interno y no es capaz de representar todas las modalidades sensoriales con una correspondencia directa con el estímulo. Esto afecta a cómo somos capaces de interpretar un estímulo y es intresante para caracterizar lo bueno que es nuestro sistema sensorial discriminando entre dos estímulos parecidos. Para ello, calculamos el <strong>Umbral Diferencial (UD)</strong>.</p>
-<p>Por volver a nuestro ejemplo anterior… Imaginemos que estamos en el departamento de I+D de una conocida cadena de cafeterías y que nuestro supervisor nos dice que: la cantidad de azúcar en el café está correlacionada con el número de cafés que sirven. Es decir, vender un café más dulce incrementa el número de clientes. Sin embargo, tenemos registros de que el gusto es un sistema sensorial que se satura de forma rápida, por lo que nuestros clientes sólo son capaces de percibir el café en tres estados distintos: algo dulce, dulce y demasiado dulce. La escala de correspondencia psicofísica que propondría Fechner establecería el UA en el 0, mientras que las siguientes sensaciones percibidas estarían separadas entre sí por <strong>dmp</strong>’s.</p>
-<pre class="r"><code>data_frame(I = seq(0,2,by = 1),
-           k = 0.05,
-           DI = I * k) %&gt;%
-  ggplot(aes(I,DI)) +
-  geom_point() + 
-  labs(x = &quot;Escala Psicofísica&quot;, y = &quot;Sensación percibida&quot;) +
-  scale_x_continuous(breaks = c(0,1,2)) +
-  scale_y_continuous(breaks = c(0,0.05,0.1), labels =  c(&quot;Algo dulce&quot;,&quot;Dulce&quot;,&quot;Demasiado dulce&quot;)) +
-  theme_minimal(10)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>Sin embargo, nuestro jefe nos indica que los consumidores rechazan frontalmente un café demasiado dulce, por lo que nos encontraríamos con un problema: si el café está muy dulce, los clientes se quejan y dejan de acudir a nuestra cadena. Por lo tanto, nuestra misión es maximizar la cantidad de azúcar en el café para optimizar el número de ventas sin perder clientes.</p>
-<p>Para ello haremos un sencillo experimento: Se presentarán pares de estímulos, en primer lugar el estímulo estándar, un café con 5 gotas de edulcorante (UA, el 0 en la escala de Fechner) y después, uno de los estímulos de comparación de forma aleatoria (cafés con 11 diferentes cantidades de azúcar en un rango de 0 a 10 g). Se le hará probar al participante varias veces todos los estímulos. Y, al igual que en el anterior experimento, codificaremos su respuesta como más dulce que el estándar (1) e igual de dulce que el estándar (0). De esta manera, obtendremos una curva parecida a la anterior:</p>
-<pre class="r"><code>UD &lt;- data_frame(I=seq(0,10,by=1),
-               p_UD = pnorm(I, mean = 5,sd=2))
-
-ggplot(UD,aes(I,p_UD)) + 
-  geom_point(size = 2, color = &quot;red&quot;) +
-  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de ser percibido como más dulce&quot;) +
-  theme_minimal(10)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p>Si a estos puntos le aplicamos una fórmula para obtener la curva psicométrica, seremos capaces de estimar qué probabilidad hay de que un participante afirme que el café está dulce para cualquier cantidad de edulcorante. El Umbral diferencial se define como la semidiferencia entre el tercer y el primer cuartil. Es decir, la mitad de la diferencia entre el punto que arroja una probabilidad de percibir el café como más dulce del 75% y del 25%.</p>
+</div>
+</div>
+<div id="P2C" class="section level1">
+<h1>Práctica 2C: Detección del Umbral de discriminación (Umbral diferencial) de la Colinealidad</h1>
+<div id="objetivos" class="section level2">
+<h2>Objetivos</h2>
+<ul>
+<li><p>Aprender a utilizar los métodos psicofísicos clásicos: Método de los estímulos constantes (calcular el UD).</p></li>
+<li><p>Profundizar en la noción de Agudeza Visual (AV).</p></li>
+</ul>
+<p><strong>Pregunta experimental: </strong> ¿cuál es la mínima diferencia en no-colinealidad que somos capaces de discriminar?</p>
+<ul>
+<li>Para responder a esta pregunta, sólo nos centraremos en calcular el UD para la orientación de 45º.</li>
+</ul>
+</div>
+<div id="metodologia-1" class="section level2">
+<h2>Metodología</h2>
+<p><strong>Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 2 Cálculo del UD de la agudeza de Vernier</strong></p>
+<p><strong>Estímulos</strong></p>
+<p>Dado que la pregunta es un poco distinta utilizaremos un set diferente de estímulo:</p>
+<figure>
+<p>
+<img src="pia/P2/Vernier_UD.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p><strong>Instrucciones</strong></p>
+<p>Las instrucciones que se le darán a los participantes son las siguientes:</p>
+<ul>
+<li><p>“Vamos a evaluar tu precisión en Agudeza de Vernier. En esta prueba se te mostraran, en cada ensayo, dos estímulos (pares de lineas de Vernier). Al primero le llamamos estímulo estándar y éste se mantiene constante toda la prueba. Al segundo le llamamos estímulo de comparación y variará en la dimensión estudiada (separación vertical) para cada ensayo.”</p></li>
+<li><p>La tarea del sujeto consiste en presionar:</p>
+<ul>
+<li><p><strong>Botón izquierdo</strong> si la separación del estímulo de comparación <strong>es menor que la del estímulo estándar</strong>.</p></li>
+<li><p><strong>Botón derecho</strong> del ratón si la separación del estímulo de comparación <strong>es mayor que la del estímulo estándar</strong>.</p></li>
+</ul></li>
+</ul>
+<p>** Secuencia experimental**</p>
+<figure>
+<p>
+<img src="pia/P2/P2_Seq_UD.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p>En total tendremos 90 ensayos:</p>
+<span class="math display">\[\begin{equation}
+\label{trials_p2b}
+\ 9~separaciones \times 10~repeticiones = 90~ensayos~(trials) 
+\end{equation}\]</span>
+<p><strong>Variables</strong></p>
+<ul>
+<li><p>Variables independientes (VI):</p>
+<ul>
+<li><p>Separación del estímulo estandar (20 píxels).</p></li>
+<li><p>Separación estímulo de comparación (12, 14, 16, 18, <strong>20</strong>, 22, 24, 26, 28).</p></li>
+</ul></li>
+<li><p>Variable dependiente (VD), aquella que manipula el observador:</p>
+<ul>
+<li><p>Juicio de discriminación de separación</p></li>
+<li><p>Error = Valor asignado - Valor real</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="resultados-1" class="section level2">
+<h2>Resultados</h2>
+<p>Antes de obtener los resultados recordemos qué es el Umbral Diferencial:</p>
+<ul>
+<li><strong>Umbral Diferencial:</strong> Nivel estimular necesario para discriminar diferencias entre estímulos. Se calcula a partir de la semidiferencia entre el Q3 (0.75%) y el Q1 (0.25%).</li>
+</ul>
 <span class="math display">\[\begin{equation}
 \label{UD}
 \ UD = (Q3 - Q1)/2
 \end{equation}\]</span>
-<pre class="r"><code>UD_lin &lt;- data_frame(I=seq(0,10,by=0.1),
-               p_UD = pnorm(I, mean = 5,sd=2))
-##########################################################################################
-###########################     DISCRIMINACI?N: UMBRAL DIFERENCIAL     ###################
-# ##########################################################################################
-
-I_Q3 = UD_lin$I[which.min(abs(UD_lin$p_UD-0.75))]
-I_Q1 = UD_lin$I[which.min(abs(UD_lin$p_UD-0.25))]
-UD_1 =  (I_Q3-I_Q1)/2
-
-ggplot(UD_lin,aes(I,p_UD)) +
-  geom_line(size = 2) +
-  geom_point(color = &quot;red&quot;, x = I_Q1, y = 0.25, size = 4) +
-  geom_point(color = &quot;red&quot;, x = I_Q3, y = 0.75, size = 4) +
-  geom_vline(xintercept = c(I_Q1,I_Q3), color=&quot;red&quot;) +
-  geom_segment(aes(x=5,xend=5+UD_1,y=0.1,yend=0.1),color=&quot;red&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  geom_text(aes(x=I_Q3*1.25,y=0.1,label=&quot;UD = (Q3 - Q1)/2&quot;),color=&quot;red&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  theme_minimal(10)</code></pre>
-<pre><code>## Warning: Ignoring unknown parameters: arrow</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>En nuestro experimento hemos observado que: El primer cuartil es 3.7g., mientras que el tercer cuartil es 6.3g. Por lo tanto:</p>
-<span class="math display">\[\begin{equation}
-\label{UD_1}
-\ 1.3 = (6.3 - 3.7)/2
-\end{equation}\]</span>
-<p>Como hemos podido observar en la anterior curva, en definitiva, el Umbral Diferencial se trata de una medida sobre el rango de intnsidades que genera dudas al participante u observador sobre cómo categorizar debido al ruido en la medida. De esta manera, podemos visualizar diferentes niveles de sensibilidad a una modalidad sensorial según lo amplio que sea este rango.</p>
-<p>En la siguiente figura podemos encontrar una representación gráfica de 3 niveles de sensibilidad:</p>
-<pre class="r"><code>a &lt;- data_frame(
-  I=seq(0,10,by=0.1),
-  Sensible = pnorm(I, mean = 5,sd=0.5),
-  Medium = pnorm(I, mean = 5,sd=1),
-  Baja_Sensibilidad = pnorm(I, mean = 5,sd=2)
-)
-
-
-a %&gt;%
-  gather(id,value,c(&quot;Sensible&quot;,&quot;Medium&quot;,&quot;Baja_Sensibilidad&quot;)) %&gt;%
-  mutate(id = factor(id,levels = c(&quot;Sensible&quot;,&quot;Medium&quot;,&quot;Baja_Sensibilidad&quot;),labels = c(&quot;Alta sensibilidad&quot;,&quot; &quot;,&quot;Baja sensibilidad&quot;), ordered = T )) %&gt;%
-  ggplot(.,aes(I,value, color = id)) +
-  geom_line(size = 2) +
-  geom_vline(xintercept = 5, color = &quot;red&quot;, size = 1, linetype = 2) + 
-  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de responder \&#39;SI\&#39; &quot;) + 
-  facet_wrap(~id) +
-  guides(color = FALSE) +
-  theme_minimal(10)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p>Con el umbral diferencial podemos obtener varios índices de sensibilidad a un estímulo:</p>
+<p><img src="pia_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Después de obtener estas puntuaciones de probabilidad a cada una de las intensidades, transformaremos las mismas en puntuaciones Logit y obtendremos una recta de ajuste lineal para obtener pendiente e intercepto con los que poder calcular el Umbral Diferencial.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Separacion</th>
+<th align="right">Probabiliad asociada</th>
+<th align="right">Probabilidad Logit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">12</td>
+<td align="right">0.01</td>
+<td align="right">-4.60</td>
+</tr>
+<tr class="even">
+<td align="right">14</td>
+<td align="right">0.10</td>
+<td align="right">-2.20</td>
+</tr>
+<tr class="odd">
+<td align="right">16</td>
+<td align="right">0.10</td>
+<td align="right">-2.20</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="right">0.20</td>
+<td align="right">-1.39</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">0.60</td>
+<td align="right">0.41</td>
+</tr>
+<tr class="even">
+<td align="right">22</td>
+<td align="right">0.80</td>
+<td align="right">1.39</td>
+</tr>
+<tr class="odd">
+<td align="right">24</td>
+<td align="right">0.90</td>
+<td align="right">2.20</td>
+</tr>
+<tr class="even">
+<td align="right">26</td>
+<td align="right">0.90</td>
+<td align="right">2.20</td>
+</tr>
+<tr class="odd">
+<td align="right">28</td>
+<td align="right">0.99</td>
+<td align="right">4.60</td>
+</tr>
+</tbody>
+</table>
+<p>A partir de estas puntuaciones logit podemos obtener el Q1 y el Q3:</p>
+<p><span class="math inline">\(Q1 = \frac{logit_{0.25}-Intercepto}{Pendiente}\)</span></p>
+<p><span class="math inline">\(Q3 = \frac{logit_{0.75}-Intercepto}{Pendiente}\)</span></p>
+<p>Dado que el Umbral diferencial se define como la semidiferencia entre el tercer y el primer cuartil:</p>
+<p><span class="math inline">\(UD = \frac{Q3 - Q1}{2}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Intercepto</th>
+<th align="right">Pendiente</th>
+<th align="right">Q3</th>
+<th align="right">Q1</th>
+<th align="right">Umbral Diferencial</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-10.21</td>
+<td align="right">0.51</td>
+<td align="right">22.06</td>
+<td align="right">17.77</td>
+<td align="right">2.14</td>
+</tr>
+</tbody>
+</table>
+<p>En éste caso, el UD de la colinealidad para la orientación de 45 grados y un estímulo de referencia de 20 píxels de diferencia es 2.14.</p>
+<hr />
+<p>Pero, ¿qué pasaría si necesitasemos calcular una separación entre estas líneas que se viera como aún más separadas que la obtenida?</p>
 <ul>
-<li>Igual que hacíamos con el UA, podemos calcular un <em>índice de sensibilidad de discriminación -&gt; S = 1 / UD</em>.
-<ul>
-<li>De esta manera, un observador con un UD de 2.5 será (?) sensible que uno que presenta un UD de 6.</li>
-</ul></li>
-<li>Constante (k) o fracción de Weber:</li>
+<li>Es decir: <span class="math inline">\(Sensación = S + 2\)</span></li>
 </ul>
-<span class="math display">\[\begin{equation}
-\label{k_café}
-\ k = \frac{1.3}{5} = 0.26
-\end{equation}\]</span>
-<p>Como se mencionó anteriormente, una de las utilidades de calcular la constante de la ley de Weber es que nos permite comparar entre diferentes modadlidades sensoriales. Si recordamos, Weber describió la comparación entre pesos con una <span class="math inline">\(k_{peso} = 0.03\)</span>. Por otra parte, en nuestro experimento hemos observado una k para la comparación de cantidades de azúcar de <span class="math inline">\(k_{azúcar} = 0.26\)</span>.</p>
-<p><strong>¿Qué modalidad sensorial es más precisa?</strong></p>
-<p><strong>Ahora que ya sabemos cuál es el <span class="math inline">\(k_{azúcar} = 0.26\)</span> (y asumiendo que se cumple la ley de Weber), calcula cuál sería el punto de mínima cantidad de edulcorante con el cual el café se percibiría como demasiado dulce.</strong></p>
-</div>
-<div id="utilizando-logit-para-linealizar" class="section level2">
-<h2>Utilizando Logit para linealizar</h2>
-<p>Uno de los problemas que presentan las curvas anteriores es que, no son fáciles de interpretar, ya que requieren un ajuste no lineal para calcular el UA y el UD con precisión. Sin embargo, podemos utilizar ciertos “trucos” matemáticos para facilitarnos esta misión. Para ello, vamos a utilizar una transformación de nuestros datos anteriores con el objetivo de pasar de una curva con forma sigmoidal a una función lineal. Para ello, vamos a transformar las probabilidades en lo que se denomina como unidades logit aplicando la siguiente fórmula:</p>
-<span class="math display">\[\begin{equation}
-\label{logit}
-\ logit(p) = ln(\frac{p}{1-p})
-\end{equation}\]</span>
-<p>En ésta fórmula, <span class="math inline">\(p\)</span> es la probabilidad asociada a cierta respuesta para una intensidad determinada y <span class="math inline">\(ln\)</span> el logaritmo neperiano o natural (no confundir con el logaritmo en base 10 o <span class="math inline">\(log\)</span>). Si aplicamos esta fórmula a la curva anterior obtenemos una <strong>aproximación funcional</strong> a una función lineal.</p>
-<pre class="r"><code>logit = UD %&gt;%
-  mutate(logit_Medium = log(p_UD/(1-p_UD)))
-
-fit_logit = coef(lm(logit$logit_Medium ~logit$I ))
-
-ggplot(logit,aes(I,logit_Medium)) +
-  geom_point(size=4, color = &quot;red&quot;) +
-  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de responder \&#39;SI\&#39; \n en unidades Logit&#39; &quot;) +
-  geom_smooth(method =&quot;lm&quot;, se = F) +
-  geom_hline(yintercept = 0, linetype = 2) +
-  annotate(geom=&quot;text&quot;, x = 6, y = -2, label = paste(&quot;y = &quot;,round(fit_logit[1],2),&quot; + &quot;, round(fit_logit[2],2),&quot;x&quot;)) +
-  theme_minimal(10)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<p>Si aplicamos una regresión lineal a los puntos anteriores mediante sistemas como <strike>SPSS, Excel, MatLab o</strike> R (o incluso a mano si diesemos esta clase 10 aÃ±os antes), podemos obtener la probabilidad asociada a cualquier intensidad. Además, una propiedad interesante de esta transformación es que la proporción del 50%, es decir, el segundo cuartil o Q2 (UA), corresponde a un apuntuación <em>Logit( p = 0.5 ) = ln ( 0.5/(1-0.5) ) = 0</em>.</p>
+<p>Dado que tenemos el UD podemos utilizar la ley de Weber para obtener qué separación entre ambas líneas se vería como aún más separadas:</p>
+<p>Para calcular cuál tendría que ser la separación entre ambas, sera conveniente antes calcular la Weber Fraction o <span class="math inline">\(k\)</span>:</p>
+<ul>
+<li><span class="math inline">\(k = \frac{UD}{E_{Ref.}}\)</span></li>
+</ul>
+<p><strong>Para repasar:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Separacion</th>
+<th align="right">Sensación</th>
+<th align="right"><span class="math inline">\(\Delta Separación\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">X</td>
+<td align="right">20 * k = 2.14</td>
+</tr>
+<tr class="even">
+<td align="right">22.14</td>
+<td align="right">X + 1</td>
+<td align="right">22.14 * k = ??</td>
+</tr>
+<tr class="odd">
+<td align="right">??</td>
+<td align="right">X + 2</td>
+<td align="right">?? * k = ??</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <p><br></p>
 </div>
 </div>
 <div id="practica-3-estimacion-de-la-claridad-psicofisica-de-stevens" class="section level1">
 <h1>Práctica 3: Estimación de la Claridad (psicofísica de Stevens)</h1>
-<div id="ley-de-weber-fechner" class="section level2">
-<h2>Ley de Weber-Fechner</h2>
-<p>Una derivación de la ley de Weber posteriormente formulada por Fecher afirmaba que la sensación a un estímulo podía modelarse mediante una relación logarítmica.</p>
+<div id="conceptos-previos-1" class="section level2">
+<h2>Conceptos previos</h2>
+<div id="ley-potencial-de-stevens" class="section level3">
+<h3>Ley potencial de Stevens</h3>
+<p>Si recordamos lo visto en la anterior práctica, la ley de Weber-Fechner implicaba que la relación entre un estímulo y su sensación percibida era de tipo logarítmico:</p>
 <span class="math display">\[\begin{equation}
 \label{Weber_Fechner}
 \ S = K * log(E) 
 \end{equation}\]</span>
-<p>Sin embargo, hay situaciones en las que esta relación no se sigue. Reflexionando sobre esto, Stevens se preguntó si podría existir alguna forma de generalizar la relación entre la estimulación y la sensación producida para estimulaciones que no se relacionan de forma logarítmica como había propuesto Fechner.</p>
-<p>Esto es importante porque el hecho de que ni todos los tipos de estimualciones tengan una correspondencia psicofísica puede tener un efecto capital en la supervivencia de un organismo. Vamos a poner dos ejemplos clásicos diferentes:</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Efecto de una presión sobre la piel:</strong> Es el tipo de correspondencia psicofísica cllásica que se comporta con una correspondencia exponencial. Si aplicamos sobre la piel una estimulación muy baja, la reacción será muy pequeÃ±a y probablemente sólo notaremos cosquillas. Sin embargo, tan pronto como aplicamos un poco más de presión sobre la misma podemos obtene una respuesta de dolor muy alta.</p></li>
-<li><p><strong>Efecto de iluminación:</strong> Es un tipo de correspondencia clásica de tipo logarítmico. En este caso, un nivel de iluminación muy baja en la retina dará una sensación suficinte de iluminación como para poder ver. Sin embargo, una estimulación muy alta no traerá consigo un cambio en la sensación correlativo. En su lugar, se produce una adaptación del sistema a niveles altos de luminancia haciendo que cambios muy grandes en iluminación se perciban como un cambio muy pequeÃ±o en brillo.</p></li>
-</ol>
-<pre class="r"><code>##### Relaciones funcionales
-Functions &lt;- data_frame(
-  E = c(0.1,seq(5,50,by=5)),
-  S_lineal = 0.5*E,
-  S_log = log(10)*E^0.5,
-  S_exp = 0.1*E^1.5
-)
-
-
-
-names &lt;- c(
-  `S_exp` = &quot;Exponencial&quot;,
-  `S_lineal` = &quot;Lineal&quot;,
-  `S_log` = &quot;Logarítmica&quot;
-)
-
-Functions %&gt;%
-  gather(id,value,S_lineal:S_exp) %&gt;%
-  ggplot(.,aes(E,value,group=id, color = id)) +
-  # geom_abline(linetype = 2, ) + 
-  geom_line(size = 1.5 ) +
-  geom_point(color=&quot;black&quot;) + 
-  #facet_wrap(~id, scales = &quot;free&quot;, labeller = as_labeller(names)) +
-  guides(fill = FALSE) +
-  scale_x_continuous(breaks = round(Functions$E,0)) +
-  scale_color_discrete(labels = c(&quot;k &gt; 1&quot;,&quot;k = 1&quot;, &quot;k &lt; 1&quot;), name = NULL) +
-  labs(x = &quot;Estimulación física&quot;, y = &quot;Sensación&quot;) +
-  theme_minimal(20) +
-  theme(panel.grid.minor = element_blank())</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>Para poder generalizar cómo funciona nuestro sistema perceptivo, Stevens describió la conocida como <strong>Ley de Stevens</strong></p>
+<p>No obstante, hay situaciones en las que este tipo de relación no se sigue. El hecho de que no todos los tipos de estimulaciones tengan una misma correspondencia psicofísica tiene un efecto capital en la supervivencia de un organismo. Por ejemplo, puede ser útil no ser sensible a ciertos niveles bajos de presión mecánica sobre la piel (dado que los sufrimos durante las 24 horas) sin que esto suponga un peligro para el organismo. Este tipo de estimulación es un típico ejemplo de correspondencia psicofísica que se comporta de forma exponencial. Por otra parte, hay situaciones en las que no es adaptativo reaccionar a cambios grandes en la estimulación. Es el caso de la iluminación. Para un organismo como el ser humano es mucho más útil ser sensible a cambios en estimulaciones a bajo nivel de intensidad, para poder orientarse en el espacio. Sin embargo, cambios bruscos como los que se producen bajo el sol no son necesariamente útiles para el organismo, ya que recibe suficiente energía como para percibir el entorno sin problemas. Este seria un típico ejemplo de correspondencia logarítmica. Stevens se dio cuenta de esto después de una serie de esxperimentos científicos relacionados con el efecto que un shock eléctrico tenía sobre la piel, correspondiendose éste también con un típico ejemplo de relación exponencial.</p>
+<p>Reflexionando sobre esto, Stevens se preguntó si podría existir alguna forma de generalizar la relación entre la estimulación y la sensación producida de tal manera que en una misma ecuación se recogieran relaciones lineales, logarítmicas o exponenciales.</p>
+<p><img src="pia_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>Esta generalización de correspondencias psicofísicas pasó a llamarse <strong>Ley de Stevens</strong>.</p>
 <span class="math display">\[\begin{equation}
 \label{Stevens}
 \ S = c * E^{k} 
@@ -1119,31 +1670,28 @@ Functions %&gt;%
 <li><p>k = 1: Incremento lineal</p></li>
 <li><p>k &lt; 1: Incremento compresivo</p></li>
 </ul>
-<p>Por su parte, la <strong>c</strong> sería una constante que describiría la sensación en ausencia de estimulación. Sin embargo, este tipo de curvas son dificiles de analizar. Por eso es importante cómo está formulada la ley de Stevens. Si aplicamos una transofrmación log-log, es decir, aplicamos logaritmos a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas de la ley de Stevens dando la siguiente igualdad:</p>
+<p>Por su parte, la <strong>c</strong> sería una constante que describiría la sensación en ausencia de estimulación. El problema con estas curvas es que son difíciles de analizar. Lo interesante de la ley de Stevens es que si aplicamos una transoformación log-log, es decir, aplicamos logaritmos a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas que describe. Es ese caso, obtenemos la siguiente igualdad:</p>
 <span class="math display">\[\begin{equation}
 \label{Log_Log_Stevens}
 \ log(S) = log(c) * n * log(E)
 \end{equation}\]</span>
-<pre class="r"><code>Functions %&gt;%
-  gather(id,value,S_lineal:S_exp) %&gt;%
-  ggplot(.,aes(log(E,10),log(value,10),group=id, color = id)) +
-  #geom_abline(linetype = 2) + 
-  geom_line(size = 1.5 ) +
-  geom_point(color=&quot;black&quot;) + 
-  #facet_wrap(~id, scales = &quot;free&quot;, labeller = as_labeller(names)) +
-  guides(fill = FALSE) +
-  # scale_color_discrete(labels = c(&quot;(k = n) &gt; 1&quot;,&quot;(k = n) = 1&quot;, &quot;(k = n) &lt; 1&quot;), name = NULL) +
-  labs(x = &quot;log(Estimulación física)&quot;, y = &quot;log(Sensación)&quot;) +
-  theme_minimal(20) +
-  theme(panel.grid.minor = element_blank())</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<p>Para demostrar cómo se estudia la percepción, en este caso, de la claridad, realizaremos un pequeño experimento que podréis encontrar en el campus virtual de la asignatura.</p>
-<div id="pregunta" class="section level3">
-<h3>Pregunta:</h3>
+<p><img src="pia_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+</div>
+<div id="P3" class="section level2">
+<h2>Parte práctica: Estimación de la Claridad (psicofísica de Stevens)</h2>
+<p><strong>Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 3 Estimación de la claridad (Ley de Stevens)</strong></p>
+<p>En esta práctica pondremos en práctica los conocimientos que hemos aprendido previamente sobre la Ley de Weber-Fechner y la Ley de Stevens.</p>
+<p><strong>Pregunta:</strong></p>
 <ul>
 <li><p>¿Cuál es la exactitud en nuestras estimaciones de claridad? Es decir, ¿cómo es nuestra habilidad para juzgar la reflectancia?</p></li>
-<li><p>Esto nos indicará qué ajuste tienen los sensores de la reflectancia, es decir, los bastones con las estimulación física.</p></li>
+<li><p>Esto nos indicará qué ajuste tienen los sensores de la reflectancia, es decir, los bastones con respecto a la luminancia. Por tanto, la relación funcional entre brillo y la luminancia (<strong>Recuerdas la diferencia que había entre ambas?</strong>).</p></li>
 </ul>
+<p><strong>Hipótesis:</strong></p>
+<p>En esta Práctica no pretendemos verificar ninguna hipótesis. No hay hipótesis experimental. Nuestro objetivo se centra en la construcción de una escala de percepción de la claridad, haciendo uso de uno de los métodos directos de estimación de cantidades propuestos por S.S. Stevens.</p>
+<div id="metodologia-2" class="section level3">
+<h3>Metodología</h3>
+<p><strong>Estímulos:</strong> A modo de referencia inicial, se muestran las imágenes de 10 niveles de claridad (0-225) en una imagen.</p>
 <figure>
 <p>
 <img src="pia/P3/Claridad_Stimuli.png" width="350px">
@@ -1151,169 +1699,138 @@ Functions %&gt;%
 En esta imagen podemos encontrar el set de estímulos que utilizareoms en el experimento. Son imágenes de 10 niveles de claridad del 0 al 255. Las instrucciones del experimento son las siguientes: El experimento consiste en la presentación de estos cuadros de diferentes niveles de claaridad. Los particpantes han de asignar un número comprendido entre 0-9 en una escala de claridad.
 </figcaption>
 </figure>
-<p><strong>Para pensar:</strong></p>
+<p><strong>Instrucciones:</strong> El experimento consiste en la presentación de una serie de cuadros de diferente claridad en la zona central de la pantalla, a los que debes asignar un Número comprendido entre 0‑9 (Escala de claridad).</p>
+<figure>
+<p>
+<img src="pia/P3/Claridad_Example.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<hr />
+<p><strong>Para pensar:</strong> ¿Por qué no debemos realizar el experimento utilizando un fondo gris? ¿De qué color debería ser el fondo para realizarlo en las condiciones más óptimas?</p>
 <figure>
 <p>
 <img src="pia/P3/Claridad_Pregunta.PNG" width="350px">
 <figcaption>
-¿Por qué no debemos realizar el experimento utilizando un fondo gris? ¿De qué color debería ser el fondo para realizarlo en las condiciones más óptimas?
 </figcaption>
 </figure>
-<div id="metodologia" class="section level4">
-<h4>Metodología</h4>
-<pre class="r"><code>##### Leemos los datos de nuestro experimento
-Luminancia &lt;- read.table(&quot;./pia/P3/Ant.txt&quot;, header = T)
-
-Luminancia &lt;- Luminancia %&gt;%
-  mutate(Claro = ifelse(Claro == 0, 0.1, Claro),
-         Asign = ifelse(Asign == 0, 0.1, Asign),
-         error_est = Claro - Asign,
-         log_Claro = log(Claro,10),
-         log_Asign = log(Asign,10)) %&gt;%
-  select(-Assaig,-Temps) %&gt;%
-  group_by(Claro) %&gt;%
-  summarize_all(.funs=&quot;mean&quot;)
-
-kable(Luminancia %&gt;% select(-log_Claro,-log_Asign))</code></pre>
+<hr />
+<p><strong>Variables</strong></p>
+<ul>
+<li><p>Variables independientes (VI):</p>
+<ul>
+<li>Reflectancia (0, 25, 50, 75, 100, 125, 150, 175, 200, 225)</li>
+</ul></li>
+<li><p>Variable dependiente (VD), aquella que manipula el observador:</p>
+<ul>
+<li>Valor asignado (Claridad percibida).</li>
+</ul></li>
+</ul>
+<p>En total tendremos 50 ensayos:</p>
+<span class="math display">\[\begin{equation}
+\label{trials_p3}
+\ 10~reflectancias \times 5~repeticiones = 50~ensayos~(trials) 
+\end{equation}\]</span>
+</div>
+<div id="resultados-2" class="section level3">
+<h3>Resultados</h3>
+<hr />
+<p><strong>ATENCIÓN!!!!</strong></p>
+<ul>
+<li><p>Hay un bug en los resultados del experimento, por lo que lass respuestas de 0, son codificadas como 1, las de 1 como 2 y así sucesivamente, por lo que lo primer que tenemos que hacer es restar 1 al valor asignado.</p></li>
+<li><p><strong>Recuerda!!!:</strong> El logaritmo de 0 es igual a Infinito, por lo tanto, sustituimos valores negativos (maldito bug) y el 0 por 0.01 antes de calcular su logaritmo.</p></li>
+</ul>
+<hr />
 <table>
 <thead>
 <tr class="header">
-<th align="right">Claro</th>
+<th align="right">Claridad</th>
 <th align="right">Asign</th>
 <th align="right">error_est</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.1</td>
-<td align="right">1.0</td>
-<td align="right">-0.9</td>
+<td align="right">0.01</td>
+<td align="right">0.406</td>
+<td align="right">-0.396</td>
 </tr>
 <tr class="even">
-<td align="right">1.0</td>
-<td align="right">1.8</td>
-<td align="right">-0.8</td>
+<td align="right">1.00</td>
+<td align="right">1.200</td>
+<td align="right">-0.200</td>
 </tr>
 <tr class="odd">
-<td align="right">2.0</td>
-<td align="right">3.6</td>
-<td align="right">-1.6</td>
+<td align="right">2.00</td>
+<td align="right">2.000</td>
+<td align="right">0.000</td>
 </tr>
 <tr class="even">
-<td align="right">3.0</td>
-<td align="right">4.2</td>
-<td align="right">-1.2</td>
+<td align="right">3.00</td>
+<td align="right">2.800</td>
+<td align="right">0.200</td>
 </tr>
 <tr class="odd">
-<td align="right">4.0</td>
-<td align="right">5.0</td>
-<td align="right">-1.0</td>
+<td align="right">4.00</td>
+<td align="right">3.200</td>
+<td align="right">0.800</td>
 </tr>
 <tr class="even">
-<td align="right">5.0</td>
-<td align="right">5.4</td>
-<td align="right">-0.4</td>
+<td align="right">5.00</td>
+<td align="right">4.000</td>
+<td align="right">1.000</td>
 </tr>
 <tr class="odd">
-<td align="right">6.0</td>
-<td align="right">6.4</td>
-<td align="right">-0.4</td>
+<td align="right">6.00</td>
+<td align="right">4.600</td>
+<td align="right">1.400</td>
 </tr>
 <tr class="even">
-<td align="right">7.0</td>
-<td align="right">7.8</td>
-<td align="right">-0.8</td>
+<td align="right">7.00</td>
+<td align="right">6.400</td>
+<td align="right">0.600</td>
 </tr>
 <tr class="odd">
-<td align="right">8.0</td>
-<td align="right">8.6</td>
-<td align="right">-0.6</td>
+<td align="right">8.00</td>
+<td align="right">6.400</td>
+<td align="right">1.600</td>
 </tr>
 <tr class="even">
-<td align="right">9.0</td>
-<td align="right">9.0</td>
-<td align="right">0.0</td>
+<td align="right">9.00</td>
+<td align="right">7.000</td>
+<td align="right">2.000</td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>lm_eqn &lt;- function(df){
-    m &lt;- lm(y ~ x, df);
-    eq &lt;- substitute(italic(y) == a + b %.% italic(x)*&quot;,&quot;~~italic(r)^2~&quot;=&quot;~r2, 
-         list(a = format(unname(coef(m)[1]), digits = 2),
-              b = format(unname(coef(m)[2]), digits = 2),
-             r2 = format(summary(m)$r.squared, digits = 3)))
-    as.character(as.expression(eq));
-}
-
-ggplot(Luminancia, aes(Claro, Asign)) +
-  geom_abline(linetype = 2) +
-  geom_point(size = 2) +
-  geom_line() +
-  stat_smooth(method = &quot;lm&quot;, linetype = 2, size = 1, alpha = 0.5) +
-  labs(x = &quot;Reflectancia real&quot;, y = &quot;Reflectancia asignada&quot;) + 
-  scale_x_continuous(labels = as.character(c(0, 25, 50, 75, 100, 125, 150, 175, 200, 225)),
-                     breaks = c(0.1, c(1:9))) + 
-  geom_text(x = 2, y = 7.5, label = lm_eqn(Luminancia %&gt;%
-                                             rename(y = Asign,
-                                                    x = Claro)), parse = TRUE)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(Luminancia, aes(factor(Claro), error_est)) +
-  geom_bar(stat=&quot;identity&quot;, alpha = 0.7, fill = &quot;gold&quot;) +
-  geom_hline(yintercept = 0, linetype = 2, color = &quot;red&quot;) +
-  labs(x = &quot;Reflectancia real&quot;, y = &quot;Error de estimación&quot;) + 
-  scale_x_discrete(labels = as.character(c(0, 25, 50, 75, 100, 125, 150, 175, 200, 225)),
-                     breaks = c(0.1, c(1:9)))</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<pre class="r"><code>lm_coef &lt;- coef(lm(data=Luminancia, log_Asign ~ log_Claro))
-
-
-ggplot(Luminancia, aes(Claro,Asign)) +
-  geom_abline(linetype = 2) +
-  geom_point(size = 2) +
-  geom_line() +
-  stat_smooth(method = &quot;lm&quot;, linetype = 2, size = 1, alpha = 0.5) +
-  labs(x = &quot;log(Reflectancia real)&quot;, y = &quot;log(Reflectancia asignada)&quot;) + 
-  scale_x_log10(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
-  scale_y_log10(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
-  geom_text(x = 0.0001, y = 0.9, label = (lm_log=lm_eqn(Luminancia %&gt;%
-                                             rename(y = log_Asign,
-                                                    x = log_Claro))), parse = TRUE)</code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p>¿Cómo se traducen estos exponenetes en la fórmula de Stevens?</p>
+<p><img src="pia_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="pia_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="pia_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p>¿Cómo se traducen estos exponentes en la fórmula de Stevens?</p>
 <p><span class="math inline">\(c = 10^{\beta_{0}}\)</span></p>
 <p><span class="math inline">\(n\)</span> = <span class="math inline">\(\beta_{1}\)</span></p>
 <p>En el caso anterior tendramos que:</p>
-<p><span class="math inline">\(S = 10^{0.37} * E^{0.46}\)</span></p>
+<p><span class="math inline">\(S = 10^{0.131} * E^{0.688}\)</span></p>
+<p>Si ahora calculamos a partir de la Ley de Stevens el brillo percibido predicho obtenemos la siguiente curva:</p>
+<p><img src="pia_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<hr />
 <p><strong>Para repasar:</strong></p>
-<p>-¿Cuál es el exponente del estímulo?</p>
-<p>-¿Qué tipo de curva de respuesta encajaría mejor con la respuesta a la luminancia en los bastones?</p>
-<pre class="r"><code>Predicted &lt;- data_frame(
-  x = c(0.1,c(1:9)),
-  y = 10^lm_coef[1] + x^lm_coef[2]
-)
-
-ggplot(Predicted, aes(x,y)) +
-  geom_line(color = &quot;gold&quot;) +
-  geom_point(size = 2) +
-  labs(x = &quot;Reflectancia real&quot;, y = &quot;Reflectancia asignada predicha&quot;) + 
-  scale_x_continuous(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
-  scale_y_continuous(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) </code></pre>
-<p><img src="pia_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<hr />
 </div>
 </div>
-<div id="ejercicios-para-resolver-en-clase-1" class="section level3">
-<h3>Ejercicios para resolver en clase:</h3>
+<div id="ejercicios-para-resolver-en-clase-1" class="section level2">
+<h2>Ejercicios para resolver en clase:</h2>
 <ul>
-<li><p>¿Qué forma describen la ley de Fechner? ¿y la de Stevens? ¿y la de Weber?</p></li>
+<li><p>¿Cuál es la forma de la correspondencia psicofísica que describe la ley de Fechner? ¿y la de Stevens?</p></li>
 <li><p>¿Qué método de estudio utiliza la psicofísica de Stevens?</p></li>
 <li><p>¿Con qué objetivo aparece la ley de Stevens?</p></li>
 <li><p>¿Por qué cada tipo de estimulación describe una curva diferente?</p></li>
-<li><p>¿Qué elemento en la ley de Stevens indica la relación entre estímulo y sensación?</p></li>
-<li><p>¿Qué diferencia hay entre claridad y reflectancia?</p></li>
-<li><p>¿Qué fotoreceptores son los principales encargados de su procesamiento?</p></li>
+<li><p>¿Qué elemento en la ley de Stevens indica la forma de la relación entre estímulo y sensación?</p></li>
+<li><p>¿Qué diferencia hay entre brillo y reflectancia?</p></li>
+<li><p>¿Qué fotoreceptores son los principales encargados del procesamiento de la luminanciao?</p></li>
+<li><p>¿Qué tipo de curva de respuesta encajaría mejor con la respuesta a la luminancia?</p></li>
+<li><p>¿Cómo sería su exponente en la ley de Stevens?</p></li>
 </ul>
 <p><br></p>
-</div>
 </div>
 </div>
 <div id="practica-4-precedencia-perceptiva-global-to-local" class="section level1">
@@ -1321,11 +1838,11 @@ ggplot(Predicted, aes(x,y)) +
 <div id="indice-de-objetivos" class="section level2">
 <h2>Índice de objetivos</h2>
 <ol style="list-style-type: decimal">
-<li>Mostrar la existencia de dos tipos de procesamiento cognitivo.</li>
+<li>Mostrar la existencia de dos tipos de procesamiento de la información:</li>
 </ol>
 <ul>
-<li><p>Según el procesamiento cognitivo: Top-down vs. Bottom-Up</p></li>
-<li><p>Según el reconocimiento de patrones: Global-Local vs. Local-Global</p></li>
+<li><p>Según la dirección del procesamiento cognitivo: Top-down vs. Bottom-Up</p></li>
+<li><p>Según la dirección del reconocimiento de patrones: Global-Local vs. Local-Global</p></li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Comprobar los resultados de la hipótesis de Navon (1977)</p></li>
@@ -1349,34 +1866,34 @@ ggplot(Predicted, aes(x,y)) +
 <div id="modelo-fisiologicista" class="section level3">
 <h3>Modelo fisiologicista</h3>
 <p>Modelo basado en las estudios de Hubel &amp; Wiesel en los cuales se postularía, que dado que el flujo de información va de lo local a lo global, lo lógico sería que se procese de forma primaria los elementos locales a los globales (<em>Local-to-Global</em>).</p>
-<div id="dificultadoes-del-modelo-fisiologicista" class="section level4">
-<h4>Dificultadoes del modelo fisiologicista</h4>
+<div id="dificultades-del-modelo-fisiologicista" class="section level4">
+<h4>Dificultades del modelo fisiologicista</h4>
+<p>Presenta problemas para explicar cómo somos capaces de reconocer estímulos globales como puede ser una cara a partir de estímulos de caracter local.</p>
 <figure>
 <p>
-<img src="pia/P4/Niro.png" width="350px">
+<img src="pia/P4/Niro.png" width="350px"><img src="pia/P4/Las_Drogas.png" width="350px">
 <figcaption>
-Presenta problemas para explicar cómo somos capaces de reconocer estímulos globales como puede ser una cara a partir de estímulos de caracter local.
 </figcaption>
 </figure>
+<p>De hecho, sería posible que para unas mismas características básicas, se activaran varios conceptos globales. En este modelo, podemos ver que si acitvamos los demonios básicos basados en “/” y “&quot;, se activarían tanto la”X&quot; como potencialmente la “A” o en menor medida la “R”.</p>
 <figure>
 <p>
 <img src="pia/P4/Pandemonium.png" width="350px">
 <figcaption>
-De hecho, sería posible que para unas mismas características básicas, se activaran varios conceptos globales. En este modelo, podemos ver que si acitvamos los demonios básicos basados en “/” y “&quot;, se activarían tanto la”X&quot; como potencialmente la “A” o en menor medida la “R”.
 </figcaption>
 </figure>
+<p>En este caso, dado que no se pueden identificar todos los elementos básicos de un elemento ocluido, sería imposible activar el elemento global.</p>
 <figure>
 <p>
 <img src="pia/P4/Oclusion.png" width="350px">
 <figcaption>
-En este caso, dado que no se pueden identificar todos los elementos básicos de un elemento ocluido, sería imposible activar el elemento global.
 </figcaption>
 </figure>
+<p>Sería incapaz de explicar cómo somos capaces de obtener la misma representacion de una letra a partir de elementos básicos diferentes. Además, sería muy costoso entrenar a un sistema para que aprenda todas las combinaciones posibles para crear un mismo elemento.</p>
 <figure>
 <p>
 <img src="pia/P4/Letter.png" width="350px">
 <figcaption>
-Sería incapaz de explicar cómo somos capaces de obtener la misma representacion de una letra a partir de elementos básicos diferentes. Además, sería muy costoso entrenar a un sistema para que aprenda todas las combinaciones posibles para crear un mismo elemento.
 </figcaption>
 </figure>
 </div>
@@ -1412,68 +1929,76 @@ El reconocimiento de una figura se puede basar en la forma global sin que se pue
 </figure>
 <p>El problema de esta perspectiva es que únicamente está describiendo el percepto o sensación que tiene el observador, pero sin embargo, no da una explicación estructurada a cómo se producen dentro de un sistema cognitivo esas <strong>leyes</strong>. Esto es importante, ya que dado que, <strong>dado que sólo se trata de una perspectiva descriptiva (y no explicativa) no puede dar lugar a hipótesis que puedan ser contrastadas mediante el método científico</strong>.</p>
 </div>
-<div id="experimento-de-navon" class="section level3">
-<h3>Experimento de Navon</h3>
-<p>Basándose en las perspectivas anteriores, <a href="https://doi.org/10.1016/0010-0285(77)90012-3">Navon (1977)</a> tenía como objetivo demostrar que los observadores son más rápido s ala hora de procesar y reconocer conscientemente papatrones globales dentro de una escena que los patrones locales e individuales que la componen. De esta manera, daba predominio a los procesos de tipo top-down, es decir, a la hipótesis de la precedencia global.</p>
-<p>La hipótesis de Navos se basa en que la percepcion de una configuración global de la escena precede a la percepción de lo local. De hecho, Navón predicjo que cuando existiese un conflicto entre lo local y lo global, la interferencia sólo debería afectar cuando la atención se dirige a reonocer el elemento local, mientras que no s vería afectada cuando la atención e dirige a lo global.</p>
-<p>En este sentido, Navon propuso que:</p>
+</div>
+<div id="parte-practica-experimento-de-navon" class="section level2">
+<h2>Parte práctica: Experimento de Navon</h2>
+<p>Basándose en las perspectivas anteriores, <a href="https://doi.org/10.1016/0010-0285(77)90012-3">Navon (1977)</a> tenía como objetivo demostrar que los observadores son más rápidos a la hora de procesar y reconocer conscientemente papatrones globales dentro de una escena que los patrones locales e individuales que la componen. De esta manera, daba predominio a los procesos de tipo top-down, es decir, a la hipótesis de la precedencia global.</p>
+<p>La hipótesis de Navos se basa en que la percepcion de una configuración global de la escena precede a la percepción de lo local. De hecho, Navón predijo que cuando existiese un conflicto entre lo local y lo global, la interferencia sólo debería afectar cuando la atención se dirige a reonocer el elemento local, mientras que no s vería afectada cuando la atención e dirige a lo global.</p>
+<p><strong>Pregunta:</strong>¿Cuál es la dirección de procesamiento predominante?: Local-to-Global o Global-to-Local</p>
+<p><strong>Hipótesis de Navon</strong></p>
 <ul>
 <li><p>El tiempo de respuesta sería mayor cuando el observador ha de reconocer el ele mento local y aún mayor cuando iene que reconocer el elemento local incongruente con el global.</p></li>
 <li><p>El número de errores sería mayor cuando el observador ha de reconocer el ele mento local y aún mayor cuando iene que reconocer el elemento local incongruente con el global.</p></li>
 </ul>
 <p>Para resumir, plantea que el rendimiento general de la tarea se deterioraría em la condición de conflicto entre lo local (atendido) y lo global (no atendido).</p>
-<p>Para realizar el experimento, tendréis que descargar el ejecuable que se encuentra en el campus virtual.</p>
-<div id="instrucciones" class="section level5">
-<h5>Instrucciones</h5>
-<p>El experimento está formado por 6 bloques de ensayos diferentes en los cuales, en algunos bloques se pregunta cuál es la figura Global, mientra que en otros bloques se pregunta cuál es la figura Local.</p>
+<div id="metodologia-3" class="section level3">
+<h3>Metodología</h3>
+<p><strong>Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 4 Navon Global-to-Local</strong></p>
+<p><strong>Instrucciones:</strong></p>
+<ul>
+<li>El experimento está formado por 6 bloques de ensayos diferentes en los cuales, en algunos bloques se pregunta cuál es la figura Global, mientra que en otros bloques se pregunta cuál es la figura Local.</li>
+</ul>
 <figure>
 <p>
 <img src="pia/P4/Navon_Global_Local.png" width="350px">
 <figcaption>
 </figcaption>
 </figure>
-<p>Para realizar el experimento, se debe poner énfasis tanto en no cometer errores como en la velocidad de respuesta. Para saber cómo se realiza el experimento, primero se realiza un entrenamiento consistente en 2 bloques de 8 ensayos.</p>
-<p>La tarea del participane consiste en atender a los elementos globales o locales y responder al elemento reconocido utilizando la tecla “H” o “S”.</p>
-<p>La metodología del experimento está compuesto de 2 VI y 2 VI:</p>
 <ul>
-<li><p>VI:</p>
+<li><p>Para realizar el experimento, se debe poner énfasis tanto en no cometer errores como en la velocidad de respuesta. Para saber cómo se realiza el experimento, primero se realiza un entrenamiento consistente en 2 bloques de 8 ensayos.</p></li>
+<li><p>La tarea del participante consiste en atender a los elementos globales o locales y responder al elemento reconocido utilizando la tecla “H” o “S”.</p></li>
+</ul>
+<figure>
+<p>
+<img src="pia/P4/Navon.png" width="350px">
+<figcaption>
+Ejemplo de cada uno de los estímulos mostrados
+</figcaption>
+</figure>
+<p><strong>Variables</strong></p>
+<ul>
+<li><p>Variables independientes (VI):</p>
 <ul>
 <li><p>Dirección de la atención (Global o Local)</p></li>
 <li><p>Consistencia / Inconsistencia de los elementos Locales-Globales</p></li>
 </ul></li>
-<li><p>VD:</p>
+<li><p>Variable dependiente (VD), aquella que manipula el observador:</p>
 <ul>
 <li><p>Tiempo de respuesta</p></li>
 <li><p>Tasa de errores</p></li>
 </ul></li>
 </ul>
-<p>En total tenemos 186 ensayos formados por 6 bloques <span class="math inline">\(*\)</span> 4 estímulos diferentes <span class="math inline">\(*\)</span> 7 repeticiones.</p>
-<figure>
-<p>
-<img src="pia/P4/Navon.png" width="350px">
-<figcaption>
-</figcaption>
-</figure>
+<span class="math display">\[\begin{equation}
+\label{trials_4}
+\ 6~bloques \times 4~estímulos~diferentes \times 7~repeticiones~ = ~186~ensayos~(trials) 
+\end{equation}\]</span>
 </div>
-<div id="resultados" class="section level5">
-<h5>Resultados</h5>
+<div id="resultados-3" class="section level3">
+<h3>Resultados</h3>
 <figure>
 <p>
-<img src="pia/P4/Results_Navon.png" width="350px">
+<img src="pia/P4/Results_Navon.png" height="400px">
 <figcaption>
-Los resultados muestran el efecto que esparaba Navon. En un primer lugar, el porcesamiento de los elementos locales es más lento que los elementos globales. Por otra aprte, este procesamiento se ve ralentizado aún más cuando existe una incongruencia entre ambos estímulos. Lo que indica una interacción debida a la incongruencia entre ambos.
 </figcaption>
 </figure>
+<p>Los resultados muestran el efecto que esparaba Navon. En un primer lugar, el porcesamiento de los elementos locales es más lento que los elementos globales. Por otra aprte, este procesamiento se ve ralentizado aún más cuando existe una incongruencia entre ambos estímulos. Lo que indica una interacción debida a la incongruencia entre ambos.</p>
 <figure>
 <p>
-<img src="pia/P4/Navon_TEA.png" width="350px">
+<img src="pia/P4/Navon_TEA.png" height="400px">
 <figcaption>
-Un resultado interesante es el obenido cuando realizamos este experimento en población TEA. En este caso, los resultados se invierten. El tiempo de reacción cuando se atiende a los elementos globales e inconsistentes.
 </figcaption>
 </figure>
-</div>
-<div id="conclusiones" class="section level5">
-<h5>Conclusiones</h5>
+<p>Por otra parte, se observan resultados interesantes cuando aplicamos este experimento en población TEA. En este caso, los resultados se invierten. El tiempo de reacción cuando se atiende a los elementos globales e inconsistentes.</p>
 <p>Navon llegó a las siguientes conlusiones:</p>
 <ol style="list-style-type: decimal">
 <li><p>Procesamos el bosque antes que los árboles, es decir, procesamos antes los elementos globales que los elementos locales.</p></li>
@@ -1482,8 +2007,8 @@ Un resultado interesante es el obenido cuando realizamos este experimento en pob
 <p>Cuando se realiza la prueba en estas condiciones, el procesamiento Gloval es inevitable e interfiere, consumiento recursos, con el procesamiento locla incongruente.</p>
 </div>
 </div>
-<div id="discusion" class="section level3">
-<h3>Discusión</h3>
+<div id="discusion" class="section level2">
+<h2>Discusión</h2>
 <p>Modelos posteriores intentan dar explicación a la razón por la cual los resultados de Navon se producen:</p>
 <ul>
 <li><p><a href="http://dx.doi.org/10.1037/0096-1523.6.2.222">Hoffman (1980)</a> propuso un modelo híbrido. Hoffman propuso que hay dos canales de procesamiento que operan en paralelo:</p>
@@ -1533,20 +2058,24 @@ Un resultado interesante es el obenido cuando realizamos este experimento en pob
 </ul>
 <figure>
 <p>
-<img src="pia/P4/Fink.png" width="350px">
+<img src="pia/P4/Fink.png" height="350px">
 <figcaption>
 </figcaption>
 </figure>
 </div>
-</div>
 <div id="preguntas-a-repasar" class="section level2">
 <h2>Preguntas a repasar</h2>
 <ul>
-<li><p>¿Qué dos líneas o corrientes de procesamiento se existen sore cómo se da el procesamiento cognitivo? ¿Qué diferencia a cada una de ellas?</p></li>
-<li><p>¿Qué dos líneas o corrientes de procesamiento se proponen de acuerdo al procesamiento de atributos perceptivos o rasgos del estímulo? ¿Qué diferencia hay entre cada una de ellas? ¿Cuáles son las principales evidencias y dificultades de cada corriente?</p></li>
-<li><p>¿Hay una dirección de procesamiento “privilegiada” según Navón?</p></li>
+<li><p>¿Qué dos líneas o corrientes de procesamiento existen según la dirección del procesamiento cognitivo? ¿Qué diferencia a cada una de ellas?</p></li>
+<li><p>¿Qué dos líneas o corrientes de procesamiento se proponen de acuerdo al procesamiento de atributos perceptivos o rasgos del estímulo?</p>
+<ul>
+<li><p>¿Qué diferencia hay entre cada una de ellas?</p></li>
+<li><p>¿Cuáles son las principales evidencias y dificultades de cada corriente?</p></li>
+</ul></li>
+<li><p>¿Hay una dirección de procesamiento “privilegiada” según Navon?</p></li>
 </ul>
-<p><strong>Para reflexionar:</strong></p>
+<hr />
+<p><strong>Para reflexionar más:</strong></p>
 <ul>
 <li><p>¿Es suficiente el procesamiento local-global o global-local para el reconocimiento?</p></li>
 <li><p>¿Qué función tiene la actividad del observador?</p></li>
@@ -1555,10 +2084,11 @@ Un resultado interesante es el obenido cuando realizamos este experimento en pob
 </ul>
 <figure>
 <p>
-<img src="pia/P4/Repasar.png" width="500px">
+<img src="pia/P4/Repasar.png" width="600px">
 <figcaption>
 </figcaption>
 </figure>
+<hr />
 <p><br></p>
 </div>
 </div>
@@ -1597,54 +2127,54 @@ Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr
 <li><p><strong>Hipótesis del acercamiento-retraimiento</strong> de <a href="https://doi.org/10.1111/1469-8986.00067">Davidson (2003)</a>: Según esta teoría el hemisferio iquierdo procesaría las emociones positivas mientras que el hemisferio derecho procesaría de forma principal las emociones negativas.</p></li>
 </ol>
 <p>Concretamente, <a href="https://scholar.google.es/scholar?cluster=1079682260296463766&amp;hl=es&amp;as_sdt=2005&amp;sciodt=0,5">Davidson (1995)</a> propuso una división del sistema emocional en tres subsistmeas o componentes:</p>
+<!--  
 <figure>
-<p>
-<img src="pia/P5/Sistema_limbico.png" width="350px">
-<figcaption>
+<p><img src="pia/P5/Sistema_limbico.png" width="350px">
+<figcaption> 
 </figcaption>
 </figure>
+-->
+<ol style="list-style-type: decimal">
+<li><strong>Experiencia emocional (experiencia que genera la emoción)</strong></li>
+</ol>
 <figure>
 <p>
 <img src="pia/P5/Experiencia.png" width="350px">
 <figcaption>
-<ol style="list-style-type: decimal">
-<li>Experiencia emocional (experiencia que genera la emoción)</li>
-</ol>
 </figcaption>
 </figure>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Expresión emocional (expresión emocional factor conductual esquelético)</strong></li>
+</ol>
 <figure>
 <p>
 <img src="pia/P5/Expresion.gif" width="350px">
 <figcaption>
-<ol start="2" style="list-style-type: decimal">
-<li>Expresión emocional (expresión emocional factor conductual esquelético)</li>
-</ol>
 </figcaption>
 </figure>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Percepción emocional (identificación de la propia emoción)</strong></li>
+</ol>
 <figure>
 <p>
 <img src="pia/P5/Percepcion.png" width="350px">
 <figcaption>
-<ol start="3" style="list-style-type: decimal">
-<li>Percepción emocional (identificación de la propia emoción)</li>
-</ol>
 </figcaption>
 </figure>
-<p>Un ejemplo en el que no somos capaces de llegar al tercer nivel sería cuando sentimos hambre y nos sentimos molestos por cualquier comentario. En este caso, nos sentimos molestos con las acciones de los demás porque no estamos atribuyendo nuestra emoción a la experiencia emocional original.</p>
-<p>En esta práctica, además de mostrar cómo diferentes emociones pueden dar lugar a diferentes criterios de respuesta utilizaremos una técnica basada en cómo se distribuye el sistema visual en la retina para poder acceder y estudiar el procesamiento de las emociones dentro del sistema neural.</p>
-<p>Para hacerlo, utilizaremos la técnica de campo visual dividido para explorar las asimetrías en la percepción. Esta técnica se basa en que cada campo visual se refeja en la hemirretina contralatera. De esta manera:</p>
+<p>Es posible que el procesamiento de una emoción no llegue hasta el tercer nivel. Un ejemplo de esto sería cuando nos sentimos molestos por tener hambre. En muchos casos, no somos conscientes de qué estímulo es el que nos está haciendo sentir a disgusto y nos podemos llegar a molestar por cualquier acontecimiento o comentario. En este caso, nos sentimos molestos con las acciones de los demás aunque no hayan hecho nada para molestarnos dado que estamos atibuyendo nuestro estado emocional a un evento externo y no a la experiencia emocional inicial, el hecho en sí de tener hambre.</p>
+<p>En esta práctica se pretende mostrar que la identificación de la emoción de un tercero es beneficiosa en tanto que ayuda a la planificación de la acción. Es importante entender que para que se pueda identificar una emoción, primero han de ser percibidos los rasgos faciales que indican esa emoción, por lo que la incidencia de éstos en un campo visual u otro afectarán a la velocidad de procesamiento de la misma. Para estudiar la asimetrías cerebrales en su análisis cognitivo, utilizaremos una técnica llamada <strong>técnica de campo visual dividido</strong>.</p>
+<p><strong>¿En qué consiste ésta técnica?</strong> Cuando miramos hacia un elemento en el entorno, la luz proviniente del campo visual derecho se refleja en la parte izquierda de la retina. Esta información a su vez es procesada por el hemisferio izquierdo y viceversa. De esta manera, podemos aprovechar esta asimetría en el sistema visual para controlar qué información se está procesando por cada hemisferio cerebral. De esta manera podemos estudiar existe una asimetría en la manera en la que el cerebro procesa los rasgos de expresiones faciales emocionales.</p>
 <figure>
 <p>
 <img src="pia/P5/Campos_Visuales.png" width="350px">
 <figcaption>
-El campo visual derecho se refleja en la hemiretina izquierda haciendo que se procese por el hemisferio izquierdo.Campo visual izqueirdo se refleja en la hemiretina derecha haciendo que se procese principalmente por el hemisferio derecho. NOTA: Es importante indicar que hay parte del espacio visual que sólo se refleja en una de las hemiretinas y por lo tanto sólo es porcesada pir un hemisferio. Espacios visuales laterales inferiores.
+El campo visual derecho se refleja en la hemiretina izquierda haciendo que se procese por el hemisferio izquierdo. El campo visual izquierdo se refleja en la hemiretina derecha haciendo que se procese principalmente por el hemisferio derecho. NOTA: Es importante indicar que hay parte del espacio visual que sólo se refleja en una de las hemiretinas y por lo tanto sólo es porcesada por un hemisferio como los espacios visuales laterales inferiores.
 </figcaption>
 </figure>
-</div>
-<div id="estudio-de-alves-n.-t.-fukusima-s.-s.-aznar-casanova-j.-a.-2008" class="section level2">
-<h2>Estudio de Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</h2>
-<p>Utilizando la técnica de campo visual dividido <a href="http://dx.doi.org/10.3922/j.psns.2008.1.010">Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</a> mostraron a los observadores imagenes con diferentes emociones dirigidas a ser procesadas por el hemisferio izquierdo o derecho preguntándose si habría un hemisferio que procese más rápidamente cada emoción.</p>
-<p>para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (estímulos positivos), caras enfadadas o tristes (estímulos negativos) o caras con expresión neutra (estímulo no-emocional).</p>
+<div id="estudio-de-alves-n.-t.-fukusima-s.-s.-aznar-casanova-j.-a.-2008" class="section level3">
+<h3>Estudio de Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</h3>
+<p>Utilizando la técnica de campo visual dividido <a href="http://dx.doi.org/10.3922/j.psns.2008.1.010">Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</a> mostraron a diferentes observadores una serie de imágenes mostrando rostros con expresiones emocionales a ambos lados de una pantalla. De esta manera, las expresiones emocionales eran dirigidas para ser procesadas por el hemisferio izquierdo o derecho preguntándose si habría un hemisferio que procese más rápidamente/eficazmente cada emoción.</p>
+<p>Para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (estímulos positivos), caras enfadadas o tristes (estímulos negativos) o caras con expresión neutra (estímulo no-emocional).</p>
 <ul>
 <li><p>Grupo 1 = target Felicidad (vs T, S, N, M)</p></li>
 <li><p>Grupo 2 = target Miedo (vs T, N, S, F)</p></li>
@@ -1652,11 +2182,11 @@ El campo visual derecho se refleja en la hemiretina izquierda haciendo que se pr
 <li><p>Grupo 4 = target Sorpresa (vs F, N, T, M)</p></li>
 <li><p>Grupo 5 = target Tristeza (vs F, N, M, S)</p></li>
 </ul>
+<p>Los participantes tenían que indicar el lado de la pantalla en la que se mostraba la emoción correspondiente al grupo al que se le había asignado. Es decir, si el participante pertenecía al primer grupo (target: alegría), debería seleccionar izquierda en el primer ensayo y derecha en el segundo ensayo.</p>
 <figure>
 <p>
 <img src="pia/P5/Trials_2008.png" width="350px">
 <figcaption>
-En el experimento se les pedía a los participantes indicar en qué posición de la pantalla se presenta la emoción indicada para cada grupo. Es decir, si el participane pertenecía al primer grupo (target: alegría), debería seleccionar izquierda en el primer ensayo y derecha en el segundo ensayo.
 </figcaption>
 </figure>
 <p>Los resultados en este experimento fueron los siguientes:</p>
@@ -1667,31 +2197,56 @@ En el experimento se les pedía a los participantes indicar en qué posición de
 Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio derecho
 </figcaption>
 </figure>
-<p><strong>Los resultados parecían dar soporte a la hipótesis del hemisferio derecho.</strong></p>
-<p>Los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Si bien, los resultados con rostros neutros sugieren que los datos parecen dar mayor apoyo empírico a la hipótesis del HD . Los autores proponen que se profundice en la naturaleza de los estímulos (por ejem., estáticos / dinámicos), ya que el patrón de resultados no es inequívoco.</p>
+<p>Sin embargo, los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Si bien, los resultados con rostros neutros sugieren mayor apoyo empírico a la hipótesis del HD.</p>
+<hr />
+<p><strong>Para pensar:</strong> ¿Por qué el hecho de que los resultados de los rostros neutros muestren diferencias significativas aportan soporte parcial a la hipótesis del HD? <!--In other words, their better performance for perceiving neutral expressions in the right visual field might be a result of the right hemisphere’s advantage for perceiving emotions in the left visual field, irrespectively of their category (hapiness, fear, surprise and sadness)--> —</p>
+<p>Los autores proponen que se profundice en la naturaleza de los estímulos (por ejem., estáticos / dinámicos), ya que el patrón de resultados da lugar a interpretaciones.</p>
 </div>
-<div id="practica-5-percepcion-de-expresiones-emocionales-1" class="section level2">
+</div>
+<div id="P5" class="section level2">
 <h2>Práctica 5: Percepción de expresiones emocionales</h2>
-<p>Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resutlados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento (que podéis encontrar, como siempre, en el campus virtual) con caricaturas que relfejan diferentes expresiones emocionales.</p>
+<p><strong>Pregunta experimental:</strong> Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resutlados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento con caricaturas que reflejan diferentes expresiones emocionales de una manera esquemática.</p>
+<p><strong>Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 5 Percepción de expresiones emocionales</strong></p>
+<p><strong>Hipótesis: </strong> No tenemos una dirección de hipótesis fija. Se trata de un estudio exploratorio para ver si los datos arrojan soporte a la hipótesis del acercamiento-retraimiento o a la hipótesis del hemisferio derecho.</p>
+<div id="metodologia-4" class="section level3">
+<h3>Metodología</h3>
+<p><strong>Estímulos:</strong> Se utilizarán caricaturas mostrando con las siguientes expresiones emocionales: Neutral, Felicidad, Tristeza, Miedo y Sorpresa.</p>
 <figure>
 <p>
 <img src="pia/P5/P5.png" width="350px">
 <figcaption>
 </figcaption>
 </figure>
-<p>El método será parecido al del experimento anterior. En concreto, tenéis 3 ejecutales distintos en los que tendréis que atender y buscar expresiones de “Felicidad”, “Tristeza” o “Neutras”.</p>
+<p><strong>Instrucciones:</strong> El método será parecido al del experimento anterior. En concreto, tenéis 3 ejecutables distintos en los que tendréis que atender y buscar expresiones de “Felicidad”, “Tristeza” o “Neutras” dependiendo del ejecutable en el que os encontréis.</p>
 <ul>
 <li><p>Grupo 1 = target Felicidad (vs T, N, M)</p></li>
 <li><p>Grupo 2 = target Tristeza (vs N, S, F)</p></li>
 <li><p>Grupo 3 = target Neutra (vs T, M, S, F)</p></li>
 </ul>
-<p>Las variables independientes son el grupo asignado (emoción target) y la emoción distractora. Las variables dependientes serán el tiempo de rección y la tasa de errores.</p>
+<p>La tearea es la siguiente, si nos encontramos en el grupo 1 (Felicidad), tendremos que indicar en qué lado de la pantalla se encuentra la caricatura que muestra esa emoción intentando no prestar atención a la caricatura del lado opuesto.</p>
 <figure>
 <p>
 <img src="pia/P5/Trials_P5.png" width="350px">
 <figcaption>
 </figcaption>
 </figure>
+<p><strong>Variables</strong></p>
+<ul>
+<li><p>Variables independientes (VI):</p>
+<ul>
+<li><p>Grupo asignado.</p></li>
+<li><p>Emoción distractora.</p></li>
+<li><p>Posición de la emoción target.</p></li>
+</ul></li>
+<li><p>Variable dependiente (VD), aquella que manipula el observador:</p>
+<ul>
+<li><p>Tiempo de reaccción.</p></li>
+<li><p>Tasa de errores.</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="resultados-4" class="section level3">
+<h3>Resultados</h3>
 <p>Los resultados obtenidos “en general” serán los siguientes:</p>
 <ul>
 <li><p>Si observamos los RTs:</p>
@@ -1721,14 +2276,27 @@ Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio der
 </figcaption>
 </figure>
 </div>
-<div id="discusion-1" class="section level2">
-<h2>Discusión</h2>
+<div id="discusion-1" class="section level3">
+<h3>Discusión</h3>
 <p>Los resultados con caricaturas muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Mientras que los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD.</p>
-<p><strong>¿Por qué puede ocurrir esto?</strong></p>
+<hr />
+<p><strong>Para pensar más:</strong></p>
+<ul>
+<li><p>¿Por qué puede ocurrir esto?</p></li>
+<li><p>¿Se te ocurre algún otro experimento que pudiera ser interesante de realizar utilizando la técnica de Campo Visual Dividido?</p></li>
+<li><p>¿Hay alguna zona del campo visual que sólo sea procesada por un hemisferio?</p></li>
+</ul>
 <p><br></p>
 </div>
 </div>
+</div>
 
+<html>
+<footer role="contentinfo" id="site-footer">
+<small><p class="copyright">&#169; 2019,
+		This webpage was created using <a href="http://www.r-project.org">R</a> with <a href="http://rmarkdown.rstudio.com">RMarkdown</a> and hosted on <a href="http://github.com">Github</a> by Borja Aguado and based on <a href="https://github.com/jules32/rmarkdown-website-tutorial"> jules32/rmarkdown-website-tutorial</a> project. </small></p>
+</footer>
+</html>
 <style>
     /* Bump the main content to make room for the fixed menu */
     .main-container {
@@ -1879,12 +2447,6 @@ Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio der
   // Create a nav list menu and insert it as the first child of the document body
   document.body.insertBefore(createSectionList(maxHeadingLevel), document.body.firstChild);
 </script>
-<html>
-<footer role="contentinfo" id="site-footer">
-<small><p class="copyright">&#169; 2019,
-		This webpage was created using <a href="http://www.r-project.org">R</a> with <a href="http://rmarkdown.rstudio.com">RMarkdown</a> and hosted on <a href="http://github.com">Github</a> by Borja Aguado and based on <a href="https://github.com/jules32/rmarkdown-website-tutorial"> jules32/rmarkdown-website-tutorial</a> project. </small></p>
-</footer>
-</html>
 
 
 </div>

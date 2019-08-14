@@ -314,43 +314,14 @@ $(document).ready(function () {
 \label{Weber_Fechner}
 \ S = K * log(E) 
 \end{equation}\]</span>
-<p>Sin embargo, hay situaciones en las que esta relación no se sigue. Reflexionando sobre esto, Stevens se preguntó si podría existir alguna forma de generalizar la relación entre la estimulación y la sensación producida para estimulaciones que no se relacionan de forma logarítmica como había propuesto Fechner.</p>
-<p>Esto es importante porque el hecho de que ni todos los tipos de estimualciones tengan una correspondencia psicofísica puede tener un efecto capital en la supervivencia de un organismo. Vamos a poner dos ejemplos clásicos diferentes:</p>
+<p>Según Fechner había propuesto esta ley psicofísica, daba a entender que la relación entre estimulación y sensación sólo podía ser de tipo logrtítmica. Sin embargo, hay situaciones en las que este tipo de relación no se sigue. Esto es importante porque el hecho de que no todos los tipos de estimualciones tengan una correspondencia psicofísica puede tener un efecto capital en la supervivencia de un organismo. Vamos a poner dos ejemplos clásicos diferentes:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Efecto de una presión sobre la piel:</strong> Es el tipo de correspondencia psicofísica cllásica que se comporta con una correspondencia exponencial. Si aplicamos sobre la piel una estimulación muy baja, la reacción será muy pequeÃ±a y probablemente sólo notaremos cosquillas. Sin embargo, tan pronto como aplicamos un poco más de presión sobre la misma podemos obtene una respuesta de dolor muy alta.</p></li>
-<li><p><strong>Efecto de iluminación:</strong> Es un tipo de correspondencia clásica de tipo logarítmico. En este caso, un nivel de iluminación muy baja en la retina dará una sensación suficinte de iluminación como para poder ver. Sin embargo, una estimulación muy alta no traerá consigo un cambio en la sensación correlativo. En su lugar, se produce una adaptación del sistema a niveles altos de luminancia haciendo que cambios muy grandes en iluminación se perciban como un cambio muy pequeÃ±o en brillo.</p></li>
+<li><p><strong>Efecto de la presión sobre la piel:</strong> Es el tipo de correspondencia psicofísica que se comporta con una correspondencia exponencial. Si aplicamos sobre la piel una estimulación muy baja, la reacción será muy pequeña y probablemente sólo notaremos cosquillas. Sin embargo, tan pronto como aplicamos un poco más de presión sobre la misma podemos obtener una respuesta de dolor muy alta.</p></li>
+<li><p><strong>Efecto de iluminación:</strong> Es un tipo de correspondencia clásica de tipo logarítmico. En este caso, un nivel de iluminación muy baja en la retina dará una sensación suficiente de iluminación como para poder percibir nuestro entorno sin mayor problema. Sin embargo, una estimulación muy alta no traerá consigo un cambio en la sensación correlativo. En su lugar, se produce una adaptación del sistema a niveles altos de luminancia haciendo que cambios muy grandes en iluminación se perciban como un cambio muy pequeño en brillo.</p></li>
 </ol>
-<pre class="r"><code>##### Relaciones funcionales
-Functions &lt;- data_frame(
-  E = c(0.1,seq(5,50,by=5)),
-  S_lineal = 0.5*E,
-  S_log = log(10)*E^0.5,
-  S_exp = 0.1*E^1.5
-)
-
-
-
-names &lt;- c(
-  `S_exp` = &quot;Exponencial&quot;,
-  `S_lineal` = &quot;Lineal&quot;,
-  `S_log` = &quot;Logarítmica&quot;
-)
-
-Functions %&gt;%
-  gather(id,value,S_lineal:S_exp) %&gt;%
-  ggplot(.,aes(E,value,group=id, color = id)) +
-  # geom_abline(linetype = 2, ) + 
-  geom_line(size = 1.5 ) +
-  geom_point(color=&quot;black&quot;) + 
-  #facet_wrap(~id, scales = &quot;free&quot;, labeller = as_labeller(names)) +
-  guides(fill = FALSE) +
-  scale_x_continuous(breaks = round(Functions$E,0)) +
-  scale_color_discrete(labels = c(&quot;k &gt; 1&quot;,&quot;k = 1&quot;, &quot;k &lt; 1&quot;), name = NULL) +
-  labs(x = &quot;Estimulación física&quot;, y = &quot;Sensación&quot;) +
-  theme_minimal(20) +
-  theme(panel.grid.minor = element_blank())</code></pre>
+<p>Reflexionando sobre esto, Stevens se preguntó si podría existir alguna forma de generalizar la relación entre la estimulación y la sensación producida de tal manera que en una misma ecuación se recogieran relaciones lineales, logarítmicas o exponenciales.</p>
 <p><img src="P3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>Para poder generalizar cómo funciona nuestro sistema perceptivo, Stevens describió la conocida como <strong>Ley de Stevens</strong></p>
+<p>Esta generalización de correspondencias psicofísicas pasó a llamarse <strong>Ley de Stevens</strong>.</p>
 <span class="math display">\[\begin{equation}
 \label{Stevens}
 \ S = c * E^{k} 
@@ -361,7 +332,7 @@ Functions %&gt;%
 <li><p>k = 1: Incremento lineal</p></li>
 <li><p>k &lt; 1: Incremento compresivo</p></li>
 </ul>
-<p>Por su parte, la <strong>c</strong> sería una constante que describiría la sensación en ausencia de estimulación. Sin embargo, este tipo de curvas son dificiles de analizar. Por eso es importante cómo está formulada la ley de Stevens. Si aplicamos una transofrmación log-log, es decir, aplicamos logaritmos a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas de la ley de Stevens dando la siguiente igualdad:</p>
+<p>Por su parte, la <strong>c</strong> sería una constante que describiría la sensación en ausencia de estimulación. El problema con estas curvas es que son difíciles de analizar. Por eso es importante cómo está formulada la ley de Stevens. Si aplicamos una transofrmación log-log, es decir, aplicamos logaritmos a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas de la ley de Stevens dando la siguiente igualdad:</p>
 <span class="math display">\[\begin{equation}
 \label{Log_Log_Stevens}
 \ log(S) = log(c) * n * log(E)
@@ -379,13 +350,21 @@ Functions %&gt;%
   theme_minimal(20) +
   theme(panel.grid.minor = element_blank())</code></pre>
 <p><img src="P3_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>Para demostrar cómo se estudia la percepción, en este caso, de la claridad, realizaremos un pequeño experimento que podréis encontrar en el campus virtual de la asignatura.</p>
+<p>Para utilizar la ley de Stevens y la ley de Weber-Fechner, realizaremos un pequeño experimento que podréis encontrar en el campus virtual de la asignatura.</p>
+</div>
+<div id="P3" class="section level2">
+<h2>Parte práctica: Estimación de la Claridad (psicofísica de Stevens)</h2>
 <div id="pregunta" class="section level3">
 <h3>Pregunta:</h3>
 <ul>
 <li><p>¿Cuál es la exactitud en nuestras estimaciones de claridad? Es decir, ¿cómo es nuestra habilidad para juzgar la reflectancia?</p></li>
 <li><p>Esto nos indicará qué ajuste tienen los sensores de la reflectancia, es decir, los bastones con las estimulación física.</p></li>
 </ul>
+<p><strong>Hipótesis:</strong></p>
+<p>En esta Práctica no pretendemos verificar ninguna hipótesis. No hay hipótesis experimental. Nuestro objetivo se centra en la construcción de una escala de percepción de la claridad, haciendo uso de uno de los métodos directos propuestos por S.S. Stevens.</p>
+<div id="metodologia" class="section level4">
+<h4>Metodología</h4>
+<p><strong>Estímulos:</strong> A modo de referencia inicial, se muestran las imágenes de 10 niveles de claridad (0-225) en una imagen.</p>
 <figure>
 <p>
 <img src="pia/P3/Claridad_Stimuli.png" width="350px">
@@ -393,18 +372,52 @@ Functions %&gt;%
 En esta imagen podemos encontrar el set de estímulos que utilizareoms en el experimento. Son imágenes de 10 niveles de claridad del 0 al 255. Las instrucciones del experimento son las siguientes: El experimento consiste en la presentación de estos cuadros de diferentes niveles de claaridad. Los particpantes han de asignar un número comprendido entre 0-9 en una escala de claridad.
 </figcaption>
 </figure>
-<p><strong>Para pensar:</strong></p>
+<p><strong>Instrucciones:</strong> El experimento consiste en la presentación de una serie de cuadros de diferente claridad en la zona central de la pantalla, a los que debes asignar un Número comprendido entre 0‑9 (Escala de claridad).</p>
+<figure>
+<p>
+<img src="pia/P3/Claridad_Example.png" width="350px">
+<figcaption>
+</figcaption>
+</figure>
+<p>–</p>
+<p><strong>Para pensar:</strong> ¿Por qué no debemos realizar el experimento utilizando un fondo gris? ¿De qué color debería ser el fondo para realizarlo en las condiciones más óptimas?</p>
 <figure>
 <p>
 <img src="pia/P3/Claridad_Pregunta.PNG" width="350px">
 <figcaption>
-¿Por qué no debemos realizar el experimento utilizando un fondo gris? ¿De qué color debería ser el fondo para realizarlo en las condiciones más óptimas?
 </figcaption>
 </figure>
-<div id="metodologia" class="section level4">
-<h4>Metodología</h4>
+<hr />
+<p><strong>Variables</strong></p>
+<ul>
+<li><p>Variables independientes (VI):</p>
+<ul>
+<li>Reflectancia (0, 25, 50, 75, 100, 125, 150, 175, 200, 225)</li>
+</ul></li>
+<li><p>Variable dependiente (VD), aquella que manipula el observador:</p>
+<ul>
+<li>Valor asignado (Claridad percibida).</li>
+</ul></li>
+</ul>
+<p>En total tendremos 50 ensayos:</p>
+<span class="math display">\[\begin{equation}
+\label{trials_p2a}
+\ 10~reflectancias \times 5~repeticiones = 50~ensayos~(trials) 
+\end{equation}\]</span>
+<p>Como no somos procesadores de información infalibles y nuestra respuesta tiene cierta variabilidad o error, hemos de realizar cada combinación de condiciones varias veces. En este caso, para que el experimento sea corto hemos introducido únicamente 3 repeticiones. Por lo tanto: 4 matices * 10 luminancias del estímulo cromático * 3 repeticiones dan un total de 120 ensayos o trials.</p>
+<span class="math display">\[\begin{equation}
+\label{HK_1}
+\ Brillo_{Crom} = Brillo_{Acrom} 
+\end{equation}\]</span>
+<ul>
+<li>La luminancia del estímulo acromático será mayor que la del estímulo cromático:</li>
+</ul>
+<span class="math display">\[\begin{equation}
+\label{HK_2}
+\ Lum_{Crom} &lt; Lum_{Acrom} 
+\end{equation}\]</span>
 <pre class="r"><code>##### Leemos los datos de nuestro experimento
-Luminancia &lt;- read.table(&quot;./pia/P3/Ant.txt&quot;, header = T)
+Luminancia &lt;- read.table(&quot;./pia/P3/Dades_claridad.txt&quot;, header = T, skip = 3)
 
 Luminancia &lt;- Luminancia %&gt;%
   mutate(Claro = ifelse(Claro == 0, 0.1, Claro),
@@ -433,48 +446,48 @@ kable(Luminancia %&gt;% select(-log_Claro,-log_Asign))</code></pre>
 </tr>
 <tr class="even">
 <td align="right">1.0</td>
-<td align="right">1.8</td>
-<td align="right">-0.8</td>
+<td align="right">2.0</td>
+<td align="right">-1.0</td>
 </tr>
 <tr class="odd">
 <td align="right">2.0</td>
-<td align="right">3.6</td>
-<td align="right">-1.6</td>
+<td align="right">2.8</td>
+<td align="right">-0.8</td>
 </tr>
 <tr class="even">
 <td align="right">3.0</td>
-<td align="right">4.2</td>
-<td align="right">-1.2</td>
+<td align="right">3.2</td>
+<td align="right">-0.2</td>
 </tr>
 <tr class="odd">
 <td align="right">4.0</td>
-<td align="right">5.0</td>
-<td align="right">-1.0</td>
+<td align="right">3.8</td>
+<td align="right">0.2</td>
 </tr>
 <tr class="even">
 <td align="right">5.0</td>
-<td align="right">5.4</td>
-<td align="right">-0.4</td>
+<td align="right">4.6</td>
+<td align="right">0.4</td>
 </tr>
 <tr class="odd">
 <td align="right">6.0</td>
-<td align="right">6.4</td>
-<td align="right">-0.4</td>
+<td align="right">5.0</td>
+<td align="right">1.0</td>
 </tr>
 <tr class="even">
 <td align="right">7.0</td>
-<td align="right">7.8</td>
-<td align="right">-0.8</td>
+<td align="right">6.4</td>
+<td align="right">0.6</td>
 </tr>
 <tr class="odd">
 <td align="right">8.0</td>
-<td align="right">8.6</td>
-<td align="right">-0.6</td>
+<td align="right">7.8</td>
+<td align="right">0.2</td>
 </tr>
 <tr class="even">
 <td align="right">9.0</td>
-<td align="right">9.0</td>
-<td align="right">0.0</td>
+<td align="right">8.6</td>
+<td align="right">0.4</td>
 </tr>
 </tbody>
 </table>
@@ -521,14 +534,16 @@ ggplot(Luminancia, aes(Claro,Asign)) +
                                              rename(y = log_Asign,
                                                     x = log_Claro))), parse = TRUE)</code></pre>
 <p><img src="P3_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>¿Cómo se traducen estos exponenetes en la fórmula de Stevens?</p>
+<p>¿Cómo se traducen estos exponentes en la fórmula de Stevens?</p>
 <p><span class="math inline">\(c = 10^{\beta_{0}}\)</span></p>
 <p><span class="math inline">\(n\)</span> = <span class="math inline">\(\beta_{1}\)</span></p>
 <p>En el caso anterior tendramos que:</p>
 <p><span class="math inline">\(S = 10^{0.37} * E^{0.46}\)</span></p>
+<hr />
 <p><strong>Para repasar:</strong></p>
 <p>-¿Cuál es el exponente del estímulo?</p>
 <p>-¿Qué tipo de curva de respuesta encajaría mejor con la respuesta a la luminancia en los bastones?</p>
+<hr />
 <pre class="r"><code>Predicted &lt;- data_frame(
   x = c(0.1,c(1:9)),
   y = 10^lm_coef[1] + x^lm_coef[2]
@@ -546,7 +561,7 @@ ggplot(Predicted, aes(x,y)) +
 <div id="ejercicios-para-resolver-en-clase" class="section level3">
 <h3>Ejercicios para resolver en clase:</h3>
 <ul>
-<li><p>¿Qué forma describen la ley de Fechner? ¿y la de Stevens? ¿y la de Weber?</p></li>
+<li><p>¿Cuál es la forma de la correspondencia psicofísica que describe la ley de Fechner? ¿y la de Stevens?</p></li>
 <li><p>¿Qué método de estudio utiliza la psicofísica de Stevens?</p></li>
 <li><p>¿Con qué objetivo aparece la ley de Stevens?</p></li>
 <li><p>¿Por qué cada tipo de estimulación describe una curva diferente?</p></li>
