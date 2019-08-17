@@ -36,15 +36,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Índice de objetivos
 
-  - Comprobar si existen diferencias interhemisféricas (asimetrías cerebrales) en el procesamiento de emociones, a partir de técnicas psicofísicas (no invasivas)
+  - Comprobar si existen diferencias interhemisféricas (asimetrías cerebrales) en el procesamiento de emociones. 
+  
+  - Introducir la técnica de campo visual dividido.  
   
   - Intentar replicar el estudio de Alves, Aznar-Casanova & Fukusima (2008) con rostros esquemáticos. 
 
 ## Introducción
 
-Durante el transcurso de estas clases, ya hemos visto cómo el ser humano es capaz de acceder a diferente rasgos o caracterñisticas de un sistema visual de manera bastante eficiente. Aunque hasta ahora nos hemos centrado en niveles perceptivos más bajos como podrían ser luminancia, contraste, co-colinealidad, o patrones sencillos como son letras, el procesamiento de estímulos visuales complejos como puede ser un rostro es importante para entender cómo interactuamos con estímulos más válidos ecológicamente con los que nos encontramos en nuestro día a día. 
+Durante el transcurso de estas clases, ya hemos visto cómo el ser humano es capaz de acceder a diferente rasgos o características que definen un estímulo de manera bastante eficiente. Aunque hasta ahora nos hemos centrado en elementos como podrían ser la luminancia, contraste, co-colinealidad, o patrones sencillos como son letras, el procesamiento de estímulos visuales tan complejos como las expresiones emocionales es importante para estudiar nuestra interacción diaria. 
 
-En nuestra vida social nos encontramos con unos estímulos complejos como son los rostros. Continuamente estamos haciendo inferencias sobre rasgos presentes en estos rostros, y aunque normalmente son acertadas, pueden tener una gran influencia sobre nuestro comportamiento. Por ejemplo...
+Las expresiones emocionales son patrones estimulares complejos. Concretamente, identificar las expresiones emocionales de rostros son determinantes para nuestra supervivencia en sociedad. Continuamente nos encontramos realizando inferencias sobre los rasgos presentes en tales rostros y modificnado nuestra conducta para poder adaptarnos a la situación. por ejemplo....
 
 <figure>
 <p><img src="./pia/P5/ruby_rose.jpg" width="350px">
@@ -52,7 +54,7 @@ En nuestra vida social nos encontramos con unos estímulos complejos como son lo
 </figcaption>
 </figure>
 
-Desde el punto de vista de la congnición social, se ha estudiado cómo tanto seres humanos como primates indentifican y reconocer las expresiones faciles de los otros. Según [Ekman (1992); pág. 171](https://doi.org/10.1080/02699939208411068), la función primaria de las emociones sería la de movilizar a un organismo a realizar ciertas acciones para conseguir un objetivo dentro de su vida social. En su estudio de las emociones, Ekman propuso que había una serie de emociones básicas compartidas entre todas las civilizaciones humanas: ira, miedo, asco, sorpresa, alegría y tristeza. Dado que diferentes emociones dan lugar a diferentes probablidades de que se manifieste una conducta posterior, obtener una rápida identificación por parte de un observador externo de la expresión emocional (se sabe que se produce alrededor de los 100ms.) es de gran utilidad evolutiva para adaptarse al futuro comportamiento de los otros.  
+Desde el punto de vista de la congnición social, se ha estudiado cómo tanto seres humanos como primates identifican las expresiones faciales de los otros. Según [Ekman (1992); pág. 171](https://doi.org/10.1080/02699939208411068), la función primaria de las emociones propias sería la de movilizar a un organismo a realizar ciertas acciones para conseguir un objetivo dentro de su vida social. En su estudio de las emociones, Ekman propuso que había una serie de emociones básicas compartidas entre todas las civilizaciones humanas: ira, miedo, asco, sorpresa, alegría y tristeza. Dado que diferentes emociones dan lugar a diferentes probablidades de que se manifieste una conducta posterior, ser capaz de identificar de forma rápida la expresión facial de una persona potencialmente hostil (se sabe que se produce alrededor de los 100ms.) sería de gran utilidad adaptativa. 
 
 <figure>
 <p><img src="./pia/P5/Faces.png" width="350px">
@@ -60,7 +62,7 @@ Desde el punto de vista de la congnición social, se ha estudiado cómo tanto se
 </figcaption>
 </figure>
 
-Pero, ¿por qué es importante esto dentro de la sub-asignatura de "Percepción Visual"? [Forgas y Bower (1987)](10.1037//0022-3514.53.1.53) estudiaron el efecto que tienen las emociones dentro del procesamiento cognitivo. Al hacer esto encontraron que cuando cambiaba el componente emocional de un observador, cambiaban factores cognitivos de respuesta (criterio de decisión) a experimentos psicofísicos, sin embargo, no pudieron encontrar diferncias en el componente sensorial (detectabilidad o discriminabilidad). ¿Recuerdas la práctica 2?
+Pero, ¿por qué es importante esto dentro de la sub-asignatura de "Percepción Visual"? [Forgas y Bower (1987)](10.1037//0022-3514.53.1.53) estudiaron el efecto que tienen las emociones dentro del procesamiento cognitivo. Al hacer esto encontraron que cuando cambiaba el componente emocional de un observador, cambiaban factores cognitivos de respuesta (criterio de decisión) a experimentos psicofísicos, sin embargo, no pudieron encontrar diferencias en el componente sensorial (detectabilidad o discriminabilidad). Es decir, que aunque sensorialmente funcionaban igual de bien (eran igual de buenos en detectar o de discriminar estímulos), sus respuestas eran moduladas por la emoción sentida o identificada en otros. 
 
 Actualmente podemos decir que existen dos perspectivas distintas en cuanto a cuáles son las bases neurales del procesamiento de las emociones:
 
@@ -69,7 +71,7 @@ Actualmente podemos decir que existen dos perspectivas distintas en cuanto a cu�
   2. **Hipótesis del acercamiento-retraimiento** de [Davidson (2003)](https://doi.org/10.1111/1469-8986.00067): Según esta teoría el hemisferio iquierdo procesaría las emociones positivas mientras que el hemisferio derecho procesaría de forma principal las emociones negativas. 
 
 
-Concretamente, [Davidson (1995)](https://scholar.google.es/scholar?cluster=1079682260296463766&hl=es&as_sdt=2005&sciodt=0,5) propuso una división del sistema emocional en tres subsistmeas o componentes:
+Desde el punto de vista funcional, [Davidson (1995)](https://scholar.google.es/scholar?cluster=1079682260296463766&hl=es&as_sdt=2005&sciodt=0,5) propuso una división del sistema emocional en tres subsistemas o componentes:
 
 
 <!--  
@@ -81,7 +83,7 @@ Concretamente, [Davidson (1995)](https://scholar.google.es/scholar?cluster=10796
 -->
 
 
-  1. **Experiencia emocional (experiencia que genera la emoción)**
+  1. **Experiencia emocional (experiencia externa/interna que genera la emoción)**
   
 <figure>
 <p><img src="./pia/P5/Experiencia.png" width="350px">
@@ -89,7 +91,7 @@ Concretamente, [Davidson (1995)](https://scholar.google.es/scholar?cluster=10796
 </figcaption>
 </figure>
   
-  2. **Expresión emocional (expresión emocional factor conductual esquelético)**
+  2. **Expresión emocional (factor conductual en el sentido más amplio de la palabra)**
 
 <figure>
 <p><img src="./pia/P5/Expresion.gif" width="350px">
@@ -97,7 +99,7 @@ Concretamente, [Davidson (1995)](https://scholar.google.es/scholar?cluster=10796
 </figcaption>
 </figure>
 
-  3. **Percepción emocional (identificación de la propia emoción)**
+  3. **Percepción emocional (identificación de la propia emoción, metacognición de la emoción)**
 
 <figure>
 <p><img src="./pia/P5/Percepcion.png" width="350px">
@@ -105,12 +107,15 @@ Concretamente, [Davidson (1995)](https://scholar.google.es/scholar?cluster=10796
 </figcaption>
 </figure>
 
+---
 
-Es posible que el procesamiento de una emoción no llegue hasta el tercer nivel. Un ejemplo de esto sería cuando nos sentimos molestos por tener hambre. En muchos casos, no somos conscientes de qué estímulo es el que nos está haciendo sentir a disgusto y nos podemos llegar a molestar por cualquier acontecimiento o comentario. En este caso, nos sentimos molestos con las acciones de los demás aunque no hayan hecho nada para molestarnos dado que estamos atibuyendo nuestro estado emocional a un evento externo y no a la experiencia emocional inicial, el hecho en sí de tener hambre.  
+**Para reflexionar:** ¿Es siempre directamente accesible la percepción emocional? No. Por ejemplo, cuando nos sentimos molestos por tener hambre. A todos nos habrá ocurrido que en caso de hambre nos sentimos molestos, sin embargo, no somos conscientes de por qué nos sentimos así. Esto hace que atrubyamos nuestra molestia a cualquier evento/persona externa. 
 
-En esta práctica se pretende mostrar que la identificación de la emoción de un tercero es beneficiosa en tanto que ayuda a la planificación de la acción. Es importante entender que para que se pueda identificar una emoción, primero han de ser percibidos los rasgos faciales que indican esa emoción, por lo que la incidencia de éstos en un campo visual u otro afectarán a la velocidad de procesamiento de la misma. Para estudiar la asimetrías cerebrales en su análisis cognitivo, utilizaremos una técnica llamada **técnica de campo visual dividido**. 
+---
 
-**¿En qué consiste ésta técnica?** Cuando miramos hacia un elemento en el entorno, la luz proviniente del campo visual derecho se refleja en la parte izquierda de la retina. Esta información a su vez es procesada por el hemisferio izquierdo y viceversa. De esta manera, podemos aprovechar esta asimetría en el sistema visual para controlar qué información se está procesando por cada hemisferio cerebral. De esta manera podemos estudiar existe una asimetría en la manera en la que el cerebro procesa los rasgos de expresiones faciales emocionales. 
+En esta práctica se pretende mostrar que la identificación de la emoción de un tercero es beneficiosa en tanto que ayuda a la planificación de la acción. Es importante entender que para que se pueda identificar una emoción, primero han de ser percibidos los rasgos faciales que indican esa emoción. Bajo las teorías anteriormente mencionadas (p.e. HD y acercamiento-retraimiento) el procesamiento de la expresión facila por un hemisferio u otro afectará a su velocidad de procesamiento. Es aquí donde entra en juego la **técnica de campo visual dividido**.
+
+**¿En qué consiste ésta técnica?** Cuando miramos hacia un elemento en el entorno, la luz proviniente del campo visual derecho se refleja en la parte izquierda de la retina. Esta información a su vez es procesada por el hemisferio izquierdo y viceversa. De esta manera, podemos aprovechar esta asimetría en el sistema visual para controlar qué información se está procesando por cada hemisferio cerebral. De esta manera, podemos estudiar si existe una asimetría en el procesamiento de expresiones faciales emocionales. 
 
 <figure>
 <p><img src="./pia/P5/Campos_Visuales.png" width="350px">
@@ -121,9 +126,9 @@ En esta práctica se pretende mostrar que la identificación de la emoción de u
 
 ### Estudio de Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)
 
-Utilizando la técnica de campo visual dividido [Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)](http://dx.doi.org/10.3922/j.psns.2008.1.010) mostraron a diferentes observadores una serie de imágenes mostrando rostros con expresiones emocionales a ambos lados de una pantalla. De esta manera, las expresiones emocionales eran dirigidas para ser procesadas por el hemisferio izquierdo o derecho preguntándose si habría un hemisferio que procese más rápidamente/eficazmente cada emoción. 
+Utilizando la técnica de campo visual dividido [Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)](http://dx.doi.org/10.3922/j.psns.2008.1.010) mostraron a diferentes observadores una serie de imágenes mostrando rostros con expresiones emocionales a ambos lados de una pantalla. De esta manera, las expresiones emocionales eran procesadas por el hemisferio izquierdo o derecho dependiendo de en qué lado de la pantalla eran mostradas. En este experimento, los autores se preguntaron si es posible que un hemisferio que procese más rápidamente/eficazmente cada una de las emociones mostradas.  
 
-Para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (estímulos positivos), caras enfadadas o tristes (estímulos negativos) o caras con expresión neutra (estímulo no-emocional). 
+Para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (categorizadas como estímulos positivos), caras enfadadas o tristes (categorizadas como estímulos negativos) o caras con expresión neutra (estímulos no-emocionales). 
 
   - Grupo 1 = target Felicidad (vs T, S, N, M)
   
@@ -135,7 +140,7 @@ Para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales i
   
   - Grupo 5 = target Tristeza (vs F, N, M, S)
   
-Los participantes tenían que indicar el lado de la pantalla en la que se mostraba la emoción correspondiente al grupo al que se le había asignado. Es decir, si el participante pertenecía al primer grupo (target: alegría), debería seleccionar izquierda en el primer ensayo y derecha en el segundo ensayo. 
+Los participantes tenían que indicar el lado de la pantalla en la que se mostraba la emoción correspondiente al grupo al que se le había asignado. Es decir, si el participante pertenecía al primer grupo (target: alegría), debería buscar el rostro que muestra la emoción de alegría y seleccionar en qué lado de la pantalla se había mostrado. En la siguiente figura se muestran dos ensayos diferentes en los que debería seleccionar izquierda para el primero y derecha en el segundo ensayo. 
   
 <figure>
 <p><img src="./pia/P5/Trials_2008.png" width="350px">
@@ -151,12 +156,13 @@ Los resultados en este experimento fueron los siguientes:
 </figcaption>
 </figure>  
 
-Sin embargo, los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Si bien, los resultados con rostros neutros sugieren mayor apoyo empírico a la hipótesis del HD. 
+Sin embargo, los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Aunque los resultados con rostros neutros sugieren mayor apoyo empírico a la hipótesis del HD. 
 
 ---
 
 **Para pensar:** ¿Por qué el hecho de que los resultados de los rostros neutros muestren diferencias significativas aportan soporte parcial a la hipótesis del HD?
-<!--In other words, their better performance for perceiving neutral expressions in the right visual field might be a result of the right hemisphere’s advantage for perceiving emotions in the left visual field, irrespectively of their category (hapiness, fear, surprise and sadness)-->
+<!--In other words, their better performance for perceiving neutral expressions in the right visual field might be a result of the right hemisphere’s advantage for perceiving emotions in the left visual field, irrespectively of their category (hapiness, fear, surprise and sadness). en otras palabras, su mejor performance para percibir estñimulos neutros en el hemiretina derecha (hemisferio izquierdo) podría se el resultado de la ventaja del hemisferio derecho para percibir emociones independientemente de su categoría.-->
+
 ---
 
 Los autores proponen que se profundice en la naturaleza de los estímulos (por ejem., estáticos / dinámicos), ya que el patrón de resultados da lugar a interpretaciones.
@@ -165,7 +171,7 @@ Los autores proponen que se profundice en la naturaleza de los estímulos (por e
 
 ## Práctica 5: Percepción de expresiones emocionales{#P5}
 
-**Pregunta experimental:** Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resutlados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento con caricaturas que reflejan diferentes expresiones emocionales de una manera esquemática. 
+**Pregunta experimental:** Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resultados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento con caricaturas que reflejan diferentes expresiones emocionales de una manera esquemática. 
 
 **Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 5 Percepción de expresiones emocionales**
 
@@ -189,7 +195,7 @@ Los autores proponen que se profundice en la naturaleza de los estímulos (por e
   
   - Grupo 3 = target Neutra (vs T, M, S, F)
   
-La tearea es la siguiente, si nos encontramos en el grupo 1 (Felicidad), tendremos que indicar en qué lado de la pantalla se encuentra la caricatura que muestra esa emoción intentando no prestar atención a la caricatura del lado opuesto. 
+La tarea es la siguiente: si nos encontramos en el grupo 1 (Felicidad), tendremos que indicar en qué lado de la pantalla se encuentra la caricatura que muestra esa emoción con el mouse. 
 
 <figure>
 <p><img src="./pia/P5/Trials_P5.png" width="350px">
@@ -245,7 +251,7 @@ Los resultados obtenidos "en general" serán los siguientes:
   
 ### Discusión
 
-Los resultados con caricaturas  muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Mientras que los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD. 
+Los resultados con caricaturas  muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Por su parte, los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD. 
 
 ---
 

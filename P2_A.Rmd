@@ -143,8 +143,7 @@ ggplot(data_frame(I = seq(0,8,by=1),
   theme_minimal(10)
 ```
 
-
-La figura que se muestra arriba se trataría de una distibución normal cumulativa. Esta distribución asume que la respuesta a este experimento presentaría una varibilidad aleatoria (y por tanto simétrica) alrededor del segundo cuartil, lo que produciría esa característica forma sigmoidal. Dado que anteriormente definimos el UA como el punto en el que los observadores responden al nivel del azar, el umbral absoluto corresponde en esta figura al segundo cuartil de la distribución o a una probabilidad acumulada del 50%. 
+Pero, ¿qué significa la anterior curva?: Cuando la intensidad de un estímulo es muy baja, la probabilidad de que un observador responda que ha sido capaz de percibir el mismo es igualmente baja o nula. Sin embargo, según aumenta su intesidad, la probabilidad de ser percibida aumenta progresivamente edfiniendo una curva con una forma sigmoidal. En concreto, la figura que se muestra arriba se trataría de una distibución normal cumulativa. Esta distribución asume que la respuesta a este experimento presentaría una varibilidad aleatoria (y por tanto simétrica) alrededor del segundo cuartil, lo que produciría esa característica forma sigmoidal. Dado que anteriormente definimos el UA como el punto en el que los observadores responden al nivel del azar, el umbral absoluto corresponde en esta figura al segundo cuartil de la distribución o a una probabilidad acumulada del 50%. 
 
 \begin{equation}
 \label{UA}
@@ -222,6 +221,7 @@ ggplot(UD_lin,aes(I,p_UD)) +
   geom_vline(xintercept = c(I_Q1,I_Q3), color="red") +
   geom_segment(aes(x=5,xend=5+UD_1,y=0.1,yend=0.1),color="red",arrow= arrow(length = unit(0.1, "inches"))) +
   geom_text(aes(x=I_Q3*1.25,y=0.1,label="UD = (Q3 - Q1)/2"),color="red") +
+  labs(x = "Intensidad del estímulo", y = "Probabilidad de respuesta") +
   theme_minimal(10)
 ```
 
@@ -287,6 +287,7 @@ logit = UD %>%
 fit_logit = coef(lm(logit$logit_Medium ~logit$I ))
 
 ggplot(logit,aes(I,logit_Medium)) +
+  geom_hline(yintercept = 0, linetype = 2) +
   geom_segment(aes(x=0,xend=5,y=0,yend=0),color="red",arrow= arrow(length = unit(0.1, "inches"))) +
   geom_segment(aes(x=5,xend=5,y=-5,yend=0),color="red",arrow= arrow(length = unit(0.1, "inches"))) +
   ## Q1
@@ -299,14 +300,20 @@ ggplot(logit,aes(I,logit_Medium)) +
                color="darkgreen",arrow= arrow(length = unit(0.1, "inches"))) +
   geom_segment(aes(x=(1.1 - round(fit_logit[1],2))/round(fit_logit[2],2),xend=(1.1 - round(fit_logit[1],2))/round(fit_logit[2],2),y=-5,yend=1.1),
                color="darkgreen",arrow= arrow(length = unit(0.1, "inches"))) +
-  annotate(geom="text", x = 8, y = 0, label = paste("y = ",round(fit_logit[1],2)," + ", round(fit_logit[2],2),"x")) +
-  annotate(geom="text", x = 5.5, y = -1, label = "Q2", color = "red") +
+  ## UD
+  geom_segment(aes(x=5,xend=((1.1 - round(fit_logit[1],2))/round(fit_logit[2],2)-(-1.1 - round(fit_logit[1],2))/round(fit_logit[2],2))/2 + 5,y=-3,yend=-3),
+               color="orange",arrow= arrow(length = unit(0.1, "inches"))) +  
+  
+  annotate(geom="text", x = 8, y = 0.5, label = paste("y = ",round(fit_logit[1],2)," + ", round(fit_logit[2],2),"x")) +
+  annotate(geom="text", x = 5.6, y = -1, label = "UA = Q2", color = "red") +
   annotate(geom="text", x = 6.5, y = -2, label = "Q3", color = "darkgreen") +
-  annotate(geom="text", x = 4.5, y = -2, label = "Q1", color = "darkgreen") +
+  annotate(geom="text", x = 4.3, y = -2, label = "Q1", color = "darkgreen") +
+  annotate(geom="text", x = 7.5, y = -3.5, label = "UD = (Q3 - Q1)/2", color = "orange") +
   geom_point(size=4, color = "red") +
   labs(x = "Intensidad del estímulo", y = "Probabilidad de responder \'SI\' \n en unidades Logit' ") +
   geom_smooth(method ="lm", se = F) +
   theme_minimal(10)
+
 ```
 
 Si aplicamos una regresión lineal a los puntos anteriores mediante sistemas como <strike>SPSS, Excel, MatLab </strike> o R (o incluso a mano si diesemos esta clase 10 años antes), podemos obtener la probabilidad asociada a cualquier intensidad sustituyendo en la ecuación de la recta.

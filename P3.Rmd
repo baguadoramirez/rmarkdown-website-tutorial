@@ -42,7 +42,7 @@ Si recordamos lo visto en la anterior práctica, la ley de Weber-Fechner implica
 \ S = K * log(E) 
 \end{equation}
 
-No obstante, hay situaciones en las que este tipo de relación no se sigue. El hecho de que no todos los tipos de estimulaciones tengan una misma correspondencia psicofísica tiene un efecto capital en la supervivencia de un organismo. Por ejemplo, puede ser útil no ser sensible a ciertos niveles bajos de presión mecánica sobre la piel (dado que los sufrimos durante las 24 horas) sin que esto suponga un peligro para el organismo. Este tipo de estimulación es un típico ejemplo de correspondencia psicofísica que se comporta de forma exponencial. Por otra parte, hay situaciones en las que no es adaptativo reaccionar a cambios grandes en la estimulación. Es el caso de la iluminación. Para un organismo como el ser humano es mucho más útil ser sensible a cambios en estimulaciones a bajo nivel de intensidad, para poder orientarse en el espacio. Sin embargo, cambios bruscos como los que se producen bajo el sol no son necesariamente útiles para el organismo, ya que recibe suficiente energía como para percibir el entorno sin problemas. Este seria un típico ejemplo de correspondencia logarítmica. Stevens se dio cuenta de esto después de una serie de esxperimentos científicos relacionados con el efecto que un shock eléctrico tenía sobre la piel, correspondiendose éste también con un típico ejemplo de relación exponencial. 
+No obstante, hay situaciones en las que este tipo de relación no se sigue. El hecho de que no todos los tipos de estimulaciones tengan una misma correspondencia psicofísica tiene un efecto capital en la supervivencia de un organismo. Por ejemplo, puede ser útil no ser sensible a ciertos niveles bajos de presión mecánica sobre la piel dado que los sufrimos durante las 24 horas sin que esto suponga un peligro para el organismo (p.e. al andar, al estar sentados, al coger un objeto con la mano...). Este tipo de estimulación es un típico ejemplo de correspondencia psicofísica que se comporta de forma exponencial. Por otra parte, hay situaciones en las que no es adaptativo reaccionar a cambios grandes en la estimulación. Es el caso de la iluminación. Para un organismo como el ser humano es mucho más útil ser sensible a cambios en estimulaciones a bajo nivel de intensidad, para poder orientarse en el espacio. Sin embargo, cambios bruscos como los que se producen bajo el sol no son necesariamente útiles para el organismo, ya que recibe suficiente energía como para percibir el entorno sin problemas. Este seria un típico ejemplo de correspondencia logarítmica. Stevens se dio cuenta de esto después de una serie de experimentos relacionados con el efecto que un shock eléctrico tenía sobre la piel. Éste es también con un típico ejemplo de relación exponencial. 
   
 Reflexionando sobre esto, Stevens se preguntó si podría existir alguna forma de generalizar la relación entre la estimulación y la sensación producida de tal manera que en una misma ecuación se recogieran relaciones lineales, logarítmicas o exponenciales. 
 
@@ -94,7 +94,9 @@ En la misma, el exponente **k** describe cómo sería la relación entre la sens
 
 - k < 1: Incremento compresivo
 
-Por su parte, la **c** sería una constante que describiría la sensación en ausencia de estimulación. El problema con estas curvas es que son difíciles de analizar. Lo interesante de la ley de Stevens es que si aplicamos una transoformación log-log, es decir, aplicamos logaritmos a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas que describe. Es ese caso, obtenemos la siguiente igualdad:
+Por su parte, la **c** sería una constante que describiría la sensación en ausencia de estimulación. El problema con estas curvas es que son difíciles de analizar. 
+
+Lo interesante de la ley de Stevens es que si aplicamos una transoformación log-log, es decir, aplicamos logaritmos (en base 10) a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas que describe. Es ese caso, obtenemos la siguiente igualdad:
 
 \begin{equation}
 \label{Log_Log_Stevens}
@@ -141,7 +143,7 @@ En esta práctica pondremos en práctica los conocimientos que hemos aprendido p
 
 **Hipótesis:**
 
-En esta Práctica no pretendemos verificar ninguna hipótesis. No hay hipótesis experimental. Nuestro objetivo se centra en la construcción de una escala de percepción de la claridad, haciendo uso de uno de los métodos directos de estimación de cantidades propuestos por S.S. Stevens. 
+En esta práctica, no pretendemos verificar ninguna hipótesis. No hay hipótesis experimental. Nuestro objetivo se centra en la construcción de una escala de percepción de la claridad, haciendo uso de uno de los métodos directos de estimación de cantidades propuestos por S.S. Stevens. 
 
 ### Metodología
 
@@ -183,7 +185,7 @@ En esta imagen podemos encontrar el set de estímulos que utilizareoms en el exp
   
   - Variable dependiente (VD), aquella que manipula el observador:
 
-    - Valor asignado (Claridad percibida).  
+    - **Valor asignado (Claridad percibida).**  
 
 En total tendremos 50 ensayos:
 
@@ -198,9 +200,9 @@ En total tendremos 50 ensayos:
 
 **ATENCIÓN!!!!**
 
-  - Hay un bug en los resultados del experimento, por lo que lass respuestas de 0, son codificadas como 1, las de 1 como 2 y así sucesivamente, por lo que lo primer que tenemos que hacer es restar 1 al valor asignado. 
+  - Hay un bug en los resultados del experimento, por lo que las respuestas de 0, son codificadas como 1, las de 1 como 2 y así sucesivamente. Para corregir esto, restaremos 1 al valor de claridad asignado.  
   
-  - **Recuerda!!!:** El logaritmo de 0 es igual a Infinito, por lo tanto, sustituimos valores negativos (maldito bug) y el 0 por 0.01 antes de calcular su logaritmo. 
+  - **Recuerda!!!:** El logaritmo de 0 es igual a infinito , por lo tanto, sustituimos valores negativos (maldito bug) y el 0 por 0.01 antes de calcular su logaritmo. 
 
 ---
 
@@ -234,20 +236,21 @@ lm_eqn <- function(df){
              r2 = format(summary(m)$r.squared, digits = 3)))
     as.character(as.expression(eq));
 }
-
-ggplot(Luminancia, aes(Claridad, Asign)) +
-  geom_abline(linetype = 2) +
-  geom_point(size = 2) +
-  geom_line() +
-  stat_smooth(method = "lm", linetype = 2, size = 1, alpha = 0.5) +
-  labs(x = "Reflectancia real", y = "Reflectancia asignada") + 
-  scale_x_continuous(labels = as.character(c(0, 25, 50, 75, 100, 125, 150, 175, 200, 225)),
-                     breaks = c(0.1, c(1:9))) + 
-  geom_text(x = 2, y = 7.5, label = lm_eqn(Luminancia %>%
-                                             rename(y = Asign,
-                                                    x = Claridad)), parse = TRUE)
+# 
+# ggplot(Luminancia, aes(Claridad, Asign)) +
+#   geom_abline(linetype = 2) +
+#   geom_point(size = 2) +
+#   geom_line() +
+#   stat_smooth(method = "lm", linetype = 2, size = 1, alpha = 0.5) +
+#   labs(x = "Reflectancia real", y = "Reflectancia asignada") + 
+#   scale_x_continuous(labels = as.character(c(0, 25, 50, 75, 100, 125, 150, 175, 200, 225)),
+#                      breaks = c(0.1, c(1:9))) + 
+#   geom_text(x = 2, y = 7.5, label = lm_eqn(Luminancia %>%
+#                                              rename(y = Asign,
+#                                                     x = Claridad)), parse = TRUE)
 ```
 
+Si calculamos los errores de estimación obtenemos el siguiente gráfico:
 
 ```{r}
 ggplot(Luminancia, aes(factor(Claridad), error_est)) +
@@ -257,6 +260,9 @@ ggplot(Luminancia, aes(factor(Claridad), error_est)) +
   scale_x_discrete(labels = as.character(c(0, c(1:9))),
                      breaks = c(0.1, c(1:9)))
 ```
+
+Realizamos la transofrmación Log-Log aplicando el logaritmo en base 10 a la escala ordinal de claridades (0.01-9) y a las estimaciones medias de claridad asignadas. Posteriormente, aplicamos un modelo lineal para calcular el intercepto, la pendiente y la bondad de ajuste mediante $R^{2}$. Como podemos ver la $R^{2}$ es muy alta (muy cercana a 1), por lo que el modelo lineal es capaz de explicar bien las estimaciones del modelo lineal. 
+
 
 ```{r}
 lm_coef <- coef(lm(data=Luminancia, log_Asign ~ log_Claro))
@@ -275,16 +281,17 @@ ggplot(Luminancia, aes(Claridad,Asign)) +
                                                     x = log_Claro))), parse = TRUE)
 ```
 
-¿Cómo se traducen estos exponentes en la fórmula de Stevens?
+El intercepto y pendiente del modelo lineal ajustado se traducen como los siguientes elementos de la fórmula de Stevens: 
 
-$c = 10^{\beta_{0}}$
+Fórmula de la Ley de Stevens: $S = c*E^n$
 
-$n$ = $\beta_{1}$
+$c = 10^{Intercept}$ -> $c = 10^{\beta_{0}}$ 
 
-En el caso anterior tendramos que:
+$n$ = $Pendiente$ -> $n$ = $\beta_{1}$
+
+Si sustituimos para el caso anterior, tendremos la siguiente ecuación:
 
 $S = 10^{0.131} * E^{0.688}$
-
 
 Si ahora calculamos a partir de la Ley de Stevens el brillo percibido predicho obtenemos la siguiente curva: 
 
@@ -303,14 +310,6 @@ ggplot(Predicted, aes(x,y)) +
   scale_x_continuous(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
   scale_y_continuous(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) 
 ```
-
----
-
-**Para repasar:** 
-
-  
-
----
 
 
 ## Ejercicios para resolver en clase:

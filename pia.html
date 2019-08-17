@@ -880,7 +880,7 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 <h3>Umbral Absoluto</h3>
 <p>Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que un observador afirma que percibe el 50% de las veces, es decir, al nivel del azar. Este punto se denomina <strong>Umbral Absoluto</strong>. Para calcular el UA, se mostrarían diferentes intensidades de un estímulo a un observador y se le pediría que respondiese <strong>sí</strong> o <strong>no</strong> dependiendo si ha llegado a percibir tal estímulo. Después de una cantidad suficiente de ensayos (a menudo una gran cantidad) podríamos caracterizar una curva como la siguiente haciendo una media de <em>síes</em> (codificados como 1) y <em>noes</em> (codificados como 0) para cada una de las intensidades:</p>
 <p><img src="pia_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>La figura que se muestra arriba se trataría de una distibución normal cumulativa. Esta distribución asume que la respuesta a este experimento presentaría una varibilidad aleatoria (y por tanto simétrica) alrededor del segundo cuartil, lo que produciría esa característica forma sigmoidal. Dado que anteriormente definimos el UA como el punto en el que los observadores responden al nivel del azar, el umbral absoluto corresponde en esta figura al segundo cuartil de la distribución o a una probabilidad acumulada del 50%.</p>
+<p>Pero, ¿qué significa la anterior curva?: Cuando la intensidad de un estímulo es muy baja, la probabilidad de que un observador responda que ha sido capaz de percibir el mismo es igualmente baja o nula. Sin embargo, según aumenta su intesidad, la probabilidad de ser percibida aumenta progresivamente edfiniendo una curva con una forma sigmoidal. En concreto, la figura que se muestra arriba se trataría de una distibución normal cumulativa. Esta distribución asume que la respuesta a este experimento presentaría una varibilidad aleatoria (y por tanto simétrica) alrededor del segundo cuartil, lo que produciría esa característica forma sigmoidal. Dado que anteriormente definimos el UA como el punto en el que los observadores responden al nivel del azar, el umbral absoluto corresponde en esta figura al segundo cuartil de la distribución o a una probabilidad acumulada del 50%.</p>
 <span class="math display">\[\begin{equation}
 \label{UA}
 \ UA = Q2
@@ -1640,7 +1640,7 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 \label{Weber_Fechner}
 \ S = K * log(E) 
 \end{equation}\]</span>
-<p>No obstante, hay situaciones en las que este tipo de relación no se sigue. El hecho de que no todos los tipos de estimulaciones tengan una misma correspondencia psicofísica tiene un efecto capital en la supervivencia de un organismo. Por ejemplo, puede ser útil no ser sensible a ciertos niveles bajos de presión mecánica sobre la piel (dado que los sufrimos durante las 24 horas) sin que esto suponga un peligro para el organismo. Este tipo de estimulación es un típico ejemplo de correspondencia psicofísica que se comporta de forma exponencial. Por otra parte, hay situaciones en las que no es adaptativo reaccionar a cambios grandes en la estimulación. Es el caso de la iluminación. Para un organismo como el ser humano es mucho más útil ser sensible a cambios en estimulaciones a bajo nivel de intensidad, para poder orientarse en el espacio. Sin embargo, cambios bruscos como los que se producen bajo el sol no son necesariamente útiles para el organismo, ya que recibe suficiente energía como para percibir el entorno sin problemas. Este seria un típico ejemplo de correspondencia logarítmica. Stevens se dio cuenta de esto después de una serie de esxperimentos científicos relacionados con el efecto que un shock eléctrico tenía sobre la piel, correspondiendose éste también con un típico ejemplo de relación exponencial.</p>
+<p>No obstante, hay situaciones en las que este tipo de relación no se sigue. El hecho de que no todos los tipos de estimulaciones tengan una misma correspondencia psicofísica tiene un efecto capital en la supervivencia de un organismo. Por ejemplo, puede ser útil no ser sensible a ciertos niveles bajos de presión mecánica sobre la piel dado que los sufrimos durante las 24 horas sin que esto suponga un peligro para el organismo (p.e. al andar, al estar sentados, al coger un objeto con la mano…). Este tipo de estimulación es un típico ejemplo de correspondencia psicofísica que se comporta de forma exponencial. Por otra parte, hay situaciones en las que no es adaptativo reaccionar a cambios grandes en la estimulación. Es el caso de la iluminación. Para un organismo como el ser humano es mucho más útil ser sensible a cambios en estimulaciones a bajo nivel de intensidad, para poder orientarse en el espacio. Sin embargo, cambios bruscos como los que se producen bajo el sol no son necesariamente útiles para el organismo, ya que recibe suficiente energía como para percibir el entorno sin problemas. Este seria un típico ejemplo de correspondencia logarítmica. Stevens se dio cuenta de esto después de una serie de experimentos relacionados con el efecto que un shock eléctrico tenía sobre la piel. Éste es también con un típico ejemplo de relación exponencial.</p>
 <p>Reflexionando sobre esto, Stevens se preguntó si podría existir alguna forma de generalizar la relación entre la estimulación y la sensación producida de tal manera que en una misma ecuación se recogieran relaciones lineales, logarítmicas o exponenciales.</p>
 <p><img src="pia_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>Esta generalización de correspondencias psicofísicas pasó a llamarse <strong>Ley de Stevens</strong>.</p>
@@ -1654,7 +1654,8 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 <li><p>k = 1: Incremento lineal</p></li>
 <li><p>k &lt; 1: Incremento compresivo</p></li>
 </ul>
-<p>Por su parte, la <strong>c</strong> sería una constante que describiría la sensación en ausencia de estimulación. El problema con estas curvas es que son difíciles de analizar. Lo interesante de la ley de Stevens es que si aplicamos una transoformación log-log, es decir, aplicamos logaritmos a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas que describe. Es ese caso, obtenemos la siguiente igualdad:</p>
+<p>Por su parte, la <strong>c</strong> sería una constante que describiría la sensación en ausencia de estimulación. El problema con estas curvas es que son difíciles de analizar.</p>
+<p>Lo interesante de la ley de Stevens es que si aplicamos una transoformación log-log, es decir, aplicamos logaritmos (en base 10) a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas que describe. Es ese caso, obtenemos la siguiente igualdad:</p>
 <span class="math display">\[\begin{equation}
 \label{Log_Log_Stevens}
 \ log(S) = log(c) * n * log(E)
@@ -1672,7 +1673,7 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 <li><p>Esto nos indicará qué ajuste tienen los sensores de la reflectancia, es decir, los bastones con respecto a la luminancia. Por tanto, la relación funcional entre brillo y la luminancia (<strong>Recuerdas la diferencia que había entre ambas?</strong>).</p></li>
 </ul>
 <p><strong>Hipótesis:</strong></p>
-<p>En esta Práctica no pretendemos verificar ninguna hipótesis. No hay hipótesis experimental. Nuestro objetivo se centra en la construcción de una escala de percepción de la claridad, haciendo uso de uno de los métodos directos de estimación de cantidades propuestos por S.S. Stevens.</p>
+<p>En esta práctica, no pretendemos verificar ninguna hipótesis. No hay hipótesis experimental. Nuestro objetivo se centra en la construcción de una escala de percepción de la claridad, haciendo uso de uno de los métodos directos de estimación de cantidades propuestos por S.S. Stevens.</p>
 <div id="metodologia-2" class="section level3">
 <h3>Metodología</h3>
 <p><strong>Estímulos:</strong> A modo de referencia inicial, se muestran las imágenes de 10 niveles de claridad (0-225) en una imagen.</p>
@@ -1707,7 +1708,7 @@ En esta imagen podemos encontrar el set de estímulos que utilizareoms en el exp
 </ul></li>
 <li><p>Variable dependiente (VD), aquella que manipula el observador:</p>
 <ul>
-<li>Valor asignado (Claridad percibida).</li>
+<li><strong>Valor asignado (Claridad percibida).</strong></li>
 </ul></li>
 </ul>
 <p>En total tendremos 50 ensayos:</p>
@@ -1721,8 +1722,8 @@ En esta imagen podemos encontrar el set de estímulos que utilizareoms en el exp
 <hr />
 <p><strong>ATENCIÓN!!!!</strong></p>
 <ul>
-<li><p>Hay un bug en los resultados del experimento, por lo que lass respuestas de 0, son codificadas como 1, las de 1 como 2 y así sucesivamente, por lo que lo primer que tenemos que hacer es restar 1 al valor asignado.</p></li>
-<li><p><strong>Recuerda!!!:</strong> El logaritmo de 0 es igual a Infinito, por lo tanto, sustituimos valores negativos (maldito bug) y el 0 por 0.01 antes de calcular su logaritmo.</p></li>
+<li><p>Hay un bug en los resultados del experimento, por lo que las respuestas de 0, son codificadas como 1, las de 1 como 2 y así sucesivamente. Para corregir esto, restaremos 1 al valor de claridad asignado.</p></li>
+<li><p><strong>Recuerda!!!:</strong> El logaritmo de 0 es igual a infinito , por lo tanto, sustituimos valores negativos (maldito bug) y el 0 por 0.01 antes de calcular su logaritmo.</p></li>
 </ul>
 <hr />
 <table>
@@ -1786,19 +1787,18 @@ En esta imagen podemos encontrar el set de estímulos que utilizareoms en el exp
 </tr>
 </tbody>
 </table>
-<p><img src="pia_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>Si calculamos los errores de estimación obtenemos el siguiente gráfico:</p>
 <p><img src="pia_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>Realizamos la transofrmación Log-Log aplicando el logaritmo en base 10 a la escala ordinal de claridades (0.01-9) y a las estimaciones medias de claridad asignadas. Posteriormente, aplicamos un modelo lineal para calcular el intercepto, la pendiente y la bondad de ajuste mediante <span class="math inline">\(R^{2}\)</span>. Como podemos ver la <span class="math inline">\(R^{2}\)</span> es muy alta (muy cercana a 1), por lo que el modelo lineal es capaz de explicar bien las estimaciones del modelo lineal.</p>
 <p><img src="pia_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
-<p>¿Cómo se traducen estos exponentes en la fórmula de Stevens?</p>
-<p><span class="math inline">\(c = 10^{\beta_{0}}\)</span></p>
-<p><span class="math inline">\(n\)</span> = <span class="math inline">\(\beta_{1}\)</span></p>
-<p>En el caso anterior tendramos que:</p>
+<p>El intercepto y pendiente del modelo lineal ajustado se traducen como los siguientes elementos de la fórmula de Stevens:</p>
+<p>Fórmula de la Ley de Stevens: <span class="math inline">\(S = c*E^n\)</span></p>
+<p><span class="math inline">\(c = 10^{Intercept}\)</span> -&gt; <span class="math inline">\(c = 10^{\beta_{0}}\)</span></p>
+<p><span class="math inline">\(n\)</span> = <span class="math inline">\(Pendiente\)</span> -&gt; <span class="math inline">\(n\)</span> = <span class="math inline">\(\beta_{1}\)</span></p>
+<p>Si sustituimos para el caso anterior, tendremos la siguiente ecuación:</p>
 <p><span class="math inline">\(S = 10^{0.131} * E^{0.688}\)</span></p>
 <p>Si ahora calculamos a partir de la Ley de Stevens el brillo percibido predicho obtenemos la siguiente curva:</p>
 <p><img src="pia_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<hr />
-<p><strong>Para repasar:</strong></p>
-<hr />
 </div>
 </div>
 <div id="ejercicios-para-resolver-en-clase-1" class="section level2">
@@ -1835,45 +1835,63 @@ En esta imagen podemos encontrar el set de estímulos que utilizareoms en el exp
 </div>
 <div id="procesamiento-visual" class="section level2">
 <h2>Procesamiento visual</h2>
-<p>Desde la descripción por parte de <a href="https://physoc.onlinelibrary.wiley.com/doi/pdf/10.1113/jphysiol.2009.170209">Hubel y Wiesel</a> de la respuesta selectiva de ciertas neuronas a estimulos orientados en una determinada dirección, la metáfora computacional ha servido para decribir y explicar el procesamiento de los estímulos visuales. Esta expicación normalmente ha sido segregada en dos etapas diferenciadas:</p>
-<p><a href="https://doi.org/10.4324/9781315736174">Ulric Neisser (1969)</a> describió el proceso perceptivo como un proceso dividido en dos fases que se desarrollan de forma secuencial, es decir, una después de la otra. En primer lugar, ocurriria una primera fase <strong>pre-atencional</strong>. En esta fase se desarrollaría un procesamiento automático y paralelo de cada una de las características o elementos básicos de un estímulo o imagen. Posteriormente, se desarrolaría una fase <strong>atencional</strong> en la cual, de forma consciente, se podría acceder a cada una de las caracteristicas o elementos que componen la imagen de forma consciente y controlada.</p>
-<p>De forma parecida, <a href="https://doi.org/10.1098/rstb.1976.0090">David Marr (1982)</a> propuso que el procesamiento visual se dividiría en un procesaamiento inicial tosco en forma de procesamiento primario a partir de una matriz primaria de diferentes intensidaddes lumínicas. Posteriormente, se formaría una imagen 2D a partir de los elementos básicos de la imagen. Posteriormente, se produciría un procesamiento <strong>tardío</strong> formando una imagen 3D a partir de las imagenes 2D que proporcionan las imagenes retinianas.</p>
-<p>Por su parte, <a href="https://doi.org/10.1093/cercor/5.1.1">Simon Ullman (1995)</a> propuso que el procesamiento de la información visual se realizaría en dos etpapas o fases. La primera, una etapa de bajo nivel, en la cual se produce un análisis automático e inconsciente de la información para el cual no es necesaria ni la consciencia, heurísticos ni conocimientos previos. Posteriormente se producía un procesamiento de alto nivel en el cual el flujo atencional y de selección de información dentro de la información visual está sesgado y seleccioando por la atención, la cual estaría a su vez guiada por el conocimiento previo y heurísticos requiriendo de una maor carga atenccional y recursos.</p>
+<p>Desde la descripción por parte de <a href="https://physoc.onlinelibrary.wiley.com/doi/pdf/10.1113/jphysiol.2009.170209">Hubel y Wiesel</a> de la respuesta selectiva de poblaciones de neuronas en la corteza occipital a estimulos orientados en una determinada dirección, la metáfora computacional ha servido para describir y dar una explicación biológica al procesamiento visual.</p>
+<figure>
+<p>
+<img src="pia/P4/Hubel_Wiesel.png" width="350px">
+<figcaption>
+Un grupo de neuronas en V1 responden selectivamente a una barra orientada a 45 grados.
+</figcaption>
+</figure>
+<p>El desarrollo de esta explicación ha sido segregada constantemente en dos etapas diferenciadas:</p>
+<p><a href="https://doi.org/10.4324/9781315736174">Ulric Neisser (1969)</a> describió el proceso perceptivo como un proceso dividido en dos fases que se desarrollan de forma secuencial, es decir, una después de la otra. En primer lugar, ocurriría una primera fase <strong>pre-atencional</strong>. En esta fase se desarrollaría un procesamiento automático y paralelo de cada una de las características o elementos básicos de un estímulo o imagen. Posteriormente, se desarrolaría una fase <strong>atencional</strong> en la cual, de forma consciente, se podría acceder a cada una de las caracteristicas o elementos que componen la imagen de forma consciente y controlada.</p>
+<figure>
+<p>
+<img src="pia/P4/Properties.png" width="350px">
+<figcaption>
+A partir de las características básicas de un estímulo (elementos inferiores), se da lugar al estímulo complejo (elementos superiores).
+</figcaption>
+</figure>
+<p>De forma parecida, <a href="https://doi.org/10.1098/rstb.1976.0090">David Marr (1982)</a> propuso que el procesamiento visual se dividiría en un procesamiento inicial tosco en forma de procesamiento primario a partir de una matriz primaria de diferentes intensidades lumínicas. Posteriormente, se formaría una imagen 2D a partir de los elementos básicos de la imagen. Posteriormente, se produciría un procesamiento <strong>tardío</strong> formando una imagen 3D a partir de las imagenes 2D que proporcionan las imagenes retinianas.</p>
+<p>Por su parte, <a href="https://doi.org/10.1093/cercor/5.1.1">Simon Ullman (1995)</a> propuso que el procesamiento de la información visual se realizaría en dos etapas o fases. La primera, una etapa de bajo nivel, en la cual se produce un análisis automático de la información para la cual no hacen falta conocimientos previos ni consciencia. Posteriormente, se produciríaa un procesamiento de alto nivel en el cual el flujo atencional y de selección de información dentro de la información visual está sesgado y seleccioando por la atención, la cual estaría a su vez guiada por el conocimiento previo y heurísticos requiriendo de una mayor carga atencional.</p>
 <figure>
 <p>
 <img src="pia/P4/Low_High.png" width="350px">
 <figcaption>
 </figcaption>
 </figure>
-<p>Como podemos ver, aunque las tres explicaciones ponen énfasis en diferentes aspectos del proceso perceptivo, las tres comparten el hecho de que estas dos fases de procesamiento se producen de forma secuencial y no paralela.</p>
-<p>Hay dos modelos básicos defendidendo cada postura:</p>
+<p>Como podemos ver, aunque las tres explicaciones ponen énfasis en diferentes aspectos del proceso perceptivo, las tres ponen énfasis en que el procesamiento visual se produce en dos fases que se dan de forma secuencial (no paralela). Según qué datos pongan en marcha el proceso cognitivo podemos diferenciar:</p>
+<ul>
+<li><p><strong>Bottom-up</strong>: si el procesamiento es guiado por las características del estímulo presentado.</p></li>
+<li><p><strong>Top-down:</strong> si el procesamiento es guiado conceptualmente por conocimientos previos.</p></li>
+</ul>
 <div id="modelo-fisiologicista" class="section level3">
 <h3>Modelo fisiologicista</h3>
-<p>Modelo basado en las estudios de Hubel &amp; Wiesel en los cuales se postularía, que dado que el flujo de información va de lo local a lo global, lo lógico sería que se procese de forma primaria los elementos locales a los globales (<em>Local-to-Global</em>).</p>
+<p>Modelo basado en las estudios de Hubel &amp; Wiesel descritos anteriormente. Dado que el flujo primario de acceso a la información es a través de los sentidos sería la infromación externa la que guiaría la dirección de procesamiento (<strong>Bottom-up</strong>). Además, dado que esta postura argumenta que para llegar a un percepto complejo primero el sistema visual analiza los elementos que lo componen de forma local, lo lógico sería que se pueda acceder de forma primarioa a las características o parámetros locales antes que al elemento global que conforman (<em>Local-to-Global</em> ).</p>
 <div id="dificultades-del-modelo-fisiologicista" class="section level4">
 <h4>Dificultades del modelo fisiologicista</h4>
-<p>Presenta problemas para explicar cómo somos capaces de reconocer estímulos globales como puede ser una cara a partir de estímulos de caracter local.</p>
+<p>Presenta problemas para explicar cómo somos capaces de reconocer estímulos globales a partir de estímulos de carácter local. En os siguientes ejemplos, podemos ver que aunque tenemos todos los elementos locales disponibles el reconocimiento de la cara o la capacidad para leer el texto no se produce hasta que sus elementos no están configurados de una manera concreta.</p>
 <figure>
 <p>
-<img src="pia/P4/Niro.png" width="350px"><img src="pia/P4/Las_Drogas.png" width="350px">
+<img src="pia/P4/Niro.png" width="350px"><img src="pia/P4/Las_Drogas.png" height="200px">
 <figcaption>
 </figcaption>
 </figure>
-<p>De hecho, sería posible que para unas mismas características básicas, se activaran varios conceptos globales. En este modelo, podemos ver que si acitvamos los demonios básicos basados en “/” y “&quot;, se activarían tanto la”X&quot; como potencialmente la “A” o en menor medida la “R”.</p>
+<p>Basándose en éste paradigma, se propuso el modelo Pandemonium. En éste ejemplo, se analizarían las caracteristicas básicas de diferentes letras para ver si sería posible activar sus conceptos globales. Como podemos ver en el siguiente ejemplo, si activamos los demonios básicos basados en <strong>/</strong> y **  **, se activarían tanto la “X” como la “A” o en menor medida la “R”, por lo que no nos permite identificar de forma inequívoca un estímulo.</p>
 <figure>
 <p>
 <img src="pia/P4/Pandemonium.png" width="350px">
 <figcaption>
 </figcaption>
 </figure>
-<p>En este caso, dado que no se pueden identificar todos los elementos básicos de un elemento ocluido, sería imposible activar el elemento global.</p>
+<p>En la siguiente figura se puede ver una cuchara ocluida. En ese caso, dado que un sistema de inteligencia artificial no sería capaz de identificar todos los elementos básicos que forman el concepto de “cuchara”, no sería posible identificar ese elemento.</p>
 <figure>
 <p>
 <img src="pia/P4/Oclusion.png" width="350px">
 <figcaption>
 </figcaption>
 </figure>
-<p>Sería incapaz de explicar cómo somos capaces de obtener la misma representacion de una letra a partir de elementos básicos diferentes. Además, sería muy costoso entrenar a un sistema para que aprenda todas las combinaciones posibles para crear un mismo elemento.</p>
+<p>Además, sería incapaz de explicar cómo somos capaces de obtener la misma representacion de una letra a partir de elementos básicos diferentes. Y lo que es peor, sería muy costoso entrenar a un sistema para que aprenda todas las combinaciones posibles para crear un mismo elemento, dado que aunque utilizando grafías parecidas, todos escribimos de una forma un poco diferente.</p>
 <figure>
 <p>
 <img src="pia/P4/Letter.png" width="350px">
@@ -1884,19 +1902,19 @@ En esta imagen podemos encontrar el set de estímulos que utilizareoms en el exp
 </div>
 <div id="modelo-neo-gestaltista" class="section level3">
 <h3>Modelo Neo-Gestaltista</h3>
-<p>Esta perspectiva propone que se procesa de forma primaria los elementos globales antes que los elementos globales, ya que serían los más salientes, sesgando la direcci´pon de la atención (<em>Global-to-Local</em>). Su principal problema es que es incapaz de dar una explicación (<strong>no descripción</strong>) de las leyes que preceden al agrupamiento perceptivo y segregación que dan lugar al estímulo de forma global.</p>
+<p>Esta perspectiva propone que se procesa de forma primaria los elementos globales antes que los elementos globales, ya que serían los más salientes, sesgando la dirección de la atención (<em>Global-to-Local</em>). De esta manera, dado que se ha identificado el elemento global, se aplica el conocimiento previo para dirigir el flujo de procesamiento <em>top-down</em>. Su principal problema es que es incapaz de dar una explicación (<strong>no descripción</strong>) de las leyes que preceden al agrupamiento perceptivo que da lugar al estímulo de tipo global.</p>
 <figure>
 <p>
 <img src="pia/P4/Figures.png" width="350px">
 <figcaption>
-El reconocimiento de una figura se puede basar en la forma global sin que se puedan distinguir los elementos específicos de un concepto.
+Un ejemplo típico utilizado por esta postura se basa en que el reconocimiento de una figura se puede basar en la forma global sin que se puedan distinguir los elementos específicos de un concepto.
 </figcaption>
 </figure>
 <p>La Teoría de la Gestalt aparece en en Alemania en el primer cuarto del S. X siendo sus principales representantes:</p>
 <ul>
-<li>Max Wertheimer (1880-1943)</li>
-<li>Kurt Koffka (1887-1941)</li>
-<li>Wolfgang Köhler (1887-1967)</li>
+<li><p>Max Wertheimer (1880-1943)</p></li>
+<li><p>Kurt Koffka (1887-1941)</p></li>
+<li><p>Wolfgang Köhler (1887-1967)</p></li>
 </ul>
 <p>Esta corriente afirma que la mente configura, a través de ciertas leyes innatas, los elementos sensoriales. La organización/ agrupación es automática, inconsciente e inevitable en lo que denominan <strong>Fenómenos estructurados o Gestalten</strong> mediante unas leyes de agrupamiento perceptivo:</p>
 <figure>
@@ -1911,20 +1929,20 @@ El reconocimiento de una figura se puede basar en la forma global sin que se pue
 <figcaption>
 </figcaption>
 </figure>
-<p>El problema de esta perspectiva es que únicamente está describiendo el percepto o sensación que tiene el observador, pero sin embargo, no da una explicación estructurada a cómo se producen dentro de un sistema cognitivo esas <strong>leyes</strong>. Esto es importante, ya que dado que, <strong>dado que sólo se trata de una perspectiva descriptiva (y no explicativa) no puede dar lugar a hipótesis que puedan ser contrastadas mediante el método científico</strong>.</p>
+<p>El problema de esta perspectiva es que únicamente está describiendo el percepto o sensación que tiene el observador pero no ofrece una explicación a cómo se producen dentro de un sistema cognitivo la estrucutración de los estímulos bajo tales <strong>leyes</strong>. <!--**Dado que sólo se trata de una perspectiva descriptiva (y no explicativa) no puede dar lugar a hipótesis que puedan ser contrastadas mediante el método científico**. --></p>
 </div>
 </div>
 <div id="parte-practica-experimento-de-navon" class="section level2">
 <h2>Parte práctica: Experimento de Navon</h2>
-<p>Basándose en las perspectivas anteriores, <a href="https://doi.org/10.1016/0010-0285(77)90012-3">Navon (1977)</a> tenía como objetivo demostrar que los observadores son más rápidos a la hora de procesar y reconocer conscientemente papatrones globales dentro de una escena que los patrones locales e individuales que la componen. De esta manera, daba predominio a los procesos de tipo top-down, es decir, a la hipótesis de la precedencia global.</p>
-<p>La hipótesis de Navos se basa en que la percepcion de una configuración global de la escena precede a la percepción de lo local. De hecho, Navón predijo que cuando existiese un conflicto entre lo local y lo global, la interferencia sólo debería afectar cuando la atención se dirige a reonocer el elemento local, mientras que no s vería afectada cuando la atención e dirige a lo global.</p>
+<p>Basándose en las perspectivas anteriores, <a href="https://doi.org/10.1016/0010-0285(77)90012-3">Navon (1977)</a> tenía como objetivo demostrar que los observadores son más rápidos a la hora de procesar y reconocer conscientemente patrones globales dentro de una escena que los patrones locales e individuales que la componen. De esta manera, daba predominio a los procesos de tipo top-down, es decir, a la hipótesis de la precedencia global.</p>
+<p>La hipótesis de Navos se basa en que la percepcion de una configuración global de la escena precede a la percepción de lo local. De hecho, Navón predijo que cuando existiese un conflicto entre lo local y lo global, la interferencia sólo debería afectar cuando la atención se dirige a reonocer el elemento local, mientras que no se vería afectada cuando la atención se dirige a lo global.</p>
 <p><strong>Pregunta:</strong>¿Cuál es la dirección de procesamiento predominante?: Local-to-Global o Global-to-Local</p>
 <p><strong>Hipótesis de Navon</strong></p>
 <ul>
-<li><p>El tiempo de respuesta sería mayor cuando el observador ha de reconocer el ele mento local y aún mayor cuando iene que reconocer el elemento local incongruente con el global.</p></li>
-<li><p>El número de errores sería mayor cuando el observador ha de reconocer el ele mento local y aún mayor cuando iene que reconocer el elemento local incongruente con el global.</p></li>
+<li><p>El tiempo de respuesta sería mayor cuando el observador ha de reconocer el elemento local y aún mayor cuando tiene que reconocer un elemento local incongruente con el global.</p></li>
+<li><p>El número de errores sería mayor cuando el observador ha de reconocer el elemento local y aún mayor cuando tiene que reconocer un elemento local incongruente con el global.</p></li>
 </ul>
-<p>Para resumir, plantea que el rendimiento general de la tarea se deterioraría em la condición de conflicto entre lo local (atendido) y lo global (no atendido).</p>
+<p>Para resumir, plantea que el rendimiento general de la tarea se deterioraría en la condición de conflicto entre lo local (atendido) y lo global (no atendido).</p>
 <div id="metodologia-3" class="section level3">
 <h3>Metodología</h3>
 <p><strong>Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 4 Navon Global-to-Local</strong></p>
@@ -1940,7 +1958,7 @@ El reconocimiento de una figura se puede basar en la forma global sin que se pue
 </figure>
 <ul>
 <li><p>Para realizar el experimento, se debe poner énfasis tanto en no cometer errores como en la velocidad de respuesta. Para saber cómo se realiza el experimento, primero se realiza un entrenamiento consistente en 2 bloques de 8 ensayos.</p></li>
-<li><p>La tarea del participante consiste en atender a los elementos globales o locales y responder al elemento reconocido utilizando la tecla “H” o “S”.</p></li>
+<li><p>La tarea del participante consiste en atender a los elementos globales o locales y responder al elemento reconocido utilizando la tecla “H” o “S” seún el elementos que hayan percibido en cada condición.</p></li>
 </ul>
 <figure>
 <p>
@@ -1969,26 +1987,28 @@ Ejemplo de cada uno de los estímulos mostrados
 </div>
 <div id="resultados-3" class="section level3">
 <h3>Resultados</h3>
+<p>Los resultados muestran el efecto que esparaba Navon. En un primer lugar, el procesamiento de los elementos locales es más lento que los elementos globales. Por otra aprte, este procesamiento se ve empeorado aún más cuando existe una incongruencia entre ambos estímulos. Lo que indica una interacción debida a la incongruencia entre ambos.</p>
 <figure>
 <p>
 <img src="pia/P4/Results_Navon.png" height="400px">
 <figcaption>
 </figcaption>
 </figure>
-<p>Los resultados muestran el efecto que esparaba Navon. En un primer lugar, el porcesamiento de los elementos locales es más lento que los elementos globales. Por otra aprte, este procesamiento se ve ralentizado aún más cuando existe una incongruencia entre ambos estímulos. Lo que indica una interacción debida a la incongruencia entre ambos.</p>
+<hr />
+<p>Un dato curioso se produce cuando se aplica este experimento en población TEA. En este caso, los resultados se invierten. El tiempo de reacción aumenta cuando se atiende a los elementos globales e inconsistentes.</p>
 <figure>
 <p>
 <img src="pia/P4/Navon_TEA.png" height="400px">
 <figcaption>
 </figcaption>
 </figure>
-<p>Por otra parte, se observan resultados interesantes cuando aplicamos este experimento en población TEA. En este caso, los resultados se invierten. El tiempo de reacción cuando se atiende a los elementos globales e inconsistentes.</p>
+<hr />
 <p>Navon llegó a las siguientes conlusiones:</p>
 <ol style="list-style-type: decimal">
 <li><p>Procesamos el bosque antes que los árboles, es decir, procesamos antes los elementos globales que los elementos locales.</p></li>
-<li><p>Cuando la tarea demanda atención local y el estímulo es incongruente, es decir, los Sujetos tardan más tiempo (TR) y cometen más errores.</p></li>
+<li><p>Cuando la tarea demanda atención local y el estímulo es incongruente, los observadores tardan más tiempo (TR) y cometen más errores al responder.</p></li>
 </ol>
-<p>Cuando se realiza la prueba en estas condiciones, el procesamiento Gloval es inevitable e interfiere, consumiento recursos, con el procesamiento locla incongruente.</p>
+<p>Cuando se realiza la prueba en estas condiciones, el procesamiento global es inevitable e interfiere, consumiendo recursos en detrimento del procesamiento local. Además, el procesamiento global interfiere con el local haciendo que cuando ambos son incongruentes el procesamiento se vea aún más afectado.</p>
 </div>
 </div>
 <div id="discusion" class="section level2">
@@ -1999,7 +2019,7 @@ Ejemplo de cada uno de los estímulos mostrados
 <ul>
 <li><p>Transmite el procesamiento Global-to-Local.</p></li>
 <li><p>Transmite el procesamiento Local-to-Global.</p></li>
-<li><p>En este caso, se postula que <strong>somos conscientes del procesamineto de alto nivel (procesamoento tardío)</strong>, mientras que <strong>no somos conscientes del procesamiento de bano nivel o pre-atencional</strong>, es automático y guiado por los datos sensoriales.</p></li>
+<li><p>En este caso, se postula que <strong>somos conscientes del procesamineto de alto nivel (procesamoento tardío)</strong>, mientras que <strong>no somos conscientes del procesamiento de bano nivel o pre-atencional</strong> (automático y guiado por los datos sensoriales).</p></li>
 </ul></li>
 </ul>
 <figure>
@@ -2009,7 +2029,7 @@ Ejemplo de cada uno de los estímulos mostrados
 </figcaption>
 </figure>
 <ul>
-<li><p>Pomerantz, J. (1981): La prioridad del procesamiento global frente al local podría depender de las condiciones visuales (tamaño de las letras y distancia de observación, etc.). A veces es más fácil procesar ‘bosques’ y, otras veces es más fácil procesar ‘árboles’.</p></li>
+<li><p>Pomerantz, J. (1981): La prioridad del procesamiento global frente al local podría depender de las condiciones visuales (tamaño de las letras y distancia de observación, etc.). “A veces es más fácil procesar bosques y, otras veces es más fácil procesar árboles”.</p></li>
 <li><p><a href="https://doi.org/10.3758/BF03202991">Kinchla, R. A., &amp; Wolfe, J. M. (1979)</a>: El tamaño del estímulo influye en que se perciba con anterioridad (precedencia) lo Global o los elementos Locales.</p></li>
 </ul>
 <figure>
@@ -2020,10 +2040,10 @@ Ejemplo de cada uno de los estímulos mostrados
 </figure>
 <ul>
 <li><p><a href="https://link.springer.com/content/pdf/10.3758/BF03198264.pdf">Martin, M. (1979a)</a>: El número de elementos locales que componen el estímulo global resulta ser un importante factor.</p></li>
-<li><a href="https://doi.org/10.1016/0028-3932(79)90019-8">Martin, M. (1979b)</a>: El fenómeno de precedencia perceptiva es afectado por la asimetría hemisférica cerebral, al menos con el tipo de estímulos lingüísticos. Este autor supone:
+<li><p><a href="https://doi.org/10.1016/0028-3932(79)90019-8">Martin, M. (1979b)</a>: El fenómeno de precedencia perceptiva es afectado por la asimetría hemisférica cerebral, al menos con el tipo de estímulos lingüísticos. Este autor supone:</p>
 <ul>
-<li><strong>Procesamiento Local:</strong> hemisferio izquierdo es superior.</li>
-<li><strong>Procesamiento Global:</strong> no está fuertemente lateralizado.</li>
+<li><p><strong>Procesamiento Local:</strong> hemisferio izquierdo es superior.</p></li>
+<li><p><strong>Procesamiento Global:</strong> no está fuertemente lateralizado.</p></li>
 </ul></li>
 </ul>
 <figure>
@@ -2033,11 +2053,11 @@ Ejemplo de cada uno de los estímulos mostrados
 </figcaption>
 </figure>
 <ul>
-<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1688391/pdf/9149423.pdf">Fink, G. R., Marshall, J. C., Halligan, P. W., Frith, C. D., Frackowiak, R. S., &amp; Dolan, R. J. (1997)</a>.
+<li><p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1688391/pdf/9149423.pdf">Fink, G. R., Marshall, J. C., Halligan, P. W., Frith, C. D., Frackowiak, R. S., &amp; Dolan, R. J. (1997)</a>.</p>
 <ul>
-<li>La especialización interhemisférica parece depender del tipo de estímulo que se estudie. Por ejemplo, si se utiliza un tipo de estímulo iconográfico:</li>
-<li>Atención global: Activación hemisferio izquierdo.</li>
-<li>Atención local: Activación hemisferio derecho.</li>
+<li><p>La especialización interhemisférica parece depender del tipo de estímulo que se estudie. Por ejemplo, si se utiliza un tipo de estímulo iconográfico:</p></li>
+<li><p>Atención global: Activación hemisferio izquierdo.</p></li>
+<li><p>Atención local: Activación hemisferio derecho.</p></li>
 </ul></li>
 </ul>
 <figure>
@@ -2081,14 +2101,15 @@ Ejemplo de cada uno de los estímulos mostrados
 <div id="indice-de-objetivos-1" class="section level2">
 <h2>Índice de objetivos</h2>
 <ul>
-<li><p>Comprobar si existen diferencias interhemisféricas (asimetrías cerebrales) en el procesamiento de emociones, a partir de técnicas psicofísicas (no invasivas)</p></li>
+<li><p>Comprobar si existen diferencias interhemisféricas (asimetrías cerebrales) en el procesamiento de emociones.</p></li>
+<li><p>Introducir la técnica de campo visual dividido.</p></li>
 <li><p>Intentar replicar el estudio de Alves, Aznar-Casanova &amp; Fukusima (2008) con rostros esquemáticos.</p></li>
 </ul>
 </div>
 <div id="introduccion" class="section level2">
 <h2>Introducción</h2>
-<p>Durante el transcurso de estas clases, ya hemos visto cómo el ser humano es capaz de acceder a diferente rasgos o caracterñisticas de un sistema visual de manera bastante eficiente. Aunque hasta ahora nos hemos centrado en niveles perceptivos más bajos como podrían ser luminancia, contraste, co-colinealidad, o patrones sencillos como son letras, el procesamiento de estímulos visuales complejos como puede ser un rostro es importante para entender cómo interactuamos con estímulos más válidos ecológicamente con los que nos encontramos en nuestro día a día.</p>
-<p>En nuestra vida social nos encontramos con unos estímulos complejos como son los rostros. Continuamente estamos haciendo inferencias sobre rasgos presentes en estos rostros, y aunque normalmente son acertadas, pueden tener una gran influencia sobre nuestro comportamiento. Por ejemplo…</p>
+<p>Durante el transcurso de estas clases, ya hemos visto cómo el ser humano es capaz de acceder a diferente rasgos o características que definen un estímulo de manera bastante eficiente. Aunque hasta ahora nos hemos centrado en elementos como podrían ser la luminancia, contraste, co-colinealidad, o patrones sencillos como son letras, el procesamiento de estímulos visuales tan complejos como las expresiones emocionales es importante para estudiar nuestra interacción diaria.</p>
+<p>Las expresiones emocionales son patrones estimulares complejos. Concretamente, identificar las expresiones emocionales de rostros son determinantes para nuestra supervivencia en sociedad. Continuamente nos encontramos realizando inferencias sobre los rasgos presentes en tales rostros y modificnado nuestra conducta para poder adaptarnos a la situación. por ejemplo….</p>
 <figure>
 <p>
 <img src="pia/P5/ruby_rose.jpg" width="350px">
@@ -2096,7 +2117,7 @@ Ejemplo de cada uno de los estímulos mostrados
 ¿Hombre, Mujer, Intersexual? ¿Edad? ¿Inteligente? ¿Atractivx? ¿Conocidx? ¿Se trata de una persona hostil? ¿Qué emoción está sientiendo?
 </figcaption>
 </figure>
-<p>Desde el punto de vista de la congnición social, se ha estudiado cómo tanto seres humanos como primates indentifican y reconocer las expresiones faciles de los otros. Según <a href="https://doi.org/10.1080/02699939208411068">Ekman (1992); pág. 171</a>, la función primaria de las emociones sería la de movilizar a un organismo a realizar ciertas acciones para conseguir un objetivo dentro de su vida social. En su estudio de las emociones, Ekman propuso que había una serie de emociones básicas compartidas entre todas las civilizaciones humanas: ira, miedo, asco, sorpresa, alegría y tristeza. Dado que diferentes emociones dan lugar a diferentes probablidades de que se manifieste una conducta posterior, obtener una rápida identificación por parte de un observador externo de la expresión emocional (se sabe que se produce alrededor de los 100ms.) es de gran utilidad evolutiva para adaptarse al futuro comportamiento de los otros.</p>
+<p>Desde el punto de vista de la congnición social, se ha estudiado cómo tanto seres humanos como primates identifican las expresiones faciales de los otros. Según <a href="https://doi.org/10.1080/02699939208411068">Ekman (1992); pág. 171</a>, la función primaria de las emociones propias sería la de movilizar a un organismo a realizar ciertas acciones para conseguir un objetivo dentro de su vida social. En su estudio de las emociones, Ekman propuso que había una serie de emociones básicas compartidas entre todas las civilizaciones humanas: ira, miedo, asco, sorpresa, alegría y tristeza. Dado que diferentes emociones dan lugar a diferentes probablidades de que se manifieste una conducta posterior, ser capaz de identificar de forma rápida la expresión facial de una persona potencialmente hostil (se sabe que se produce alrededor de los 100ms.) sería de gran utilidad adaptativa.</p>
 <figure>
 <p>
 <img src="pia/P5/Faces.png" width="350px">
@@ -2104,13 +2125,13 @@ Ejemplo de cada uno de los estímulos mostrados
 Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr lo más pronto posible.
 </figcaption>
 </figure>
-<p>Pero, ¿por qué es importante esto dentro de la sub-asignatura de “Percepción Visual”? <a href="10.1037//0022-3514.53.1.53">Forgas y Bower (1987)</a> estudiaron el efecto que tienen las emociones dentro del procesamiento cognitivo. Al hacer esto encontraron que cuando cambiaba el componente emocional de un observador, cambiaban factores cognitivos de respuesta (criterio de decisión) a experimentos psicofísicos, sin embargo, no pudieron encontrar diferncias en el componente sensorial (detectabilidad o discriminabilidad). ¿Recuerdas la práctica 2?</p>
+<p>Pero, ¿por qué es importante esto dentro de la sub-asignatura de “Percepción Visual”? <a href="10.1037//0022-3514.53.1.53">Forgas y Bower (1987)</a> estudiaron el efecto que tienen las emociones dentro del procesamiento cognitivo. Al hacer esto encontraron que cuando cambiaba el componente emocional de un observador, cambiaban factores cognitivos de respuesta (criterio de decisión) a experimentos psicofísicos, sin embargo, no pudieron encontrar diferencias en el componente sensorial (detectabilidad o discriminabilidad). Es decir, que aunque sensorialmente funcionaban igual de bien (eran igual de buenos en detectar o de discriminar estímulos), sus respuestas eran moduladas por la emoción sentida o identificada en otros.</p>
 <p>Actualmente podemos decir que existen dos perspectivas distintas en cuanto a cuáles son las bases neurales del procesamiento de las emociones:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Hipótesis del hemisferio derercho</strong> podemos encontrar un claro ejemplo de esta teoría en <a href="http://dx.doi.org/10.1037/0894-4105.12.3.446">Borod, 1998</a>: Según esta teoría, todas las emociones serán procesadas más fácilmente por el hemisferio derecho independientemente de su valencia.</p></li>
 <li><p><strong>Hipótesis del acercamiento-retraimiento</strong> de <a href="https://doi.org/10.1111/1469-8986.00067">Davidson (2003)</a>: Según esta teoría el hemisferio iquierdo procesaría las emociones positivas mientras que el hemisferio derecho procesaría de forma principal las emociones negativas.</p></li>
 </ol>
-<p>Concretamente, <a href="https://scholar.google.es/scholar?cluster=1079682260296463766&amp;hl=es&amp;as_sdt=2005&amp;sciodt=0,5">Davidson (1995)</a> propuso una división del sistema emocional en tres subsistmeas o componentes:</p>
+<p>Desde el punto de vista funcional, <a href="https://scholar.google.es/scholar?cluster=1079682260296463766&amp;hl=es&amp;as_sdt=2005&amp;sciodt=0,5">Davidson (1995)</a> propuso una división del sistema emocional en tres subsistemas o componentes:</p>
 <!--  
 <figure>
 <p><img src="pia/P5/Sistema_limbico.png" width="350px">
@@ -2119,7 +2140,7 @@ Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr
 </figure>
 -->
 <ol style="list-style-type: decimal">
-<li><strong>Experiencia emocional (experiencia que genera la emoción)</strong></li>
+<li><strong>Experiencia emocional (experiencia externa/interna que genera la emoción)</strong></li>
 </ol>
 <figure>
 <p>
@@ -2128,7 +2149,7 @@ Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr
 </figcaption>
 </figure>
 <ol start="2" style="list-style-type: decimal">
-<li><strong>Expresión emocional (expresión emocional factor conductual esquelético)</strong></li>
+<li><strong>Expresión emocional (factor conductual en el sentido más amplio de la palabra)</strong></li>
 </ol>
 <figure>
 <p>
@@ -2137,7 +2158,7 @@ Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr
 </figcaption>
 </figure>
 <ol start="3" style="list-style-type: decimal">
-<li><strong>Percepción emocional (identificación de la propia emoción)</strong></li>
+<li><strong>Percepción emocional (identificación de la propia emoción, metacognición de la emoción)</strong></li>
 </ol>
 <figure>
 <p>
@@ -2145,9 +2166,11 @@ Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr
 <figcaption>
 </figcaption>
 </figure>
-<p>Es posible que el procesamiento de una emoción no llegue hasta el tercer nivel. Un ejemplo de esto sería cuando nos sentimos molestos por tener hambre. En muchos casos, no somos conscientes de qué estímulo es el que nos está haciendo sentir a disgusto y nos podemos llegar a molestar por cualquier acontecimiento o comentario. En este caso, nos sentimos molestos con las acciones de los demás aunque no hayan hecho nada para molestarnos dado que estamos atibuyendo nuestro estado emocional a un evento externo y no a la experiencia emocional inicial, el hecho en sí de tener hambre.</p>
-<p>En esta práctica se pretende mostrar que la identificación de la emoción de un tercero es beneficiosa en tanto que ayuda a la planificación de la acción. Es importante entender que para que se pueda identificar una emoción, primero han de ser percibidos los rasgos faciales que indican esa emoción, por lo que la incidencia de éstos en un campo visual u otro afectarán a la velocidad de procesamiento de la misma. Para estudiar la asimetrías cerebrales en su análisis cognitivo, utilizaremos una técnica llamada <strong>técnica de campo visual dividido</strong>.</p>
-<p><strong>¿En qué consiste ésta técnica?</strong> Cuando miramos hacia un elemento en el entorno, la luz proviniente del campo visual derecho se refleja en la parte izquierda de la retina. Esta información a su vez es procesada por el hemisferio izquierdo y viceversa. De esta manera, podemos aprovechar esta asimetría en el sistema visual para controlar qué información se está procesando por cada hemisferio cerebral. De esta manera podemos estudiar existe una asimetría en la manera en la que el cerebro procesa los rasgos de expresiones faciales emocionales.</p>
+<hr />
+<p><strong>Para reflexionar:</strong> ¿Es siempre directamente accesible la percepción emocional? No. Por ejemplo, cuando nos sentimos molestos por tener hambre. A todos nos habrá ocurrido que en caso de hambre nos sentimos molestos, sin embargo, no somos conscientes de por qué nos sentimos así. Esto hace que atrubyamos nuestra molestia a cualquier evento/persona externa.</p>
+<hr />
+<p>En esta práctica se pretende mostrar que la identificación de la emoción de un tercero es beneficiosa en tanto que ayuda a la planificación de la acción. Es importante entender que para que se pueda identificar una emoción, primero han de ser percibidos los rasgos faciales que indican esa emoción. Bajo las teorías anteriormente mencionadas (p.e. HD y acercamiento-retraimiento) el procesamiento de la expresión facila por un hemisferio u otro afectará a su velocidad de procesamiento. Es aquí donde entra en juego la <strong>técnica de campo visual dividido</strong>.</p>
+<p><strong>¿En qué consiste ésta técnica?</strong> Cuando miramos hacia un elemento en el entorno, la luz proviniente del campo visual derecho se refleja en la parte izquierda de la retina. Esta información a su vez es procesada por el hemisferio izquierdo y viceversa. De esta manera, podemos aprovechar esta asimetría en el sistema visual para controlar qué información se está procesando por cada hemisferio cerebral. De esta manera, podemos estudiar si existe una asimetría en el procesamiento de expresiones faciales emocionales.</p>
 <figure>
 <p>
 <img src="pia/P5/Campos_Visuales.png" width="350px">
@@ -2157,8 +2180,8 @@ El campo visual derecho se refleja en la hemiretina izquierda haciendo que se pr
 </figure>
 <div id="estudio-de-alves-n.-t.-fukusima-s.-s.-aznar-casanova-j.-a.-2008" class="section level3">
 <h3>Estudio de Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</h3>
-<p>Utilizando la técnica de campo visual dividido <a href="http://dx.doi.org/10.3922/j.psns.2008.1.010">Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</a> mostraron a diferentes observadores una serie de imágenes mostrando rostros con expresiones emocionales a ambos lados de una pantalla. De esta manera, las expresiones emocionales eran dirigidas para ser procesadas por el hemisferio izquierdo o derecho preguntándose si habría un hemisferio que procese más rápidamente/eficazmente cada emoción.</p>
-<p>Para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (estímulos positivos), caras enfadadas o tristes (estímulos negativos) o caras con expresión neutra (estímulo no-emocional).</p>
+<p>Utilizando la técnica de campo visual dividido <a href="http://dx.doi.org/10.3922/j.psns.2008.1.010">Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</a> mostraron a diferentes observadores una serie de imágenes mostrando rostros con expresiones emocionales a ambos lados de una pantalla. De esta manera, las expresiones emocionales eran procesadas por el hemisferio izquierdo o derecho dependiendo de en qué lado de la pantalla eran mostradas. En este experimento, los autores se preguntaron si es posible que un hemisferio que procese más rápidamente/eficazmente cada una de las emociones mostradas.</p>
+<p>Para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (categorizadas como estímulos positivos), caras enfadadas o tristes (categorizadas como estímulos negativos) o caras con expresión neutra (estímulos no-emocionales).</p>
 <ul>
 <li><p>Grupo 1 = target Felicidad (vs T, S, N, M)</p></li>
 <li><p>Grupo 2 = target Miedo (vs T, N, S, F)</p></li>
@@ -2166,7 +2189,7 @@ El campo visual derecho se refleja en la hemiretina izquierda haciendo que se pr
 <li><p>Grupo 4 = target Sorpresa (vs F, N, T, M)</p></li>
 <li><p>Grupo 5 = target Tristeza (vs F, N, M, S)</p></li>
 </ul>
-<p>Los participantes tenían que indicar el lado de la pantalla en la que se mostraba la emoción correspondiente al grupo al que se le había asignado. Es decir, si el participante pertenecía al primer grupo (target: alegría), debería seleccionar izquierda en el primer ensayo y derecha en el segundo ensayo.</p>
+<p>Los participantes tenían que indicar el lado de la pantalla en la que se mostraba la emoción correspondiente al grupo al que se le había asignado. Es decir, si el participante pertenecía al primer grupo (target: alegría), debería buscar el rostro que muestra la emoción de alegría y seleccionar en qué lado de la pantalla se había mostrado. En la siguiente figura se muestran dos ensayos diferentes en los que debería seleccionar izquierda para el primero y derecha en el segundo ensayo.</p>
 <figure>
 <p>
 <img src="pia/P5/Trials_2008.png" width="350px">
@@ -2181,15 +2204,16 @@ El campo visual derecho se refleja en la hemiretina izquierda haciendo que se pr
 Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio derecho
 </figcaption>
 </figure>
-<p>Sin embargo, los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Si bien, los resultados con rostros neutros sugieren mayor apoyo empírico a la hipótesis del HD.</p>
+<p>Sin embargo, los resultados obtenidos no dieron soporte completo a ninguna de las dos teorías, sino que dan soporte parcial a ambas propuestas. Aunque los resultados con rostros neutros sugieren mayor apoyo empírico a la hipótesis del HD.</p>
 <hr />
-<p><strong>Para pensar:</strong> ¿Por qué el hecho de que los resultados de los rostros neutros muestren diferencias significativas aportan soporte parcial a la hipótesis del HD? <!--In other words, their better performance for perceiving neutral expressions in the right visual field might be a result of the right hemisphere’s advantage for perceiving emotions in the left visual field, irrespectively of their category (hapiness, fear, surprise and sadness)--> —</p>
+<p><strong>Para pensar:</strong> ¿Por qué el hecho de que los resultados de los rostros neutros muestren diferencias significativas aportan soporte parcial a la hipótesis del HD? <!--In other words, their better performance for perceiving neutral expressions in the right visual field might be a result of the right hemisphere’s advantage for perceiving emotions in the left visual field, irrespectively of their category (hapiness, fear, surprise and sadness). en otras palabras, su mejor performance para percibir estñimulos neutros en el hemiretina derecha (hemisferio izquierdo) podría se el resultado de la ventaja del hemisferio derecho para percibir emociones independientemente de su categoría.--></p>
+<hr />
 <p>Los autores proponen que se profundice en la naturaleza de los estímulos (por ejem., estáticos / dinámicos), ya que el patrón de resultados da lugar a interpretaciones.</p>
 </div>
 </div>
 <div id="P5" class="section level2">
 <h2>Práctica 5: Percepción de expresiones emocionales</h2>
-<p><strong>Pregunta experimental:</strong> Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resutlados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento con caricaturas que reflejan diferentes expresiones emocionales de una manera esquemática.</p>
+<p><strong>Pregunta experimental:</strong> Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resultados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento con caricaturas que reflejan diferentes expresiones emocionales de una manera esquemática.</p>
 <p><strong>Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 5 Percepción de expresiones emocionales</strong></p>
 <p><strong>Hipótesis: </strong> No tenemos una dirección de hipótesis fija. Se trata de un estudio exploratorio para ver si los datos arrojan soporte a la hipótesis del acercamiento-retraimiento o a la hipótesis del hemisferio derecho.</p>
 <div id="metodologia-4" class="section level3">
@@ -2207,7 +2231,7 @@ Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio der
 <li><p>Grupo 2 = target Tristeza (vs N, S, F)</p></li>
 <li><p>Grupo 3 = target Neutra (vs T, M, S, F)</p></li>
 </ul>
-<p>La tearea es la siguiente, si nos encontramos en el grupo 1 (Felicidad), tendremos que indicar en qué lado de la pantalla se encuentra la caricatura que muestra esa emoción intentando no prestar atención a la caricatura del lado opuesto.</p>
+<p>La tarea es la siguiente: si nos encontramos en el grupo 1 (Felicidad), tendremos que indicar en qué lado de la pantalla se encuentra la caricatura que muestra esa emoción con el mouse.</p>
 <figure>
 <p>
 <img src="pia/P5/Trials_P5.png" width="350px">
@@ -2262,7 +2286,7 @@ Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio der
 </div>
 <div id="discusion-1" class="section level3">
 <h3>Discusión</h3>
-<p>Los resultados con caricaturas muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Mientras que los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD.</p>
+<p>Los resultados con caricaturas muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Por su parte, los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD.</p>
 <hr />
 <p><strong>Para pensar más:</strong></p>
 <ul>
