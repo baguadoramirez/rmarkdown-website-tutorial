@@ -2,9 +2,9 @@ name: "Borja's personal web page"
 navbar:
   title: "HOME"
   left:
-    - text: "CV"
+    - text: "Curriculum Vitae"
       href: CV.html    
-    - text: "P&A"
+    - text: "Percepcion y Atencion"
       href: pia.html    
 #    - text: "TTC models"
 #      href: Simulation_TTC.html

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -83,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -244,18 +244,6 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -284,10 +272,10 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="CV.html">CV</a>
+  <a href="CV.html">Curriculum Vitae</a>
 </li>
 <li>
-  <a href="pia.html">P&amp;A</a>
+  <a href="pia.html">Percepcion y Atencion</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -318,9 +306,9 @@ Put in your css file or directly in rmarkdown--->
 figure_side {
   float: right;
   width: 30%;
-  text-align: center;
+  text-align: left;
   font-style: italic;
-  font-size: smaller;
+  font-size: small;
   text-indent: 0;
   border: thin silver solid;
   margin: 0.5em;
@@ -333,15 +321,14 @@ figure {
   font-size: smaller;
   text-indent: 0;
   border: thin silver solid;
-  margin: 0.5em;
-  padding: 0.5em;
 }
 
 figurecaption{
   text-align: justify;
 }
 </style>
-<p><figure_side style="float: right"> Contact: ✉ e-mail : <a href="mailto:borja.aguado@ub.edu">borja.aguado@ub.edu</a><br>GitHub: <a href="https://github.com/baguadoramirez">baguadoramirez</a><br>LinkedIn: <a href="www.linkedin.com/in/borja-a-606a59119">Borja Aguado</a><br><img src="images/me.JPG" width="300px"> </float_side></p>
+</style>
+<p><figure_side style="float: right"> <b>Contact:</b> <br> ✉ E-mail : <a href="mailto:borja.aguado@ub.edu">borja.aguado@ub.edu</a> <br> <img src="images/github.png" width="20px"> GitHub: <a href="https://github.com/baguadoramirez">baguadoramirez</a> <br> <img src="images/OSF.png" width="20px"> OSF: <a href="https://osf.io/tj628/">baguadoramirez</a> <br> <img src="images/linkedin.png" width="20px"> LikedIn: <a href="https://www.linkedin.com/in/borja-a-606a59119">Borja Aguado</a> <br> <img src="images/twitter.png" width="20px"> Twitter: <a href="https://twitter.com/b_aguador">b_aguador</a> <br><img src="images/me.JPG" width="300px"> </figure_side></p>
 <p>This is a first draft of my personal web page. So, don´t be too harsh on me.</p>
 <p>In this website I intend to publish mainly the code of everything that I am doing on a daily basis. Whether it’s research, teaching or my nerdy stuff. I love writting experiments using Python and Psychopy. Besides, I´m a data visualization nerd. So, I will share code on how to make pretty and insightful plots.</p>
 <hr />
@@ -372,6 +359,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
