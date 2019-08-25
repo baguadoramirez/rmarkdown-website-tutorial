@@ -64,3 +64,6 @@ In this website I intend to publish mainly the code of everything that I am doin
 ----
 
 Thanks for reading and keep rocking! &#x1f525;
+
+
+<img src="images/logo_reveal_black.png" width="600px">

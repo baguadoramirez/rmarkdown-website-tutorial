@@ -7,11 +7,12 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title></title>
+<title>pia.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -86,7 +87,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -247,48 +247,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -381,10 +342,10 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="CV.html">CV</a>
+  <a href="CV.html">Curriculum Vitae</a>
 </li>
 <li>
-  <a href="pia.html">P&amp;A</a>
+  <a href="pia.html">Percepcion y Atencion</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -553,15 +514,15 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 <h2>Parte práctica: Efecto Helmholtz-Kohlsrauch</h2>
 <p>Este efecto es descrito como la sensación de que un estímulo cromático (con matiz), es percibido como más <strong>brillante</strong> que un estimulo acromático aunque ambos tengan la misma luminancia.</p>
 <p><strong>Estímulación física:</strong></p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{HK_F}
 \ Lum_{Crom} = Lum_{Acrom} 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p><strong>Sensación perceptual:</strong></p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{HK_S}
 \ Brillo_{Crom} &gt; Brillo_{Acrom} 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>Para poner a prueba este efecto, pedimos a los participantes ajustar la luminancia del estímulo acromático (estímulo test o de comparación) para hacer coincidir en brillo con el estímulo cromático (estímulo estándar o de referencia).</p>
 <center>
 <img src="pia/P1/estimulo.jpg" width="350px">
@@ -571,17 +532,17 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 <ul>
 <li>Dado el mismo brillo percibido:</li>
 </ul>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{HK_1}
 \ Brillo_{Crom} = Brillo_{Acrom} 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <ul>
 <li>La luminancia ajustada del estímulo acromático será mayor que la del estímulo cromático:</li>
 </ul>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{HK_2}
 \ Lum_{Crom} &lt; Lum_{Acrom} 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>Estamos también interesados en saber si hay algún matiz que se percibe como más brillante que otro, por lo tanto creamos un experimento con la siguiente metodología.</p>
 <p><strong>Variables</strong></p>
 <ul>
@@ -596,10 +557,10 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 </ul></li>
 </ul>
 <p>Como no somos procesadores de información infalibles y nuestra respuesta tiene cierta variabilidad o error, hemos de realizar cada combinación de condiciones varias veces. En este caso, para que el experimento sea corto hemos introducido únicamente 3 repeticiones.</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{trials_p1}
 \ 4~matices \times 10~luminancias del estímulo cromático \times 3~repeticiones~= 120~ensayos~(trials) 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <div id="analisis-de-datos" class="section level3">
 <h3>Análisis de datos</h3>
 <p>En la siguiente figura se pueden observar los resultados para diferentes observadores:</p>
@@ -812,17 +773,19 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 <h3>Ley de Weber</h3>
 <p>A principios del siglo XIX, <a href="https://es.wikipedia.org/wiki/Ernst_Heinrich_Weber">Ernst Weber</a> describe, la que se conoce como la <strong>primera ley Psicofísica, la Ley de Weber.</strong> Éste médico y fisiólogo alemán, se dió cuenta de que la capacidad de diferenciar dos pesos diferentes no se encontraba tanto en el peso absoluto de un objeto, sino en la diferencia relativa entre un objeto de referencia (<em>Estímulo de referencia</em>) y otro (<em>Estimulo de comparación</em>). Weber encuentra que para que dos objetos de diferente masa pudieran ser diferenciables, su masa debería variar entorno a un 3%. Es decir, si el objeto de referencia pesa 100g, para ser capaz de diferenciarlo de otro, éste debe pesar 103/97g o más/menos. El dato importante está en que Weber se dió cuenta de que esto se cumplia irrespectivamente del peso de referencia. Es decir, al igual que en el anterior ejemplo, para que un objeto de 2kg. pudiese diferenciarse de otro, éste debería pesar al menos 2.06kg.</p>
 <p>Si dividimos la diferencia necesaria para poder diferenciar dos estímulos entre la magnitud del estímulo de referencia podemos obtener una constante (<strong><span class="math inline">\(k\)</span></strong>).</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{WF}
 \ k = \frac{\Delta I}{I_{ref}}
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>Esta constante nos permite obtener de forma rápida la Mínima Diferencia Perceptible (<em>MDP</em> o <em>Just Noticeable Difference</em>; JND en inglés) con respecto a cualquier intensidad de un estímulo.</p>
+<pre><code>## Warning: `data_frame()` is deprecated, use `tibble()`.
+## This warning is displayed once per session.</code></pre>
 <p><img src="pia_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Como podemos ver en la anterior figura, irrespectivamente de la intensidad del estímulo de referencia, la MDP es el producto entre la misma y la fracción de Weber o <span class="math inline">\(k\)</span>.</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{MDP}
 \ MDP = \Delta I = k \* {I_{ref}}
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>Además, podemos utilizar esta constante (<strong><span class="math inline">\(k\)</span></strong>), como un índice de sensibilidad para comparar entre diferentes modalidades sensoriales.</p>
 <hr />
 <p><strong>Miniejercicio:</strong> Por ejemplo, si sabemos que la constante <span class="math inline">\(k\)</span> para diferenciar entre pesos es de <em><span class="math inline">\(k = 0.03\)</span></em>, mientras que la constante que nos indica la capacidad de diferenciar la velocidad de dos objetos es de <em><span class="math inline">\(k = 0.1\)</span></em>. <strong>¿A qué modalidad de estimación somos más sensibles?</strong></p>
@@ -881,10 +844,10 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 <p>Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que un observador afirma que percibe el 50% de las veces, es decir, al nivel del azar. Este punto se denomina <strong>Umbral Absoluto</strong>. Para calcular el UA, se mostrarían diferentes intensidades de un estímulo a un observador y se le pediría que respondiese <strong>sí</strong> o <strong>no</strong> dependiendo si ha llegado a percibir tal estímulo. Después de una cantidad suficiente de ensayos (a menudo una gran cantidad) podríamos caracterizar una curva como la siguiente haciendo una media de <em>síes</em> (codificados como 1) y <em>noes</em> (codificados como 0) para cada una de las intensidades:</p>
 <p><img src="pia_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Pero, ¿qué significa la anterior curva?: Cuando la intensidad de un estímulo es muy baja, la probabilidad de que un observador responda que ha sido capaz de percibir el mismo es igualmente baja o nula. Sin embargo, según aumenta su intesidad, la probabilidad de ser percibida aumenta progresivamente edfiniendo una curva con una forma sigmoidal. En concreto, la figura que se muestra arriba se trataría de una distibución normal cumulativa. Esta distribución asume que la respuesta a este experimento presentaría una varibilidad aleatoria (y por tanto simétrica) alrededor del segundo cuartil, lo que produciría esa característica forma sigmoidal. Dado que anteriormente definimos el UA como el punto en el que los observadores responden al nivel del azar, el umbral absoluto corresponde en esta figura al segundo cuartil de la distribución o a una probabilidad acumulada del 50%.</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{UA}
 \ UA = Q2
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <hr />
 <p><strong>Repaso:</strong></p>
 <ul>
@@ -907,10 +870,10 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 <h3>Umbral Diferencial y Mínima Diferencia Perceptible</h3>
 <p>Como ya había descrito Weber en la Ley de Weber, no somos capaces de percibir un continuo de cambios graduales en un estímulo, si no que necesitamos de una cantidad o diferencia mínima en la intensidad de un estímulo que nos permita indicar que ha ocurrido tal cambio. Este cambio en la intensidad ya lo definimos anteriormente como Mínima Diferencia Perceptible (<em>MDP</em>). El hecho de que necesitemos ésta diferencia mínima se debe a que al igual que la variabilidad en el Umbral Absoluto, nuestro sistema perceptivo presenta cierta varaibilidad en la medida de un estímulo. Nuestro sistema nervioso presenta ruido interno y no es capaz de representar todas las modalidades sensoriales con una correspondencia directa con el estímulo. Esto afecta a cómo somos capaces de interpretar un estímulo y es intresante para caracterizar lo bueno que es nuestro sistema sensorial discriminando entre dos estímulos parecidos. Para ello, calculamos el <strong>Umbral Diferencial (UD)</strong>.</p>
 <p>Para calcular el Umbral Diferencial utilizaremos <strong>normalmente</strong> una metodología un poco distinta. En primer lugar, mostraremos al observador un estímulo de referencia y a continuación un estimulo de comparación como hizo Weber en sus experimentos. En éste experimento, se le pide a los participantes que indiquen qué estímulo (pesa más, es más rápido, brilla más… ). Al igual que en los experimentos para estimar el Umbral Absoluto, elegiremos un rango de estímulos (entre 5 y 7) que nos arrojen una varibailidad suficiente en los juicios de respuesta para calcular el Umbral Diferencial de forma precisa. Para ello, el rango de intensidades deben cubrir, a poder ser, probabilidades de responder sí el rango completo del 0 al 100 %. Cuando calculamos la media de síes y noes para cada intensidad obtendremos una curva sigmoidal muy parecida a la que encontramos para el cálculo del UA. Sin embargo, en éste caso el umbral diferencial se calulará como la mitad del rango entr el 75 y 25 % de responder sí a la pregunta experimental. Es decir, la semidiferencia entre el Q3 (0.75%; tercer cuartil) y el Q1 (0.25%; primer cuartil).</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{UD}
 \ UD = (Q3 - Q1)/2
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p><img src="pia_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <hr />
 <p><strong>Tip pro:</strong> Aunque durante ésta clase hemos establecido el UD como la semidiferencia entre el Q3 y el Q1, normalmente se establece como la semidiferencia entre el 84 y el 16 % de probabilidad, ya que, de esta manera el umbral diferencial corresponde directamente con la desviación estándar de la curva normal asociada.</p>
@@ -924,10 +887,10 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 </ul></li>
 <li><p>Constante (k) o fracción de Weber:</p></li>
 </ul>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{k_café}
 \ k = \frac{1.3}{5} = 0.26
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>Como se mencionó anteriormente, una de las utilidades de calcular la constante de la ley de Weber es que nos permite comparar entre diferentes modadlidades sensoriales. Si recordamos, Weber describió la comparación entre pesos con una <span class="math inline">\(k_{peso} = 0.03\)</span>.</p>
 <hr />
 <p><strong>Repaso:</strong></p>
@@ -945,10 +908,10 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 <div id="utilizando-logit-para-linealizar" class="section level2">
 <h2>Utilizando Logit para linealizar</h2>
 <p>Uno de los problemas que presentan las curvas anteriores es que no son fáciles de interpretar, ya extraer puntos concretos de la curva (calcular la intesidad asociada a un cuartil) requiere de un ajuste no lineal. Sin embargo, podemos utilizar ciertos <strong>trucos</strong> matemáticos para facilitarnos esta misión. Para ello, vamos a utilizar una transformación de los datos anteriores con el objetivo de pasar de una curva con forma sigmoidal a una función lineal. Para ello, vamos a transformar las probabilidades en lo que se denomina <strong>unidades logit</strong> aplicando la siguiente fórmula:</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{logit}
 \ logit(p) = ln(\frac{p}{1-p})
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>En ésta fórmula, <span class="math inline">\(p\)</span> es la probabilidad asociada a cierta respuesta para una intensidad determinada y <span class="math inline">\(ln\)</span> el logaritmo neperiano o natural (no confundir con el logaritmo en base 10 o <span class="math inline">\(log\)</span>). Si aplicamos esta fórmula a la curva anterior obtenemos una <strong>aproximación funcional</strong> a una función lineal (como se puede ver en los puntos de la figura más abajo, no es compleeeeeetamente lineal, pero es una aproximación funcional bastante útil).</p>
 <p><img src="pia_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Si aplicamos una regresión lineal a los puntos anteriores mediante sistemas como <strike>SPSS, Excel, MatLab </strike> o R (o incluso a mano si diesemos esta clase 10 años antes), podemos obtener la probabilidad asociada a cualquier intensidad sustituyendo en la ecuación de la recta.</p>
@@ -978,19 +941,23 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 <ul>
 <li><p>El Umbral Absoluto responde a la pregunta de a qué intensidad de un estímulo un observador es capaz de verlo.</p>
 <ul>
-<li><p>Se calcula como el segundo cuartil de una curva sigmoide (cumulativa gaussiana). Para calcularlo:</p></li>
+<li><p>Se calcula como el segundo cuartil de una curva sigmoide (cumulativa gaussiana). Para calcularlo:</p>
+<ul>
 <li><p>Transformamos las probabilidades medias de detección de cada nivel de intensidad a valores logit <span class="math inline">\(logit(p) = ln(p(I)/(1-p(I)))\)</span>.</p></li>
 <li><p>Aplicamos una regresión lineal a los valores logit vs las intensidades del estímulo.</p></li>
 <li><p>El UA se puede calcular con la siguiente fórmula: <span class="math inline">\(UA = -intercepto/pendiente\)</span> o <span class="math inline">\(UA = -b/a\)</span>.</p></li>
 </ul></li>
+</ul></li>
 <li><p>El Umbral Diferencial responde a la pregunta de si el estímulo de comparación es diferente (en una dirección determinada) al estímulo de referencia.</p>
 <ul>
-<li><p>Nos da una curva sigmoidal con la probabilidad de que ocurra tal evento. Para calcularlo:</p></li>
+<li><p>Nos da una curva sigmoidal con la probabilidad de que ocurra tal evento. Para calcularlo:</p>
+<ul>
 <li><p>Transformamos las probabilidades medias de discriminación de cada nivel de intensidad a valores logit <span class="math inline">\(logit(p) = ln(p(I)/(1-p(I)))\)</span>.</p></li>
 <li><p>Calculamos la semidiferencia entre el Q3 y el Q1 utilizando valores logit. <span class="math inline">\(UD = (Q3 - Q1)/2\)</span>.</p>
 <ul>
 <li><p>$ Q1 = (logit(0.25) - b)/a $</p></li>
 <li><p>$ Q3 = (logit(0.75) - b)/a $</p></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1087,10 +1054,10 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 <p>En esta tabla se puede ver que aunque la sensación producida aumenta una sóla unidad en cada paso, el cambio necesario en la intensidad del estímulo es cada vez mayor. De manera que si ploteamos los anteriores datos tenemos la siguiente gráfica:</p>
 <p><img src="pia_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Como podemos ver, la relación existente entre sensación percibida y la intensidad del estímulo sigue una relación logarítimica. Para facilitar su interpretación, Fechner propuso la llamada como Ley de Weber-Fechner. Según esta ley, la sensación percibida sería proporcional al logaritmo en base 10 del estímulo multiplicado por una constante. De esta manera, la relación entre intensidad y sensación percibida pasa de una relación logarítmica a una relación lineal:</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{Weber-Fechner}
 \ S = K*log(E)
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p><img src="pia_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p><br></p>
 </div>
@@ -1168,10 +1135,10 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 <ul>
 <li>Conforme se aleja la orientación de las líneas de la orientación cardinal (horizontal), se deteriora la Agudeza de Vernier. Es decir:</li>
 </ul>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{H_P2a}
 \ UA(0\deg) &lt;  UA(15\deg) &lt; UA(30\deg) &lt; UA(45\deg) 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <div id="metodologia" class="section level3">
 <h3>Metodología</h3>
 <p><strong>Secuencia Experimental</strong></p>
@@ -1187,10 +1154,10 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 <li><p>Botón derecho si NO SON COLINEALES.</p></li>
 </ul>
 <p>En total tendremos 180 ensayos:</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{trials_p2a}
 \ 9~separaciones \times 4~orientaciones \times 5~repeticiones = 180~ensayos~(trials) 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p><strong>Variables</strong></p>
 <ul>
 <li><p>Variables independientes (VI):</p>
@@ -1304,13 +1271,16 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 <li><p>UA 45: 6.5</p></li>
 </ul>
 <p>Por lo tanto, obtenemos que: Conforme aumenta la inclinación, también aumenta el UA de detección de la co-linealidad. Es decir, se detecta peor la co-linealidad cuanto más inclinadas son las líneas.</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{p2a}
 \ UA_{0} &lt; UA_{15} &lt; UA_{30} &lt;= UA_{45}
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <div id="utilizando-logit-para-linealizar-y-obtener-ua" class="section level4">
 <h4>Utilizando Logit para linealizar y obtener UA</h4>
 <p>Ya tenemos una estimaación utilizando una regla de 3 para obtener el UA, sin embargo, en la sección de teoría, hemos visto que podemos utilizar una transformación Logit a las puntuaciones de probabilidad para linealizar los datos y obtener una estimación de forma rápida y exacta del UA. Por lo tanto, lo primero que tenemos que hacer es transformar las puntuaciones de probabilidad en valores Logit.</p>
+<pre><code>## `mutate_all()` ignored the following grouping variables:
+## Column `Coline`
+## Use `mutate_at(df, vars(-group_cols()), myoperation)` to silence the message.</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -1476,10 +1446,10 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 </figcaption>
 </figure>
 <p>En total tendremos 90 ensayos:</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{trials_p2b}
 \ 9~separaciones \times 10~repeticiones = 90~ensayos~(trials) 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p><strong>Variables</strong></p>
 <ul>
 <li><p>Variables independientes (VI):</p>
@@ -1500,10 +1470,10 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 <ul>
 <li><strong>Umbral Diferencial:</strong> Nivel estimular necesario para discriminar diferencias entre estímulos. Se calcula a partir de la semidiferencia entre el Q3 (0.75%) y el Q1 (0.25%).</li>
 </ul>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{UD}
 \ UD = (Q3 - Q1)/2
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p><img src="pia_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>Después de obtener estas puntuaciones de probabilidad a cada una de las intensidades, transformaremos las mismas en puntuaciones Logit y obtendremos una recta de ajuste lineal para obtener pendiente e intercepto con los que poder calcular el Umbral Diferencial.</p>
 <table>
@@ -1636,18 +1606,18 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 <div id="ley-potencial-de-stevens" class="section level3">
 <h3>Ley potencial de Stevens</h3>
 <p>Si recordamos lo visto en la anterior práctica, la ley de Weber-Fechner implicaba que la relación entre un estímulo y su sensación percibida era de tipo logarítmico:</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{Weber_Fechner}
 \ S = K * log(E) 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>No obstante, hay situaciones en las que este tipo de relación no se sigue. El hecho de que no todos los tipos de estimulaciones tengan una misma correspondencia psicofísica tiene un efecto capital en la supervivencia de un organismo. Por ejemplo, puede ser útil no ser sensible a ciertos niveles bajos de presión mecánica sobre la piel dado que los sufrimos durante las 24 horas sin que esto suponga un peligro para el organismo (p.e. al andar, al estar sentados, al coger un objeto con la mano…). Este tipo de estimulación es un típico ejemplo de correspondencia psicofísica que se comporta de forma exponencial. Por otra parte, hay situaciones en las que no es adaptativo reaccionar a cambios grandes en la estimulación. Es el caso de la iluminación. Para un organismo como el ser humano es mucho más útil ser sensible a cambios en estimulaciones a bajo nivel de intensidad, para poder orientarse en el espacio. Sin embargo, cambios bruscos como los que se producen bajo el sol no son necesariamente útiles para el organismo, ya que recibe suficiente energía como para percibir el entorno sin problemas. Este seria un típico ejemplo de correspondencia logarítmica. Stevens se dio cuenta de esto después de una serie de experimentos relacionados con el efecto que un shock eléctrico tenía sobre la piel. Éste es también con un típico ejemplo de relación exponencial.</p>
 <p>Reflexionando sobre esto, Stevens se preguntó si podría existir alguna forma de generalizar la relación entre la estimulación y la sensación producida de tal manera que en una misma ecuación se recogieran relaciones lineales, logarítmicas o exponenciales.</p>
 <p><img src="pia_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>Esta generalización de correspondencias psicofísicas pasó a llamarse <strong>Ley de Stevens</strong>.</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{Stevens}
 \ S = c * E^{k} 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p>En la misma, el exponente <strong>k</strong> describe cómo sería la relación entre la sensación y la intensidad del estimulo.</p>
 <ul>
 <li><p>k &gt; 1: Incremento expansivo</p></li>
@@ -1656,10 +1626,10 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 </ul>
 <p>Por su parte, la <strong>c</strong> sería una constante que describiría la sensación en ausencia de estimulación. El problema con estas curvas es que son difíciles de analizar.</p>
 <p>Lo interesante de la ley de Stevens es que si aplicamos una transoformación log-log, es decir, aplicamos logaritmos (en base 10) a todo lo que tenemos a la izquierda y a la derecha de la ecuación podemos linearizar las curvas que describe. Es ese caso, obtenemos la siguiente igualdad:</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{Log_Log_Stevens}
 \ log(S) = log(c) * n * log(E)
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 <p><img src="pia_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 </div>
@@ -1712,10 +1682,10 @@ En esta imagen podemos encontrar el set de estímulos que utilizareoms en el exp
 </ul></li>
 </ul>
 <p>En total tendremos 50 ensayos:</p>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{trials_p3}
 \ 10~reflectancias \times 5~repeticiones = 50~ensayos~(trials) 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 </div>
 <div id="resultados-2" class="section level3">
 <h3>Resultados</h3>
@@ -1980,10 +1950,10 @@ Ejemplo de cada uno de los estímulos mostrados
 <li><p>Tasa de errores</p></li>
 </ul></li>
 </ul>
-<span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation}
 \label{trials_4}
 \ 6~bloques \times 4~estímulos~diferentes \times 7~repeticiones~ = ~186~ensayos~(trials) 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 </div>
 <div id="resultados-3" class="section level3">
 <h3>Resultados</h3>
@@ -2018,8 +1988,10 @@ Ejemplo de cada uno de los estímulos mostrados
 <li><p><a href="http://dx.doi.org/10.1037/0096-1523.6.2.222">Hoffman (1980)</a> propuso un modelo híbrido. Hoffman propuso que hay dos canales de procesamiento que operan en paralelo:</p>
 <ul>
 <li><p>Transmite el procesamiento Global-to-Local.</p></li>
-<li><p>Transmite el procesamiento Local-to-Global.</p></li>
-<li><p>En este caso, se postula que <strong>somos conscientes del procesamineto de alto nivel (procesamoento tardío)</strong>, mientras que <strong>no somos conscientes del procesamiento de bano nivel o pre-atencional</strong> (automático y guiado por los datos sensoriales).</p></li>
+<li><p>Transmite el procesamiento Local-to-Global.</p>
+<ul>
+<li>En este caso, se postula que <strong>somos conscientes del procesamineto de alto nivel (procesamoento tardío)</strong>, mientras que <strong>no somos conscientes del procesamiento de bano nivel o pre-atencional</strong> (automático y guiado por los datos sensoriales).</li>
+</ul></li>
 </ul></li>
 </ul>
 <figure>
@@ -2055,9 +2027,11 @@ Ejemplo de cada uno de los estímulos mostrados
 <ul>
 <li><p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1688391/pdf/9149423.pdf">Fink, G. R., Marshall, J. C., Halligan, P. W., Frith, C. D., Frackowiak, R. S., &amp; Dolan, R. J. (1997)</a>.</p>
 <ul>
-<li><p>La especialización interhemisférica parece depender del tipo de estímulo que se estudie. Por ejemplo, si se utiliza un tipo de estímulo iconográfico:</p></li>
+<li><p>La especialización interhemisférica parece depender del tipo de estímulo que se estudie. Por ejemplo, si se utiliza un tipo de estímulo iconográfico:</p>
+<ul>
 <li><p>Atención global: Activación hemisferio izquierdo.</p></li>
 <li><p>Atención local: Activación hemisferio derecho.</p></li>
+</ul></li>
 </ul></li>
 </ul>
 <figure>
@@ -2167,7 +2141,7 @@ Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr
 </figcaption>
 </figure>
 <hr />
-<p><strong>Para reflexionar:</strong> ¿Es siempre directamente accesible la percepción emocional? No. Por ejemplo, cuando nos sentimos molestos por tener hambre. A todos nos habrá ocurrido que en caso de hambre nos sentimos molestos, sin embargo, no somos conscientes de por qué nos sentimos así. Esto hace que atrubyamos nuestra molestia a cualquier evento/persona externa.</p>
+<p><strong>Para reflexionar:</strong> ¿Es siempre directamente accesible la percepción emocional? No. Por ejemplo, cuando nos sentimos molestos por tener hambre. A todos nos habrá ocurrido que en caso de hambre nos sentimos molestos, sin embargo, no somos conscientes de por qué nos sentimos así. Esto hace que atrubyamos nuestra molestia a cualquier evento/persona externa.</p>
 <hr />
 <p>En esta práctica se pretende mostrar que la identificación de la emoción de un tercero es beneficiosa en tanto que ayuda a la planificación de la acción. Es importante entender que para que se pueda identificar una emoción, primero han de ser percibidos los rasgos faciales que indican esa emoción. Bajo las teorías anteriormente mencionadas (p.e. HD y acercamiento-retraimiento) el procesamiento de la expresión facila por un hemisferio u otro afectará a su velocidad de procesamiento. Es aquí donde entra en juego la <strong>técnica de campo visual dividido</strong>.</p>
 <p><strong>¿En qué consiste ésta técnica?</strong> Cuando miramos hacia un elemento en el entorno, la luz proviniente del campo visual derecho se refleja en la parte izquierda de la retina. Esta información a su vez es procesada por el hemisferio izquierdo y viceversa. De esta manera, podemos aprovechar esta asimetría en el sistema visual para controlar qué información se está procesando por cada hemisferio cerebral. De esta manera, podemos estudiar si existe una asimetría en el procesamiento de expresiones faciales emocionales.</p>
@@ -2323,6 +2297,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
