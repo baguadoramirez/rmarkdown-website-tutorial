@@ -1,7 +1,13 @@
 ---
+title: "Práctica 2C: Detección del Umbral de discriminación (Umbral diferencial) de la Colinealidad"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    fig_pos: "H"
 ---
 
-```{r, echo = F}
+```{r, echo = F, message = F, warning=F}
 # Las librerías que necesitamos
 libraries <- c("tidyverse","cowplot","quickpsy",
                "broom","knitr","circular")
@@ -19,11 +25,7 @@ invisible(
 )
 ```
 
-
-
-# Práctica 2C: Detección del Umbral de discriminación (Umbral diferencial) de la Colinealidad{#P2C}
-
-## Objetivos
+# Objetivos
 
   - Aprender a utilizar los métodos psicofísicos clásicos: Método de los estímulos constantes (calcular el UD).
   
@@ -33,7 +35,7 @@ invisible(
 
   - Para responder a esta pregunta, sólo nos centraremos en calcular el UD para la orientación de 45º. 
 
-## Metodología
+# Metodología
 
 **Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 2 Cálculo del UD de la agudeza de Vernier**
 
@@ -90,7 +92,7 @@ En total tendremos 90 ensayos:
     - Error = Valor asignado - Valor real
 
 
-## Resultados
+# Resultados
 
 
 Antes de obtener los resultados recordemos qué es el Umbral Diferencial:
@@ -111,8 +113,7 @@ UD <- data_frame(I=seq(12,28,by=2),
 ggplot(UD,aes(I,p_UD)) + 
   geom_line() +
   geom_point(size = 2, color = "red") +
-  labs(x = "Intensidad del estímulo", y = "Probabilidad de ser percibido como más dulce") +
-  theme_minimal(10)
+  labs(x = "Intensidad del estímulo", y = "Probabilidad de ser percibido como más dulce") 
 ```
 
 

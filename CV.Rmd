@@ -1,4 +1,5 @@
 ---
+title: "Borja Aguado Ramírez"
 output:
   html_document:
     toc: true
@@ -7,6 +8,7 @@ output:
     includes:
       after_body: 
         - _footer.html
+      in_header: favicon.html 
 ---
 
 <style>
@@ -27,18 +29,18 @@ output:
 }
 </style>
 
-<br>
-
-# Borja Aguado Ramirez
 
 <div class="column-left">
 From Toledo, living in Barcelona.
+<br>
+<b>Contact:</b>
+<br> &#x2709; E-mail : [borja.aguado@ub.edu](mailto:borja.aguado@ub.edu)
+<br> <img src="images/github.png" width="20px"> GitHub: [baguadoramirez](https://github.com/baguadoramirez)
+<br> <img src="images/OSF.png" width="20px"> OSF: [baguadoramirez](https://osf.io/tj628/)
+<br> <img src="images/linkedin.png" width="20px"> LikedIn: [Borja Aguado](https://www.linkedin.com/in/borja-a-606a59119)
+<!--<br> <img src="images/twitter.png" width="20px"> Twitter: [b_aguador](https://twitter.com/b_aguador)-->
+<br>
 
-&#x2709; e-mail : [borja.aguado@ub.edu](mailto:borja.aguado@ub.edu)
-
-GitHub: [baguadoramirez](https://github.com/baguadoramirez)
-
-LinkedIn: [Borja Aguado](www.linkedin.com/in/borja-a-606a59119)
 </div>
 
 <div class="column-center">

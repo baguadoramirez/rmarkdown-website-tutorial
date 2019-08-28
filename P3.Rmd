@@ -1,5 +1,12 @@
 ---
+title: "Práctica 3: Estimación de la Claridad (psicofísica de Stevens)"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    fig_pos: "H"
 ---
+
 
 ```{r, echo = F, message = F, warning=F}
 # Las librerías que necesitamos
@@ -29,11 +36,9 @@ Where_Am_I <- function(path=T){
 ```
 
 
-# Práctica 3: Estimación de la Claridad (psicofísica de Stevens)
+# Conceptos previos
 
-## Conceptos previos
-
-### Ley potencial de Stevens
+## Ley potencial de Stevens
 
 Si recordamos lo visto en la anterior práctica, la ley de Weber-Fechner implicaba que la relación entre un estímulo y su sensación percibida era de tipo logarítmico:
 
@@ -75,7 +80,6 @@ Functions %>%
   #scale_y_continuous(breaks = NULL) +
   scale_color_discrete(labels = c("k > 1","k = 1", "k < 1"), name = NULL) +
   labs(x = "Estimulación física (unidades arbitrarias)", y = "Sensación (unidades arbitrarias)") +
-  theme_minimal(10) +
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -122,12 +126,11 @@ Functions_without_intercept %>%
   coord_cartesian(xlim = c(0,1.5),ylim=c(0,1.5)) +
   scale_color_discrete(labels = c("n > 1","n = 1", "n < 1"), name = "Intercept = 0") +
   labs(x = "log(Estimulación física) (unidades arbitrarias)", y = "log(Sensación) (unidades arbitarias)") +
-  theme_minimal(10) +
   theme(panel.grid.minor = element_blank())
 ```
 
 
-## Parte práctica: Estimación de la Claridad (psicofísica de Stevens) {#P3}
+# Parte práctica: Estimación de la Claridad (psicofísica de Stevens) {#P3}
 
 **Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 3 Estimación de la claridad (Ley de Stevens)**
 
@@ -145,7 +148,7 @@ En esta práctica pondremos en práctica los conocimientos que hemos aprendido p
 
 En esta práctica, no pretendemos verificar ninguna hipótesis. No hay hipótesis experimental. Nuestro objetivo se centra en la construcción de una escala de percepción de la claridad, haciendo uso de uno de los métodos directos de estimación de cantidades propuestos por S.S. Stevens. 
 
-### Metodología
+## Metodología
 
 **Estímulos:** A modo de referencia inicial, se muestran las imágenes de 10 niveles de claridad (0-225) en una imagen.
 
@@ -194,7 +197,7 @@ En total tendremos 50 ensayos:
 \ 10~reflectancias \times 5~repeticiones = 50~ensayos~(trials) 
 \end{equation}
 
-### Resultados
+## Resultados
 
 --- 
 
@@ -312,7 +315,7 @@ ggplot(Predicted, aes(x,y)) +
 ```
 
 
-## Ejercicios para resolver en clase:
+# Ejercicios para resolver en clase:
 
 - ¿Cuál es la forma de la correspondencia psicofísica que describe la ley de Fechner? ¿y la de Stevens? 
 

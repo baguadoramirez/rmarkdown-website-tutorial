@@ -1,9 +1,11 @@
 ---
 ---
+```{r}
+knitr::opts_chunk$set(echo = F, eval = F)
+```
 
 ```{r setup, include=FALSE}
 set.seed(80085)
-knitr::opts_chunk$set(echo = F)
 
 # =============================================================================
 # Libraries

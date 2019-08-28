@@ -19,9 +19,9 @@ Put in your css file or directly in rmarkdown--->
 figure_side {
   float: right;
   width: 30%;
-  text-align: center;
+  text-align: left;
   font-style: italic;
-  font-size: smaller;
+  font-size: small;
   text-indent: 0;
   border: thin silver solid;
   margin: 0.5em;
@@ -34,19 +34,23 @@ figure {
   font-size: smaller;
   text-indent: 0;
   border: thin silver solid;
-  margin: 0.5em;
-  padding: 0.5em;
 }
 
 figurecaption{
   text-align: justify;
 }
 </style>
- 
+
 
 <figure_side style="float: right">
-Contact: &#x2709; e-mail : [borja.aguado@ub.edu](mailto:borja.aguado@ub.edu)<br>GitHub: [baguadoramirez](https://github.com/baguadoramirez)<br>LinkedIn: [Borja Aguado](www.linkedin.com/in/borja-a-606a59119)<br><img src="images/me.JPG" width="300px">
-</float_side>
+<b>Contact:</b>
+<br> &#x2709; E-mail : [borja.aguado@ub.edu](mailto:borja.aguado@ub.edu)
+<br> <img src="images/github.png" width="20px"> GitHub: [baguadoramirez](https://github.com/baguadoramirez)
+<br> <img src="images/OSF.png" width="20px"> OSF: [baguadoramirez](https://osf.io/tj628/)
+<br> <img src="images/linkedin.png" width="20px"> LikedIn: [Borja Aguado](https://www.linkedin.com/in/borja-a-606a59119)
+<!--<br> <img src="images/twitter.png" width="20px"> Twitter: [b_aguador](https://twitter.com/b_aguador)-->
+<br><img src="images/me.JPG" width="300px">
+</figure_side>
 
 This is a first draft of my personal web page. So, don´t be too harsh on me. 
 
@@ -59,3 +63,6 @@ In this website I intend to publish mainly the code of everything that I am doin
 ----
 
 Thanks for reading and keep rocking! &#x1f525;
+
+
+<img src="images/logo_reveal_black.png" width="600px">

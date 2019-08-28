@@ -1,7 +1,13 @@
 ---
+title: "Práctica 2: Psicofísica clásica"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    fig_pos: "H"
 ---
 
-```{r, echo = F}
+```{r, echo = F, message = F, warning=F}
 # Las librerías que necesitamos
 libraries <- c("tidyverse","cowplot","quickpsy",
                "broom","knitr","circular")
@@ -19,11 +25,7 @@ invisible(
 )
 ```
 
-
-# Práctica 2: Psicofísica clásica
-Obtención de los umbrales de detección de la colinealidad.
-
-## Conceptos previos: De la Filosofía a la Psicología
+# Conceptos previos: De la Filosofía a la Psicología
 
 El paso de la Filosofía a la Psicología como ciencia ha sido objeto de debate durante largo tiempo y establecer precursores a veces puede ser inexacto. Sin embargo, hay momentos en el desarrollo de la epistemología o filosofía sobre el conocimiento que  han  ayudado históricamente a entender por qué  y cómo el objeto de estudio de la  **Psicología**, es decir, el **estudio de la conducta** pasó a considerarse una  ciencia. Si estás más interesado en qué  es conducta, puedes continuar aquí [continúa aquí](http://www.aepc.es/ijchp/articulos_pdf/ijchp-89.pdf). 
 
@@ -32,9 +34,9 @@ La corrientes filosóficas imperantes hasta la ilustración abogaban porque el c
 
 **Inciso: Estos dos últimos párrafos no serán objeto de examen, pero siempre es importante saber de dónde venimos para poder entender a dónde vamos.**
 
-## Psicofísica
+# Psicofísica
 
-### Ley de Weber
+## Ley de Weber
 
 A principios del siglo XIX, [Ernst Weber](https://es.wikipedia.org/wiki/Ernst_Heinrich_Weber) describe, la que se conoce como la **primera ley Psicofísica, la Ley de Weber.** Éste médico y fisiólogo alemán, se dió cuenta de que la capacidad de diferenciar dos pesos diferentes no se encontraba tanto en el peso absoluto de un objeto, sino en la diferencia relativa entre un objeto de referencia (*Estímulo de referencia*) y otro (*Estimulo de comparación*). Weber encuentra que para que dos objetos de diferente masa pudieran ser diferenciables, su masa debería variar entorno a un 3%. Es decir, si el objeto de referencia pesa 100g, para ser capaz  de diferenciarlo de otro, éste debe pesar 103/97g o más/menos. El dato importante está en que Weber se dió cuenta de que esto se cumplia irrespectivamente del peso de referencia. Es decir, al igual que en el anterior ejemplo, para que un objeto de 2kg. pudiese diferenciarse de otro, éste debería pesar al menos 2.06kg. 
 
@@ -65,7 +67,7 @@ Como podemos ver en la anterior figura, irrespectivamente de la intensidad del e
 
 \begin{equation}
 \label{MDP}
-\ MDP = \Delta I = k \* {I_{ref}}
+\ MDP = \Delta I = k \times {I_{ref}}
 \end{equation}
 
 Además, podemos utilizar esta constante (**$k$**), como un índice de sensibilidad para comparar entre diferentes modalidades sensoriales. 
@@ -76,7 +78,7 @@ Además, podemos utilizar esta constante (**$k$**), como un índice de sensibili
 
 ---
 
-### Principios de Psicofísica
+## Principios de Psicofísica
 
 Fechner, junto a Helmholtz y Wundt se consideran los padres de la Psicología Experimental y de la Psicofísica. Sin embargo, el paso clave de la Filosofía a la Psicología viene dado en primer lugar por [Fechner](https://en.wikipedia.org/wiki/Gustav_Fechner) a partir de su obra **Principios de Psicofísica**. A la vista de los descubrimientos de Weber, Fechner argumenta que la relación entre la estimulación física y su sensación percibida puede ser medida mediante sencillas relaciones matemáticas como la *ley de Weber*. 
 
@@ -96,7 +98,7 @@ Esta cadena nos muestra que el proceso perceptivo requiere de diferentes transfo
 
 Sin embargo, a ésto se le añade otro problema. **Cuando preguntamos a un observador qué ha observado, no podemos acceder directamente a su sensación subjetiva**. En su lugar, únicamente podemos registrar su **respuesta (R)**. Para medir esta espuesta y así poder acceder de diferentes maneras a cómo se relacionan la estimulación física con la percepción subjetiva, Fechner propuso una serie de métodos psicofísicos.  
 
-## Métodos psicofísicos
+# Métodos psicofísicos
 
 - **De los límites:** el experimentador incrementa/decrementa progresivamente y de forma ordenada la intensidad de un estímulo hasta que el observador cambia su respuesta. Por ejemplo, si queremos averiguar a qué intensidad de decibelios un sonido es audible, podemos hacer el siguiente experimento: Empezamos a mostar a un participante un ruido a un nivel claramente audible y le pedimos que pulse el botón "S" si lo oye y el botón "N" si no lo oye. A medida que el participante va respondiendo que oye el sonido vamos disminuyendo los decibelios hasta que cambia su respuesta de "S" (sí), a "N" (No). En ese momento, empezamos a presentar estímulos en la dirección contraria, es decir, si antes cada vez que el participante afirmaba oír el ruido disminuíamos la intensidad, ahora presentamos un sonido claramente inaudible y a medida nos indica que no oye el estímulo vamos aumentando su intensidad.  
 
@@ -123,11 +125,11 @@ Sin embargo, a ésto se le añade otro problema. **Cuando preguntamos a un obser
 </figure>
 
 
-## Objeto de estudio de la psicofisica
+# Objeto de estudio de la psicofisica
 
 Dentro de la psicofísica clásica, se utilizan dos mediciones básicas para caracterizar las características del sistema perceptual, el Umbral Absoluto (en adelante, UA) y el Umbral Diferencial (en adelante, UD), que determina la diferencia mínima perceptible (en adelante, DMP). 
 
-### Umbral Absoluto
+## Umbral Absoluto
 
 Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que un observador afirma que percibe el 50% de las veces, es decir, al nivel del azar. Este punto se denomina **Umbral Absoluto**. Para calcular el UA, se mostrarían diferentes intensidades de un estímulo a un observador y se le pediría que respondiese **sí** o **no** dependiendo si ha llegado a percibir tal estímulo. Después de una cantidad suficiente de ensayos (a menudo una gran cantidad) podríamos caracterizar una curva como la siguiente haciendo una media de *síes* (codificados como 1) y *noes* (codificados como 0) para cada una de las intensidades:
 
@@ -191,7 +193,7 @@ UA %>%
 
 Por otra parte, el UA puede utilizarse como un *índice de sensibilidad de detección -> $IS_{Detección}$ = 1 / UA*. De esta manera, un observador con un UA de 2.5 será más sensible que uno que presenta un UA de 6.
 
-### Umbral Diferencial y Mínima Diferencia Perceptible
+## Umbral Diferencial y Mínima Diferencia Perceptible
 
 Como ya había descrito Weber en la Ley de Weber, no somos capaces de percibir un continuo de cambios graduales en un estímulo, si no que necesitamos de una cantidad o diferencia mínima en la intensidad de un estímulo que nos permita indicar que ha ocurrido tal cambio. Este cambio en la intensidad ya lo definimos anteriormente como Mínima Diferencia Perceptible (*MDP*). El hecho de que necesitemos ésta diferencia mínima se debe a que al igual que la variabilidad en el Umbral Absoluto, nuestro sistema perceptivo presenta cierta varaibilidad en la medida de un estímulo. Nuestro sistema nervioso presenta ruido interno y no es capaz de representar todas las modalidades sensoriales con una correspondencia directa con el estímulo. Esto afecta a cómo somos capaces de interpretar un estímulo y es intresante para caracterizar lo bueno que es nuestro sistema sensorial discriminando entre dos estímulos parecidos. Para ello, calculamos el **Umbral Diferencial (UD)**.
 
@@ -255,7 +257,9 @@ Como se mencionó anteriormente, una de las utilidades de calcular la constante 
 
   - Asumiendo que se cumple la Ley de Weber: ¿Qué modalidad sensorial es más precisa?
 
-    - $k_{velocidad} = 0.1$ o $k_{peso} = 0.03$
+    - $k_{velocidad} = 0.1$
+    
+    - $k_{peso} = 0.03$
   
   - ¿Qué velocidad debería alcanzar una pelota para ser percibida como más rápida/lenta que una pelota que se mueve a 28 m/s?
   
@@ -264,7 +268,7 @@ Como se mencionó anteriormente, una de las utilidades de calcular la constante 
 ---
 
 
-## Utilizando Logit para linealizar
+# Utilizando Logit para linealizar
 
 Uno de los problemas que presentan las curvas anteriores es que no son fáciles de interpretar, ya extraer puntos concretos de la curva (calcular la intesidad asociada a un cuartil) requiere de un ajuste no lineal. Sin embargo, podemos utilizar ciertos **trucos** matemáticos para facilitarnos esta misión. Para ello, vamos a utilizar una transformación de los datos anteriores con el objetivo de pasar de una curva con forma sigmoidal a una función lineal. Para ello, vamos a transformar las probabilidades en lo que se denomina **unidades logit** aplicando la siguiente fórmula:
 
@@ -311,8 +315,7 @@ ggplot(logit,aes(I,logit_Medium)) +
   annotate(geom="text", x = 7.5, y = -3.5, label = "UD = (Q3 - Q1)/2", color = "orange") +
   geom_point(size=4, color = "red") +
   labs(x = "Intensidad del estímulo", y = "Probabilidad de responder \'SI\' \n en unidades Logit' ") +
-  geom_smooth(method ="lm", se = F) +
-  theme_minimal(10)
+  geom_smooth(method ="lm", se = F)
 
 ```
 
@@ -342,10 +345,10 @@ Aquí va  un ejemplo sobre cómo calcular el UA y el UD:
     
     - $Q3 = (logit(0.75) - b) / a$
     
-    - UD = (Q3 - Q1) /2
+    - $UD = (Q3 - Q1) /2$
     
     
-## Resumen hasta el momento
+# Resumen hasta el momento
 
 Hemos estudiado dos tipos diferentes de umbrales:
 
@@ -365,14 +368,16 @@ Hemos estudiado dos tipos diferentes de umbrales:
       
       - Transformamos las probabilidades medias de discriminación de cada nivel de intensidad a valores logit $logit(p) = ln(p(I)/(1-p(I)))$.
       
-      - Calculamos la semidiferencia entre el Q3 y el Q1 utilizando valores logit. $UD = (Q3 - Q1)/2$. 
+      - Calculamos la semidiferencia entre el Q3 y el Q1 utilizando valores logit. 
       
-        - $ Q1 = (logit(0.25) - b)/a $
+        - $UD = (Q3 - Q1)/2$. 
+      
+        - $Q1 = (logit(0.25) - b)/a$
         
-        - $ Q3 = (logit(0.75) - b)/a $
+        - $Q3 = (logit(0.75) - b)/a$
       
 
-## Ley de Weber-Fechner
+# Ley de Weber-Fechner
 
 Según Fechner el Umbral Absoluto sería un nivel de Sensación 0 dentro de una escala de sensaciones psicofísicas. Basándose en la Ley de Weber, afirmó que aunque la diferencia en intensidad requerida para percibir un estímulo como diferente de otro era proporcional a la intensidad del mismo, el cambio en la sensación que estas producían era idéntico. Fechner asumía que la aunque la intensidad de un estímulo tuviese que ser crecientemente mayor para ser pecibido como diferente, la sensación producida era de escala ordinal. En este sentido, si atendemos a la fórmula de la Ley de Weber:
 
@@ -387,9 +392,9 @@ Dada la anterior igualdad sabemos que, en este ejemplo, la diferencia mínima pe
 
 Por lo que, para distinguir un estímulo de el Umbral Absoluto, éste debe aumentar su intensidad en:
 
-  - $ k \times UA = MDP 0.1 \times 4 = 0.4$
+  - $k * UA = 0.4$
   
-  - $ 0.1 \times 4 = 0.4 $
+  - $0.1 * 4 = 0.4$
 
 Haciendo estos cálculos para intensidades crecientes sucesivas obtenemos la siguiente tabla:
 

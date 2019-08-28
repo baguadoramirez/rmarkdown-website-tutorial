@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -22,6 +23,11 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<html>
+<link rel="shortcut icon" href="./images/favicon.png">
+</html>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -68,6 +74,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -83,7 +90,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -244,18 +250,6 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -279,19 +273,56 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">HOME</a>
+      <a class="navbar-brand" href="index.html">Borja's personal web page</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="CV.html">CV</a>
+  <a href="CV.html">Curriculum Vitae</a>
 </li>
-<li>
-  <a href="pia.html">P&amp;A</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Percepcion y Atencion
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Practica 1</li>
+    <li>
+      <a href="P1.html">Efectos cromaticos</a>
+    </li>
+    <li class="dropdown-header">Práctica 2: Psicofísica clásica</li>
+    <li>
+      <a href="P2_A.html">Introducción</a>
+    </li>
+    <li>
+      <a href="P2_B.html">Obtención del umbral de detección de la colinealidad</a>
+    </li>
+    <li>
+      <a href="P2_C.html">Detección del Umbral de discriminación (Umbral diferencial) de la Colinealidad</a>
+    </li>
+    <li class="dropdown-header">Practica 3</li>
+    <li>
+      <a href="P3.html">Estimación de la Claridad (psicofísica de Stevens)</a>
+    </li>
+    <li class="dropdown-header">Practica 4</li>
+    <li>
+      <a href="P4.html">Precedencia perceptiva (Global-to-Local)</a>
+    </li>
+    <li class="dropdown-header">Practica 5</li>
+    <li>
+      <a href="P5.html">Percepción de expresiones emocionales</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -318,9 +349,9 @@ Put in your css file or directly in rmarkdown--->
 figure_side {
   float: right;
   width: 30%;
-  text-align: center;
+  text-align: left;
   font-style: italic;
-  font-size: smaller;
+  font-size: small;
   text-indent: 0;
   border: thin silver solid;
   margin: 0.5em;
@@ -333,26 +364,25 @@ figure {
   font-size: smaller;
   text-indent: 0;
   border: thin silver solid;
-  margin: 0.5em;
-  padding: 0.5em;
 }
 
 figurecaption{
   text-align: justify;
 }
 </style>
-<p><figure_side style="float: right"> Contact: ✉ e-mail : <a href="mailto:borja.aguado@ub.edu">borja.aguado@ub.edu</a><br>GitHub: <a href="https://github.com/baguadoramirez">baguadoramirez</a><br>LinkedIn: <a href="www.linkedin.com/in/borja-a-606a59119">Borja Aguado</a><br><img src="images/me.JPG" width="300px"> </float_side></p>
+<p><figure_side style="float: right"> <b>Contact:</b> <br> ✉ E-mail : <a href="mailto:borja.aguado@ub.edu">borja.aguado@ub.edu</a> <br> <img src="images/github.png" width="20px"> GitHub: <a href="https://github.com/baguadoramirez">baguadoramirez</a> <br> <img src="images/OSF.png" width="20px"> OSF: <a href="https://osf.io/tj628/">baguadoramirez</a> <br> <img src="images/linkedin.png" width="20px"> LikedIn: <a href="https://www.linkedin.com/in/borja-a-606a59119">Borja Aguado</a> <!--<br> <img src="images/twitter.png" width="20px"> Twitter: [b_aguador](https://twitter.com/b_aguador)--> <br><img src="images/me.JPG" width="300px"> </figure_side></p>
 <p>This is a first draft of my personal web page. So, don´t be too harsh on me.</p>
 <p>In this website I intend to publish mainly the code of everything that I am doing on a daily basis. Whether it’s research, teaching or my nerdy stuff. I love writting experiments using Python and Psychopy. Besides, I´m a data visualization nerd. So, I will share code on how to make pretty and insightful plots.</p>
 <hr />
 <p><img src="images/new.gif" width="20px"> My first paper <em>“Perceived speed of motion in depth modulates misjudgements of approaching trajectories consistently with a slow prior”</em> along with my awesome supervisor <a href="http://www.ub.edu/viscagroup/joan/">Joan López-Moliner</a> was recently publish. If you want to have a look at it, don´t hesitate to click <a href="https://www.sciencedirect.com/science/article/pii/S0042698919300756">here</a>.</p>
 <hr />
 <p>Thanks for reading and keep rocking! 🔥</p>
+<p><img src="images/logo_reveal_black.png" width="600px"></p>
 
 <html>
 <footer role="contentinfo" id="site-footer">
 <small><p class="copyright">&#169; 2019,
-		This webpage was created using <a href="http://www.r-project.org">R</a> with <a href="http://rmarkdown.rstudio.com">RMarkdown</a> and hosted on <a href="http://github.com">Github</a> by Borja Aguado and based on <a href="https://github.com/jules32/rmarkdown-website-tutorial"> jules32/rmarkdown-website-tutorial</a> project. </small></p>
+		This webpage was created by Borja Aguado using <a href="http://www.r-project.org">R</a> with <a href="http://rmarkdown.rstudio.com">RMarkdown</a>, hosted on <a href="http://github.com">Github</a> and based on <a href="https://github.com/jules32/rmarkdown-website-tutorial"> jules32/rmarkdown-website-tutorial</a> project. </small></p>
 </footer>
 </html>
 
@@ -372,6 +402,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

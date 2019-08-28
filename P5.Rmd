@@ -1,4 +1,10 @@
 ---
+title: "Práctica 5: Percepción de expresiones emocionales"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    fig_pos: "H"
 ---
 
 ```{r, echo = F, message = F, warning=F}
@@ -32,9 +38,7 @@ Where_Am_I <- function(path=T){
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Práctica 5: Percepción de expresiones emocionales
-
-## Índice de objetivos
+# Índice de objetivos
 
   - Comprobar si existen diferencias interhemisféricas (asimetrías cerebrales) en el procesamiento de emociones. 
   
@@ -42,7 +46,7 @@ knitr::opts_chunk$set(echo = TRUE)
   
   - Intentar replicar el estudio de Alves, Aznar-Casanova & Fukusima (2008) con rostros esquemáticos. 
 
-## Introducción
+# Introducción
 
 Durante el transcurso de estas clases, ya hemos visto cómo el ser humano es capaz de acceder a diferente rasgos o características que definen un estímulo de manera bastante eficiente. Aunque hasta ahora nos hemos centrado en elementos como podrían ser la luminancia, contraste, co-colinealidad, o patrones sencillos como son letras, el procesamiento de estímulos visuales tan complejos como las expresiones emocionales es importante para estudiar nuestra interacción diaria. 
 
@@ -124,7 +128,7 @@ En esta práctica se pretende mostrar que la identificación de la emoción de u
 </figure>
 
 
-### Estudio de Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)
+## Estudio de Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)
 
 Utilizando la técnica de campo visual dividido [Alves, N. T., Fukusima, S. S., & Aznar-Casanova, J. A. (2008)](http://dx.doi.org/10.3922/j.psns.2008.1.010) mostraron a diferentes observadores una serie de imágenes mostrando rostros con expresiones emocionales a ambos lados de una pantalla. De esta manera, las expresiones emocionales eran procesadas por el hemisferio izquierdo o derecho dependiendo de en qué lado de la pantalla eran mostradas. En este experimento, los autores se preguntaron si es posible que un hemisferio que procese más rápidamente/eficazmente cada una de las emociones mostradas.  
 
@@ -169,7 +173,7 @@ Los autores proponen que se profundice en la naturaleza de los estímulos (por e
 
 
 
-## Práctica 5: Percepción de expresiones emocionales{#P5}
+# Práctica 5: Percepción de expresiones emocionales{#P5}
 
 **Pregunta experimental:** Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resultados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento con caricaturas que reflejan diferentes expresiones emocionales de una manera esquemática. 
 
@@ -177,7 +181,7 @@ Los autores proponen que se profundice en la naturaleza de los estímulos (por e
 
 **Hipótesis: ** No tenemos una dirección de hipótesis fija. Se trata de un estudio exploratorio para ver si los datos arrojan soporte a la hipótesis del acercamiento-retraimiento o a la hipótesis del hemisferio derecho.
 
-### Metodología
+## Metodología
 
 **Estímulos:** Se utilizarán caricaturas mostrando con las siguientes expresiones emocionales: Neutral, Felicidad, Tristeza, Miedo y Sorpresa. 
 
@@ -219,7 +223,7 @@ La tarea es la siguiente: si nos encontramos en el grupo 1 (Felicidad), tendremo
     
     - Tasa de errores.
 
-### Resultados
+## Resultados
 
 Los resultados obtenidos "en general" serán los siguientes:
 
@@ -249,7 +253,7 @@ Los resultados obtenidos "en general" serán los siguientes:
 </figcaption>
 </figure> 
   
-### Discusión
+## Discusión
 
 Los resultados con caricaturas  muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Por su parte, los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD. 
 

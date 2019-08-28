@@ -7,11 +7,12 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title></title>
+<title>Práctica 5: Percepción de expresiones emocionales</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,9 +20,17 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<html>
+<link rel="shortcut icon" href="./images/favicon.png">
+</html>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -68,6 +77,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -83,7 +93,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -244,20 +253,65 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
 
 
 
@@ -267,6 +321,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -279,19 +343,56 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">HOME</a>
+      <a class="navbar-brand" href="index.html">Borja's personal web page</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="CV.html">CV</a>
+  <a href="CV.html">Curriculum Vitae</a>
 </li>
-<li>
-  <a href="pia.html">P&amp;A</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Percepcion y Atencion
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Practica 1</li>
+    <li>
+      <a href="P1.html">Efectos cromaticos</a>
+    </li>
+    <li class="dropdown-header">Práctica 2: Psicofísica clásica</li>
+    <li>
+      <a href="P2_A.html">Introducción</a>
+    </li>
+    <li>
+      <a href="P2_B.html">Obtención del umbral de detección de la colinealidad</a>
+    </li>
+    <li>
+      <a href="P2_C.html">Detección del Umbral de discriminación (Umbral diferencial) de la Colinealidad</a>
+    </li>
+    <li class="dropdown-header">Practica 3</li>
+    <li>
+      <a href="P3.html">Estimación de la Claridad (psicofísica de Stevens)</a>
+    </li>
+    <li class="dropdown-header">Practica 4</li>
+    <li>
+      <a href="P4.html">Precedencia perceptiva (Global-to-Local)</a>
+    </li>
+    <li class="dropdown-header">Practica 5</li>
+    <li>
+      <a href="P5.html">Percepción de expresiones emocionales</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -301,22 +402,21 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Práctica 5: Percepción de expresiones emocionales</h1>
 
 </div>
 
 
-<div id="practica-5-percepcion-de-expresiones-emocionales" class="section level1">
-<h1>Práctica 5: Percepción de expresiones emocionales</h1>
-<div id="indice-de-objetivos" class="section level2">
-<h2>Índice de objetivos</h2>
+<div id="indice-de-objetivos" class="section level1">
+<h1>Índice de objetivos</h1>
 <ul>
 <li><p>Comprobar si existen diferencias interhemisféricas (asimetrías cerebrales) en el procesamiento de emociones.</p></li>
 <li><p>Introducir la técnica de campo visual dividido.</p></li>
 <li><p>Intentar replicar el estudio de Alves, Aznar-Casanova &amp; Fukusima (2008) con rostros esquemáticos.</p></li>
 </ul>
 </div>
-<div id="introduccion" class="section level2">
-<h2>Introducción</h2>
+<div id="introduccion" class="section level1">
+<h1>Introducción</h1>
 <p>Durante el transcurso de estas clases, ya hemos visto cómo el ser humano es capaz de acceder a diferente rasgos o características que definen un estímulo de manera bastante eficiente. Aunque hasta ahora nos hemos centrado en elementos como podrían ser la luminancia, contraste, co-colinealidad, o patrones sencillos como son letras, el procesamiento de estímulos visuales tan complejos como las expresiones emocionales es importante para estudiar nuestra interacción diaria.</p>
 <p>Las expresiones emocionales son patrones estimulares complejos. Concretamente, identificar las expresiones emocionales de rostros son determinantes para nuestra supervivencia en sociedad. Continuamente nos encontramos realizando inferencias sobre los rasgos presentes en tales rostros y modificnado nuestra conducta para poder adaptarnos a la situación. por ejemplo….</p>
 <figure>
@@ -376,7 +476,7 @@ Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr
 </figcaption>
 </figure>
 <hr />
-<p><strong>Para reflexionar:</strong> ¿Es siempre directamente accesible la percepción emocional? No. Por ejemplo, cuando nos sentimos molestos por tener hambre. A todos nos habrá ocurrido que en caso de hambre nos sentimos molestos, sin embargo, no somos conscientes de por qué nos sentimos así. Esto hace que atrubyamos nuestra molestia a cualquier evento/persona externa.</p>
+<p><strong>Para reflexionar:</strong> ¿Es siempre directamente accesible la percepción emocional? No. Por ejemplo, cuando nos sentimos molestos por tener hambre. A todos nos habrá ocurrido que en caso de hambre nos sentimos molestos, sin embargo, no somos conscientes de por qué nos sentimos así. Esto hace que atrubyamos nuestra molestia a cualquier evento/persona externa.</p>
 <hr />
 <p>En esta práctica se pretende mostrar que la identificación de la emoción de un tercero es beneficiosa en tanto que ayuda a la planificación de la acción. Es importante entender que para que se pueda identificar una emoción, primero han de ser percibidos los rasgos faciales que indican esa emoción. Bajo las teorías anteriormente mencionadas (p.e. HD y acercamiento-retraimiento) el procesamiento de la expresión facila por un hemisferio u otro afectará a su velocidad de procesamiento. Es aquí donde entra en juego la <strong>técnica de campo visual dividido</strong>.</p>
 <p><strong>¿En qué consiste ésta técnica?</strong> Cuando miramos hacia un elemento en el entorno, la luz proviniente del campo visual derecho se refleja en la parte izquierda de la retina. Esta información a su vez es procesada por el hemisferio izquierdo y viceversa. De esta manera, podemos aprovechar esta asimetría en el sistema visual para controlar qué información se está procesando por cada hemisferio cerebral. De esta manera, podemos estudiar si existe una asimetría en el procesamiento de expresiones faciales emocionales.</p>
@@ -387,8 +487,8 @@ Si veo al monete de la tercera imagen acercándose a mí, yo empezaría a correr
 El campo visual derecho se refleja en la hemiretina izquierda haciendo que se procese por el hemisferio izquierdo. El campo visual izquierdo se refleja en la hemiretina derecha haciendo que se procese principalmente por el hemisferio derecho. NOTA: Es importante indicar que hay parte del espacio visual que sólo se refleja en una de las hemiretinas y por lo tanto sólo es porcesada por un hemisferio como los espacios visuales laterales inferiores.
 </figcaption>
 </figure>
-<div id="estudio-de-alves-n.-t.-fukusima-s.-s.-aznar-casanova-j.-a.-2008" class="section level3">
-<h3>Estudio de Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</h3>
+<div id="estudio-de-alves-n.-t.-fukusima-s.-s.-aznar-casanova-j.-a.-2008" class="section level2">
+<h2>Estudio de Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</h2>
 <p>Utilizando la técnica de campo visual dividido <a href="http://dx.doi.org/10.3922/j.psns.2008.1.010">Alves, N. T., Fukusima, S. S., &amp; Aznar-Casanova, J. A. (2008)</a> mostraron a diferentes observadores una serie de imágenes mostrando rostros con expresiones emocionales a ambos lados de una pantalla. De esta manera, las expresiones emocionales eran procesadas por el hemisferio izquierdo o derecho dependiendo de en qué lado de la pantalla eran mostradas. En este experimento, los autores se preguntaron si es posible que un hemisferio que procese más rápidamente/eficazmente cada una de las emociones mostradas.</p>
 <p>Para ello mostraron a 80 participantes distribuidos en 5 grupos experimentales imágenes de caras con expresiones de felicidad o sorpresa (categorizadas como estímulos positivos), caras enfadadas o tristes (categorizadas como estímulos negativos) o caras con expresión neutra (estímulos no-emocionales).</p>
 <ul>
@@ -420,13 +520,13 @@ Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio der
 <p>Los autores proponen que se profundice en la naturaleza de los estímulos (por ejem., estáticos / dinámicos), ya que el patrón de resultados da lugar a interpretaciones.</p>
 </div>
 </div>
-<div id="P5" class="section level2">
-<h2>Práctica 5: Percepción de expresiones emocionales</h2>
+<div id="P5" class="section level1">
+<h1>Práctica 5: Percepción de expresiones emocionales</h1>
 <p><strong>Pregunta experimental:</strong> Dados los resultados del experimento anterior, los autores propusieron que sería interesante replicar los resultados con estímulos de otra naturaleza. Para ello, en este caso realizaremos un experimento con caricaturas que reflejan diferentes expresiones emocionales de una manera esquemática.</p>
 <p><strong>Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 5 Percepción de expresiones emocionales</strong></p>
 <p><strong>Hipótesis: </strong> No tenemos una dirección de hipótesis fija. Se trata de un estudio exploratorio para ver si los datos arrojan soporte a la hipótesis del acercamiento-retraimiento o a la hipótesis del hemisferio derecho.</p>
-<div id="metodologia" class="section level3">
-<h3>Metodología</h3>
+<div id="metodologia" class="section level2">
+<h2>Metodología</h2>
 <p><strong>Estímulos:</strong> Se utilizarán caricaturas mostrando con las siguientes expresiones emocionales: Neutral, Felicidad, Tristeza, Miedo y Sorpresa.</p>
 <figure>
 <p>
@@ -462,8 +562,8 @@ Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio der
 </ul></li>
 </ul>
 </div>
-<div id="resultados" class="section level3">
-<h3>Resultados</h3>
+<div id="resultados" class="section level2">
+<h2>Resultados</h2>
 <p>Los resultados obtenidos “en general” serán los siguientes:</p>
 <ul>
 <li><p>Si observamos los RTs:</p>
@@ -493,8 +593,8 @@ Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio der
 </figcaption>
 </figure>
 </div>
-<div id="discusion" class="section level3">
-<h3>Discusión</h3>
+<div id="discusion" class="section level2">
+<h2>Discusión</h2>
 <p>Los resultados con caricaturas muestran una tendencia que parece encajar con la hipótesis de acercamiento-retraimiento. Por su parte, los resultados del experimento de Alves, Aznar-Casanova y Fukusima (2008) parecerían dar soporte parcial a la hipótesis del HD.</p>
 <hr />
 <p><strong>Para pensar más:</strong></p>
@@ -506,16 +606,17 @@ Recuerda… Campo visual izquierdo -&gt; Hemiretina derecha -&gt; Hemisferio der
 <p><br></p>
 </div>
 </div>
-</div>
 
 <html>
 <footer role="contentinfo" id="site-footer">
 <small><p class="copyright">&#169; 2019,
-		This webpage was created using <a href="http://www.r-project.org">R</a> with <a href="http://rmarkdown.rstudio.com">RMarkdown</a> and hosted on <a href="http://github.com">Github</a> by Borja Aguado and based on <a href="https://github.com/jules32/rmarkdown-website-tutorial"> jules32/rmarkdown-website-tutorial</a> project. </small></p>
+		This webpage was created by Borja Aguado using <a href="http://www.r-project.org">R</a> with <a href="http://rmarkdown.rstudio.com">RMarkdown</a>, hosted on <a href="http://github.com">Github</a> and based on <a href="https://github.com/jules32/rmarkdown-website-tutorial"> jules32/rmarkdown-website-tutorial</a> project. </small></p>
 </footer>
 </html>
 
 
+</div>
+</div>
 
 </div>
 
@@ -530,6 +631,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

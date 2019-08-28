@@ -1,4 +1,10 @@
 ---
+title: "Práctica 1: Efectos cromáticos"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    fig_pos: "H"
 ---
 ```{r, echo = F, message = F, warning = F}
 # Las librerías que necesitamos
@@ -16,14 +22,11 @@ invisible(
     }
   )
 )
-knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
 
-# Práctica 1: Efectos cromáticos
-
-## Conceptos previos
+# Conceptos previos
 
 Un estímulo se trata de una fuente de energía externa al sistema sensorial que la recibe. Éste puede caracterizarse por diversas características físicas (intensidad, velocidad, frecuencia, longitud de onda, fase…). En esta práctica, nos centraremos en aquellas características que están relacionadas con  cómo percibimos el color.  Para comenzar, es necesario hacer hincapié en que  **el color  no es una  propiedad de los objetos, sino una  respuesta perceptiva a un estímulo** determinado que  depende de:
 
@@ -74,20 +77,20 @@ La combinación de ambas caracteristicas sobre cómo reaccionan diferentes super
 
 Como  podemos ver, dependiendo de la intensidad y distribución del rango del espectro visible disponible, podemos categorizar diferentes tipos de estimulación de forma independiente. Sin embargo, cuando se trata de la correspondencia psicofísica entre el estímulo físico y nuestra sensación consciente, diferentes efectos observados en la literatura indican que  las dimensiones del sistema HSV están interrelacionadas. Algunas de éstas interacciones se describen en los siguientes efectos perceptivos:
 
-### Efecto Abney
+## Efecto Abney
 
 Cambio en el **matiz percibido** inducido por cambios en la pureza cromática (saturación). No es debido ni a cambios en la longitud de onda ni en el brillo.
 
 <center><img src="./pia/P1/EffA.png" width="350px"></center>
 Tanto el Hue como la luminosidad se mantienen constantes, mientras que lo que varía es la saturación. Esto produce un cambio en el matiz percibido.
 
-### Efecto Bezold-Brücke
+## Efecto Bezold-Brücke
 Cambio en el matiz percibido inducido por cambios en el brillo. NO es debido ni a cambios en la longitud de onda ni en la saturación.
 
 <center><img src="./pia/P1/EffBB.png" width="350px"></center>
 Tanto el matiz como la saturación se mantienen constantes, mientras que lo que varía es la luminosidad. Esto produce un cambio en el matiz percibido. 
 
-### Efecto Helmholtz-Kohlrausch
+## Efecto Helmholtz-Kohlrausch
 Un estímulo cromático (con matiz), es percibido como más brillante que un estimulo acromático aunque ambos tengan la misma luminancia.
 
 <center><img src="./pia/P1/EffH.png" width="350px"></center>
@@ -105,7 +108,7 @@ Tanto el matiz como la saturación se mantienen constantes, mientras que lo que 
 
 ---
 
-## Parte práctica: Efecto Helmholtz-Kohlsrauch {#P1}
+# Parte práctica: Efecto Helmholtz-Kohlsrauch {#P1}
 
 Este efecto es descrito como la sensación de que un estímulo cromático (con matiz), es percibido como más **brillante** que un estimulo acromático aunque ambos tengan la misma luminancia. 
 
@@ -171,7 +174,7 @@ Como no somos procesadores de información infalibles y nuestra respuesta tiene 
 \end{equation}
 
 
-### Análisis de datos
+## Análisis de datos
 
 ```{r, warning = F, message = F}
 id_1 <- read.table("./pia/P1/EkiCroma_effect.dat", header =T) %>%
@@ -219,7 +222,7 @@ kable(Models %>% filter(id ==2),digits=2, col.names = c("Id","VI","Degrees of fr
 kable(Models %>% filter(id ==3),digits=2, col.names = c("Id","VI","Degrees of freedom","SSq","MSq","F","p. value"))
 ```
 
-### Ejercicios para resolver en clase:
+## Ejercicios para resolver en clase:
 
 Con ayuda de las tablas ANOVA y el gráfico anterior identifica:
 
@@ -237,7 +240,7 @@ Imagina que observamos el efecto Helmholtz-Kohlsrauch y un efecto del matiz:
 
 - ¿Como sería, por lo tanto, la tabla ANOVA esperada?
 
-## Conclusiones Práctica 1
+# Conclusiones Práctica 1
 
 - Aunque se percibe el mismo brillo para ambos estímulos, la luminancia del cromático es menor que la del estímulo acromático. 
 
@@ -254,7 +257,7 @@ Imagina que observamos el efecto Helmholtz-Kohlsrauch y un efecto del matiz:
     - Concentración empleada.
 
 
-## Recursos adicionales
+# Recursos adicionales
 
   - [Munsell test](http://www.colormunki.com/game/huetest_kiosk): Permite conocer la agudeza en la visión de color (A ver si eres capaz de superar mi puntuación de 11 ;), menor puntuación es mejor). 
 

@@ -1,13 +1,7 @@
 ---
-output:
-  html_document:
-    toc: true
-    toc_float: true
-    fig_pos: "H"
-    includes:
-      after_body: 
-        - _footer.html
+title: "Percepción y Atención"
 ---
+
 <style>
 figure_side {
   float: right;
@@ -57,8 +51,6 @@ figurecaption{
 ```{r, child="In_development.Rmd"}
 ```
 
-
-# ANUNCIO IMPORTANTE ANTES DE EMPEZAR
 Antes de empezar el temario es necesario recordar que  para asimilar de manera efectiva el temario de esta parte de la asignatura es necesario conocer y haber integrado los siguientes conocimientos de estadística descriptiva e inferencial: 
 
 - Medidas de tendencia central: media, mediana, moda.
@@ -77,6 +69,9 @@ Sin embargo, no necesitaremos conocer las fórmulas para calcular muchos de los 
 
 ---
 
+```{r, echo = F, include = T, message = F}
+knitr::opts_chunk$set(echo = FALSE, eval = F)
+```
 
 
 ```{r, echo = F, include = T, message = F, eval=F}
@@ -95,11 +90,11 @@ invisible(
     }
   )
 )
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, eval = F)
 
 ```
 
-
+<!--
 ```{r Práctica 1 Efectos Cromáticos, child="P1.Rmd"}
 
 ```
@@ -127,5 +122,5 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r Práctica 5 Emociones, child="P5.Rmd"}
 
 ```
-
+-->
 

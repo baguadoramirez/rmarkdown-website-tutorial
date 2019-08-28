@@ -1,7 +1,13 @@
 ---
+title: "Práctica 2B: Obtención del umbral de detección de la colinealidad"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    fig_pos: "H"
 ---
 
-```{r, echo = F}
+```{r, echo = F, message = F, warning=F}
 # Las librerías que necesitamos
 libraries <- c("tidyverse","cowplot","quickpsy",
                "broom","knitr","circular")
@@ -19,13 +25,12 @@ invisible(
 )
 ```
 
-# Práctica 2B: Obtención del umbral de detección de la colinealidad{#P2B}
 
 Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que es posible percibir un 50% de las veces. Punto que denominaría como **Umbral Absoluto**. 
 
 Vamos a ver cómo podemos aplicar esto a la vida real utilizando como ejemplo la agudeza visual...
 
-## ¿Qué es la agudeza visual?
+# ¿Qué es la agudeza visual?
 
 
 **Agudeza visual (AV):** <u>Separación mínima </u> entre dos puntos, dos líneas o los extremos de un aro abierto, <u> que un observador es capaz de detectar.</u> También denominada resolución espacial del procesamiento visual.
@@ -87,7 +92,7 @@ Cuando realizamos este test (Test de Snellen), buscamos obtener una visión 20/2
 
 Sin embargo, se ha observado en la literatura científica que aunque el **límite estructural** para detectar la separación entre dos puntos está determinado por la separación de los receptores, hay algunos tipos especiales de agudeza visual que superan los límites estructurales. Un ejemplo de esto sería la **Agudeza de Vernier**.
 
-## Umbral Absoluto de la Agudeza de Vernier
+# Umbral Absoluto de la Agudeza de Vernier
 
 La Agudeza de Vernier es un tipo de la hiperagudeza visual que mide la capacidad para detectar el desalineamiento entre dos segmentos de lineas o enrejados, siendo esta de 5 a 10 veces mas alta que la agudeza visual.
 
@@ -111,7 +116,7 @@ La hipótesis de partida será la siguiente:
 \ UA(0\deg) <  UA(15\deg) < UA(30\deg) < UA(45\deg) 
 \end{equation}
 
-### Metodología
+## Metodología
 
 **Secuencia Experimental**
 
@@ -146,7 +151,7 @@ En total tendremos 180 ensayos:
 
     - Juicio del sujeto (proporción de desalineamientos, 1: "Desalineado", 0: "Alineado")
     
-### Resultados
+## Resultados
 
 
 Antes de calcular los resultados recordemos qué es el Umbral Absoluto:
@@ -209,7 +214,7 @@ Por lo tanto, obtenemos que: Conforme aumenta la inclinación, también aumenta 
 \end{equation}
 
 
-#### Utilizando Logit para linealizar y obtener UA
+## Utilizando Logit para linealizar y obtener UA
 
 Ya tenemos una estimaación utilizando una regla de 3 para obtener el UA, sin embargo, en la sección de teoría, hemos visto que podemos utilizar una transformación Logit a las puntuaciones de probabilidad para linealizar los datos y obtener una estimación de forma rápida y exacta del UA. Por lo tanto, lo primero que tenemos que hacer es transformar las puntuaciones de probabilidad en valores Logit.
 
@@ -247,7 +252,7 @@ knitr::kable(UA_summary_logit ,
 
 A estos valores Logit les aplicamos un modelo lineal para obtener intercepto y pendiente y calculamos el Umbral absoluto a partir de la siguiente fórmula: 
 
-  - $UA = -b/a $
+  - $UA = -b/a$
   
   - $UA = -intercepto/pendiente$
 

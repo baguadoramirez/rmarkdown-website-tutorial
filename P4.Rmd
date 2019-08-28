@@ -1,4 +1,10 @@
 ---
+title: "Práctica 4: Precedencia perceptiva (Global-to-Local)"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    fig_pos: "H"
 ---
 
 ```{r, echo = F, message = F, warning=F}
@@ -32,9 +38,7 @@ Where_Am_I <- function(path=T){
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Práctica 4: Precedencia perceptiva “Global-to-Local”
-
-## Índice de objetivos
+# Índice de objetivos
 
 1. Mostrar la existencia de dos tipos de procesamiento de la información: 
   
@@ -47,7 +51,7 @@ knitr::opts_chunk$set(echo = TRUE)
 3. Determinar qué factores pueden influir en el fenómeno de la precedencia perceptiva.
 
 
-## Procesamiento visual
+# Procesamiento visual
 
 Desde la descripción por parte de [Hubel y Wiesel](https://physoc.onlinelibrary.wiley.com/doi/pdf/10.1113/jphysiol.2009.170209) de la respuesta selectiva de poblaciones de neuronas en la corteza occipital a estimulos orientados en una determinada dirección, la metáfora computacional ha servido para describir y dar una explicación biológica al procesamiento visual. 
 
@@ -84,11 +88,11 @@ Como podemos ver, aunque las tres explicaciones ponen énfasis en diferentes asp
   - **Top-down:** si el procesamiento es guiado conceptualmente por conocimientos previos. 
 
 
-### Modelo fisiologicista
+## Modelo fisiologicista
 
 Modelo basado en las estudios de Hubel & Wiesel descritos anteriormente. Dado que el flujo primario de acceso a la información es a través de los sentidos sería la infromación externa la que guiaría la dirección de procesamiento (**Bottom-up**). Además, dado que esta postura argumenta que para llegar a un percepto complejo primero el sistema visual analiza los elementos que lo componen de forma local, lo lógico sería que se pueda acceder de forma primarioa a las características o parámetros locales antes que al elemento global que conforman (*Local-to-Global* ). 
 
-#### Dificultades del modelo fisiologicista
+### Dificultades del modelo fisiologicista
 
 Presenta problemas para explicar cómo somos capaces de reconocer estímulos globales a partir de estímulos de carácter local. En os siguientes ejemplos, podemos ver que aunque tenemos todos los elementos locales disponibles el reconocimiento de la cara o la capacidad para leer el texto no se produce hasta que sus elementos no están configurados de una manera concreta. 
 
@@ -98,7 +102,7 @@ Presenta problemas para explicar cómo somos capaces de reconocer estímulos glo
 </figcaption>
 </figure>
 
-Basándose en éste paradigma, se propuso el modelo Pandemonium. En éste ejemplo, se analizarían las caracteristicas básicas de diferentes letras para ver si sería posible activar sus conceptos globales. Como podemos ver en el siguiente ejemplo, si activamos los demonios básicos basados en **/** y ** \ **, se activarían tanto la "X" como la "A" o en menor medida la "R", por lo que no nos permite identificar de forma inequívoca un estímulo. 
+Basándose en éste paradigma, se propuso el modelo Pandemonium. En éste ejemplo, se analizarían las caracteristicas básicas de diferentes letras para ver si sería posible activar sus conceptos globales. Como podemos ver en el siguiente ejemplo, si activamos los demonios básicos basados en / y &#x5c;, se activarían tanto la "X" como la "A" o en menor medida la "R", por lo que no nos permite identificar de forma inequívoca un estímulo. 
 
 <figure>
 <p><img src="./pia/P4/Pandemonium.png" width="350px">
@@ -123,7 +127,7 @@ Además, sería incapaz de explicar cómo somos capaces de obtener la misma repr
 </figure>
 
 
-### Modelo Neo-Gestaltista
+## Modelo Neo-Gestaltista
 
 Esta perspectiva propone que se procesa de forma primaria los elementos globales antes que los elementos globales, ya que serían los más salientes, sesgando la dirección de la atención (*Global-to-Local*). De esta manera, dado que se ha identificado el elemento global, se aplica el conocimiento previo para dirigir el flujo de procesamiento *top-down*.  Su principal problema es que es incapaz de dar una explicación (**no descripción**) de las leyes que preceden al agrupamiento perceptivo que da lugar al estímulo de tipo global. 
 
@@ -158,7 +162,7 @@ Esta corriente afirma que la mente configura, a través de ciertas leyes innatas
 
 El problema de esta perspectiva es que únicamente está describiendo el percepto o sensación que tiene el observador pero no ofrece una explicación a cómo se producen dentro de un sistema cognitivo la estrucutración de los estímulos bajo tales **leyes**. <!--**Dado que sólo se trata de una perspectiva descriptiva (y no explicativa) no puede dar lugar a hipótesis que puedan ser contrastadas mediante el método científico**. -->
 
-## Parte práctica: Experimento de Navon 
+# Parte práctica: Experimento de Navon 
 
 Basándose en las perspectivas anteriores, [Navon  (1977)](https://doi.org/10.1016/0010-0285(77)90012-3) tenía como objetivo demostrar que los observadores son más rápidos a la hora de procesar y reconocer conscientemente patrones globales dentro de una escena que los patrones locales e individuales que la componen. De esta manera, daba predominio a los procesos de tipo top-down, es decir, a la hipótesis de la precedencia global. 
 
@@ -174,7 +178,7 @@ La hipótesis de Navos se basa en que la percepcion de una configuración global
 
 Para resumir, plantea que el rendimiento general de la tarea se deterioraría en la condición de conflicto entre lo local (atendido) y lo global (no atendido).
 
-### Metodología
+## Metodología
 
 **Para realizar el experimento, tendréis que descargar el ejecutable que se encuentra en el campus virtual: Práctica 4 Navon Global-to-Local**
 
@@ -223,7 +227,7 @@ Para resumir, plantea que el rendimiento general de la tarea se deterioraría en
     
     
 
-### Resultados
+## Resultados
 
 Los resultados muestran el efecto que esparaba Navon. En un primer lugar, el procesamiento de los elementos locales es más lento que los elementos globales. Por otra aprte, este procesamiento se ve empeorado aún más cuando existe una incongruencia entre ambos estímulos. Lo que indica una interacción debida a la incongruencia entre ambos.
 
@@ -316,7 +320,7 @@ Modelos posteriores intentan dar explicación a la razón por la cual los result
 </figure>  
 
 
-## Preguntas a repasar
+# Preguntas a repasar
 
   - ¿Qué dos líneas o corrientes de procesamiento existen según la dirección del procesamiento cognitivo? ¿Qué diferencia a cada una de ellas?
 
