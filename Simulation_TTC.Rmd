@@ -191,5 +191,4 @@ Sim_TTC
   
   - La Weber Fraction del modelo GS es aproximadamente 0.06 durante toda la trayectoria. En el modelo $\tau$ es superior a 0.1 durante la mayor parte de la trayectoria. Sin embargo converge a 0.1 al final de la trayectoria, es decir, 200 ms. antes de la colisión. 
   
-  
-
+ 
