@@ -1,34 +1,32 @@
 ---
-title: "T2"
+title: "Demos"
 author: "Borja Aguado"
 date: "18 de agosto de 2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-set.seed(80085)
-knitr::opts_chunk$set(echo = TRUE)
+<div class="row">
+  <div class="col-md-4" markdown ="1">
+  <br> <img src="demos/Pursuit.gif.png" width="300px"> 
+  </div>
+  <div class="col-md-8" markdown ="1">
+  </div>
+</div>
 
 
-# =============================================================================
-# Functions
-# =============================================================================
-# Where is this script?
-Where_Am_I <- function(path=T){
-  if (path == T){
-    dirname(rstudioapi::getSourceEditorContext()$path)
-  }
-  else {
-    rstudioapi::getSourceEditorContext()$path
-  }
-}
 
+<div class="row">
+  <div class="col-md-4" markdown ="1">
+  <br> <img src="demos/Pursuit.gif.png" width="300px"> 
+  </div>
+  <div class="col-md-8" markdown ="1">
+  </div>
+</div>
 
-```
-
-## R Markdown
-
-```{r eval = F, fig.width=7}
-load("Plot_Simulations.RData")
-Simulations_plot
-```
+<div class="row">
+  <div class="col-md-4" markdown ="1">
+  <br> <img src="images/g  <br> <img src="demos/Pursuit.gif.png" width="300px"> 
+  </div>
+  <div class="col-md-8" markdown ="1">
+  </div>
+</div>

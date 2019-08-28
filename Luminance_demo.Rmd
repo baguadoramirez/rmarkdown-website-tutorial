@@ -1,0 +1,16 @@
+---
+title: "Luminance estimation"
+author: "Borja Aguado"
+institute: "Universitat de Barcelona"
+output: "ioslides_presentation"
+---
+
+## Luminance estimation
+
+Holi
+
+## P
+
+KK
+
+## kk

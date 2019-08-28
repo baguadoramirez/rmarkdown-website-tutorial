@@ -26,6 +26,9 @@ navbar:
         - text: "Practica 5"
         - text: "Percepción de expresiones emocionales"
           href: P5.html
+        - text: "Demos"
+        - text: "Demos & Psychopy code"
+          href: demos.html  
   right:
     - icon: fa-home fa-lg
       href: index.html
