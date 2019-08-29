@@ -49,7 +49,7 @@ figurecaption{
 <br> <img src="images/OSF.png" width="20px"> OSF: [baguadoramirez](https://osf.io/tj628/)
 <br> <img src="images/linkedin.png" width="20px"> LikedIn: [Borja Aguado](https://www.linkedin.com/in/borja-a-606a59119)
 <!--<br> <img src="images/twitter.png" width="20px"> Twitter: [b_aguador](https://twitter.com/b_aguador)-->
-<br><img src="images/me.JPG" width="300px">
+<br><img src="images/me.JPG" width="270px">
 </figure_side>
 
 This is a first draft of my personal web page. So, don´t be too harsh on me. 

@@ -1,6 +1,6 @@
 name: "Borja's personal web page"
 navbar:
-  title: "Borja's personal web page"
+  title: "HOME"
   left:
     - text: "Curriculum Vitae"
       href: CV.html    
@@ -28,10 +28,12 @@ navbar:
           href: P5.html
         - text: "Demos"
         - text: "Demos & Psychopy code"
-          href: demos.html  
-  right:
-    - icon: fa-home fa-lg
-      href: index.html
+          href: demos.html          
+    - text: "Projects"
+      href: Current_Projects.html  
+#  right:
+#    - icon: fa-home fa-lg
+#      href: index.html
 
 
 output_dir: "."
