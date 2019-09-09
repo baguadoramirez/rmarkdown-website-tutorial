@@ -424,15 +424,6 @@ div.tocify {
 \ k = \frac{\Delta I}{I_{ref}}
 \end{equation}\]</span></p>
 <p>Esta constante nos permite obtener de forma rápida la Mínima Diferencia Perceptible (<em>MDP</em> o <em>Just Noticeable Difference</em>; JND en inglés) con respecto a cualquier intensidad de un estímulo.</p>
-<pre class="r"><code>(temp &lt;- data_frame(I = seq(1,10,by = 1),
-           k = 0.05,
-           DI = I * k)) %&gt;%
-  ggplot(aes(I,DI)) +
-  geom_point() + 
-  labs(x = &quot;Intensidad del estímulo de referencia (I)&quot;, y = expression(Delta~I~(differential~threshold))) +
-  annotate(&quot;text&quot;, x = 9, y = 0.1, label = &quot;paste(bold(k),&#39; = &#39;, bold(0.05))&quot;, color = &quot;red&quot;, parse =T, size = 5) +
-  scale_y_continuous(breaks = unique(temp$DI)) +
-  theme_minimal(10)</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Como podemos ver en la anterior figura, irrespectivamente de la intensidad del estímulo de referencia, la MDP es el producto entre la misma y la fracción de Weber o <span class="math inline">\(k\)</span>.</p>
 <p><span class="math display">\[\begin{equation}
@@ -495,15 +486,6 @@ div.tocify {
 <div id="umbral-absoluto" class="section level2">
 <h2>Umbral Absoluto</h2>
 <p>Fechner estaba interesado en poder establecer una escala de correspondencias psicofísicas. Esta escala se empezaría siempre a contabilizar desde la intensidad mínima que un observador afirma que percibe el 50% de las veces, es decir, al nivel del azar. Este punto se denomina <strong>Umbral Absoluto</strong>. Para calcular el UA, se mostrarían diferentes intensidades de un estímulo a un observador y se le pediría que respondiese <strong>sí</strong> o <strong>no</strong> dependiendo si ha llegado a percibir tal estímulo. Después de una cantidad suficiente de ensayos (a menudo una gran cantidad) podríamos caracterizar una curva como la siguiente haciendo una media de <em>síes</em> (codificados como 1) y <em>noes</em> (codificados como 0) para cada una de las intensidades:</p>
-<pre class="r"><code>ggplot(data_frame(I = seq(0,8,by=1),
-  p = pnorm(I,mean = 4,sd = 1)),aes(I,p)) + 
-  geom_line() +
-  geom_point(size = 2, color = &quot;red&quot;) +
-  geom_text(x = 5, y = 0.5, label = &quot;UA: Q2&quot;) +
-  geom_segment(linetype = 2, size = 1, color = &quot;red&quot;, x = 0, xend = 4 , y = 0.5, yend = 0.5, arrow = arrow(length = unit(0.03, &quot;npc&quot;))) +
-  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de ser percibido&quot;) +
-  scale_x_continuous(labels = NULL) +
-  theme_minimal(10)</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Pero, ¿qué significa la anterior curva?: Cuando la intensidad de un estímulo es muy baja, la probabilidad de que un observador responda que ha sido capaz de percibir el mismo es igualmente baja o nula. Sin embargo, según aumenta su intesidad, la probabilidad de ser percibida aumenta progresivamente edfiniendo una curva con una forma sigmoidal. En concreto, la figura que se muestra arriba se trataría de una distibución normal cumulativa. Esta distribución asume que la respuesta a este experimento presentaría una varibilidad aleatoria (y por tanto simétrica) alrededor del segundo cuartil, lo que produciría esa característica forma sigmoidal. Dado que anteriormente definimos el UA como el punto en el que los observadores responden al nivel del azar, el umbral absoluto corresponde en esta figura al segundo cuartil de la distribución o a una probabilidad acumulada del 50%.</p>
 <p><span class="math display">\[\begin{equation}
@@ -524,28 +506,6 @@ div.tocify {
 - **Poco sensibles**: Son aquellos que tienden a responder que han percibido un estímulo cuando la intesidad es razonablemente alta. De la misma manera, podemos hablar de observadores *conservadores* aludiendo a factores decisionales. Por ejemplo, los participantes reciben en principio 10 euros sólo por participar. Sin embargo, les anuncio que si se equivocan una sola vez no recibirán los 10 euros. De esta manera, los participantes tenderán a responder únicamente cuando estén completamente seguros de que el edulcorante se encuentra presente. 
 
 
-
-```r
-UA = data_frame(I=seq(0,10,by=0.05),    
-           Medium = pnorm(I, mean = 5,sd=1),                  
-           High_Noise = pnorm(I, mean = 5, sd = 2), 
-           Low_Noise = pnorm(I, mean = 5, sd = 0.5),    
-           p_c_s = pnorm(I, mean = 7.5, sd = 1),    
-           p_l_s = pnorm(I, mean = 2.5, sd = 1))
-
-
-UA %>%  
-  gather(id,value,c(Medium,p_c_s,p_l_s)) %>%     
-  mutate(id = factor(id,levels = c("p_l_s","Medium","p_c_s"),labels = c("Sensible","-","Poco sensible"), ordered = T ),   
-         UA = ifelse(id == "Sensible",2.5,ifelse(id == "-",5,7.5))) %>%
-  ggplot(.,aes(I,value, color = as.factor(id))) +   
-  geom_line(size = 2 ) +    
-  geom_vline(color = "red", aes(xintercept = UA), size = 1, linetype =2) +  
-  facet_wrap(~id) + 
-  guides(color = FALSE) +   
-  theme_minimal(10)
-```
-
 <img src="P2_A_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 --></p>
 <p>Por otra parte, el UA puede utilizarse como un <em>índice de sensibilidad de detección -&gt; <span class="math inline">\(IS_{Detección}\)</span> = 1 / UA</em>. De esta manera, un observador con un UA de 2.5 será más sensible que uno que presenta un UA de 6.</p>
@@ -558,25 +518,6 @@ UA %>%
 \label{UD}
 \ UD = (Q3 - Q1)/2
 \end{equation}\]</span></p>
-<pre class="r"><code>UD_lin &lt;- data_frame(I=seq(0,10,by=0.1),
-               p_UD = pnorm(I, mean = 5,sd=2))
-##########################################################################################
-###########################     DISCRIMINACI?N: UMBRAL DIFERENCIAL     ###################
-# ##########################################################################################
-
-I_Q3 = UD_lin$I[which.min(abs(UD_lin$p_UD-0.75))]
-I_Q1 = UD_lin$I[which.min(abs(UD_lin$p_UD-0.25))]
-UD_1 =  (I_Q3-I_Q1)/2
-
-ggplot(UD_lin,aes(I,p_UD)) +
-  geom_line(size = 2) +
-  geom_point(color = &quot;red&quot;, x = I_Q1, y = 0.25, size = 4) +
-  geom_point(color = &quot;red&quot;, x = I_Q3, y = 0.75, size = 4) +
-  geom_vline(xintercept = c(I_Q1,I_Q3), color=&quot;red&quot;) +
-  geom_segment(aes(x=5,xend=5+UD_1,y=0.1,yend=0.1),color=&quot;red&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  geom_text(aes(x=I_Q3*1.25,y=0.1,label=&quot;UD = (Q3 - Q1)/2&quot;),color=&quot;red&quot;) +
-  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de respuesta&quot;) +
-  theme_minimal(10)</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <hr />
 <p><strong>Tip pro:</strong> Aunque durante ésta clase hemos establecido el UD como la semidiferencia entre el Q3 y el Q1, normalmente se establece como la semidiferencia entre el 84 y el 16 % de probabilidad, ya que, de esta manera el umbral diferencial corresponde directamente con la desviación estándar de la curva normal asociada.</p>
@@ -617,40 +558,6 @@ ggplot(UD_lin,aes(I,p_UD)) +
 \ logit(p) = ln(\frac{p}{1-p})
 \end{equation}\]</span></p>
 <p>En ésta fórmula, <span class="math inline">\(p\)</span> es la probabilidad asociada a cierta respuesta para una intensidad determinada y <span class="math inline">\(ln\)</span> el logaritmo neperiano o natural (no confundir con el logaritmo en base 10 o <span class="math inline">\(log\)</span>). Si aplicamos esta fórmula a la curva anterior obtenemos una <strong>aproximación funcional</strong> a una función lineal (como se puede ver en los puntos de la figura más abajo, no es compleeeeeetamente lineal, pero es una aproximación funcional bastante útil).</p>
-<pre class="r"><code>UD &lt;- data_frame(I=seq(0,10,by=1),
-               p_UD = pnorm(I, mean = 5,sd=2))
-
-logit = UD %&gt;%
-  mutate(logit_Medium = log(p_UD/(1-p_UD)))
-
-fit_logit = coef(lm(logit$logit_Medium ~logit$I ))
-
-ggplot(logit,aes(I,logit_Medium)) +
-  geom_hline(yintercept = 0, linetype = 2) +
-  geom_segment(aes(x=0,xend=5,y=0,yend=0),color=&quot;red&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  geom_segment(aes(x=5,xend=5,y=-5,yend=0),color=&quot;red&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  ## Q1
-  geom_segment(aes(x=0,xend=(-1.1 - round(fit_logit[1],2))/round(fit_logit[2],2),y=-1.1,yend=-1.1),
-               color=&quot;darkgreen&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  geom_segment(aes(x=(-1.1 - round(fit_logit[1],2))/round(fit_logit[2],2),xend=(-1.1 - round(fit_logit[1],2))/round(fit_logit[2],2),y=-5,yend=-1.1),
-               color=&quot;darkgreen&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  ## Q3
-  geom_segment(aes(x=0,xend=(1.1 - round(fit_logit[1],2))/round(fit_logit[2],2),y=1.1,yend=1.1),
-               color=&quot;darkgreen&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  geom_segment(aes(x=(1.1 - round(fit_logit[1],2))/round(fit_logit[2],2),xend=(1.1 - round(fit_logit[1],2))/round(fit_logit[2],2),y=-5,yend=1.1),
-               color=&quot;darkgreen&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +
-  ## UD
-  geom_segment(aes(x=5,xend=((1.1 - round(fit_logit[1],2))/round(fit_logit[2],2)-(-1.1 - round(fit_logit[1],2))/round(fit_logit[2],2))/2 + 5,y=-3,yend=-3),
-               color=&quot;orange&quot;,arrow= arrow(length = unit(0.1, &quot;inches&quot;))) +  
-  
-  annotate(geom=&quot;text&quot;, x = 8, y = 0.5, label = paste(&quot;y = &quot;,round(fit_logit[1],2),&quot; + &quot;, round(fit_logit[2],2),&quot;x&quot;)) +
-  annotate(geom=&quot;text&quot;, x = 5.6, y = -1, label = &quot;UA = Q2&quot;, color = &quot;red&quot;) +
-  annotate(geom=&quot;text&quot;, x = 6.5, y = -2, label = &quot;Q3&quot;, color = &quot;darkgreen&quot;) +
-  annotate(geom=&quot;text&quot;, x = 4.3, y = -2, label = &quot;Q1&quot;, color = &quot;darkgreen&quot;) +
-  annotate(geom=&quot;text&quot;, x = 7.5, y = -3.5, label = &quot;UD = (Q3 - Q1)/2&quot;, color = &quot;orange&quot;) +
-  geom_point(size=4, color = &quot;red&quot;) +
-  labs(x = &quot;Intensidad del estímulo&quot;, y = &quot;Probabilidad de responder \&#39;SI\&#39; \n en unidades Logit&#39; &quot;) +
-  geom_smooth(method =&quot;lm&quot;, se = F)</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Si aplicamos una regresión lineal a los puntos anteriores mediante sistemas como <strike>SPSS, Excel, MatLab </strike> o R (o incluso a mano si diesemos esta clase 10 años antes), podemos obtener la probabilidad asociada a cualquier intensidad sustituyendo en la ecuación de la recta.</p>
 <p>Aquí va un ejemplo sobre cómo calcular el UA y el UD:</p>
@@ -718,24 +625,6 @@ ggplot(logit,aes(I,logit_Medium)) +
 <li><p><span class="math inline">\(0.1 * 4 = 0.4\)</span></p></li>
 </ul>
 <p>Haciendo estos cálculos para intensidades crecientes sucesivas obtenemos la siguiente tabla:</p>
-<pre class="r"><code>E &lt;- 4
-S &lt;- c(0:20)
-k = 0.1
-D_E &lt;- 0.4
-
-for(i in 1:20){
-  E[i+1] = E[i] + D_E[i]
-  D_E[i+1] = E[i+1] * k
-}
-
-Fechner &lt;- data.frame(E = E,
-           S = S,
-           D_E = D_E,
-           k = k)</code></pre>
-<pre class="r"><code>knitr::kable(Fechner %&gt;%
-               filter(S &lt; 10),
-             digits = 3,
-             col.names = c(&quot;Intensidad del estímulo&quot;,&quot;Sensación&quot;,&quot;$\\Delta E$&quot;, &quot;Weber Fraction&quot;))</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -809,21 +698,12 @@ Fechner &lt;- data.frame(E = E,
 </tbody>
 </table>
 <p>En esta tabla se puede ver que aunque la sensación producida aumenta una sóla unidad en cada paso, el cambio necesario en la intensidad del estímulo es cada vez mayor. De manera que si ploteamos los anteriores datos tenemos la siguiente gráfica:</p>
-<pre class="r"><code>ggplot(Fechner,aes(E,S)) +
-  geom_line() +
-  geom_point(color = &quot;red&quot;) +
-  labs(x = &quot;Intensidad del estímulo&quot;, &quot;Sensación percibida&quot;)</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Como podemos ver, la relación existente entre sensación percibida y la intensidad del estímulo sigue una relación logarítimica. Para facilitar su interpretación, Fechner propuso la llamada como Ley de Weber-Fechner. Según esta ley, la sensación percibida sería proporcional al logaritmo en base 10 del estímulo multiplicado por una constante. De esta manera, la relación entre intensidad y sensación percibida pasa de una relación logarítmica a una relación lineal:</p>
 <p><span class="math display">\[\begin{equation}
 \label{Weber-Fechner}
 \ S = K*log(E)
 \end{equation}\]</span></p>
-<pre class="r"><code>ggplot(Fechner %&gt;% mutate(S = ifelse(S == 0, 0.0001,S)),aes(log(E,10),S)) +
-  geom_line() +
-  geom_point(color = &quot;darkblue&quot;) +
-  labs(x = &quot;log(Intensidad del estímulo)&quot;, &quot;Sensación percibida&quot;) +
-  annotate(geom = &quot;text&quot;, label = &quot;S = K * log(E)&quot;, color = &quot;darkblue&quot;, x = 0.75, y = 15, size =5)</code></pre>
 <p><img src="P2_A_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p><br></p>
 </div>

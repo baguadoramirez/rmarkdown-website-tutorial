@@ -436,25 +436,6 @@ div.tocify {
 \label{Log_Log_Stevens}
 \ log(S) = log(c) * n * log(E)
 \end{equation}\]</span></p>
-<pre class="r"><code>Functions_without_intercept &lt;- data_frame(
-  E = c(0.01,seq(1,50,by=1)),
-  S_lineal = E^0.33,
-  S_log = E,
-  S_exp = E^3.5
-)
-
-Functions_without_intercept %&gt;%
-  gather(id,value,S_lineal:S_exp) %&gt;%
-  ggplot(.,aes(log(E,10),log(value,10),group=id, color = id)) +
-  geom_abline(linetype = 2, size = 3) + 
-  geom_line(size = 1.5 ) +
-  #geom_point(color=&quot;black&quot;) + 
-  #facet_wrap(~id, scales = &quot;free&quot;, labeller = as_labeller(names)) +
-  guides(fill = FALSE) +
-  coord_cartesian(xlim = c(0,1.5),ylim=c(0,1.5)) +
-  scale_color_discrete(labels = c(&quot;n &gt; 1&quot;,&quot;n = 1&quot;, &quot;n &lt; 1&quot;), name = &quot;Intercept = 0&quot;) +
-  labs(x = &quot;log(Estimulación física) (unidades arbitrarias)&quot;, y = &quot;log(Sensación) (unidades arbitarias)&quot;) +
-  theme(panel.grid.minor = element_blank())</code></pre>
 <p><img src="P3_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 </div>
@@ -521,22 +502,6 @@ En esta imagen podemos encontrar el set de estímulos que utilizareoms en el exp
 <li><p><strong>Recuerda!!!:</strong> El logaritmo de 0 es igual a infinito , por lo tanto, sustituimos valores negativos (maldito bug) y el 0 por 0.01 antes de calcular su logaritmo.</p></li>
 </ul>
 <hr />
-<pre class="r"><code>##### Leemos los datos de nuestro experimento
-Luminancia &lt;- read.table(&quot;./pia/P3/Dades_claridad.txt&quot;, header = T, skip = 3)
-
-Luminancia &lt;- Luminancia %&gt;%
-  mutate(Claro = ifelse(Claro == 0, 0.01, Claro),
-         Asign = Asign -1,
-         Asign = ifelse(Asign &lt;= 0, 0.01, Asign),
-         error_est = Claro - Asign,
-         log_Claro = log10(Claro),
-         log_Asign = log10(Asign)) %&gt;%
-  select(-Assaig,-Temps) %&gt;%
-  group_by(Claro) %&gt;%
-  summarize_all(.funs=&quot;mean&quot;) %&gt;%
-  rename(Claridad = Claro)
-
-kable(Luminancia %&gt;% select(-log_Claro,-log_Asign))</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -598,49 +563,9 @@ kable(Luminancia %&gt;% select(-log_Claro,-log_Asign))</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>lm_eqn &lt;- function(df){
-    m &lt;- lm(y ~ x, df);
-    eq &lt;- substitute(italic(y) == a + b %.% italic(x)*&quot;,&quot;~~italic(r)^2~&quot;=&quot;~r2, 
-         list(a = format(unname(coef(m)[1]), digits = 2),
-              b = format(unname(coef(m)[2]), digits = 2),
-             r2 = format(summary(m)$r.squared, digits = 3)))
-    as.character(as.expression(eq));
-}
-# 
-# ggplot(Luminancia, aes(Claridad, Asign)) +
-#   geom_abline(linetype = 2) +
-#   geom_point(size = 2) +
-#   geom_line() +
-#   stat_smooth(method = &quot;lm&quot;, linetype = 2, size = 1, alpha = 0.5) +
-#   labs(x = &quot;Reflectancia real&quot;, y = &quot;Reflectancia asignada&quot;) + 
-#   scale_x_continuous(labels = as.character(c(0, 25, 50, 75, 100, 125, 150, 175, 200, 225)),
-#                      breaks = c(0.1, c(1:9))) + 
-#   geom_text(x = 2, y = 7.5, label = lm_eqn(Luminancia %&gt;%
-#                                              rename(y = Asign,
-#                                                     x = Claridad)), parse = TRUE)</code></pre>
 <p>Si calculamos los errores de estimación obtenemos el siguiente gráfico:</p>
-<pre class="r"><code>ggplot(Luminancia, aes(factor(Claridad), error_est)) +
-  geom_bar(stat=&quot;identity&quot;, alpha = 0.7, fill = &quot;gold&quot;) +
-  geom_hline(yintercept = 0, linetype = 2, color = &quot;red&quot;) +
-  labs(x = &quot;Reflectancia real&quot;, y = &quot;Error de estimación&quot;) + 
-  scale_x_discrete(labels = as.character(c(0, c(1:9))),
-                     breaks = c(0.1, c(1:9)))</code></pre>
 <p><img src="P3_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Realizamos la transofrmación Log-Log aplicando el logaritmo en base 10 a la escala ordinal de claridades (0.01-9) y a las estimaciones medias de claridad asignadas. Posteriormente, aplicamos un modelo lineal para calcular el intercepto, la pendiente y la bondad de ajuste mediante <span class="math inline">\(R^{2}\)</span>. Como podemos ver la <span class="math inline">\(R^{2}\)</span> es muy alta (muy cercana a 1), por lo que el modelo lineal es capaz de explicar bien las estimaciones del modelo lineal.</p>
-<pre class="r"><code>lm_coef &lt;- coef(lm(data=Luminancia, log_Asign ~ log_Claro))
-
-
-ggplot(Luminancia, aes(Claridad,Asign)) +
-  geom_abline(linetype = 2) +
-  geom_point(size = 2) +
-  geom_line() +
-  stat_smooth(method = &quot;lm&quot;, linetype = 2, size = 1, alpha = 0.5) +
-  labs(x = &quot;log(Reflectancia real)&quot;, y = &quot;log(Reflectancia asignada)&quot;) + 
-  scale_x_log10(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
-  scale_y_log10(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
-  geom_text(x = 0.1, y = 0.85, label = (lm_log=lm_eqn(Luminancia %&gt;%
-                                             rename(y = log_Asign,
-                                                    x = log_Claro))), parse = TRUE)</code></pre>
 <p><img src="P3_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>El intercepto y pendiente del modelo lineal ajustado se traducen como los siguientes elementos de la fórmula de Stevens:</p>
 <p>Fórmula de la Ley de Stevens: <span class="math inline">\(S = c*E^n\)</span></p>
@@ -649,17 +574,6 @@ ggplot(Luminancia, aes(Claridad,Asign)) +
 <p>Si sustituimos para el caso anterior, tendremos la siguiente ecuación:</p>
 <p><span class="math inline">\(S = 10^{0.131} * E^{0.688}\)</span></p>
 <p>Si ahora calculamos a partir de la Ley de Stevens el brillo percibido predicho obtenemos la siguiente curva:</p>
-<pre class="r"><code>Predicted &lt;- data_frame(
-  x = c(0.1,c(1:9)),
-  y = 10^lm_coef[1] + x^lm_coef[2]
-)
-
-ggplot(Predicted, aes(x,y)) +
-  geom_line(color = &quot;gold&quot;) +
-  geom_point(size = 2) +
-  labs(x = &quot;Reflectancia real&quot;, y = &quot;Brillo percibido predicho&quot;) + 
-  scale_x_continuous(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) + 
-  scale_y_continuous(breaks = c(0.1, c(1:9)), labels = c(0, c(1:9))) </code></pre>
 <p><img src="P3_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 </div>

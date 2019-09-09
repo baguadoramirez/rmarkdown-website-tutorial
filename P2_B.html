@@ -521,14 +521,6 @@ En esta figura podemos ver que el ángulo visual percibido depende tanto del tam
 <li><strong>Umbral Absoluto:</strong> nivel estimular mínimo para detectar un estímulo al nivel del azar, es decir, el 50% de las veces.</li>
 </ul>
 <p>Después de realizar el experimento, debemos calcular la media de <em>síes</em> y <em>noes</em> por participante para cada combinación de variables independientes, es decir, píxeles de separación y ángulo de orientación. Una vez obtenidas las medias, obtendremos una tabla parecida a la siguiente:</p>
-<pre class="r"><code>UA &lt;- read.table(&quot;./pia/P2/MisDatos_UA_mix.txt&quot;, header = F, skip = 7, 
-                 col.names = c(&quot;Trial&quot;, &quot;Condi&quot;, &quot;Torsion&quot;, &quot;Coline&quot;, &quot;Resp&quot;, &quot;Sentit&quot;, &quot;TR &quot;))
-
-UA_summary &lt;- UA %&gt;%
-  group_by(Torsion,Coline) %&gt;%
-  summarize(prop = mean(Resp))</code></pre>
-<pre class="r"><code>knitr::kable(UA_summary %&gt;% spread(Torsion, prop),
-             col.names = c(&quot;Colinealidad&quot;,&quot;0 deg.&quot;,&quot;15 deg.&quot;, &quot;30 deg.&quot;, &quot;45 deg.&quot;))</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -606,12 +598,6 @@ UA_summary &lt;- UA %&gt;%
 </tbody>
 </table>
 <p>Si graficamos (<em>o en espanglish</em>, <strong>ploteamos</strong>) obtenemos la siguiente figura:</p>
-<pre class="r"><code>ggplot(UA_summary,aes(Coline, prop, color = factor(Torsion))) +
-  geom_point() + 
-  geom_line() +
-  labs(x = &quot;Separación vertical&quot;,
-       y = &quot;Probabilidad no-colineales&quot;,
-       color = &quot;Orientación&quot;)</code></pre>
 <p><img src="P2_B_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Sin embargo, calcular el Umbral Absoluto todavía es un poco difícil. Si recordamos bien, el UA estaba definido como el nivel de intensidad que da lugar a un 50% de respuestas de <strong>sí</strong>, lo que equivaldría a 0.5. Una solución sencilla para calcular un valor aproximado del Umbral Absoluto sería realizar una regla de tres. Si nos fijamos por ejemplo en la orientación de 30 grados, podemos asumir que el UA está entre 6 y 7 píxels de diferencia (rango de probabilidad de entre 0.4 y 0.8, ya que incluye el 0.5). Teniendo esto en cuenta, utilizaremos una regla de 3 para obtener una estimación del UA:</p>
 <figure>
@@ -636,33 +622,9 @@ UA_summary &lt;- UA %&gt;%
 <div id="utilizando-logit-para-linealizar-y-obtener-ua" class="section level2">
 <h2>Utilizando Logit para linealizar y obtener UA</h2>
 <p>Ya tenemos una estimaación utilizando una regla de 3 para obtener el UA, sin embargo, en la sección de teoría, hemos visto que podemos utilizar una transformación Logit a las puntuaciones de probabilidad para linealizar los datos y obtener una estimación de forma rápida y exacta del UA. Por lo tanto, lo primero que tenemos que hacer es transformar las puntuaciones de probabilidad en valores Logit.</p>
-<pre class="r"><code>logit_fun = function(p){
-  return(log(p/(1-p)))
-}
-
-UA_Spread &lt;- UA_summary %&gt;% spread(Torsion, prop)
-
-UA_summary_log &lt;- (UA_summary_logit &lt;- UA_Spread %&gt;%
-  mutate(`0`= ifelse(`0`==0,0.01,ifelse(`0`==1,0.99,`0`)),
-         `15`= ifelse(`15`==0,0.01,ifelse(`15`==1,0.99,`15`)),
-         `30`= ifelse(`30`==0,0.01,ifelse(`30`==1,0.99,`30`)),
-         `45`= ifelse(`45`==0,0.01,ifelse(`45`==1,0.99,`45`))) %&gt;%
-  group_by(Coline) %&gt;%
-  mutate_all(.funs=&quot;logit_fun&quot;)) %&gt;%
-  gather(id,value,`0`:`45`) %&gt;%
-  group_by(id) %&gt;%
-  do(broom::tidy(lm(value ~ Coline, data = .))) %&gt;%
-  select(1:3)</code></pre>
 <pre><code>## `mutate_all()` ignored the following grouping variables:
 ## Column `Coline`
 ## Use `mutate_at(df, vars(-group_cols()), myoperation)` to silence the message.</code></pre>
-<pre class="r"><code>fit_colineal_par &lt;- data.frame(b = UA_summary_log$estimate[c(1,3,5,7)],
-                               a = UA_summary_log$estimate[c(2,4,6,8)],
-                               Colineal = c(&quot;0_deg&quot;,&quot;15_deg&quot;,&quot;30_deg&quot;,&quot;45_deg&quot;)) %&gt;%
-  mutate(UA = -b/a)</code></pre>
-<pre class="r"><code>knitr::kable(UA_summary_logit ,
-             col.names = c(&quot;Colinealidad&quot;,&quot;0 deg.&quot;,&quot;15 deg.&quot;, &quot;30 deg.&quot;, &quot;45 deg.&quot;), 
-             digits = 2)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -744,9 +706,6 @@ UA_summary_log &lt;- (UA_summary_logit &lt;- UA_Spread %&gt;%
 <li><p><span class="math inline">\(UA = -b/a\)</span></p></li>
 <li><p><span class="math inline">\(UA = -intercepto/pendiente\)</span></p></li>
 </ul>
-<pre class="r"><code>knitr::kable(fit_colineal_par, 
-             digits = 2,
-             col.names=c(&quot;Intercepto&quot;,&quot;Pendiente&quot;,&quot;Colinealidad&quot;,&quot;Umbral Absoluto&quot;))</code></pre>
 <table>
 <thead>
 <tr class="header">

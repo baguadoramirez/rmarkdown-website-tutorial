@@ -543,39 +543,9 @@ Rangos posibles: Hue o Tono (0 - 360), Saturación (0 - 100), Luminancia (0 - 10
 \end{equation}\]</span></p>
 <div id="analisis-de-datos" class="section level2">
 <h2>Análisis de datos</h2>
-<pre class="r"><code>id_1 &lt;- read.table(&quot;./pia/P1/EkiCroma_effect.dat&quot;, header =T) %&gt;%
-                        mutate(id = 1)
-id_2 &lt;- read.table(&quot;./pia/P1/EkiCroma_no_effect.dat&quot;, header = T) %&gt;%
-                        mutate(id = 2)
-id_3 &lt;- read.table(&quot;./pia/P1/EkiCroma_reffect.dat&quot;, header =T) %&gt;%
-                        mutate(id = 3)
-
-ekicroma &lt;- bind_rows(id_1,id_2,id_3) %&gt;%
-  arrange(NEst) %&gt;%
-  mutate(Hue = ifelse(NEst &lt; 10, &quot;Amarillo&quot;, ifelse(NEst &lt; 20, &quot;Verde&quot;, ifelse(NEst &lt; 30, &quot;Rojo&quot;, &quot;Azul&quot;)))) </code></pre>
 <p>En la siguiente figura se pueden observar los resultados para diferentes observadores:</p>
-<pre class="r"><code>ggplot(ekicroma,aes(Stand,Compar,color=Hue)) +
-  geom_point()  +
-  geom_abline(linetype = 2) + 
-  geom_smooth(method  =&quot;lm&quot;, se = F) +
-  facet_grid(~id) +
-  labs (x = &quot;Standard stimuli, chromatic&quot;, y = &quot;Comparison stimuli, achromatic&quot;) +
-  coord_cartesian(xlim= c(0,max(ekicroma$Stand), ylim = c(0,max(ekicroma$NEst)))) +
-  scale_color_manual(values = c(&quot;darkgoldenrod1&quot;,&quot;blue&quot;,&quot;red&quot;,&quot;green&quot;)) +
-  theme_minimal(10) +
-  theme(legend.position=&quot;bottom&quot;)</code></pre>
 <p><img src="P1_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p><br></p>
-<pre class="r"><code>Models &lt;- ekicroma %&gt;%
-  group_by(id) %&gt;%
-  do(model = anova(lm(Compar ~ Stand * factor(Hue), data = .))) %&gt;%
-  tidy(model) %&gt;% 
-  mutate(p.value = format.pval(round(p.value,3),eps = 0.01),
-         term = ifelse(term == &quot;Stand&quot;, &quot;Standard&quot;,
-                       ifelse(term == &quot;factor(Hue)&quot;, &quot;Color&quot;,
-                              ifelse(term == &quot;Stand:factor(Hue)&quot;, &quot;Interaction&quot;, &quot;Residuals&quot;))))
-
-kable(Models %&gt;% filter(id ==1),digits=2, col.names = c(&quot;Id&quot;,&quot;VI&quot;,&quot;Degrees of freedom&quot;,&quot;SSq&quot;,&quot;MSq&quot;,&quot;F&quot;,&quot;p. value&quot;))</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -593,41 +563,40 @@ kable(Models %&gt;% filter(id ==1),digits=2, col.names = c(&quot;Id&quot;,&quot;
 <td align="right">1</td>
 <td align="left">Standard</td>
 <td align="right">1</td>
-<td align="right">212666.77</td>
-<td align="right">212666.77</td>
-<td align="right">179.74</td>
+<td align="right">246859.28</td>
+<td align="right">246859.28</td>
+<td align="right">110.80</td>
 <td align="left">&lt;0.01</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">Color</td>
 <td align="right">3</td>
-<td align="right">25316.17</td>
-<td align="right">8438.72</td>
-<td align="right">7.13</td>
-<td align="left">&lt;0.01</td>
+<td align="right">17446.20</td>
+<td align="right">5815.40</td>
+<td align="right">2.61</td>
+<td align="left">0.055</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="left">Interaction</td>
 <td align="right">3</td>
-<td align="right">10341.63</td>
-<td align="right">3447.21</td>
-<td align="right">2.91</td>
-<td align="left">0.038</td>
+<td align="right">2431.82</td>
+<td align="right">810.61</td>
+<td align="right">0.36</td>
+<td align="left">0.779</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">Residuals</td>
 <td align="right">112</td>
-<td align="right">132515.14</td>
-<td align="right">1183.17</td>
+<td align="right">249534.17</td>
+<td align="right">2227.98</td>
 <td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>kable(Models %&gt;% filter(id ==2),digits=2, col.names = c(&quot;Id&quot;,&quot;VI&quot;,&quot;Degrees of freedom&quot;,&quot;SSq&quot;,&quot;MSq&quot;,&quot;F&quot;,&quot;p. value&quot;))</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -679,7 +648,6 @@ kable(Models %&gt;% filter(id ==1),digits=2, col.names = c(&quot;Id&quot;,&quot;
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>kable(Models %&gt;% filter(id ==3),digits=2, col.names = c(&quot;Id&quot;,&quot;VI&quot;,&quot;Degrees of freedom&quot;,&quot;SSq&quot;,&quot;MSq&quot;,&quot;F&quot;,&quot;p. value&quot;))</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -697,35 +665,35 @@ kable(Models %&gt;% filter(id ==1),digits=2, col.names = c(&quot;Id&quot;,&quot;
 <td align="right">3</td>
 <td align="left">Standard</td>
 <td align="right">1</td>
-<td align="right">345519.55</td>
-<td align="right">345519.55</td>
-<td align="right">158.17</td>
+<td align="right">212666.77</td>
+<td align="right">212666.77</td>
+<td align="right">179.74</td>
 <td align="left">&lt;0.01</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
 <td align="left">Color</td>
 <td align="right">3</td>
-<td align="right">24603.80</td>
-<td align="right">8201.27</td>
-<td align="right">3.75</td>
-<td align="left">0.013</td>
+<td align="right">25316.17</td>
+<td align="right">8438.72</td>
+<td align="right">7.13</td>
+<td align="left">&lt;0.01</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
 <td align="left">Interaction</td>
 <td align="right">3</td>
-<td align="right">3963.63</td>
-<td align="right">1321.21</td>
-<td align="right">0.60</td>
-<td align="left">0.613</td>
+<td align="right">10341.63</td>
+<td align="right">3447.21</td>
+<td align="right">2.91</td>
+<td align="left">0.038</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
 <td align="left">Residuals</td>
 <td align="right">112</td>
-<td align="right">244663.01</td>
-<td align="right">2184.49</td>
+<td align="right">132515.14</td>
+<td align="right">1183.17</td>
 <td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
@@ -740,11 +708,12 @@ kable(Models %&gt;% filter(id ==1),digits=2, col.names = c(&quot;Id&quot;,&quot;
 <li><p>¿Hay algún observador en el que se observe el efecto Helmholtz-Kohlsrauch? Indica en cual o cuales.</p></li>
 <li><p>¿Se observa un efecto del matiz/Hue sobre el brillo percibido?</p></li>
 </ul>
-<p>Imagina que observamos el efecto Helmholtz-Kohlsrauch y un efecto del matiz:</p>
+<p>Imagina que observamos el efecto Helmholtz-Kohlsrauch, ¿cómo serían los soguientes elementos si utilizasemos una luminancia de 0 en el estímulo estándar?:</p>
 <ul>
 <li><p>¿Cómo sería el gráfico para un observador modelo?</p></li>
 <li><p>¿Esperarías un efecto de la interacción entre ambas variables?</p></li>
 <li><p>¿Como sería, por lo tanto, la tabla ANOVA esperada?</p></li>
+<li><p>¿Seguiría siendo útil una regresión lineal?</p></li>
 </ul>
 </div>
 </div>

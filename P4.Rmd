@@ -11,6 +11,7 @@ output:
 # Las librerías que necesitamos
 libraries <- c("tidyverse","cowplot","quickpsy",
                "broom","knitr","circular")
+knitr::opts_chunk$set(echo = F, warning = F)
 
 # Cargamos las librerias que necesitamos, si no las tenemos, indicamos a R que las instale
 invisible(

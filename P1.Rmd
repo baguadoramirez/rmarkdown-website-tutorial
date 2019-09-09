@@ -10,6 +10,7 @@ output:
 # Las librerías que necesitamos
 libraries <- c("tidyverse","cowplot","quickpsy",
                "broom","knitr","circular")
+knitr::opts_chunk$set(echo = F, warning = F)
 
 # Cargamos las librerias que necesitamos, si no las tenemos, indicamos a R que las instale
 invisible(
@@ -177,7 +178,7 @@ Como no somos procesadores de información infalibles y nuestra respuesta tiene 
 ## Análisis de datos
 
 ```{r, warning = F, message = F}
-id_1 <- read.table("./pia/P1/EkiCroma_effect.dat", header =T) %>%
+id_1 <- read.table("./pia/P1/EkiCroma_effect.txt", header =T) %>%
                         mutate(id = 1)
 id_2 <- read.table("./pia/P1/EkiCroma_no_effect.dat", header = T) %>%
                         mutate(id = 2)
@@ -232,13 +233,15 @@ Con ayuda de las tablas ANOVA y el gráfico anterior identifica:
 
 - ¿Se observa un efecto del matiz/Hue sobre el brillo percibido?
 
-Imagina que observamos el efecto Helmholtz-Kohlsrauch y un efecto del matiz:
+Imagina que observamos el efecto Helmholtz-Kohlsrauch, ¿cómo serían los soguientes elementos si utilizasemos una luminancia de 0 en el estímulo estándar?:
 
 - ¿Cómo sería el gráfico para un observador modelo?
 
 - ¿Esperarías un efecto de la interacción entre ambas variables?
 
 - ¿Como sería, por lo tanto, la tabla ANOVA esperada?
+
+- ¿Seguiría siendo útil una regresión lineal?
 
 # Conclusiones Práctica 1
 
