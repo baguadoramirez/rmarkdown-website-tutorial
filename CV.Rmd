@@ -48,7 +48,7 @@ From Toledo, living in Barcelona.
 </div>
 
 <div class="column-right">
-<img src="images/id.jpeg" width="200px">
+<img src="images/id.jpg" width="200px">
 </div>
 
 <style>
