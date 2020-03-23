@@ -52,13 +52,21 @@ figurecaption{
 <br><img src="images/me.jpeg" width="270px">
 </figure_side>
 
-This is a first draft of my personal web page. So, don´t be too harsh on me. 
+Hi! My name is Borja Aguado and this is my personal web page.  
 
 In this website I intend to publish mainly the code of everything that I am doing on a daily basis. Whether it's research, teaching or my nerdy stuff. I love writting experiments using Python and Psychopy. Besides, I´m a data visualization nerd.  So, I will share code on how to make pretty and insightful plots.
 
 ----
 
-<img src="images/new.gif" width="20px">  My first paper *"Perceived speed of motion in depth modulates misjudgements of approaching trajectories consistently with a slow prior"* along with my awesome supervisor [Joan López-Moliner](http://www.ub.edu/viscagroup/joan/) was recently publish. If you want to have a look at it, don´t hesitate to click [here](https://www.sciencedirect.com/science/article/pii/S0042698919300756). 
+My first paper *"Perceived speed of motion in depth modulates misjudgements of approaching trajectories consistently with a slow prior"* along with my awesome supervisor [Joan López-Moliner](http://www.ub.edu/viscagroup/joan/) was recently publish. If you want to have a look at it, don´t hesitate to click [here](https://www.sciencedirect.com/science/article/pii/S0042698919300756). 
+
+----
+
+<img src="images/new.gif" width="20px"> Due to the Coronavirus (SARS-CoV-2) crisis, I have created an application using the Shiny library to monitor the evolution of the data. It is a simple application in Spanish, mainly designed so that anyone without knowledge of how to interpret a graph can follow the evolution of the data. You can check it out at the following link. 
+
+[Click here!](https://baguadoramirez.shinyapps.io/covid/)
+
+Please, stay safe!
 
 ----
 
