@@ -7,25 +7,25 @@ navbar:
     - text: "Percepcion y Atencion"
       href: pia.html    
       menu:
-        - text: "Practica 1"
-        - text: "Efectos cromaticos"
-          href: P1.html
-        - text: "Práctica 2: Psicofísica clásica"
-        - text: "Introducción"
-          href: P2_A.html
-        - text: "Obtención del umbral de detección de la colinealidad"
-          href: P2_B.html
-        - text: "Detección del Umbral de discriminación (Umbral diferencial) de la Colinealidad"
-          href: P2_C.html
-        - text: "Practica 3"
-        - text: "Estimación de la Claridad (psicofísica de Stevens)"
-          href: P3.html    
-        - text: "Practica 4"
-        - text: "Precedencia perceptiva (Global-to-Local)"
-          href: P4.html        
-        - text: "Practica 5"
-        - text: "Percepción de expresiones emocionales"
-          href: P5.html
+#        - text: "Practica 1"
+#        - text: "Efectos cromaticos"
+#          href: P1.html
+#        - text: "Práctica 2: Psicofísica clásica"
+#        - text: "Introducción"
+#          href: P2_A.html
+#        - text: "Obtención del umbral de detección de la colinealidad"
+#          href: P2_B.html
+#        - text: "Detección del Umbral de discriminación (Umbral diferencial) de la Colinealidad"
+#          href: P2_C.html
+#        - text: "Practica 3"
+#        - text: "Estimación de la Claridad (psicofísica de Stevens)"
+#          href: P3.html    
+#        - text: "Practica 4"
+#        - text: "Precedencia perceptiva (Global-to-Local)"
+#          href: P4.html        
+#        - text: "Practica 5"
+#        - text: "Percepción de expresiones emocionales"
+#          href: P5.html
         - text: "Demos"
         - text: "Demos & Psychopy code"
           href: demos.html          
