@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -239,6 +238,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -267,6 +267,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -355,32 +361,6 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Practica 1</li>
-    <li>
-      <a href="P1.html">Efectos cromaticos</a>
-    </li>
-    <li class="dropdown-header">Práctica 2: Psicofísica clásica</li>
-    <li>
-      <a href="P2_A.html">Introducción</a>
-    </li>
-    <li>
-      <a href="P2_B.html">Obtención del umbral de detección de la colinealidad</a>
-    </li>
-    <li>
-      <a href="P2_C.html">Detección del Umbral de discriminación (Umbral diferencial) de la Colinealidad</a>
-    </li>
-    <li class="dropdown-header">Practica 3</li>
-    <li>
-      <a href="P3.html">Estimación de la Claridad (psicofísica de Stevens)</a>
-    </li>
-    <li class="dropdown-header">Practica 4</li>
-    <li>
-      <a href="P4.html">Precedencia perceptiva (Global-to-Local)</a>
-    </li>
-    <li class="dropdown-header">Practica 5</li>
-    <li>
-      <a href="P5.html">Percepción de expresiones emocionales</a>
-    </li>
     <li class="dropdown-header">Demos</li>
     <li>
       <a href="demos.html">Demos &amp; Psychopy code</a>
