@@ -1,3 +1,0 @@
-<hr />
-<big> En desarrollo... / Under development... </big>
-<hr />
